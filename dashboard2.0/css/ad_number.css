@@ -234,11 +234,15 @@
   display: flex;
   justify-content: space-around;
 }
+.big-box .content .center-box .center-bottom .room-num {
+  color: white;
+}
 .big-box .content .center-box .center-bottom > div {
   width: 30%;
   height: 100%;
-  border: 1px solid red;
+  border: 1px solid black;
   font-size: 0.3rem;
+  color: white;
   text-align: center;
   display: flex;
   flex-direction: column;

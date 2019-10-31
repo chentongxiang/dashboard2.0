@@ -224,7 +224,6 @@
                                 var colorArr2 =  ["#C23531","#6AB0B8","#2028BE","#7952E7","#1FCF25","#CF581F",] ;
                                 var pieData2 = pieData.slice(0,6);
                                 var pieData1 = pieData.reverse().slice(0,6);
-                                console.log(pieData1,pieData2)
                                 $.each(pieData1,function (i,v) {
                                     var option = options.pieChart(colorArr1[i],pieData1[i].title_label,pieData1[i].value,that.fontSizeNum);
                                     var echartObj = new EchartObj(domIdArr1[i],option);
@@ -261,9 +260,11 @@
                                 })
                                 var option = options.dynamicChart(item['value'],that.fontSizeNum);
                                 option.title.text = "电视品牌占比";
-                                var echartObj = new EchartObj(domID,option);
-                                that.allEchartObj[domID] = echartObj;
-                                echartObj.setOp();
+                                if(domID=="ratio_brands_tv"){
+                                    var echartObj = new EchartObj(domID,option);
+                                    that.allEchartObj[domID] = echartObj;
+                                    echartObj.setOp();
+                                }
                             }
                         }else if(chart_type == 'line'){
                             var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
