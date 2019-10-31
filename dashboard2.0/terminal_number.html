@@ -45,12 +45,17 @@
                 </div>
             </div>
             <div class="left-middle">
-                <div class="carousel-chart">
-                    <div class="carousel-chart1" id="top_goods_view"></div>
-                    <div class="carousel-chart2" id="top_movies_view"></div>
+                <div class="carousel1">
+                    <div class="carousel-chart1" id="top_province_view"></div>
+                    <div class="carousel-chart2" id="top_city_view"></div>
                 </div>
             </div>
-            <div class="left-bottom" id="ratio_brands_tv"></div>
+            <div class="left-bottom">
+                <div class="carousel2">
+                    <div class="carousel-chart3" id="top_goods_view"></div>
+                    <div class="carousel-chart4" id="top_movies_view"></div>
+                </div>
+            </div>
         </div>
         <div class="center-box">
             <div class="center-top">
@@ -143,180 +148,207 @@
         createEchart:function () {
             var that = this;
             //获取echart图表数据并显示
-            $.post(GPATH.getChartsTerminal, function(data){
+            $.post(GPATH.queryChartsTerminal, function(data){
                 if(data.res){
                     var content = data.data;
-                    for(var i=0;i<content.length;i++){
-                        var item = content[i];
-                        var chart_type = item['chart_type'];
-                        var domID = item['title_value'];
-                        if(chart_type == 'pie'){
-                            if(domID == "ratio_behavior_tv"){
-                                // var color =["#67E0E3","#26466D"];
-                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
-                                var pieData =  [
-                                    {
-                                        chart_type: "pie",
-                                        label: ["5%", ""],
-                                        value: [ {value: 5, name: "5%"},{value: 100, name: ""}],
-                                        title_label: "购物比例",
-                                        title_value: "ratio_behavior_shop"
-                                    },
-                                    {
-                                        chart_type: "pie",
-                                        label: ["9%", ""],
-                                        value: [ {value: 9, name: "9%"},{value: 100, name: ""}],
-                                        title_label: "观影比例",
-                                        title_value: "ratio_behavior_shop"
-                                    },
-                                    {
-                                        chart_type: "pie",
-                                        label: ["10%", ""],
-                                        value: [ {value: 10, name: "10%"},{value: 100, name: ""}],
-                                        title_label: "看电视比例",
-                                        title_value: "ratio_behavior_shop"
-                                    },
-                                    {
-                                        chart_type: "pie",
-                                        label: ["12%", ""],
-                                        value: [ {value: 12, name: "12%"},{value: 100, name: ""}],
-                                        title_label: "看电脑比例",
-                                        title_value: "ratio_behavior_shop"
-                                    },
-                                    {
-                                        chart_type: "pie",
-                                        label: ["14%", ""],
-                                        value: [ {value: 14, name: "14%"},{value: 100, name: ""}],
-                                        title_label: "看手机比例",
-                                        title_value: "ratio_behavior_shop"
-                                    },
-                                    {
-                                        chart_type: "pie",
-                                        label: ["15%", ""],
-                                        value: [ {value: 15, name: "15%"},{value: 100, name: ""}],
-                                        title_label: "旅游比例",
-                                        title_value: "ratio_behavior_shop"
-                                    },
-                                    {
-                                        chart_type: "pie",
-                                        label: ["17%", ""],
-                                        value: [ {value: 17, name: "17%"},{value: 100, name: ""}],
-                                        title_label: "运动比例",
-                                        title_value: "ratio_behavior_shop"
-                                    },
-                                    {
-                                        chart_type: "pie",
-                                        label: ["18%", ""],
-                                        value: [ {value: 18, name: "18%"},{value: 100, name: ""}],
-                                        title_label: "唱歌比例",
-                                        title_value: "ratio_behavior_shop"
-                                    }
-                                ]
-                                var domIdArr1 = ["dom1","dom2","dom3","dom4","dom5","dom6"]
-                                var domIdArr2 = ["dom7","dom8","dom9","dom10","dom11","dom12"]
-                                var colorArr1 =  [["#67E0E3","#26466D"],
-                                    ["#6AB0B8","#26466D"],
-                                    ["#DB9968","#26466D"],
-                                    ["#7952E7","#26466D"],
-                                    ["#1FCF25","#26466D"],
-                                    ["#CF581F","#26466D"],
-                                ];
-                                var colorArr2 =  ["#C23531","#6AB0B8","#2028BE","#7952E7","#1FCF25","#CF581F",] ;
-                                var pieData2 = pieData.slice(0,6);
-                                var pieData1 = pieData.reverse().slice(0,6);
-                                $.each(pieData1,function (i,v) {
-                                    var option = options.pieChart(colorArr1[i],pieData1[i].title_label,pieData1[i].value,that.fontSizeNum);
-                                    var echartObj = new EchartObj(domIdArr1[i],option);
-                                    echartObj.setOp();
-                                    echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
-                                })
-                                $.each(pieData2,function (i,v) {
-                                    var option = options.pieChart(colorArr1[i],pieData2[i].title_label,pieData2[i].value,that.fontSizeNum);
-                                    var echartObj = new EchartObj(domIdArr2[i],option);
-                                    echartObj.setOp();
-                                    echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
-                                })
-                            }else if(domID == "ratio_behavior_movie"){
-                                // var color =['#249CF9',"#26466D"];
-                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
-                            }else if(domID == "ratio_behavior_shop"){
-                                // var color =["#EB6F49","#26466D"];
-                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
-                                // return ;
-                            }else {
-                                var arr = item['value'];
-                                that.arrLength = arr.length;
-                                $.each(arr,function (i,v) {
-                                    arr[i]["label"] = {
-                                        normal:{
-                                            position: 'center',
-                                            // formatter:"{b}\n{d}%",
-                                            textStyle: {
-                                                fontSize: '50',
-                                                fontWeight: 'normal'
-                                            }
-                                        }
-                                    }
-                                })
-                                var option = options.dynamicChart(item['value'],that.fontSizeNum);
-                                option.title.text = "电视品牌占比";
-                                if(domID=="ratio_brands_tv"){
-                                    var echartObj = new EchartObj(domID,option);
-                                    that.allEchartObj[domID] = echartObj;
-                                    echartObj.setOp();
-                                }
-                            }
-                        }else if(chart_type == 'line'){
-                            var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
-                            var option = options.lineChart(color,item['label'],item['value'],that.fontSizeNum);
-                            option.title.text = "单店平均各时段开机数量";
-                            var echartObj = new EchartObj(domID,option);
-                            that.allEchartObj[domID] = echartObj;
-                            echartObj.setOp();
-                        }else if(chart_type == "bar"){
-                            item['value'].reverse();
-                            var bgData = that.bgData(item['value']);
-                            if(domID=="top_goods_view"){
+                    var contentOne = content.slice(0,7);
+                    var contentTow = content.slice(7);
+                    $.each(contentTow,function (i,v) {
+                        var bgData = that.bgData(v.value);
+                        var domID = v.title_value;
+                        switch(v.title_value) {
+                            case "top_goods_view":
                                 var color =["#3DE7C9","#3DE7C9"];
-                                var option = options.barChart(color,item['label'],bgData,item['value'],that.fontSizeNum);
-                                option.title.text = "商品关注";
-                            }else if(domID == "top_movies_view"){
+                                v.value.reverse();
+                                var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
+                                option.title.text = "商品热销TOP5";
+                                var echartObj = new EchartObj(domID,option);
+                                that.allEchartObj[domID] = echartObj;
+                                echartObj.setOp();
+                                break;
+                            case "top_movies_view":
                                 var color =["#00BAFF","#00BAFF"];
-
-                                var option = options.barChart(color,item['label'],bgData,item['value'],that.fontSizeNum);
-                                option.title.text = "电影类型";
-
-                            }else if(domID == "avg_single_open_long"){
+                                v.value.reverse();
+                                var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
+                                option.title.text = "电影热播TOP5";
+                                var echartObj = new EchartObj(domID,option);
+                                that.allEchartObj[domID] = echartObj;
+                                echartObj.setOp();
+                                break;
+                            case "avg_single_open_long":
                                 var color =["#1B69FF","#1B69FF"];
-                                var option = options.normalBarChart(color,item['label'],item['value'],that.fontSizeNum);
+                                var option = options.normalBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.xAxis[0].axisLabel.interval = 1 ;
-                            }
-                            var echartObj = new EchartObj(domID,option);
-                            that.allEchartObj[domID] = echartObj;
-                            echartObj.setOp();
+                                option.title.text = "平均各时段驻留时长";
+                                var echartObj = new EchartObj(domID,option);
+                                that.allEchartObj[domID] = echartObj;
+                                echartObj.setOp();
+                                break;
+                            case "avg_single_open_nums":
+                                var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
+                                var option = options.lineChart(color,v.label,v.value,that.fontSizeNum);
+                                option.title.text = "单店平均各时段开机数量";
+                                var echartObj = new EchartObj(domID,option);
+                                that.allEchartObj[domID] = echartObj;
+                                echartObj.setOp();
+                                break;
+                            case "ratio_brands_tv":
+//                                代码块
+                                break;
+                            case "top_province_view":
+                                var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
+                                v.value.reverse();
+                                var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
+                                option.title.text = "各省终端排行TOP5";
+                                var echartObj = new EchartObj(domID,option);
+                                that.allEchartObj[domID] = echartObj;
+                                echartObj.setOp();
+                                break;
+                            case "top_city_view":
+                                var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
+
+                                var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
+                                option.title.text = "城市粘性排行TOP5";
+                                console.log(domID,option)
+
+                                var echartObj = new EchartObj(domID,option);
+                                that.allEchartObj[domID] = echartObj;
+                                echartObj.setOp();
+                                break;
+//                            default:
+//                                默认代码块
                         }
-                    }
+                    })
+                    var domIdArr1 = ["dom1","dom2","dom3","dom4","dom5","dom6"]
+                    var domIdArr2 = ["dom7","dom8","dom9","dom10","dom11","dom12"]
+                    var colorArr1 =  ["#C23531","#6AB0B8","#2028BE","#7952E7","#1FCF25","#CF581F",] ;
+                    var pieData2 = contentOne.slice(0,6);
+                    var pieData1 = contentOne.reverse().slice(0,6);
+                    $.each(pieData1,function (i,v) {
+                        var option = options.pieChart(colorArr1[i],pieData1[i].title_label,pieData1[i].value,that.fontSizeNum);
+                        var echartObj = new EchartObj(domIdArr1[i],option);
+                        echartObj.setOp();
+                        echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
+                    })
+                    $.each(pieData2,function (i,v) {
+                        var option = options.pieChart(colorArr1[i],pieData2[i].title_label,pieData2[i].value,that.fontSizeNum);
+                        var echartObj = new EchartObj(domIdArr2[i],option);
+                        echartObj.setOp();
+                        echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
+                    })
+//                    for(var i=0;i<content.length;i++){
+//                        var item = content[i];
+//                        var chart_type = item['chart_type'];
+//                        var domID = item['title_value'];
+//
+//                        if(chart_type == 'pie'){
+//                            if(domID == "ratio_behavior_tv"){
+//                                // var color =["#67E0E3","#26466D"];
+//                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
+//
+//                                var colorArr1 =  [["#67E0E3","#26466D"],
+//                                    ["#6AB0B8","#26466D"],
+//                                    ["#DB9968","#26466D"],
+//                                    ["#7952E7","#26466D"],
+//                                    ["#1FCF25","#26466D"],
+//                                    ["#CF581F","#26466D"],
+//                                ];
+//
+//                                var pieData2 = pieData.slice(0,6);
+//                                var pieData1 = pieData.reverse().slice(0,6);
+//                                $.each(pieData1,function (i,v) {
+//                                    var option = options.pieChart(colorArr1[i],pieData1[i].title_label,pieData1[i].value,that.fontSizeNum);
+//                                    var echartObj = new EchartObj(domIdArr1[i],option);
+//                                    echartObj.setOp();
+//                                    echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
+//                                })
+//                                $.each(pieData2,function (i,v) {
+//                                    var option = options.pieChart(colorArr1[i],pieData2[i].title_label,pieData2[i].value,that.fontSizeNum);
+//                                    var echartObj = new EchartObj(domIdArr2[i],option);
+//                                    echartObj.setOp();
+//                                    echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
+//                                })
+//                            }else if(domID == "ratio_behavior_movie"){
+//                                // var color =['#249CF9',"#26466D"];
+//                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
+//                            }else if(domID == "ratio_behavior_shop"){
+//                                // var color =["#EB6F49","#26466D"];
+//                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
+//                                // return ;
+//                            }else {
+//                                var arr = item['value'];
+//                                that.arrLength = arr.length;
+//                                $.each(arr,function (i,v) {
+//                                    arr[i]["label"] = {
+//                                        normal:{
+//                                            position: 'center',
+//                                            // formatter:"{b}\n{d}%",
+//                                            textStyle: {
+//                                                fontSize: '50',
+//                                                fontWeight: 'normal'
+//                                            }
+//                                        }
+//                                    }
+//                                })
+//                                var option = options.dynamicChart(item['value'],that.fontSizeNum);
+//                                option.title.text = "电视品牌占比";
+//                                if(domID=="ratio_brands_tv"){
+//                                    var echartObj = new EchartObj(domID,option);
+//                                    that.allEchartObj[domID] = echartObj;
+//                                    echartObj.setOp();
+//                                }
+//                            }
+//                        }else if(chart_type == 'line'){
+//                            var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
+//                            var option = options.lineChart(color,item['label'],item['value'],that.fontSizeNum);
+//                            option.title.text = "单店平均各时段开机数量";
+//                            var echartObj = new EchartObj(domID,option);
+//                            that.allEchartObj[domID] = echartObj;
+//                            echartObj.setOp();
+//                        }else if(chart_type == "bar"){
+//                            item['value'].reverse();
+//                            var bgData = that.bgData(item['value']);
+//                            if(domID=="top_goods_view"){
+//                                var color =["#3DE7C9","#3DE7C9"];
+//                                var option = options.barChart(color,item['label'],bgData,item['value'],that.fontSizeNum);
+//                                option.title.text = "商品关注";
+//                            }else if(domID == "top_movies_view"){
+//                                var color =["#00BAFF","#00BAFF"];
+//
+//                                var option = options.barChart(color,item['label'],bgData,item['value'],that.fontSizeNum);
+//                                option.title.text = "电影类型";
+//
+//                            }else if(domID == "avg_single_open_long"){
+//                                var color =["#1B69FF","#1B69FF"];
+//                                var option = options.normalBarChart(color,item['label'],item['value'],that.fontSizeNum);
+//                                option.xAxis[0].axisLabel.interval = 1 ;
+//                            }
+//                            var echartObj = new EchartObj(domID,option);
+//                            that.allEchartObj[domID] = echartObj;
+//                            echartObj.setOp();
+//                        }
+//                    }
                 }
             },"json");
 
-            var charPie3currentIndex = 0;
-            setInterval(function () {
-                var dataLen = that.arrLength;
-                chartPie3 = that.allEchartObj["ratio_brands_tv"].myChart;
-                // 取消之前高亮的图形
-                chartPie3.dispatchAction({
-                    type: 'downplay',
-                    seriesIndex: 0,
-                    dataIndex: charPie3currentIndex
-                });
-                charPie3currentIndex = (charPie3currentIndex + 1) % dataLen;
-                // 高亮当前图形
-                chartPie3.dispatchAction({
-                    type: 'highlight',
-                    seriesIndex: 0,
-                    dataIndex:charPie3currentIndex
-                });
-            }, 3000);
+//            var charPie3currentIndex = 0;
+//            setInterval(function () {
+//                var dataLen = that.arrLength;
+//                chartPie3 = that.allEchartObj["ratio_brands_tv"].myChart;
+//                // 取消之前高亮的图形
+//                chartPie3.dispatchAction({
+//                    type: 'downplay',
+//                    seriesIndex: 0,
+//                    dataIndex: charPie3currentIndex
+//                });
+//                charPie3currentIndex = (charPie3currentIndex + 1) % dataLen;
+//                // 高亮当前图形
+//                chartPie3.dispatchAction({
+//                    type: 'highlight',
+//                    seriesIndex: 0,
+//                    dataIndex:charPie3currentIndex
+//                });
+//            }, 3000);
             setInterval(function () {
                 $chart1 = $(".carousel-chart1");
                 $chart2 = $(".carousel-chart2");
@@ -334,6 +366,23 @@
                     $chart2.addClass('flipOut');
                 }
             }, 5000);
+//            setInterval(function () {
+//                $chart3 = $(".carousel-chart3");
+//                $chart4 = $(".carousel-chart4");
+//                var a =  $chart3.css("transform");
+//                var b = a.slice(9,10);
+//                if(b=="1"){
+//                    $chart3.removeClass("flipIn");
+//                    $chart4.removeClass("flipOut");
+//                    $chart3.addClass("flipOut");
+//                    $chart4.addClass('flipIn');
+//                }else{
+//                    $chart3.removeClass("flipOut");
+//                    $chart4.removeClass("flipIn");
+//                    $chart3.addClass("flipIn");
+//                    $chart4.addClass('flipOut');
+//                }
+//            }, 3000);
             function timer1(){
                 $correct = $(".module-box-correct");
                 $opposite = $(".module-box-opposite");
@@ -341,7 +390,6 @@
                     $opposite.removeClass("flipOut");
                     $correct.addClass("flipOut");
                     $opposite.addClass('flipIn');
-                    console.log(11);
                 setTimeout(timer2, 5000);
             }
             function timer2(){
@@ -351,7 +399,6 @@
                     $opposite.removeClass("flipIn");
                     $correct.addClass("flipIn");
                     $opposite.addClass('flipOut');
-                    console.log(33);
                 setTimeout(timer1, 10000);
             }
             setTimeout(timer1, 10000);
@@ -481,10 +528,16 @@
         //柱状图背景色数据函数
         bgData:function (data) {
             var max = 0,bgData = [];
-            data.forEach(item => {
-                if (max < item) max = item;
+//            data.forEach(item => {
+//                if (max < item) max = item;
+//            })
+//            data.forEach(item => {
+//                bgData.push(max)
+//            })
+            $.each(data,function (i,v) {
+                if (max < Number(v)) max = v;
             })
-            data.forEach(item => {
+            $.each(data,function (i,v) {
                 bgData.push(max)
             })
             return bgData;
