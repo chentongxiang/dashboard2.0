@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/basic.css">
+    <link rel="stylesheet" href="./css/terminal_number.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+</head>
+<body>
+<div class="big-box">
+    <div class="header_img">全国终端数据展示</div>
+
+    <div class="content box_flex">
+        <div class="left-box">
+            <div class="left-top">
+                <div class="module-text">
+                    各模块时长占比
+                </div>
+                <div class="module-content">
+                    <div class="module-box-correct">
+                        <div class="module-top">
+                            <div id="dom1"></div>
+                            <div id="dom2"></div>
+                            <div id="dom3"></div>
+                        </div>
+                        <div class="module-bottom">
+                            <div id="dom4"></div>
+                            <div id="dom5"></div>
+                            <div id="dom6"></div>
+                        </div>
+                    </div>
+                    <div class="module-box-opposite">
+                        <div class="module-top">
+                            <div id="dom7"></div>
+                            <div id="dom8"></div>
+                            <div id="dom9"></div>
+                        </div>
+                        <div class="module-bottom">
+                            <div id="dom10"></div>
+                            <div id="dom11"></div>
+                            <div id="dom12"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="left-middle">
+                <div class="carousel-chart">
+                    <div class="carousel-chart1" id="top_goods_view"></div>
+                    <div class="carousel-chart2" id="top_movies_view"></div>
+                </div>
+            </div>
+            <div class="left-bottom" id="ratio_brands_tv"></div>
+        </div>
+        <div class="center-box">
+            <div class="center-top">
+                <div class="text">当日实时数据采集量</div>
+                <div class="real-time-data" id="termNumCounter">数据加载中</div>
+                <input type='hidden' name="fixedTersnum" id="fixedTersnum" value="13048803"/>
+            </div>
+            <div class="center-middle" id="china_map"></div>
+            <div class="center-bottom">
+                <div class="new-text">最新动态</div>
+                <ul class="new-data" id="scroll_hotels"></ul>
+            </div>
+        </div>
+        <div class="right-box">
+            <div class="right-top">
+                <div class="left">
+                    <div>客房涵盖数量</div>
+                    <div class="num-text">76534</div>
+                </div>
+                <div class="middle">
+                    <div>活跃终端数量</div>
+                    <div class="num-text">8934</div>
+                </div>
+                <div class="right">
+                    <div>酒店覆盖数量</div>
+                    <div class="num-text">33695</div>
+                </div>
+            </div>
+            <div class="right-middle" id="avg_single_open_long"></div>
+            <div class="right-bottom" id="avg_single_open_nums"></div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="js/jquery.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/echarts-gl.min.js"></script>
+<script src="js/china.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/common.js"></script>
+
+<script>
+    var terminalNumber = {
+        fontSizeNum : 18,
+        allEchartObj:{},
+        arrLength:"",
+        init:function () {
+            //尺寸初始化
+            this.windowOnload();
+            //创建echart图,处理get_charts_terminal接口的数据，基本都是生成echart图的数据
+            this.createEchart();
+            //当日实时数据采集量,接口terminal_heartbeat_data
+            this.realTimeData();
+            // 热力图图展示，接口有terminalHeatData
+            this.heatMapShow();
+            this.hotelDataShow();
+        },
+
+        //尺寸初始化
+        windowOnload:function () {
+            var that = this;
+            setRemSize();
+            $(window).resize(function () {          //当浏览器大小变化时
+                setRemSize();
+                location.reload();
+            });
+            //页面定时5分钟刷新
+            var interAn = setInterval(function(){
+                window.location.reload();
+            },1000*60*5);
+            function setRemSize(){
+                that.fontSizeNum=document.documentElement.clientWidth/1920 * 100;
+                //将得到的rem值复制给根元素的font-size
+                document.documentElement.style.fontSize=that.fontSizeNum+"px";
+            }
+            var mySwiper = new Swiper ('.swiper-container', {
+                direction: 'vertical', // 垂直切换选项
+                // loop: true, // 循环模式选项
+                speed:500,
+                autoplay: {
+                    delay: 5000,//时间 毫秒
+                    disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+                },
+                // speed:3000
+            })
+        },
+        //处理get_charts_terminal接口的数据，基本都是生成echart图的数据
+        createEchart:function () {
+            var that = this;
+            //获取echart图表数据并显示
+            $.post(GPATH.getChartsTerminal, function(data){
+                if(data.res){
+                    var content = data.data;
+                    for(var i=0;i<content.length;i++){
+                        var item = content[i];
+                        var chart_type = item['chart_type'];
+                        var domID = item['title_value'];
+                        if(chart_type == 'pie'){
+                            if(domID == "ratio_behavior_tv"){
+                                // var color =["#67E0E3","#26466D"];
+                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
+                                var pieData =  [
+                                    {
+                                        chart_type: "pie",
+                                        label: ["5%", ""],
+                                        value: [ {value: 5, name: "5%"},{value: 100, name: ""}],
+                                        title_label: "购物比例",
+                                        title_value: "ratio_behavior_shop"
+                                    },
+                                    {
+                                        chart_type: "pie",
+                                        label: ["9%", ""],
+                                        value: [ {value: 9, name: "9%"},{value: 100, name: ""}],
+                                        title_label: "观影比例",
+                                        title_value: "ratio_behavior_shop"
+                                    },
+                                    {
+                                        chart_type: "pie",
+                                        label: ["10%", ""],
+                                        value: [ {value: 10, name: "10%"},{value: 100, name: ""}],
+                                        title_label: "看电视比例",
+                                        title_value: "ratio_behavior_shop"
+                                    },
+                                    {
+                                        chart_type: "pie",
+                                        label: ["12%", ""],
+                                        value: [ {value: 12, name: "12%"},{value: 100, name: ""}],
+                                        title_label: "看电脑比例",
+                                        title_value: "ratio_behavior_shop"
+                                    },
+                                    {
+                                        chart_type: "pie",
+                                        label: ["14%", ""],
+                                        value: [ {value: 14, name: "14%"},{value: 100, name: ""}],
+                                        title_label: "看手机比例",
+                                        title_value: "ratio_behavior_shop"
+                                    },
+                                    {
+                                        chart_type: "pie",
+                                        label: ["15%", ""],
+                                        value: [ {value: 15, name: "15%"},{value: 100, name: ""}],
+                                        title_label: "旅游比例",
+                                        title_value: "ratio_behavior_shop"
+                                    },
+                                    {
+                                        chart_type: "pie",
+                                        label: ["17%", ""],
+                                        value: [ {value: 17, name: "17%"},{value: 100, name: ""}],
+                                        title_label: "运动比例",
+                                        title_value: "ratio_behavior_shop"
+                                    },
+                                    {
+                                        chart_type: "pie",
+                                        label: ["18%", ""],
+                                        value: [ {value: 18, name: "18%"},{value: 100, name: ""}],
+                                        title_label: "唱歌比例",
+                                        title_value: "ratio_behavior_shop"
+                                    }
+                                ]
+                                var domIdArr1 = ["dom1","dom2","dom3","dom4","dom5","dom6"]
+                                var domIdArr2 = ["dom7","dom8","dom9","dom10","dom11","dom12"]
+                                var colorArr1 =  [["#67E0E3","#26466D"],
+                                    ["#6AB0B8","#26466D"],
+                                    ["#DB9968","#26466D"],
+                                    ["#7952E7","#26466D"],
+                                    ["#1FCF25","#26466D"],
+                                    ["#CF581F","#26466D"],
+                                ];
+                                var colorArr2 =  ["#C23531","#6AB0B8","#2028BE","#7952E7","#1FCF25","#CF581F",] ;
+                                var pieData2 = pieData.slice(0,6);
+                                var pieData1 = pieData.reverse().slice(0,6);
+                                console.log(pieData1,pieData2)
+                                $.each(pieData1,function (i,v) {
+                                    var option = options.pieChart(colorArr1[i],pieData1[i].title_label,pieData1[i].value,that.fontSizeNum);
+                                    var echartObj = new EchartObj(domIdArr1[i],option);
+                                    echartObj.setOp();
+                                    echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
+                                })
+                                $.each(pieData2,function (i,v) {
+                                    var option = options.pieChart(colorArr1[i],pieData2[i].title_label,pieData2[i].value,that.fontSizeNum);
+                                    var echartObj = new EchartObj(domIdArr2[i],option);
+                                    echartObj.setOp();
+                                    echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
+                                })
+                            }else if(domID == "ratio_behavior_movie"){
+                                // var color =['#249CF9',"#26466D"];
+                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
+                            }else if(domID == "ratio_behavior_shop"){
+                                // var color =["#EB6F49","#26466D"];
+                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
+                                // return ;
+                            }else {
+                                var arr = item['value'];
+                                that.arrLength = arr.length;
+                                $.each(arr,function (i,v) {
+                                    arr[i]["label"] = {
+                                        normal:{
+                                            position: 'center',
+                                            // formatter:"{b}\n{d}%",
+                                            textStyle: {
+                                                fontSize: '50',
+                                                fontWeight: 'normal'
+                                            }
+                                        }
+                                    }
+                                })
+                                var option = options.dynamicChart(item['value'],that.fontSizeNum);
+                                option.title.text = "电视品牌占比";
+                                var echartObj = new EchartObj(domID,option);
+                                that.allEchartObj[domID] = echartObj;
+                                echartObj.setOp();
+                            }
+                        }else if(chart_type == 'line'){
+                            var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
+                            var option = options.lineChart(color,item['label'],item['value'],that.fontSizeNum);
+                            option.title.text = "单店平均各时段开机数量";
+                            var echartObj = new EchartObj(domID,option);
+                            that.allEchartObj[domID] = echartObj;
+                            echartObj.setOp();
+                        }else if(chart_type == "bar"){
+                            item['value'].reverse();
+                            var bgData = that.bgData(item['value']);
+                            if(domID=="top_goods_view"){
+                                var color =["#3DE7C9","#3DE7C9"];
+                                var option = options.barChart(color,item['label'],bgData,item['value'],that.fontSizeNum);
+                                option.title.text = "商品关注";
+                            }else if(domID == "top_movies_view"){
+                                var color =["#00BAFF","#00BAFF"];
+
+                                var option = options.barChart(color,item['label'],bgData,item['value'],that.fontSizeNum);
+                                option.title.text = "电影类型";
+
+                            }else if(domID == "avg_single_open_long"){
+                                var color =["#1B69FF","#1B69FF"];
+                                var option = options.normalBarChart(color,item['label'],item['value'],that.fontSizeNum);
+                                option.xAxis[0].axisLabel.interval = 1 ;
+                            }
+                            var echartObj = new EchartObj(domID,option);
+                            that.allEchartObj[domID] = echartObj;
+                            echartObj.setOp();
+                        }
+                    }
+                }
+            },"json");
+
+            var charPie3currentIndex = 0;
+            setInterval(function () {
+                var dataLen = that.arrLength;
+                chartPie3 = that.allEchartObj["ratio_brands_tv"].myChart;
+                // 取消之前高亮的图形
+                chartPie3.dispatchAction({
+                    type: 'downplay',
+                    seriesIndex: 0,
+                    dataIndex: charPie3currentIndex
+                });
+                charPie3currentIndex = (charPie3currentIndex + 1) % dataLen;
+                // 高亮当前图形
+                chartPie3.dispatchAction({
+                    type: 'highlight',
+                    seriesIndex: 0,
+                    dataIndex:charPie3currentIndex
+                });
+            }, 3000);
+            setInterval(function () {
+                $chart1 = $(".carousel-chart1");
+                $chart2 = $(".carousel-chart2");
+                var a =  $chart1.css("transform");
+                var b = a.slice(9,10);
+                if(b=="1"){
+                    $chart1.removeClass("flipIn");
+                    $chart2.removeClass("flipOut");
+                    $chart1.addClass("flipOut");
+                    $chart2.addClass('flipIn');
+                }else{
+                    $chart1.removeClass("flipOut");
+                    $chart2.removeClass("flipIn");
+                    $chart1.addClass("flipIn");
+                    $chart2.addClass('flipOut');
+                }
+            }, 5000);
+            function timer1(){
+                $correct = $(".module-box-correct");
+                $opposite = $(".module-box-opposite");
+                    $correct.removeClass("flipIn");
+                    $opposite.removeClass("flipOut");
+                    $correct.addClass("flipOut");
+                    $opposite.addClass('flipIn');
+                    console.log(11);
+                setTimeout(timer2, 5000);
+            }
+            function timer2(){
+                $correct = $(".module-box-correct");
+                $opposite = $(".module-box-opposite");
+                    $correct.removeClass("flipOut");
+                    $opposite.removeClass("flipIn");
+                    $correct.addClass("flipIn");
+                    $opposite.addClass('flipOut');
+                    console.log(33);
+                setTimeout(timer1, 10000);
+            }
+            setTimeout(timer1, 10000);
+        },
+        realTimeData:function(){
+            queryNumHearts();
+            setInterval(function(){
+                queryNumHearts();
+            },1000*10);
+            function queryNumHearts() {
+                var totalnum = parseInt($('#fixedTersnum').val());
+                $.post(GPATH.terminalHeartBeat_data,{"currentTotal":totalnum},function(data){
+                    if(data.res){
+                        var newNum = parseInt(data.msg);
+                        $("#fixedTersnum").val(newNum);
+                        $('#termNumCounter').html(toThousands(newNum));
+                    }
+                },"json");
+            }
+            function toThousands(num) {
+                var num = (num || 0).toString(), result = '';
+                while (num.length > 3) {
+                    result = ',' + num.slice(-3) + result;
+                    num = num.slice(0, num.length - 3);
+                }
+                if (num) { result = num + result; }
+                return result;
+            }
+        },
+        // 热力图图展示，接口有terminalHeatData
+        heatMapShow:function () {
+            var that = this;
+            $.post(GPATH.terminalHeatData,function(data){
+                if(data.res){
+                    var heatBox = data.msg;
+                    var option= options.heatMapChart(heatBox,that.fontSizeNum);
+                    var domID = "china_map";
+                    var echartObj = new EchartObj(domID,option);
+                    that.allEchartObj["china_map"] = echartObj;
+                    echartObj.setOp();
+                }
+            },"json");
+        },
+        //// 酒店房间实时数据展示，接口terminal_all_new_room
+        hotelDataShow:function () {
+            var that = this;
+            var duration = 300;
+            $.post(GPATH.terminalAllNewRoom, {"duration":duration},function(data){
+                if(data.res){
+                    // console.log(data)
+                    var dataBox = data.msg;
+                    var newBox = [];
+                    newBox = dataBox.slice(0,50);
+                    var cnew = newBox.length;
+                    var timeBox = randomBox(cnew,duration);
+                    timeBox[0] = 1;
+                    if(cnew > 0){
+                        var tmp = 0;
+                        var now = Date.now();
+                        for(var i=0;i<cnew;i++){
+                            var now = Date.now();
+                            var key = now + timeBox[i]*1000;
+                            var item = newBox[i];
+                            var ihtml =  "<li key='"+key+"' lat='"+item['lat']/100000000+"' lng='"+item['lng']/100000000+"' title='"
+                                +item['hotel']+"'>酒店:"+item['hotel']+",房间号:"+item['room_number']+"</li>";
+                            $("#scroll_hotels").prepend(ihtml);
+                            tmp = timeBox[i];
+                        }
+                    }
+                }
+            },"json");
+            function randomBox(num,duration){
+                var timeBox = [];
+                for(var i=0;i<num;i++){
+                    var random = Math.floor(Math.random()*(duration));
+                    timeBox[i] = random;
+                }
+                return timeBox.sort(sortNumber);
+            }
+            function sortNumber(a,b){
+                return a - b
+            }
+            var interCr;
+            clearInterval(interCr);
+            var interCr = setInterval(function(){
+                getCurrentRoom();
+            },1000);
+            function getCurrentRoom(){
+                var now = Date.now();
+                $("#scroll_hotels li").each(function(){
+                    if($(this).attr('key') <= now && $(this).is(":hidden")){
+                        $(this).show();
+                        var lat = $(this).attr('lat');
+                        var lng = $(this).attr('lng');
+                        var hotel = $(this).attr('title');
+                        var itemData = [{"name":hotel,"value":[lng,lat]}];
+                        addMarkPoint(itemData);
+                    }
+                });
+            }
+            function addMarkPoint(itemData){
+                var echarObj = that.allEchartObj["china_map"];
+                var myChartMap = echarObj.myChart;
+                var option = echarObj.option;
+                option.series[1] = {
+                    type: 'effectScatter',
+                    coordinateSystem: 'geo',
+                    data: itemData,
+                    symbolSize:that.fontSizeNum/3,//闪烁点大小
+                    showEffectOn: 'render',
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    hoverAnimation: true,
+                    itemStyle: {
+                        normal: {
+                            color: '#F4E925',
+                            shadowBlur: 10,
+                            shadowColor: '#333'
+                        }
+                    },
+                    zlevel: 1
+                };
+                myChartMap.setOption(option);
+            }
+        },
+        //柱状图背景色数据函数
+        bgData:function (data) {
+            var max = 0,bgData = [];
+            data.forEach(item => {
+                if (max < item) max = item;
+            })
+            data.forEach(item => {
+                bgData.push(max)
+            })
+            return bgData;
+        }
+
+    };
+    $(function() {
+        terminalNumber.init();
+    });
+
+</script>
+</body>
+</html>
