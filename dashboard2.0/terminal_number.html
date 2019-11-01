@@ -77,7 +77,7 @@
                 </div>
                 <div class="middle">
                     <div>活跃终端数量</div>
-                    <div class="num-text">8934</div>
+                    <div class="num-text" id="h_activeCurrent">8934</div>
                 </div>
                 <div class="right">
                     <div>酒店覆盖数量</div>
@@ -114,6 +114,8 @@
             // 热力图图展示，接口有terminalHeatData
             this.heatMapShow();
             this.hotelDataShow();
+            //活跃终端数量，接口terminal_active_data
+            this.terminalActivedata();
         },
 
         //尺寸初始化
@@ -137,7 +139,7 @@
                 // direction: 'vertical', // 垂直切换选项
                 direction: 'horizontal', // 横向切换选项
                 // loop: true, // 循环模式选项
-                speed:500,
+                speed:1000,
                 autoplay: {
                     delay: 5000,//时间 毫秒
                     disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
@@ -152,6 +154,7 @@
             $.post(GPATH.queryChartsTerminal, function(data){
                 if(data.res){
                     var content = data.data;
+                    console.log(content)
                     var contentOne = content.slice(0,7);
                     var contentTow = content.slice(7);
                     $.each(contentTow,function (i,v) {
@@ -207,12 +210,10 @@
                                 echartObj.setOp();
                                 break;
                             case "top_city_view":
-                                var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
+                                var color =["#1B69FF","#1B69FF","#1B69FF"];
                                 v.value.reverse();
                                 var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
                                 option.title.text = "城市粘性排行TOP5";
-                                console.log(domID,option)
-
                                 var echartObj = new EchartObj(domID,option);
                                 that.allEchartObj[domID] = echartObj;
                                 echartObj.setOp();
@@ -221,9 +222,16 @@
 //                                默认代码块
                         }
                     })
-                    var domIdArr1 = ["dom1","dom2","dom3","dom4","dom5","dom6"]
-                    var domIdArr2 = ["dom7","dom8","dom9","dom10","dom11","dom12"]
-                    var colorArr1 =  ["#C23531","#6AB0B8","#2028BE","#7952E7","#1FCF25","#CF581F",] ;
+                    var domIdArr1 = ["dom7","dom8","dom9","dom10","dom11","dom12"];
+                    var domIdArr2 = ["dom1","dom2","dom3","dom4","dom5","dom6"];
+                    var colorArr1 =  [
+                                   ["#67E0E3","#26466D"],
+                                   ["#6AB0B8","#26466D"],
+                                   ["#DB9968","#26466D"],
+                                   ["#7952E7","#26466D"],
+                                   ["#1FCF25","#26466D"],
+                                   ["#CF581F","#26466D"],
+                               ];
                     var pieData2 = contentOne.slice(0,6);
                     var pieData1 = contentOne.reverse().slice(0,6);
                     $.each(pieData1,function (i,v) {
@@ -354,32 +362,18 @@
             var n= 1;
             $chart1 = $(".carousel-chart1");
             $chart2 = $(".carousel-chart2");
-            // $chart3 = $(".carousel-chart3");
-            // $chart4 = $(".carousel-chart4");
             setInterval(function () {
                 if(n==1){
                     $chart1.removeClass("flipIn");
                     $chart2.removeClass("flipOut");
                     $chart1.addClass("flipOut");
                     $chart2.addClass('flipIn');
-
-                    // $chart3.removeClass("flipIn");
-                    // $chart4.removeClass("flipOut");
-                    // $chart3.addClass("flipOut");
-                    // $chart4.addClass('flipIn');
                     n=0;
-                    console.log(11);
                 }else{
                     $chart1.removeClass("flipOut");
                     $chart2.removeClass("flipIn");
                     $chart1.addClass("flipIn");
                     $chart2.addClass('flipOut');
-
-                    // $chart3.removeClass("flipOut");
-                    // $chart4.removeClass("flipIn");
-                    // $chart3.addClass("flipIn");
-                    // $chart4.addClass('flipOut');
-                    console.log(22);
                     n=1;
                 }
             }, 5000);
@@ -541,7 +535,23 @@
                 bgData.push(max)
             })
             return bgData;
-        }
+        },
+        //活跃终端数量，接口terminal_active_data
+        terminalActivedata:function () {
+            $.ajax({
+                url: GPATH.terminalActiveData,
+                type: "GET",
+                dataType:"json"
+            }).then(function(data){
+                if(data.res){
+                    var result = data.msg;
+                    $("#h_activeCurrent").html(result);
+                }
+            },function(err){
+                //错误的回调函数
+                console.log(err);
+            });
+        },
 
     };
     $(function() {
