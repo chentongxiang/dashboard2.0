@@ -41,18 +41,29 @@
             </div>
             <div class="center-middle" id="china_map"></div>
             <div class="center-bottom">
-                <div class="room-num">
-                    <div>房间数</div>
-                    <div>1212434</div>
-                </div>
-                <div class="hotel-num">
-                    <div>酒店数</div>
-                    <div>43565464</div>
+                <div class="bottom-left">
+                    <div class="room-num">
+                        <div>房间数</div>
+                        <div class="num-text">1212434</div>
+                    </div>
+                    <div class="hotel-num">
+                        <div>酒店数</div>
+                        <div class="num-text">435654</div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="right-box">
-            <div class="right-top" id="bb"></div>
+            <div class="right-top">
+                <div class="history-num">
+                    <div>历史受众人数</div>
+                    <div class="num-text">1212434324</div>
+                </div>
+                <div class="mouth-num">
+                    <div>月度受众人数</div>
+                    <div class="num-text">3242342</div>
+                </div>
+            </div>
             <div class="right-middle" id="cc"></div>
             <div class="right-bottom" id="top_play_act"></div>
         </div>
@@ -117,12 +128,12 @@
                                 var echartObj = new EchartObj("aa",option);
                                 echartObj.setOp();
 
-                                var color =["#3DE7C9","rgba(61,231,201,0.1)"];
-                                var bgData = that.bgData(item['value']);
-                                var option = options.barChart(color,item['label'],bgData,item['value'],that.fontSizeNum);
-                                option.title.text = "月度主流广告产品播放频次";
-                                var echartObj = new EchartObj("bb",option);
-                                echartObj.setOp();
+                                // var color =["#3DE7C9","rgba(61,231,201,0.1)"];
+                                // var bgData = that.bgData(item['value']);
+                                // var option = options.barChart(color,item['label'],bgData,item['value'],that.fontSizeNum);
+                                // option.title.text = "月度主流广告产品播放频次";
+                                // var echartObj = new EchartObj("bb",option);
+                                // echartObj.setOp();
 
                                 var color =["#3DE7C9","rgba(61,231,201,0.1)"];
                                 var bgData = that.bgData(item['value']);

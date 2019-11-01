@@ -231,22 +231,48 @@
 .big-box .content .center-box .center-bottom {
   width: 100%;
   height: 15%;
-  display: flex;
-  justify-content: space-around;
 }
-.big-box .content .center-box .center-bottom .room-num {
-  color: white;
-}
-.big-box .content .center-box .center-bottom > div {
-  width: 30%;
+.big-box .content .center-box .center-bottom .bottom-left {
+  width: 100%;
   height: 100%;
-  border: 1px solid black;
-  font-size: 0.3rem;
+  display: flex;
+  justify-content: left;
+}
+.big-box .content .center-box .center-bottom .bottom-left .room-num {
+  width: auto;
+  display: inline-block;
+  margin: 0 0.2rem;
+  height: 90%;
+  font-size: 0.18rem;
   color: white;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+}
+.big-box .content .center-box .center-bottom .bottom-left .room-num .num-text {
+  color: #08DFDF;
+  font-size: 0.4rem;
+  font-weight: bold;
+  font-style: italic;
+}
+.big-box .content .center-box .center-bottom .bottom-left .hotel-num {
+  width: auto;
+  display: inline-block;
+  margin: 0 0.2rem;
+  height: 90%;
+  font-size: 0.18rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.big-box .content .center-box .center-bottom .bottom-left .hotel-num .num-text {
+  color: #08DFDF;
+  font-size: 0.4rem;
+  font-weight: bold;
+  font-style: italic;
 }
 .big-box .content .right-box {
   width: 27%;
@@ -259,6 +285,53 @@
   width: 100%;
   height: 24%;
   background-color: #0E3163;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.big-box .content .right-box .right-top .history-num {
+  width: 40%;
+  height: 65%;
+  text-align: center;
+  background-image: url("../images/border.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  color: #fff;
+  font-size: 0.22rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.big-box .content .right-box .right-top .history-num div:first-child {
+  margin-bottom: 0.1rem;
+}
+.big-box .content .right-box .right-top .history-num .num-text {
+  color: #08DFDF;
+  font-size: 0.3rem;
+  font-weight: bold;
+}
+.big-box .content .right-box .right-top .mouth-num {
+  width: 40%;
+  height: 65%;
+  text-align: center;
+  background-image: url("../images/border.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  color: #fff;
+  font-size: 0.22rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.big-box .content .right-box .right-top .mouth-num div:first-child {
+  margin-bottom: 0.1rem;
+}
+.big-box .content .right-box .right-top .mouth-num .num-text {
+  color: #08DFDF;
+  font-size: 0.3rem;
+  font-weight: bold;
 }
 .big-box .content .right-box .right-middle {
   width: 100%;
