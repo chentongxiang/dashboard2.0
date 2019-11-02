@@ -248,46 +248,8 @@
                         echartObj.setOp();
                         echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
                     })
-//                    for(var i=0;i<content.length;i++){
-//                        var item = content[i];
-//                        var chart_type = item['chart_type'];
-//                        var domID = item['title_value'];
-//
-//                        if(chart_type == 'pie'){
-//                            if(domID == "ratio_behavior_tv"){
-//                                // var color =["#67E0E3","#26466D"];
-//                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
-//
-//                                var colorArr1 =  [["#67E0E3","#26466D"],
-//                                    ["#6AB0B8","#26466D"],
-//                                    ["#DB9968","#26466D"],
-//                                    ["#7952E7","#26466D"],
-//                                    ["#1FCF25","#26466D"],
-//                                    ["#CF581F","#26466D"],
-//                                ];
-//
-//                                var pieData2 = pieData.slice(0,6);
-//                                var pieData1 = pieData.reverse().slice(0,6);
-//                                $.each(pieData1,function (i,v) {
-//                                    var option = options.pieChart(colorArr1[i],pieData1[i].title_label,pieData1[i].value,that.fontSizeNum);
-//                                    var echartObj = new EchartObj(domIdArr1[i],option);
-//                                    echartObj.setOp();
-//                                    echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
-//                                })
-//                                $.each(pieData2,function (i,v) {
-//                                    var option = options.pieChart(colorArr1[i],pieData2[i].title_label,pieData2[i].value,that.fontSizeNum);
-//                                    var echartObj = new EchartObj(domIdArr2[i],option);
-//                                    echartObj.setOp();
-//                                    echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
-//                                })
-//                            }else if(domID == "ratio_behavior_movie"){
-//                                // var color =['#249CF9',"#26466D"];
-//                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
-//                            }else if(domID == "ratio_behavior_shop"){
-//                                // var color =["#EB6F49","#26466D"];
-//                                // var option = options.pieChart(color,item['title_label'],item['value'],that.fontSizeNum);
-//                                // return ;
-//                            }else {
+                }
+            },"json");
 //                                var arr = item['value'];
 //                                that.arrLength = arr.length;
 //                                $.each(arr,function (i,v) {
@@ -310,38 +272,8 @@
 //                                    echartObj.setOp();
 //                                }
 //                            }
-//                        }else if(chart_type == 'line'){
-//                            var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
-//                            var option = options.lineChart(color,item['label'],item['value'],that.fontSizeNum);
-//                            option.title.text = "单店平均各时段开机数量";
-//                            var echartObj = new EchartObj(domID,option);
-//                            that.allEchartObj[domID] = echartObj;
-//                            echartObj.setOp();
-//                        }else if(chart_type == "bar"){
-//                            item['value'].reverse();
-//                            var bgData = that.bgData(item['value']);
-//                            if(domID=="top_goods_view"){
-//                                var color =["#3DE7C9","#3DE7C9"];
-//                                var option = options.barChart(color,item['label'],bgData,item['value'],that.fontSizeNum);
-//                                option.title.text = "商品关注";
-//                            }else if(domID == "top_movies_view"){
-//                                var color =["#00BAFF","#00BAFF"];
-//
-//                                var option = options.barChart(color,item['label'],bgData,item['value'],that.fontSizeNum);
-//                                option.title.text = "电影类型";
-//
-//                            }else if(domID == "avg_single_open_long"){
-//                                var color =["#1B69FF","#1B69FF"];
-//                                var option = options.normalBarChart(color,item['label'],item['value'],that.fontSizeNum);
-//                                option.xAxis[0].axisLabel.interval = 1 ;
-//                            }
-//                            var echartObj = new EchartObj(domID,option);
-//                            that.allEchartObj[domID] = echartObj;
-//                            echartObj.setOp();
-//                        }
-//                    }
-                }
-            },"json");
+
+
 
 //            var charPie3currentIndex = 0;
 //            setInterval(function () {

@@ -65,15 +65,17 @@
 .big-box .header_img {
   width: 100%;
   height: 10%;
+  background-image: url(../images/terminal_title_bg.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
   text-align: center;
-  line-height: 1rem;
+  line-height: 0.8rem;
   font-size: 0.34rem;
   color: #fff;
   letter-spacing: 2px;
   font-weight: bold;
+  font-family: title_font2;
 }
 .big-box .content {
   width: 100%;
@@ -99,6 +101,7 @@
   font-size: 0.23rem;
   color: #fff;
   padding: 0.1rem 0 0 0.2rem;
+  font-family: monospace;
 }
 .big-box .content .left-box .left-top .module-content {
   width: 100%;
@@ -217,12 +220,14 @@
 .big-box .content .center-box .center-top .text {
   font-size: 0.25rem;
   color: #fff;
+  font-family: title_font2;
 }
 .big-box .content .center-box .center-top .real-time-data {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   color: #08DFDF;
-  letter-spacing: 0.15rem;
+  letter-spacing: 0.2rem;
   font-weight: bold;
+  font-family: main_number_font;
 }
 .big-box .content .center-box .center-middle {
   width: 100%;
@@ -272,7 +277,7 @@
 .big-box .content .right-box .right-top .left {
   width: 30%;
   height: 60%;
-  background-image: url("../images/border.png");
+  background-image: url("../images/border_new.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   -moz-background-size: 100% 100%;
@@ -288,13 +293,14 @@
 }
 .big-box .content .right-box .right-top .left .num-text {
   color: #08DFDF;
-  font-size: 0.26rem;
+  font-size: 0.3rem;
   font-weight: bold;
+  font-family: main_number_font;
 }
 .big-box .content .right-box .right-top .middle {
   width: 30%;
   height: 60%;
-  background-image: url("../images/border.png");
+  background-image: url("../images/border_new.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   -moz-background-size: 100% 100%;
@@ -310,13 +316,14 @@
 }
 .big-box .content .right-box .right-top .middle .num-text {
   color: #08DFDF;
-  font-size: 0.26rem;
+  font-size: 0.3rem;
   font-weight: bold;
+  font-family: main_number_font;
 }
 .big-box .content .right-box .right-top .right {
   width: 30%;
   height: 60%;
-  background-image: url("../images/border.png");
+  background-image: url("../images/border_new.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   -moz-background-size: 100% 100%;
@@ -332,8 +339,9 @@
 }
 .big-box .content .right-box .right-top .right .num-text {
   color: #08DFDF;
-  font-size: 0.26rem;
+  font-size: 0.3rem;
   font-weight: bold;
+  font-family: main_number_font;
 }
 .big-box .content .right-box .right-middle {
   width: 100%;
