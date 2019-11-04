@@ -47,6 +47,7 @@ var options = {
     rate:6,
     titleRate:4.5,
     dynamicRate:4.3,
+    legendRate:8,
     //柱状图-具有背景横向
     barChart:function (color,barLabel,bgData,barData,num) {
         var option = {
@@ -181,6 +182,99 @@ var options = {
             //     },
             //     data:barLabel
             // },
+        }
+        return option;
+    },
+    //柱状图-不具有背景横向
+    notBgBarChart:function (color,barLabel,bgData,barData,num) {
+        var option = {
+            title: {
+                show:true,
+                text: '',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    fontFamily: 'monospace',
+                    fontSize: num?num/this.titleRate:14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color:"#fff"
+                },
+                x:"3%",
+                y:"6%"
+            },
+            color: color,
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '5%',
+                right: '8%',
+                top:"25%",
+                bottom: '6%',
+                containLabel: true
+            },
+            yAxis : [
+                {
+                    type: 'category',
+                    data: barLabel,
+                    axisTick: {
+                        show:false,
+                        // alignWithLabel: true
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#fff',  //坐标的字体颜色
+                            fontSize: num ? num / this.rate : 14,
+                        },
+                        interval: 0,
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#fff',  //坐标的字体颜色
+                        },
+                        show: false
+                    },
+                    splitLine: {
+                        show: false
+                    },
+
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'value',
+                    axisLabel: {
+                        textStyle:{
+                            color:'#fff',  //坐标的字体颜色
+                        },
+                    },
+                    splitLine: {
+                        show: false,
+                    },
+                    axisLine: {
+                        lineStyle:{
+                            color:'#0E3254',  //坐标的字体颜色
+                        },
+                    },
+                    max:"dataMax"
+                }
+            ],
+            series : barData,
+            legend: {
+                x : "70%",
+                y : '10%',
+                // type: 'scroll',
+                // orient: 'vertical',
+                textStyle: {
+                    fontSize: num?num/this.legendRate:14,
+                    color:"white",
+                    fontFamily: "Microsoft YaHei",
+                },
+                // data:[barData[0].name,barData[1].name]
+                data:[barData[0].name,barData[1].name]
+            },
         }
         return option;
     },
@@ -344,7 +438,7 @@ var options = {
                     fill:'white',
                     width:30,
                     height:30,
-                    fontSize: num?num/this.rate:14,
+                    fontSize: num?num/this.rate/1.1:14,
                 }
             },
             series : [
@@ -363,7 +457,7 @@ var options = {
                     },
                     // hoverAnimation:false,
                     data:pieData,
-                    hoverOffset:  num?num/this.rate/2:5,
+                    hoverOffset:  num?num/this.rate/2.5:5,
                 }
             ]
         };

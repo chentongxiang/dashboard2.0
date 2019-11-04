@@ -137,17 +137,7 @@
                 //将得到的rem值复制给根元素的font-size
                 document.documentElement.style.fontSize=that.fontSizeNum+"px";
             }
-            var mySwiper = new Swiper ('.swiper-container', {
-                // direction: 'vertical', // 垂直切换选项
-                direction: 'horizontal', // 横向切换选项
-                // loop: true, // 循环模式选项
-                speed:1000,
-                autoplay: {
-                    delay: 5000,//时间 毫秒
-                    disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
-                },
-                // speed:3000
-            })
+
         },
         //处理get_charts_terminal接口的数据，基本都是生成echart图的数据
         createEchart:function () {
@@ -156,7 +146,7 @@
             $.post(GPATH.queryChartsTerminal, function(data){
                 if(data.res){
                     var content = data.data;
-                    console.log(content)
+                    // console.log(content)
                     var contentOne = content.slice(0,7);
                     var contentTow = content.slice(7);
                     $.each(contentTow,function (i,v) {
@@ -168,18 +158,12 @@
                                 v.value.reverse();
                                 var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
                                 option.title.text = "商品热销TOP5";
-                                var echartObj = new EchartObj(domID,option);
-                                that.allEchartObj[domID] = echartObj;
-                                echartObj.setOp();
                                 break;
                             case "top_movies_view":
-                                var color =["#00BAFF","#00BAFF"];
+                                var color =["#00BAFF","#1FCF25"];
                                 v.value.reverse();
-                                var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
+                                var option = options.notBgBarChart(color,v.label,bgData,v.value,that.fontSizeNum);
                                 option.title.text = "电影热播TOP5";
-                                var echartObj = new EchartObj(domID,option);
-                                that.allEchartObj[domID] = echartObj;
-                                echartObj.setOp();
                                 break;
                             case "avg_single_open_long":
                                 var color =["#1B69FF","#1B69FF"];
@@ -187,17 +171,11 @@
                                 var option = options.normalBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.xAxis[0].axisLabel.interval = 1 ;
                                 option.title.text = "平均各时段驻留时长";
-                                var echartObj = new EchartObj(domID,option);
-                                that.allEchartObj[domID] = echartObj;
-                                echartObj.setOp();
                                 break;
                             case "avg_single_open_nums":
                                 var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
                                 var option = options.lineChart(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "单店平均各时段开机数量";
-                                var echartObj = new EchartObj(domID,option);
-                                that.allEchartObj[domID] = echartObj;
-                                echartObj.setOp();
                                 break;
                             case "ratio_brands_tv":
 //                                代码块
@@ -207,21 +185,20 @@
                                 v.value.reverse();
                                 var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
                                 option.title.text = "各省终端排行TOP5";
-                                var echartObj = new EchartObj(domID,option);
-                                that.allEchartObj[domID] = echartObj;
-                                echartObj.setOp();
                                 break;
                             case "top_city_view":
                                 var color =["#1B69FF","#1B69FF","#1B69FF"];
                                 v.value.reverse();
                                 var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
                                 option.title.text = "城市粘性排行TOP5";
-                                var echartObj = new EchartObj(domID,option);
-                                that.allEchartObj[domID] = echartObj;
-                                echartObj.setOp();
                                 break;
 //                            default:
 //                                默认代码块
+                        }
+                        if(v.title_value!=="ratio_brands_tv"){
+                            var echartObj = new EchartObj(domID,option);
+                            that.allEchartObj[domID] = echartObj;
+                            echartObj.setOp();
                         }
                     })
                     var domIdArr1 = ["dom7","dom8","dom9","dom10","dom11","dom12"];
@@ -333,6 +310,18 @@
                 setTimeout(timer1, 10000);
             }
             setTimeout(timer1, 10000);
+
+            var mySwiper = new Swiper ('.swiper-container', {
+                // direction: 'vertical', // 垂直切换选项
+                direction: 'horizontal', // 横向切换选项
+                // loop: true, // 循环模式选项
+                speed:1000,
+                autoplay: {
+                    delay: 5000,//时间 毫秒
+                    disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+                },
+                // speed:3000
+            })
         },
         realTimeData:function(){
             queryNumHearts();
