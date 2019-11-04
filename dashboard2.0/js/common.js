@@ -14,7 +14,7 @@ var GPATH ={
         全国终端展示页面接口
     */
     queryChartsTerminal:"http://54.222.134.242:8899/boardDemo/advertise/query_charts_terminal",
-
+    queryNumbersTerminal:"http://54.222.134.242:8899/boardDemo/advertise/query_numbers_terminal",
 
     //基本都是生成echart图的数据
     getChartsTerminal:"http://54.222.134.242:8899/boardDemo/advertise/get_charts_terminal",

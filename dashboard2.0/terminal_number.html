@@ -75,15 +75,15 @@
             <div class="right-top">
                 <div class="left">
                     <div>客房涵盖数量</div>
-                    <div class="num-text">76534</div>
+                    <div class="num-text" id="coveredRooms">76534</div>
                 </div>
                 <div class="middle">
                     <div>活跃终端数量</div>
-                    <div class="num-text" id="h_activeCurrent">8934</div>
+                    <div class="num-text" id="yesterday_termialnum_active">8934</div>
                 </div>
                 <div class="right">
                     <div>酒店覆盖数量</div>
-                    <div class="num-text">33695</div>
+                    <div class="num-text" id="coveredHotels">33695</div>
                 </div>
             </div>
             <div class="right-middle" id="avg_single_open_long"></div>
@@ -465,13 +465,18 @@
         //活跃终端数量，接口terminal_active_data
         terminalActivedata:function () {
             $.ajax({
-                url: GPATH.terminalActiveData,
+                url: GPATH.queryNumbersTerminal,
                 type: "GET",
                 dataType:"json"
             }).then(function(data){
-                if(data.res){
-                    var result = data.msg;
-                    $("#h_activeCurrent").html(result);
+                if(data){
+                    console.log(data)
+                    var coveredRooms = data[1].value;
+                    var coveredHotels = data[2].value;
+                    var yesterday_termialnum_active = data[11].value;
+                    $("#coveredRooms").html(coveredRooms);
+                    $("#coveredHotels").html(coveredHotels);
+                    $("#yesterday_termialnum_active").html(yesterday_termialnum_active);
                 }
             },function(err){
                 //错误的回调函数
