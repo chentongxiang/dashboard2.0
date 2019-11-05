@@ -227,50 +227,6 @@
                     })
                 }
             },"json");
-//                                var arr = item['value'];
-//                                that.arrLength = arr.length;
-//                                $.each(arr,function (i,v) {
-//                                    arr[i]["label"] = {
-//                                        normal:{
-//                                            position: 'center',
-//                                            // formatter:"{b}\n{d}%",
-//                                            textStyle: {
-//                                                fontSize: '50',
-//                                                fontWeight: 'normal'
-//                                            }
-//                                        }
-//                                    }
-//                                })
-//                                var option = options.dynamicChart(item['value'],that.fontSizeNum);
-//                                option.title.text = "电视品牌占比";
-//                                if(domID=="ratio_brands_tv"){
-//                                    var echartObj = new EchartObj(domID,option);
-//                                    that.allEchartObj[domID] = echartObj;
-//                                    echartObj.setOp();
-//                                }
-//                            }
-
-
-
-//            var charPie3currentIndex = 0;
-//            setInterval(function () {
-//                var dataLen = that.arrLength;
-//                chartPie3 = that.allEchartObj["ratio_brands_tv"].myChart;
-//                // 取消之前高亮的图形
-//                chartPie3.dispatchAction({
-//                    type: 'downplay',
-//                    seriesIndex: 0,
-//                    dataIndex: charPie3currentIndex
-//                });
-//                charPie3currentIndex = (charPie3currentIndex + 1) % dataLen;
-//                // 高亮当前图形
-//                chartPie3.dispatchAction({
-//                    type: 'highlight',
-//                    seriesIndex: 0,
-//                    dataIndex:charPie3currentIndex
-//                });
-//            }, 3000);
-            //翻转1
             var n= 1;
             $chart1 = $(".carousel-chart1");
             $chart2 = $(".carousel-chart2");
@@ -448,12 +404,6 @@
         //柱状图背景色数据函数
         bgData:function (data) {
             var max = 0,bgData = [];
-//            data.forEach(item => {
-//                if (max < item) max = item;
-//            })
-//            data.forEach(item => {
-//                bgData.push(max)
-//            })
             $.each(data,function (i,v) {
                 if (max < Number(v)) max = v;
             })

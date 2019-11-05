@@ -65,12 +65,12 @@
 .big-box .header_img {
   width: 100%;
   height: 10%;
-  background-image: url(../images/headline_common.png);
+  background-image: url(../images/terminal_title_bg.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
   text-align: center;
-  line-height: 1rem;
+  line-height: 0.8rem;
   font-size: 0.34rem;
   color: #fff;
   letter-spacing: 2px;
@@ -110,7 +110,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid black;
   background-color: #0E3163;
 }
 .big-box .content .center-box .center-top {

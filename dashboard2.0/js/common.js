@@ -16,6 +16,8 @@ var GPATH ={
     queryChartsTerminal:"http://54.222.134.242:8899/boardDemo/advertise/query_charts_terminal",
     queryNumbersTerminal:"http://54.222.134.242:8899/boardDemo/advertise/query_numbers_terminal",
 
+
+
     //基本都是生成echart图的数据
     getChartsTerminal:"http://54.222.134.242:8899/boardDemo/advertise/get_charts_terminal",
     // 中国地图热力图
@@ -31,6 +33,8 @@ var GPATH ={
         全国广告数据展示页面接口
     */
     //除地图外的echart图数据
+    queryChartsAdvs:"http://54.222.134.242:8899/boardDemo/advertise/query_charts_advs",
+
     getChartsAdvs:"http://54.222.134.242:8899/boardDemo/advertise/get_charts_advs",
     //中国地图热力图
     advKanbanHeatData:"http://54.222.134.242:8899/boardDemo/advertise/advKanbanHeatData",
@@ -539,9 +543,10 @@ var options = {
         return option;
     },
     //动态饼图
-    dynamicChart:function (data,num) {
+    dynamicChart:function (color,data,num) {
         var option ={
             // color:['#0aF447','#1B69FF','#FFB000','#8ABE78'],
+            color:color,
             title: {
                 show:true,
                 text: '',
