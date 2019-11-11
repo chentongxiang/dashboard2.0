@@ -34,6 +34,10 @@ var GPATH ={
     */
     //除地图外的echart图数据
     queryChartsAdvs:"http://54.222.134.242:8899/boardDemo/advertise/query_charts_advs",
+    queryNumbersAdvs:"http://yun.ctlife.tv:8899/boardDemo/advertise/query_numbers_advs",
+    advTodayAdvsData:"http://yun.ctlife.tv:8899/boardDemo/advertise/advTodayAdvsData",
+
+
 
     getChartsAdvs:"http://54.222.134.242:8899/boardDemo/advertise/get_charts_advs",
     //中国地图热力图
@@ -190,7 +194,7 @@ var options = {
         return option;
     },
     //柱状图-不具有背景横向
-    notBgBarChart:function (color,barLabel,bgData,barData,num) {
+    notBgBarChart:function (color,barLabel,barData,num) {
         var option = {
             title: {
                 show:true,
@@ -467,6 +471,85 @@ var options = {
         };
         return option;
     },
+    pieChartOther:function(color,label,pieData,num){
+        var option = {
+            title: {
+                show:true,
+                text: '',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    fontFamily: 'monospace',
+                    fontSize: num?num/this.titleRate:14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color:"#fff"
+                },
+                x:"3%",
+                y:"6%"
+            },
+            legend: {
+                orient: 'vertical',
+                // x:"20%",
+                y: '85%',
+                data:label,
+                textStyle: {
+                    fontSize: num?num/this.rate:14,
+                    color:"white",
+                    fontFamily: "Microsoft YaHei",
+
+                },
+                data:label
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: color||['#249CF9',"rgba(0,66,117,0.1)"],
+
+            graphic:{
+                elements: [{
+                    type: 'image',
+                    style: {
+                        image: 'images/sex.png',
+                        width: num?num/this.rate*2.5:30,
+                        height: num?num/this.rate*2.5:30,
+                    },
+                    left: '46%',
+                    top: '43%'
+                }]
+            },
+            series : [
+                {
+                    name: "",
+                    type: 'pie',
+                    center : ['50%','50%'],
+                    radius: ['45%', '55%'],
+                    label: {        //展示文本设置
+                        normal: {
+                            show: true,     //展示
+                            position: 'outside',      // outside表示文本显示位置为外部
+                            textStyle: {    //文本样式
+                                fontSize: num?num/this.rate:14,
+                                fontWeight: '600',
+                            },
+                            formatter: '{a}{b}({d}%)',
+                        },
+                        emphasis: {    //文本样式
+                            show: false,    //展示
+                        }
+                    },
+
+                    labelLine: {    //引导线设置
+                        normal: {
+                            show: true,   //引导线显示
+                        }
+                    },
+                    data:pieData,
+                    hoverOffset:  num?num/this.rate/2.5:5,
+                }
+            ]
+        };
+        return option;
+    },
     roseChart:function (roseLabel,roseData,num) {
         var option={
             title : {
@@ -564,8 +647,8 @@ var options = {
                 {
                     name:'任务',
                     type:'pie',
-                    radius: ['60%', '75%'],
-                    center : ['55%', '55%'],
+                    radius: ['57%', '70%'],
+                    center : ['55%', '52%'],
                     avoidLabelOverlap: false,
                     selectedOffset:15,
                     selectedMode:true,

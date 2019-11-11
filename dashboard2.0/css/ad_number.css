@@ -75,6 +75,7 @@
   color: #fff;
   letter-spacing: 2px;
   font-weight: bold;
+  font-family: title_font2;
 }
 .big-box .content {
   width: 100%;
@@ -98,6 +99,23 @@
   width: 100%;
   height: 34%;
   background-color: #0E3163;
+}
+.big-box .content .left-box .left-middle .carousel1 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.big-box .content .left-box .left-middle .carousel1 .carousel-chart1 {
+  width: 100%;
+  height: 100%;
+}
+.big-box .content .left-box .left-middle .carousel1 .carousel-chart2 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
 }
 .big-box .content .left-box .left-bottom {
   width: 100%;
@@ -151,6 +169,7 @@
   letter-spacing: 0.15rem;
   font-weight: bold;
   text-align: center;
+  font-family: main_number_font;
 }
 .big-box .content .center-box .center-top .data-box .this-year-data {
   position: absolute;
@@ -164,6 +183,7 @@
   font-weight: bold;
   text-align: center;
   opacity: 0;
+  font-family: main_number_font;
 }
 .big-box .content .center-box .center-top .current {
   width: 90%;
@@ -173,7 +193,7 @@
   justify-content: space-around;
 }
 .big-box .content .center-box .center-top .current .current-month {
-  width: 32%;
+  width: 37%;
   height: 100%;
   text-align: center;
   display: flex;
@@ -188,15 +208,18 @@
 .big-box .content .center-box .center-top .current .current-month div:nth-child(2) {
   color: #08DFDF;
   font-size: 0.4rem;
+  letter-spacing: 0.05rem;
+  font-family: main_number_font;
 }
 .big-box .content .center-box .center-top .current .current-week {
-  width: 32%;
+  width: 37%;
   height: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   background-color: #0D3675;
+  width: 30%;
 }
 .big-box .content .center-box .center-top .current .current-week div:first-child {
   color: #fff;
@@ -205,15 +228,18 @@
 .big-box .content .center-box .center-top .current .current-week div:nth-child(2) {
   color: #08DFDF;
   font-size: 0.4rem;
+  letter-spacing: 0.05rem;
+  font-family: main_number_font;
 }
 .big-box .content .center-box .center-top .current .current-day {
-  width: 32%;
+  width: 37%;
   height: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   background-color: #0D3675;
+  width: 30%;
 }
 .big-box .content .center-box .center-top .current .current-day div:first-child {
   color: #fff;
@@ -222,6 +248,8 @@
 .big-box .content .center-box .center-top .current .current-day div:nth-child(2) {
   color: #08DFDF;
   font-size: 0.4rem;
+  letter-spacing: 0.05rem;
+  font-family: main_number_font;
 }
 .big-box .content .center-box .center-middle {
   width: 100%;
@@ -240,7 +268,7 @@
 .big-box .content .center-box .center-bottom .bottom-left .room-num {
   width: auto;
   display: inline-block;
-  margin: 0 0.2rem;
+  margin: 0 0.3rem;
   height: 90%;
   font-size: 0.18rem;
   color: white;
@@ -254,11 +282,13 @@
   font-size: 0.4rem;
   font-weight: bold;
   font-style: italic;
+  font-family: main_number_font;
+  letter-spacing: 0.05rem;
 }
 .big-box .content .center-box .center-bottom .bottom-left .hotel-num {
   width: auto;
   display: inline-block;
-  margin: 0 0.2rem;
+  margin: 0 0.3rem;
   height: 90%;
   font-size: 0.18rem;
   color: white;
@@ -272,6 +302,8 @@
   font-size: 0.4rem;
   font-weight: bold;
   font-style: italic;
+  font-family: main_number_font;
+  letter-spacing: 0.05rem;
 }
 .big-box .content .right-box {
   width: 27%;
@@ -305,6 +337,10 @@
 .big-box .content .right-box .right-top .history-num div:first-child {
   margin-bottom: 0.1rem;
 }
+.big-box .content .right-box .right-top .history-num div:nth-child(2) {
+  font-family: main_number_font;
+  letter-spacing: 0.05rem;
+}
 .big-box .content .right-box .right-top .history-num .num-text {
   color: #08DFDF;
   font-size: 0.3rem;
@@ -327,6 +363,10 @@
 .big-box .content .right-box .right-top .mouth-num div:first-child {
   margin-bottom: 0.1rem;
 }
+.big-box .content .right-box .right-top .mouth-num div:nth-child(2) {
+  font-family: main_number_font;
+  letter-spacing: 0.05rem;
+}
 .big-box .content .right-box .right-top .mouth-num .num-text {
   color: #08DFDF;
   font-size: 0.3rem;
@@ -336,6 +376,20 @@
   width: 100%;
   height: 37%;
   background-color: #0E3163;
+}
+.big-box .content .right-box .right-middle .carousel2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.big-box .content .right-box .right-middle .carousel2 .carousel-chart3 {
+  width: 100%;
+  height: 100%;
+}
+.big-box .content .right-box .right-middle .carousel2 .carousel-chart4 {
+  width: 100%;
+  height: 100%;
 }
 .big-box .content .right-box .right-bottom {
   width: 100%;
