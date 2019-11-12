@@ -122,11 +122,9 @@
             $.post(GPATH.queryChartsAdvs, function(data){
                 if(data.res){
                     var content = data.data;
-                    console.log(content)
                     $.each(content,function (i,v) {
                         var bgData = that.bgData(v.value);
                         var domID = v.title_value;
-                        console.log(bgData,domID)
                         switch(v.title_value) {
                             case "top_advs_content_play":
                                 var color =["#3DE7C9","#3DE7C9"];
@@ -327,7 +325,6 @@
                 type: "GET",
                 dataType:"json"
             }).then(function (data) {
-                console.log(data);
                 $.each(data,function (i,v) {
                     switch (v.label){
                         case "total":

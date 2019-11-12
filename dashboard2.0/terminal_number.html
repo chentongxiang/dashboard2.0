@@ -106,6 +106,8 @@
         fontSizeNum : 18,
         allEchartObj:{},
         arrLength:"",
+        beforeData:"",
+        afterData:"",
         init:function () {
             //尺寸初始化
             this.windowOnload();
@@ -324,12 +326,13 @@
             var duration = 300;
             $.post(GPATH.terminalAllNewRoom, {"duration":duration},function(data){
                 if(data.res){
-                    // console.log(data)
                     var dataBox = data.msg;
                     var newBox = [];
                     newBox = dataBox.slice(0,50);
+
                     var cnew = newBox.length;
-                    var timeBox = randomBox(cnew,duration);
+                    // var timeBox = randomBox(cnew,duration);
+                    var timeBox = random(50,duration);
                     timeBox[0] = 1;
                     if(cnew > 0){
                         var tmp = 0;
@@ -346,6 +349,23 @@
                     }
                 }
             },"json");
+            function random(number,duration) {
+                var arr = [];
+                while (arr.length < number) {   //原数组长度为0，每次成功添加一个元素后长度加1，当数组添加最后一个数字之前长度为number即可
+                    var num = Math.floor(Math.random() * duration);   //生成一个0-300的随机整数
+                    if (arr.length === 0) {   //如果数组长度为0则直接添加到arr数组
+                        arr.push(num);
+                    } else {
+                        for (var i = 0; i < arr.length; i++) {   //当新生成的数字与数组中的元素不重合时则添加到arr数组
+                            if (arr.join(',').indexOf(num) < 0) {
+                                arr.push(num);
+                            }
+                        }
+                    }
+                }
+
+                return arr.sort(sortNumber);
+            }
             function randomBox(num,duration){
                 var timeBox = [];
                 for(var i=0;i<num;i++){
@@ -364,21 +384,38 @@
             },1000);
             function getCurrentRoom(){
                 var now = Date.now();
-                $("#scroll_hotels li").each(function(){
+                $("#scroll_hotels li").each(function(i,v){
                     if($(this).attr('key') <= now && $(this).is(":hidden")){
                         $(this).show();
                         var lat = $(this).attr('lat');
                         var lng = $(this).attr('lng');
                         var hotel = $(this).attr('title');
+
+                        var lineData ="";
                         var itemData = [{"name":hotel,"value":[lng,lat]}];
-                        addMarkPoint(itemData);
+                        // if(i==0){
+                        //     that.beforeData= itemData;
+                        // }else if(i>0){
+                        //     that.afterData = itemData;
+                        //
+                        // }
+                        lineData = [[{"coord":["98.275939","39.797728"]},
+                            {"coord":["108.946466","34.347269"]}
+                        ]]
+                        // lineData = [[{
+                        //     coord: [116.4551,40.2539]
+                        // }, {
+                        //     coord: [121.4648,31.2891]
+                        // }]]
+                        addMarkPoint(itemData,lineData)
                     }
                 });
             }
-            function addMarkPoint(itemData){
+            function addMarkPoint(itemData,lineData){
                 var echarObj = that.allEchartObj["china_map"];
                 var myChartMap = echarObj.myChart;
                 var option = echarObj.option;
+                console.log(itemData)
                 option.series[1] = {
                     type: 'effectScatter',
                     coordinateSystem: 'geo',
@@ -397,6 +434,87 @@
                         }
                     },
                     zlevel: 1
+                };
+                option.series[2] ={
+                    name: '北京 Top10',
+                    type: 'lines',
+                    coordinateSystem: 'geo',
+                    data: lineData,
+                    // lineStyle:{
+                    //     type: "solid",
+                    //     curveness:0.5,
+                    //     effect : {
+                    //         show: true,
+                    //         scaleSize: 3,
+                    //         period: 30,
+                    //         color: '#fff',
+                    //         shadowBlur: 10
+                    //     },
+                    //     color: {
+                    //         type: 'radial',
+                    //         x: 0.5,
+                    //         y: 0.5,
+                    //         r: 0.5,
+                    //         colorStops: [{
+                    //             offset: 0, color: '#fff' // 0% 处的颜色
+                    //         }, {
+                    //             offset: 1, color: '#fff' // 100% 处的颜色
+                    //         }],
+                    //         global: false // 缺省为 false
+                    //     }
+                    // },
+                    markLine : {
+                        smooth:true,
+                        effect : {
+                            show: true,
+                            scaleSize: 2,
+                            period: 30,
+                            color: '#fff',
+                            shadowBlur: 10
+                        },
+                        lineStyle:{
+                            type: "dotted",
+                            curveness:0.8,
+                            color: {
+                                type: 'radial',
+                                x: 0.5,
+                                y: 0.5,
+                                r: 0.5,
+                                colorStops: [{
+                                    offset: 0, color: '#fff' // 0% 处的颜色
+                                }, {
+                                    offset: 1, color: '#fff' // 100% 处的颜色
+                                }],
+                                global: false // 缺省为 false
+                            }
+                        },
+                            // itemStyle : {
+                            //     normal: {
+                            //         label:{show:false},
+                            //         borderWidth:1,
+                            //         curveness:"0.8",
+                            //         lineStyle: {
+                            //             type: 'solid',
+                            //             shadowBlur: 10,
+                            //             curveness: .1,
+                            //             color: {
+                            //                type: 'radial',
+                            //                 x: 0.5,
+                            //                 y: 0.5,
+                            //                 r: 0.5,
+                            //             colorStops: [{
+                            //                 offset: 0, color: '#fff' // 0% 处的颜色
+                            //             }, {
+                            //                 offset: 1, color: '#fff' // 100% 处的颜色
+                            //             }],
+                            //             globalCoord: false // 缺省为 false
+                            //             },
+                            //         }
+                            //     },
+                            //
+                            // },
+                        data :lineData
+                    },
                 };
                 myChartMap.setOption(option);
             }
@@ -420,18 +538,26 @@
                 dataType:"json"
             }).then(function(data){
                 if(data){
-                    console.log(data)
                     var coveredRooms = data[1].value;
                     var coveredHotels = data[2].value;
                     var yesterday_termialnum_active = data[11].value;
-                    $("#coveredRooms").html(coveredRooms);
-                    $("#coveredHotels").html(coveredHotels);
-                    $("#yesterday_termialnum_active").html(yesterday_termialnum_active);
+                    $("#coveredRooms").html(toThousands(coveredRooms));
+                    $("#coveredHotels").html(toThousands(coveredHotels));
+                    $("#yesterday_termialnum_active").html(toThousands(yesterday_termialnum_active));
                 }
             },function(err){
                 //错误的回调函数
                 console.log(err);
             });
+            function toThousands(num) {
+                var num = (num || 0).toString(), result = '';
+                while (num.length > 3) {
+                    result = ',' + num.slice(-3) + result;
+                    num = num.slice(0, num.length - 3);
+                }
+                if (num) { result = num + result; }
+                return result;
+            }
         },
 
     };

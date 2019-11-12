@@ -296,6 +296,7 @@
   font-size: 0.3rem;
   font-weight: bold;
   font-family: main_number_font;
+  letter-spacing: 0.05rem;
 }
 .big-box .content .right-box .right-top .middle {
   width: 30%;
@@ -319,6 +320,7 @@
   font-size: 0.3rem;
   font-weight: bold;
   font-family: main_number_font;
+  letter-spacing: 0.05rem;
 }
 .big-box .content .right-box .right-top .right {
   width: 30%;
@@ -342,6 +344,7 @@
   font-size: 0.3rem;
   font-weight: bold;
   font-family: main_number_font;
+  letter-spacing: 0.05rem;
 }
 .big-box .content .right-box .right-middle {
   width: 100%;
