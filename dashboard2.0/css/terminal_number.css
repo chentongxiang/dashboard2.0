@@ -71,11 +71,11 @@
   background-position: center;
   text-align: center;
   line-height: 0.8rem;
-  font-size: 0.34rem;
+  font-size: 0.4rem;
   color: #fff;
-  letter-spacing: 2px;
+  letter-spacing: 0.05rem;
   font-weight: bold;
-  font-family: title_font2;
+  font-family: number_font;
 }
 .big-box .content {
   width: 100%;
@@ -218,9 +218,11 @@
   align-items: center;
 }
 .big-box .content .center-box .center-top .text {
-  font-size: 0.25rem;
+  font-size: 0.3rem;
   color: #fff;
-  font-family: title_font2;
+  font-family: number_font;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
 }
 .big-box .content .center-box .center-top .real-time-data {
   font-size: 0.7rem;

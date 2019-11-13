@@ -71,11 +71,11 @@
   background-position: center;
   text-align: center;
   line-height: 0.8rem;
-  font-size: 0.34rem;
+  font-size: 0.4rem;
   color: #fff;
-  letter-spacing: 2px;
+  letter-spacing: 0.05rem;
   font-weight: bold;
-  font-family: title_font2;
+  font-family: number_font;
 }
 .big-box .content {
   width: 100%;

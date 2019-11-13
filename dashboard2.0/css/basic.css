@@ -31,27 +31,17 @@ html,body{
     /*font-family: main_number_font;*/
     /*src:url(../css/300-CAI978.ttf);*/
 /*}*/
-@font-face{
-    font-family: title_font1;
-    src:url(../css/msyh.ttc);
-}
-@font-face{
-    font-family: title_font2;
-    src:url(../css/msyhbd.ttc);
-}
-@font-face{
-    font-family: title_font3;
-    src:url(../css/msyh.ttc);
-}
+
+/*@font-face{*/
+    /*font-family: title_font2;*/
+    /*src:url(../css/msyhbd.ttc);*/
+/*}*/
+
 
 /*@font-face{*/
     /*font-family: small_title;*/
     /*src:url(../css/SourceHanSansCN-Bold_0.otf);*/
 /*}*/
-@font-face{
-    font-family: small_title;
-    src:url(../css/思源黑体SC-Bold.otf);
-}
 ::-webkit-scrollbar {
     /*滚动条整体样式*/
     width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/
