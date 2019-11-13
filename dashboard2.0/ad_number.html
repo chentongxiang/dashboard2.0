@@ -173,16 +173,17 @@
                                         type: 'bar',
                                         stack: '总量',
                                         barWidth: '30%',
-                                        data: v.value[0]
+                                        data: v.value[0].reverse()
                                     },
                                     {
                                         name: '女性',
                                         type: 'bar',
                                         stack: '总量',
                                         barWidth: '30%',
-                                        data: v.value[1]
+                                        data: v.value[1].reverse()
                                     },]
-                                var option = options.notBgBarChart(color,v.label,data,that.fontSizeNum);
+                                var lable = v.label.reverse();
+                                var option = options.notBgBarChart(color,lable,data,that.fontSizeNum);
                                 option.title.text = "年龄受众比例";
                                 var echartObj = new EchartObj(domID,option);
                                 that.allEchartObj[domID] = echartObj;
@@ -413,10 +414,8 @@
             $.post(GPATH.advKanbanHeatData,function(data){
                 if(data.res){
                     var heatBox = data.msg;
-                    console.log(heatBox[0])
                     var option= options.heatMapChart(heatBox,that.fontSizeNum);
                     var domID = "china_map";
-                    console.log(option)
                     var echartObj = new EchartObj(domID,option);
                     echartObj.setOp();
                 }

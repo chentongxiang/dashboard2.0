@@ -155,13 +155,17 @@
                         switch(v.title_value) {
                             case "top_goods_view":
                                 var color =["#3DE7C9","#3DE7C9"];
+                                console.log(v.value,v.label)
                                 v.value.reverse();
+                                v.label.reverse();
                                 var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
                                 option.title.text = "商品热销TOP5";
                                 break;
                             case "top_movies_view":
                                 var color =["#00BAFF","#1FCF25"];
+                                console.log(v.value,v.label)
                                 v.value.reverse();
+                                v.label.reverse();
                                 var option = options.notBgBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "电影热播TOP5";
                                 break;
@@ -183,12 +187,14 @@
                             case "top_province_view":
                                 var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
                                 v.value.reverse();
+                                v.label.reverse();
                                 var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
                                 option.title.text = "各省终端排行TOP5";
                                 break;
                             case "top_city_view":
                                 var color =["#1B69FF","#1B69FF","#1B69FF"];
                                 v.value.reverse();
+                                v.label.reverse();
                                 var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
                                 option.title.text = "城市粘性排行TOP5";
                                 break;
