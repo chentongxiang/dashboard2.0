@@ -63,7 +63,7 @@ var options = {
                 show:true,
                 text: '',
                 textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-                    fontFamily: 'monospace',
+                    // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
@@ -200,7 +200,7 @@ var options = {
                 show:true,
                 text: '',
                 textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-                    fontFamily: 'monospace',
+                    // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
@@ -294,7 +294,7 @@ var options = {
                 show:true,
                 text: '',
                 textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-                    fontFamily: 'monospace',
+                    // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
@@ -477,7 +477,7 @@ var options = {
                 show:true,
                 text: '',
                 textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-                    fontFamily: 'monospace',
+                    // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
@@ -559,7 +559,7 @@ var options = {
                 show:true,
                 text: '',
                 textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-                    fontFamily: 'monospace',
+                    // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
@@ -711,7 +711,7 @@ var options = {
                 show:true,
                 text: '',
                 textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-                    fontFamily: 'monospace',
+                    // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
