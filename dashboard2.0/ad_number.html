@@ -34,7 +34,7 @@
                 <div class="current">
                     <div class="current-month">
                         <div>本月</div>
-                        <div id="curren-month">275634</div>
+                        <div id="current-month">275634</div>
                     </div>
                     <div class="current-week">
                         <div>W41</div>
@@ -64,11 +64,11 @@
             <div class="right-top">
                 <div class="history-num">
                     <div>历史受众人数</div>
-                    <div class="num-text">1212434324</div>
+                    <div class="num-text" id="num_person_history">1212434324</div>
                 </div>
                 <div class="mouth-num">
                     <div>月度受众人数</div>
-                    <div class="num-text">3242342</div>
+                    <div class="num-text" id="num_person_month">3242342</div>
                 </div>
             </div>
             <div class="right-middle swiper-container">
@@ -335,10 +335,10 @@
                             $(".this-year-data").html(toThousands(thisYearData))
                             break;
                         case "month":
-                            $("#curren-month").html(toThousands(v.value))
+                            $("#current-month").html(toThousands(v.value))
                             break;
                         case "week":
-                            $("#curren-week").html(toThousands(v.value));
+                            $("#current-week").html(toThousands(v.value));
                             break;
                         case "coveredRooms":
                             $("#covered-rooms").html(toThousands(v.value));
@@ -346,20 +346,31 @@
                         case "coveredHotels":
                             $("#covered-hotels").html(toThousands(v.value));
                             break;
+                        case "num_person_history":
+                            $("#num_person_history").html(toThousands(v.value));
+                            break;
+                        case "num_person_month":
+                            $("#num_person_month").html(toThousands(v.value));
+                            break;
                     }
                 })
+
+                $.ajax({
+                    url: GPATH.advTodayAdvsData,
+                    type: "GET",
+                    dataType:"json"
+                }).then(function (data) {
+                    if(data.res){
+                        $("#current-day").html(toThousands(data.msg))
+                        if($("#current-week").html()==0){
+                            $("#current-week").html(toThousands(data.msg));
+                        }
+                    }
+                }).catch(function (data) {
+                    console.log(data.res)
+                })
             })
-            $.ajax({
-                url: GPATH.advTodayAdvsData,
-                type: "GET",
-                dataType:"json"
-            }).then(function (data) {
-                if(data.res){
-                    $("#current-day").html(data.msg)
-                }
-            }).catch(function (data) {
-                console.log(data.res)
-            })
+
             function toThousands(num) {
                 var num = (num || 0).toString(), result = '';
                 while (num.length > 3) {
@@ -395,11 +406,17 @@
         },
         chinaMapShow:function () {
             var that = this;
+            var option= options.heatMapChart([],that.fontSizeNum);
+            var domID = "china_map";
+            var echartObj = new EchartObj(domID,option);
+            echartObj.setOp();
             $.post(GPATH.advKanbanHeatData,function(data){
                 if(data.res){
                     var heatBox = data.msg;
+                    console.log(heatBox[0])
                     var option= options.heatMapChart(heatBox,that.fontSizeNum);
                     var domID = "china_map";
+                    console.log(option)
                     var echartObj = new EchartObj(domID,option);
                     echartObj.setOp();
                 }

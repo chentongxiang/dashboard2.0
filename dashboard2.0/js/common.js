@@ -271,10 +271,10 @@ var options = {
             ],
             series : barData,
             legend: {
-                x : "70%",
-                y : '10%',
+                right :"10%",
+                top : '10%',
                 // type: 'scroll',
-                // orient: 'vertical',
+                orient: 'horizontal',
                 textStyle: {
                     fontSize: num?num/this.legendRate:14,
                     color:"white",
@@ -550,81 +550,6 @@ var options = {
         };
         return option;
     },
-    roseChart:function (roseLabel,roseData,num) {
-        var option={
-            title : {
-                x:'center'
-            },
-            tooltip : {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
-            },
-            legend: {
-                x : '50%',
-                y : '1%',
-                type: 'scroll',
-                orient: 'vertical',
-                textStyle: {
-                    fontSize: num?num/this.rate:14,
-                    color:"#4BD2FF",
-                    fontFamily: "Microsoft YaHei",
-
-                },
-                icon:"circle",
-                formatter: function(name) {
-                    // 获取legend显示内容
-                    let data = option.series[0].data;
-                    let total = 0;
-                    let tarValue = 0;
-                    for (let i = 0, l = data.length; i < l; i++) {
-                        total += Number(data[i].value);
-                        if (data[i].name == name) {
-                            tarValue = data[i].value;
-                        }
-                    }
-                    let p = (tarValue / total * 100).toFixed(2);
-                    return name + ' '+tarValue + ' '+"(" + p + '%)';
-                },
-                data:roseLabel
-            },
-            // color:['#2E65FD', '#FFB000','#8ABE78','#69C0FE'],
-            toolbox: {
-                show : true,
-                feature : {
-                    mark : {show: true},
-                    dataView : {show: false, readOnly: false},
-                    magicType : {
-                        show: false,
-                        type: ['pie', 'funnel']
-                    },
-                    restore : {show: false},
-                    saveAsImage : {show: false}
-                }
-            },
-            calculable : true,
-            series : [
-                {
-                    name:'',
-                    type:'pie',
-                    radius : [10, 40],
-                    center : ['20%', '50%'],
-                    roseType : 'area',
-                    data:roseData ,
-                    itemStyle : {
-                        normal: {
-                            label: {
-                                show: false
-                            },
-                            labelLine: {
-                                show: false
-                            }
-                        },
-                    }
-                }
-            ]
-        }
-        return option;
-    },
     //动态饼图
     dynamicChart:function (color,data,num) {
         var option ={
@@ -660,7 +585,24 @@ var options = {
                             // formatter: function(data){ // 设置圆饼图中间文字排版
                             //       return '{d}'+"\n"+data.name
                             // }
-                            formatter:'{d}%'+"\n"+'{b}'
+                            formatter:'{d|{d}}{d|%}'+"\n"+'{b|{b}}',
+                            rich: {
+                                d: {
+                                    color: '#fff',
+                                    fontSize: num?num/this.dynamicRate*1.3:30,
+                                    lineHeight: 33,
+                                    fontFamily:"Microsoft Yahei"
+
+                                },
+                                b: {
+                                    color: '#fff',
+                                    lineHeight: 30,
+                                    align: 'center',
+                                    fontSize: num?num/this.dynamicRate/1.1:20,
+                                    fontFamily:"SimHei",
+                                    fontWeight:"bold"
+                                }
+                            }
                         },
                         emphasis: {
                             show: true,
@@ -731,7 +673,7 @@ var options = {
                 seriesIndex: 0,
                 calculable: true,
                 inRange: {
-                    color: ['blue', 'blue', 'green', 'yellow', 'red']
+                    color: ['#3DE7C9'] //热力点颜色
                 }
             },
             series : [
@@ -740,22 +682,22 @@ var options = {
                     type: 'heatmap',
                     coordinateSystem: 'geo',
                     data : data,
-                    // pointSize: 5,
-                    pointSize: num/this.rate/3,
-                    blurSize: num/this.rate/3,
+                    pointSize: num/this.rate/5,
+                    blurSize: num/this.rate/6,
                     markPoint: {//动态标记
                         large: true,//这个选项，悬浮自动失效
-                        symbolSize:23,//闪烁点大小
+                        symbolSize:1,//闪烁点大小
                         itemStyle: {
                             normal: {
-                                color: '#FF0400',
                                 shadowBlur: 10,
-                                shadowColor: '#333'
-                            }
+                                shadowColor: '#333',
+                                areaColor: '#00FFDB',
+                            },
+                            color:'#00FFDB'
                         },
                         zlevel: 1,
-                        data: []
-                    }
+                        data: [],
+                    },
                 }
             ]
         }
@@ -906,5 +848,81 @@ var options = {
             },
         }
         return option;
-    }
+    },
+    // roseChart:function (roseLabel,roseData,num) {
+    //     var option={
+    //         title : {
+    //             x:'center'
+    //         },
+    //         tooltip : {
+    //             trigger: 'item',
+    //             formatter: "{a} <br/>{b} : {c} ({d}%)"
+    //         },
+    //         legend: {
+    //             x : '50%',
+    //             y : '1%',
+    //             type: 'scroll',
+    //             orient: 'vertical',
+    //             textStyle: {
+    //                 fontSize: num?num/this.rate:14,
+    //                 color:"#4BD2FF",
+    //                 fontFamily: "Microsoft YaHei",
+    //
+    //             },
+    //             icon:"circle",
+    //             formatter: function(name) {
+    //                 // 获取legend显示内容
+    //                 let data = option.series[0].data;
+    //                 let total = 0;
+    //                 let tarValue = 0;
+    //                 for (let i = 0, l = data.length; i < l; i++) {
+    //                     total += Number(data[i].value);
+    //                     if (data[i].name == name) {
+    //                         tarValue = data[i].value;
+    //                     }
+    //                 }
+    //                 let p = (tarValue / total * 100).toFixed(2);
+    //                 return name + ' '+tarValue + ' '+"(" + p + '%)';
+    //             },
+    //             data:roseLabel
+    //         },
+    //         // color:['#2E65FD', '#FFB000','#8ABE78','#69C0FE'],
+    //         toolbox: {
+    //             show : true,
+    //             feature : {
+    //                 mark : {show: true},
+    //                 dataView : {show: false, readOnly: false},
+    //                 magicType : {
+    //                     show: false,
+    //                     type: ['pie', 'funnel']
+    //                 },
+    //                 restore : {show: false},
+    //                 saveAsImage : {show: false}
+    //             }
+    //         },
+    //         calculable : true,
+    //         series : [
+    //             {
+    //                 name:'',
+    //                 type:'pie',
+    //                 radius : [10, 40],
+    //                 center : ['20%', '50%'],
+    //                 roseType : 'area',
+    //                 data:roseData ,
+    //                 itemStyle : {
+    //                     normal: {
+    //                         label: {
+    //                             show: false
+    //                         },
+    //                         labelLine: {
+    //                             show: false
+    //                         }
+    //                     },
+    //                 }
+    //             }
+    //         ]
+    //     }
+    //     return option;
+    // },
+
 }

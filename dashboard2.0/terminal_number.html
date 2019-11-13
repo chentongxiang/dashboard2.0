@@ -106,8 +106,6 @@
         fontSizeNum : 18,
         allEchartObj:{},
         arrLength:"",
-        beforeData:"",
-        afterData:"",
         init:function () {
             //尺寸初始化
             this.windowOnload();
@@ -309,6 +307,10 @@
         // 热力图图展示，接口有terminalHeatData
         heatMapShow:function () {
             var that = this;
+            var option= options.heatMapChart([],that.fontSizeNum);
+            var domID = "china_map";
+            var echartObj = new EchartObj(domID,option);
+            echartObj.setOp();
             $.post(GPATH.terminalHeatData,function(data){
                 if(data.res){
                     var heatBox = data.msg;
@@ -329,7 +331,6 @@
                     var dataBox = data.msg;
                     var newBox = [];
                     newBox = dataBox.slice(0,50);
-
                     var cnew = newBox.length;
                     // var timeBox = randomBox(cnew,duration);
                     var timeBox = random(50,duration);
@@ -390,32 +391,15 @@
                         var lat = $(this).attr('lat');
                         var lng = $(this).attr('lng');
                         var hotel = $(this).attr('title');
-
-                        var lineData ="";
                         var itemData = [{"name":hotel,"value":[lng,lat]}];
-                        // if(i==0){
-                        //     that.beforeData= itemData;
-                        // }else if(i>0){
-                        //     that.afterData = itemData;
-                        //
-                        // }
-                        lineData = [[{"coord":["98.275939","39.797728"]},
-                            {"coord":["108.946466","34.347269"]}
-                        ]]
-                        // lineData = [[{
-                        //     coord: [116.4551,40.2539]
-                        // }, {
-                        //     coord: [121.4648,31.2891]
-                        // }]]
-                        addMarkPoint(itemData,lineData)
+                        addMarkPoint(itemData)
                     }
                 });
             }
-            function addMarkPoint(itemData,lineData){
+            function addMarkPoint(itemData){
                 var echarObj = that.allEchartObj["china_map"];
                 var myChartMap = echarObj.myChart;
                 var option = echarObj.option;
-                console.log(itemData)
                 option.series[1] = {
                     type: 'effectScatter',
                     coordinateSystem: 'geo',
@@ -434,87 +418,6 @@
                         }
                     },
                     zlevel: 1
-                };
-                option.series[2] ={
-                    name: '北京 Top10',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    data: lineData,
-                    // lineStyle:{
-                    //     type: "solid",
-                    //     curveness:0.5,
-                    //     effect : {
-                    //         show: true,
-                    //         scaleSize: 3,
-                    //         period: 30,
-                    //         color: '#fff',
-                    //         shadowBlur: 10
-                    //     },
-                    //     color: {
-                    //         type: 'radial',
-                    //         x: 0.5,
-                    //         y: 0.5,
-                    //         r: 0.5,
-                    //         colorStops: [{
-                    //             offset: 0, color: '#fff' // 0% 处的颜色
-                    //         }, {
-                    //             offset: 1, color: '#fff' // 100% 处的颜色
-                    //         }],
-                    //         global: false // 缺省为 false
-                    //     }
-                    // },
-                    markLine : {
-                        smooth:true,
-                        effect : {
-                            show: true,
-                            scaleSize: 2,
-                            period: 30,
-                            color: '#fff',
-                            shadowBlur: 10
-                        },
-                        lineStyle:{
-                            type: "dotted",
-                            curveness:0.8,
-                            color: {
-                                type: 'radial',
-                                x: 0.5,
-                                y: 0.5,
-                                r: 0.5,
-                                colorStops: [{
-                                    offset: 0, color: '#fff' // 0% 处的颜色
-                                }, {
-                                    offset: 1, color: '#fff' // 100% 处的颜色
-                                }],
-                                global: false // 缺省为 false
-                            }
-                        },
-                            // itemStyle : {
-                            //     normal: {
-                            //         label:{show:false},
-                            //         borderWidth:1,
-                            //         curveness:"0.8",
-                            //         lineStyle: {
-                            //             type: 'solid',
-                            //             shadowBlur: 10,
-                            //             curveness: .1,
-                            //             color: {
-                            //                type: 'radial',
-                            //                 x: 0.5,
-                            //                 y: 0.5,
-                            //                 r: 0.5,
-                            //             colorStops: [{
-                            //                 offset: 0, color: '#fff' // 0% 处的颜色
-                            //             }, {
-                            //                 offset: 1, color: '#fff' // 100% 处的颜色
-                            //             }],
-                            //             globalCoord: false // 缺省为 false
-                            //             },
-                            //         }
-                            //     },
-                            //
-                            // },
-                        data :lineData
-                    },
                 };
                 myChartMap.setOption(option);
             }
