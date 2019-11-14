@@ -193,8 +193,132 @@ var options = {
         }
         return option;
     },
-    //柱状图-不具有背景横向
-    notBgBarChart:function (color,barLabel,barData,num) {
+    noBgBarChart:function (color,barLabel,barData,num) {
+        var option = {
+            title: {
+                show:true,
+                text: '',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    // fontFamily: 'monospace',
+                    fontSize: num?num/this.titleRate:14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color:"#fff"
+                },
+                x:"3%",
+                y:"6%"
+            },
+            color: [color[0]],
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '5%',
+                right: '15%',
+                top:"25%",
+                bottom: '6%',
+                containLabel: true
+            },
+            yAxis : [
+                {
+                    type: 'category',
+                    data: barLabel,
+                    axisTick: {
+                        show:false,
+                        // alignWithLabel: true
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#fff',  //坐标的字体颜色
+                            fontSize: num ? num / this.rate : 14,
+                        },
+                        interval: 0,
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#fff',  //坐标的字体颜色
+                        },
+                        show: false
+                    },
+                    splitLine: {
+                        show: false
+                    },
+
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'value',
+                    axisLabel: {
+                        textStyle:{
+                            color:'#fff',  //坐标的字体颜色
+                        },
+                    },
+                    splitLine: {
+                        show: false,
+                    },
+                    axisLine: {
+                        lineStyle:{
+                            color:'#0E3254',  //坐标的字体颜色
+                        },
+                    },
+                    max:"dataMax"
+                }
+            ],
+            series : [
+                {
+                    name:'',
+                    type:'bar',
+                    barWidth: '30%',
+                    data:barData,
+                    itemStyle: {
+                        emphasis:{
+                            barBorderRadius:6,
+                        },
+                        normal: {
+                            barBorderRadius:6,
+                            label: {
+                                show: true,		//开启显示
+                                position: 'right',	//在上方显示
+                                textStyle: {	    //数值样式
+                                    color: '#fff',
+                                    fontSize: num?num/this.legendRate:14
+                                }
+                            },
+                            // color:color[0]
+                            color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                                offset: 0,
+                                color: color[1] // 0% 处的颜色
+                            }, {
+                                offset: 1,
+                                color: color[0] // 100% 处的颜色
+                            }], false)
+
+                        }
+                    }
+                }
+            ],
+            // legend: {
+            //     x : '50%',
+            //     y : '20%',
+            //     type: 'scroll',
+            //     orient: 'vertical',
+            //     textStyle: {
+            //         fontSize: num?num/this.rate:14,
+            //         color:"white",
+            //         fontFamily: "Microsoft YaHei",
+            //     },
+            //     data:barLabel
+            // },
+        }
+        return option;
+    },
+
+    //柱状图-多柱状横向
+    stackedBarChart:function (color,barLabel,barData,num) {
         var option = {
             title: {
                 show:true,
@@ -218,7 +342,7 @@ var options = {
             },
             grid: {
                 left: '5%',
-                right: '8%',
+                right: '15%',
                 top:"25%",
                 bottom: '6%',
                 containLabel: true
@@ -823,13 +947,21 @@ var options = {
                         },
                         normal: {
                             // barBorderRadius:"",
-                            color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-                                offset: 0,
-                                color: color[1] // 0% 处的颜色
-                            }, {
-                                offset: 1,
-                                color: color[0] // 100% 处的颜色
-                            }], false)
+                            // color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                            //     offset: 0,
+                            //     color: color[1] // 0% 处的颜色
+                            // }, {
+                            //     offset: 1,
+                            //     color: color[0] // 100% 处的颜色
+                            // }], false),
+                            label: {
+                                show: false,		//开启显示
+                                position: 'top',	//在上方显示
+                                textStyle: {	    //数值样式
+                                    color: '#fff',
+                                    fontSize: num?num/this.legendRate:14
+                                }
+                            }
                         }
                     }
                 }
@@ -849,80 +981,4 @@ var options = {
         }
         return option;
     },
-    // roseChart:function (roseLabel,roseData,num) {
-    //     var option={
-    //         title : {
-    //             x:'center'
-    //         },
-    //         tooltip : {
-    //             trigger: 'item',
-    //             formatter: "{a} <br/>{b} : {c} ({d}%)"
-    //         },
-    //         legend: {
-    //             x : '50%',
-    //             y : '1%',
-    //             type: 'scroll',
-    //             orient: 'vertical',
-    //             textStyle: {
-    //                 fontSize: num?num/this.rate:14,
-    //                 color:"#4BD2FF",
-    //                 fontFamily: "Microsoft YaHei",
-    //
-    //             },
-    //             icon:"circle",
-    //             formatter: function(name) {
-    //                 // 获取legend显示内容
-    //                 let data = option.series[0].data;
-    //                 let total = 0;
-    //                 let tarValue = 0;
-    //                 for (let i = 0, l = data.length; i < l; i++) {
-    //                     total += Number(data[i].value);
-    //                     if (data[i].name == name) {
-    //                         tarValue = data[i].value;
-    //                     }
-    //                 }
-    //                 let p = (tarValue / total * 100).toFixed(2);
-    //                 return name + ' '+tarValue + ' '+"(" + p + '%)';
-    //             },
-    //             data:roseLabel
-    //         },
-    //         // color:['#2E65FD', '#FFB000','#8ABE78','#69C0FE'],
-    //         toolbox: {
-    //             show : true,
-    //             feature : {
-    //                 mark : {show: true},
-    //                 dataView : {show: false, readOnly: false},
-    //                 magicType : {
-    //                     show: false,
-    //                     type: ['pie', 'funnel']
-    //                 },
-    //                 restore : {show: false},
-    //                 saveAsImage : {show: false}
-    //             }
-    //         },
-    //         calculable : true,
-    //         series : [
-    //             {
-    //                 name:'',
-    //                 type:'pie',
-    //                 radius : [10, 40],
-    //                 center : ['20%', '50%'],
-    //                 roseType : 'area',
-    //                 data:roseData ,
-    //                 itemStyle : {
-    //                     normal: {
-    //                         label: {
-    //                             show: false
-    //                         },
-    //                         labelLine: {
-    //                             show: false
-    //                         }
-    //                     },
-    //                 }
-    //             }
-    //         ]
-    //     }
-    //     return option;
-    // },
-
 }

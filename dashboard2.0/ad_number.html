@@ -129,16 +129,16 @@
                             case "top_advs_content_play":
                                 var color =["#3DE7C9","#3DE7C9"];
                                 v.value.reverse();
-                                var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
+                                var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "月度主流广告产品播放频次(万次)";
                                 var echartObj = new EchartObj(domID,option);
                                 that.allEchartObj[domID] = echartObj;
                                 echartObj.setOp();
                                 break;
                             case "top_play_act":
-                                var color =["#00BAFF","#1FCF25"];
+                                var color =["#00BAFF","#00BAFF"];
                                 v.value.reverse();
-                                var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
+                                var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "用户交互数据排名(万次)";
                                 var echartObj = new EchartObj(domID,option);
                                 that.allEchartObj[domID] = echartObj;
@@ -171,28 +171,50 @@
                                 var data =[{
                                         name: '男性',
                                         type: 'bar',
-                                        stack: '总量',
                                         barWidth: '30%',
-                                        data: v.value[0].reverse()
+                                        data: v.value[0].reverse(),
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    show: true,		//开启显示
+                                                    position: 'right',	//在上方显示
+                                                    textStyle: {	    //数值样式
+                                                        color: '#fff',
+                                                        fontSize: that.fontSizeNum?that.fontSizeNum/7:14
+                                                    }
+                                                }
+                                            }
+                                        }
                                     },
                                     {
                                         name: '女性',
                                         type: 'bar',
-                                        stack: '总量',
                                         barWidth: '30%',
-                                        data: v.value[1].reverse()
+                                        data: v.value[1].reverse(),
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    show: true,		//开启显示
+                                                    position: 'right',	//在上方显示
+                                                    textStyle: {	    //数值样式
+                                                        color: '#fff',
+                                                        fontSize: that.fontSizeNum?that.fontSizeNum/7:14
+                                                    }
+                                                }
+                                            }
+                                        }
                                     },]
-                                var lable = v.label.reverse();
-                                var option = options.notBgBarChart(color,lable,data,that.fontSizeNum);
+                                v.label.reverse();
+                                var option = options.stackedBarChart(color,v.label,data,that.fontSizeNum);
                                 option.title.text = "年龄受众比例";
                                 var echartObj = new EchartObj(domID,option);
                                 that.allEchartObj[domID] = echartObj;
                                 echartObj.setOp();
                                 break;
                             case "top_play_auto":
-                                var color =["#00BAFF","#1FCF25"];
+                                var color =["#3DE7C9","#1FCF25"];
                                 v.value.reverse();
-                                var option = options.barChart(color,v.label,bgData,v.value,that.fontSizeNum);
+                                var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "自动播放数据排名(万次)";
                                 var echartObj = new EchartObj(domID,option);
                                 that.allEchartObj[domID] = echartObj;
@@ -282,8 +304,6 @@
                 var b = a.slice(9,10);
                 var arr = ["历史广告曝光频次","本年"]
                 if(b=="1"){
-                    // $historyText.html(arr[0]);
-                    // $thisYear.html(arr[1]);
                     $historyText.removeClass("flipIn");
                     $thisYear.removeClass("flipOut");
                     $historyText.addClass("flipOut");
@@ -294,8 +314,6 @@
                     $historyData.addClass("flipOut");
                     $thisYearData.addClass('flipIn');
                 }else{
-                    // $historyText.html(arr[0]);
-                    // $thisYear .html(arr[1]);
                     $historyText.removeClass("flipOut");
                     $thisYear.removeClass("flipIn");
                     $historyText.addClass("flipIn");
