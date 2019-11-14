@@ -146,7 +146,7 @@
             $.post(GPATH.queryChartsTerminal, function(data){
                 if(data.res){
                     var content = data.data;
-                    // console.log(content)
+                    console.log(content)
                     var contentOne = content.slice(0,7);
                     var contentTow = content.slice(7);
                     $.each(contentTow,function (i,v) {

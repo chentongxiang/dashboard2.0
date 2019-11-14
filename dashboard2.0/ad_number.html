@@ -82,8 +82,6 @@
     </div>
 
 </div>
-
-
 <script src="js/jquery.js"></script>
 <script src="js/common.js"></script>
 <script src="js/echarts.min.js"></script>
@@ -101,7 +99,7 @@
             this.createEchart();
             //热力图展示，接口advKanbanHeatData
             this.chinaMapShow();
-            // // 广告曝光频次
+            // 广告曝光频次
             this.avdDataShow();
         },
         windowOnload:function () {
@@ -123,7 +121,7 @@
                 if(data.res){
                     var content = data.data;
                     $.each(content,function (i,v) {
-                        var bgData = that.bgData(v.value);
+                        // var bgData = that.bgData(v.value);  需要柱状图背景图时启用
                         var domID = v.title_value;
                         switch(v.title_value) {
                             case "top_advs_content_play":
