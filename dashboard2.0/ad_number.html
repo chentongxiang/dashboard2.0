@@ -9,7 +9,10 @@
 </head>
 <body>
 <div class="big-box">
-    <div class="header_img">全国广告数据展示</div>
+    <div class="header_img">
+        <div class="logo"></div>
+        <div class="title-text">全国广告数据展示</div>
+    </div>
 
     <div class="content box_flex">
         <div class="left-box">
@@ -145,20 +148,25 @@
                             case "pie_cust_type":
                                 var arr = v.value;
                                 that.arrLength = arr.length;
-                                $.each(arr,function (i,v) {
-                                    arr[i]["label"] = {
-                                        normal:{
-                                            position: 'center',
-                                            // formatter:"{b}\n{d}%",
-                                            textStyle: {
-                                                fontSize: '50',
-                                                fontWeight: 'normal'
-                                            }
-                                        }
-                                    }
-                                })
+                                // $.each(arr,function (i,v) {
+                                //     arr[i]["label"] = {
+                                //         normal:{
+                                //             position: 'center',
+                                //             // formatter:"{b}\n{d}%",
+                                //             textStyle: {
+                                //                 fontSize: '50',
+                                //                 fontWeight: 'normal'
+                                //             }
+                                //         }
+                                //     }
+                                // })
+                                // var color = ["#FFFFFF","#08DFDF","#FFB980","#5AB1EF","#19CB50","#3DE7C9","#B6A2DE"]
+                                // var option = options.dynamicChart(color,v.value,that.fontSizeNum);
+
                                 var color = ["#FFFFFF","#08DFDF","#FFB980","#5AB1EF","#19CB50","#3DE7C9","#B6A2DE"]
-                                var option = options.dynamicChart(color,v.value,that.fontSizeNum);
+                                var option = options.pieChartOther(color,v.label,v.value,that.fontSizeNum);
+                                option.legend = null;
+                                option.series[0].center = ['46%', '60%'],
                                 option.title.text = "合作客户行业分布";
                                 var echartObj = new EchartObj(domID,option);
                                 that.allEchartObj[domID] = echartObj;
@@ -222,6 +230,7 @@
                                 var color =["#00BAFF","#00BAFF"];
                                 var option = options.normalBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "开房浓度地区分布TOP5";
+                                option.series[0].itemStyle.normal.label.show = true;
                                 var echartObj = new EchartObj(domID,option);
                                 that.allEchartObj[domID] = echartObj;
                                 echartObj.setOp();
@@ -230,8 +239,10 @@
                                 // var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
 
                                 var color = ["#FFFFFF","#08DFDF","#FFB980","#5AB1EF","#19CB50","#3DE7C9","#B6A2DE"]
+
                                 var option = options.pieChartOther(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "受众性别比例";
+                                option.graphic.elements[0].style.image ="images/sex.png"
                                 var echartObj = new EchartObj(domID,option);
                                 that.allEchartObj[domID] = echartObj;
                                 echartObj.setOp();
@@ -239,39 +250,39 @@
                         }
                     })
                 }
-                var charPie3currentIndex = 0;
-                var dataLen = that.arrLength;
-                chartPie3 = that.allEchartObj["pie_cust_type"].myChart;
-                // 取消之前高亮的图形
-                chartPie3.dispatchAction({
-                    type: 'downplay',
-                    seriesIndex: 0,
-                    dataIndex: charPie3currentIndex
-                });
-                charPie3currentIndex = (charPie3currentIndex + 1) % dataLen;
-                // 高亮当前图形
-                chartPie3.dispatchAction({
-                    type: 'highlight',
-                    seriesIndex: 0,
-                    dataIndex:charPie3currentIndex
-                });
-                setInterval(function () {
-                    var dataLen = that.arrLength;
-                    chartPie3 = that.allEchartObj["pie_cust_type"].myChart;
-                    // 取消之前高亮的图形
-                    chartPie3.dispatchAction({
-                        type: 'downplay',
-                        seriesIndex: 0,
-                        dataIndex: charPie3currentIndex
-                    });
-                    charPie3currentIndex = (charPie3currentIndex + 1) % dataLen;
-                    // 高亮当前图形
-                    chartPie3.dispatchAction({
-                        type: 'highlight',
-                        seriesIndex: 0,
-                        dataIndex:charPie3currentIndex
-                    });
-                }, 5000);
+                // var charPie3currentIndex = 0;
+                // var dataLen = that.arrLength;
+                // chartPie3 = that.allEchartObj["pie_cust_type"].myChart;
+                // // 取消之前高亮的图形
+                // chartPie3.dispatchAction({
+                //     type: 'downplay',
+                //     seriesIndex: 0,
+                //     dataIndex: charPie3currentIndex
+                // });
+                // charPie3currentIndex = (charPie3currentIndex + 1) % dataLen;
+                // // 高亮当前图形
+                // chartPie3.dispatchAction({
+                //     type: 'highlight',
+                //     seriesIndex: 0,
+                //     dataIndex:charPie3currentIndex
+                // });
+                // setInterval(function () {
+                //     var dataLen = that.arrLength;
+                //     chartPie3 = that.allEchartObj["pie_cust_type"].myChart;
+                //     // 取消之前高亮的图形
+                //     chartPie3.dispatchAction({
+                //         type: 'downplay',
+                //         seriesIndex: 0,
+                //         dataIndex: charPie3currentIndex
+                //     });
+                //     charPie3currentIndex = (charPie3currentIndex + 1) % dataLen;
+                //     // 高亮当前图形
+                //     chartPie3.dispatchAction({
+                //         type: 'highlight',
+                //         seriesIndex: 0,
+                //         dataIndex:charPie3currentIndex
+                //     });
+                // }, 5000);
 
                 var n= 1;
                 $chart1 = $(".carousel-chart1");

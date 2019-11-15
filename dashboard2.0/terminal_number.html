@@ -9,8 +9,10 @@
 </head>
 <body>
 <div class="big-box">
-    <div class="header_img">全国终端数据展示</div>
-
+    <div class="header_img">
+        <div class="logo"></div>
+        <div class="title-text">全国终端数据展示</div>
+    </div>
     <div class="content box_flex">
         <div class="left-box">
             <div class="left-top">
@@ -62,6 +64,24 @@
                 <div class="text">当日实时数据采集量</div>
                 <div class="real-time-data" id="termNumCounter">数据加载中</div>
                 <input type='hidden' name="fixedTersnum" id="fixedTersnum" value="13048803"/>
+            </div>
+            <div class="center-four-data">
+                <div class="online-rate">
+                    <div class="num-text">平均在线率</div>
+                    <div class="num-data" id="avg_online_rate">55%</div>
+                </div>
+                <div class="boot-times">
+                    <div class="num-text">平均每日开机次数</div>
+                    <div class="num-data" id="avg_opennum_everyday">331079</div>
+                </div>
+                <div class="active-terminal">
+                    <div class="num-text">平均活跃终端数</div>
+                    <div class="num-data" id="avg_termialnum_active">61285</div>
+                </div>
+                <div class="turn-on-time">
+                    <div class="num-text">平均每日开机时长(分钟)</div>
+                    <div class="num-data" id="avg_openlong_everyday">12965101</div>
+                </div>
             </div>
             <div class="center-middle" id="china_map"></div>
             <div class="center-bottom">
@@ -198,12 +218,20 @@
                                 v.value.reverse();
                                 var option = options.normalBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.xAxis[0].axisLabel.interval = 1 ;
+                                option.xAxis[0].name = "时段"
+                                option.xAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
+                                option.yAxis[0].name = "小时"
+                                option.yAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
                                 option.title.text = "平均各时段驻留时长";
                                 break;
                             case "avg_single_open_nums":
                                 var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
                                 var option = options.lineChart(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "单店平均各时段开机数量";
+                                option.xAxis[0].name = "时段"
+                                option.xAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
+                                option.yAxis[0].name = "台"
+                                option.yAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
                                 break;
                             case "ratio_brands_tv":
 //                                代码块
@@ -471,12 +499,28 @@
                 dataType:"json"
             }).then(function(data){
                 if(data){
-                    var coveredRooms = data[1].value;
-                    var coveredHotels = data[2].value;
-                    var yesterday_termialnum_active = data[11].value;
-                    $("#coveredRooms").html(toThousands(coveredRooms));
-                    $("#coveredHotels").html(toThousands(coveredHotels));
-                    $("#yesterday_termialnum_active").html(toThousands(yesterday_termialnum_active));
+                    var avg_online_rate = (data[5].value/data[12].value*100).toFixed(2)+"%";
+                    $("#avg_online_rate").html(avg_online_rate);
+                    $.each(data,function (i,v) {
+                        if($("#"+v.label)){
+                            if(v.label=="avg_openlong_everyday"){
+                                $("#"+v.label).html((v.value/60).toFixed(2));
+                            }else{
+                                $("#"+v.label).html(toThousands(v.value));
+                            }
+                        }
+                    })
+                    console.log(data)
+                    // var coveredRooms = data[1].value;
+                    // var coveredHotels = data[2].value;
+                    // var yesterday_termialnum_active = data[11].value;
+                    // $("#coveredRooms").html(toThousands(coveredRooms));
+                    // $("#coveredHotels").html(toThousands(coveredHotels));
+                    // $("#yesterday_termialnum_active").html(toThousands(yesterday_termialnum_active));
+                    // $("#avg_opennum_everyday").html(toThousands(avg_opennum_everyday));
+                    // $("#avg_termialnum_active").html(toThousands(avg_termialnum_active));
+                    // $("#avg_openlong_everyday").html(toThousands(avg_openlong_everyday));
+                    // $("#avg_online_rate").html(toThousands(avg_openlong_everyday));
                 }
             },function(err){
                 //错误的回调函数

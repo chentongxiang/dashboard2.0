@@ -435,8 +435,8 @@ var options = {
             },
             grid: {
                 left: '5%',
-                right: '8%',
-                top:"25%",
+                right: '10%',
+                top:"27%",
                 bottom: '6%',
                 containLabel: true
             },
@@ -633,7 +633,7 @@ var options = {
                 elements: [{
                     type: 'image',
                     style: {
-                        image: 'images/sex.png',
+                        image: '',
                         width: num?num/this.rate*2.5:30,
                         height: num?num/this.rate*2.5:30,
                     },
@@ -656,6 +656,7 @@ var options = {
                                 fontWeight: '600',
                             },
                             formatter: '{a}{b}({d}%)',
+                            padding: [10,10],
                         },
                         emphasis: {    //文本样式
                             show: false,    //展示
@@ -698,14 +699,14 @@ var options = {
                     type:'pie',
                     radius: ['57%', '70%'],
                     center : ['55%', '52%'],
-                    avoidLabelOverlap: false,
+                    avoidLabelOverlap: true,
                     selectedOffset:15,
                     selectedMode:true,
                     hoverOffset:  num?num/this.rate:5,
                     label: {
                         normal: {
-                            show: false,
-                            position: 'center',
+                            show: true,
+                            position: 'outside',
                             // formatter: function(data){ // 设置圆饼图中间文字排版
                             //       return '{d}'+"\n"+data.name
                             // }
@@ -740,7 +741,7 @@ var options = {
                     animationDurationUpdate:500,
                     labelLine: {
                         normal: {
-                            show: false
+                            show: true
                         }
                     },
                     data:data
@@ -852,8 +853,8 @@ var options = {
             },
             grid: {
                 left: '5%',
-                right: '5%',
-                top:"25%",
+                right: '10%',
+                top:"30%",
                 bottom: '5%',
                 containLabel: true
             },
