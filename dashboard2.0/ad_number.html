@@ -40,7 +40,7 @@
                         <div id="current-month">275634</div>
                     </div>
                     <div class="current-week">
-                        <div>W41</div>
+                        <div id="week-num">W41</div>
                         <div id="current-week">21312</div>
                     </div>
                     <div class="current-day">
@@ -233,7 +233,7 @@
                             case "top_province_view":
                                 var color =["#00BAFF","#00BAFF"];
                                 var option = options.normalBarChart(color,v.label,v.value,that.fontSizeNum);
-                                option.title.text = "开房浓度地区分布TOP5";
+                                option.title.text = "入住浓度地区分布TOP5";
                                 option.series[0].itemStyle.normal.label.show = true;
                                 var echartObj = new EchartObj(domID,option);
                                 that.allEchartObj[domID] = echartObj;
@@ -349,6 +349,21 @@
         },
         avdDataShow :function(){
             var that =this;
+            //获取第几周
+            var getYearWeek = function()
+            {
+                var date = new Date();
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var strDate = date.getDate();
+                var date1 = new Date(year, parseInt(month) - 1, strDate),
+                date2 = new Date(year, 0, 1),
+                d = Math.round((date1.valueOf() - date2.valueOf()) / 86400000);
+                return Math.ceil((d + ((date2.getDay() + 1) - 1)) / 7);
+            };
+            var week = getYearWeek()
+            $("#week-num").html("w"+week);
+
             $.ajax({
                 url: GPATH.queryNumbersAdvs,
                 type: "GET",
@@ -399,7 +414,6 @@
                     console.log(data.res)
                 })
             })
-
             function toThousands(num) {
                 var num = (num || 0).toString(), result = '';
                 while (num.length > 3) {
@@ -464,9 +478,6 @@
     $(function() {
         adNumber.init();
     });
-
-
-
 
 </script>
 
