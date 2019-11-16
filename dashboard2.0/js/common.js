@@ -117,6 +117,7 @@ var options = {
                 {
                     type : 'value',
                     axisLabel: {
+
                         textStyle:{
                             color:'#fff',  //坐标的字体颜色
                         },

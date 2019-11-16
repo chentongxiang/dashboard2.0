@@ -130,6 +130,7 @@
                             case "top_advs_content_play":
                                 var color =["#3DE7C9","#3DE7C9"];
                                 v.value.reverse();
+                                v.label.reverse();
                                 var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "月度主流广告产品播放频次(万次)";
                                 var echartObj = new EchartObj(domID,option);
@@ -139,6 +140,7 @@
                             case "top_play_act":
                                 var color =["#00BAFF","#00BAFF"];
                                 v.value.reverse();
+                                v.label.reverse();
                                 var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "用户交互数据排名(万次)";
                                 var echartObj = new EchartObj(domID,option);
@@ -166,6 +168,7 @@
                                 var color = ["#FFFFFF","#08DFDF","#FFB980","#5AB1EF","#19CB50","#3DE7C9","#B6A2DE"]
                                 var option = options.pieChartOther(color,v.label,v.value,that.fontSizeNum);
                                 option.legend = null;
+                                option.series[0].radius = ['40%', '50%'],
                                 option.series[0].center = ['46%', '60%'],
                                 option.title.text = "合作客户行业分布";
                                 var echartObj = new EchartObj(domID,option);
@@ -220,6 +223,7 @@
                             case "top_play_auto":
                                 var color =["#3DE7C9","#1FCF25"];
                                 v.value.reverse();
+                                v.label.reverse();
                                 var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "自动播放数据排名(万次)";
                                 var echartObj = new EchartObj(domID,option);
@@ -236,10 +240,7 @@
                                 echartObj.setOp();
                                 break;
                             case "sex_advs_audience":
-                                // var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
-
                                 var color = ["#FFFFFF","#08DFDF","#FFB980","#5AB1EF","#19CB50","#3DE7C9","#B6A2DE"]
-
                                 var option = options.pieChartOther(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "受众性别比例";
                                 option.graphic.elements[0].style.image ="images/sex.png"
@@ -424,7 +425,6 @@
                             if (decimal_places > 0) {
                                 floored_number = floored_number.toFixed(decimal_places);
                             }
-
                             target.text(floored_number + ' %');
                         }
                     },

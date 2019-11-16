@@ -80,7 +80,7 @@
                 </div>
                 <div class="turn-on-time">
                     <div class="num-text">平均每日开机时长(分钟)</div>
-                    <div class="num-data" id="avg_openlong_everyday">12965101</div>
+                    <div class="num-data" id="avg_openlong_yesterday">12965101</div>
                 </div>
             </div>
             <div class="center-middle" id="china_map"></div>
@@ -126,6 +126,7 @@
         fontSizeNum : 18,
         allEchartObj:{},
         arrLength:"",
+        markPoint:[],
         init:function () {
             //尺寸初始化
             this.windowOnload();
@@ -166,7 +167,6 @@
             $.post(GPATH.queryChartsTerminal, function(data){
                 if(data.res){
                     var content = data.data;
-                    console.log(content)
                     var contentOne = content.slice(0,7);
                     var contentTow = content.slice(7);
                     $.each(contentTow,function (i,v) {
@@ -181,8 +181,9 @@
                                 option.title.text = "商品热销TOP5";
                                 break;
                             case "top_movies_view":
-                                var color =["#00BAFF","#1FCF25"];
-                                v.value.reverse();
+                                var color =["#1FCF25","#00BAFF"];
+                                v.value[0].data.reverse();
+                                v.value[1].data.reverse();
                                 v.label.reverse();
                                 var option = options.stackedBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.title.text = "电影热播TOP5";
@@ -215,7 +216,6 @@
                                 break;
                             case "avg_single_open_long":
                                 var color =["#1B69FF","#1B69FF"];
-                                v.value.reverse();
                                 var option = options.normalBarChart(color,v.label,v.value,that.fontSizeNum);
                                 option.xAxis[0].axisLabel.interval = 1 ;
                                 option.xAxis[0].name = "时段"
@@ -388,11 +388,14 @@
                 if(data.res){
                     var dataBox = data.msg;
                     var newBox = [];
-                    newBox = dataBox.slice(0,50);
+                    newBox = dataBox.slice(0,300);
                     var cnew = newBox.length;
-                    // var timeBox = randomBox(cnew,duration);
-                    var timeBox = random(50,duration);
-                    timeBox[0] = 1;
+                    // var timeBox = random(50,duration);
+                    var timeBox=[];
+                    for(var i=0;i<300;i++){
+                        timeBox.push(i);
+                    }
+                    // timeBox[0] = 1;
                     if(cnew > 0){
                         var tmp = 0;
                         var now = Date.now();
@@ -441,6 +444,19 @@
             var interCr = setInterval(function(){
                 getCurrentRoom();
             },1000);
+            // function getCurrentRoom(){
+            //     var now = Date.now();
+            //     $("#scroll_hotels li").each(function(i,v){
+            //         if($(this).attr('key') <= now && $(this).is(":hidden")){
+            //             $(this).show();
+            //             var lat = $(this).attr('lat');
+            //             var lng = $(this).attr('lng');
+            //             var hotel = $(this).attr('title');
+            //             var itemData = [{"name":hotel,"value":[lng,lat]}];
+            //             addMarkPoint(itemData)
+            //         }
+            //     });
+            // }
             function getCurrentRoom(){
                 var now = Date.now();
                 $("#scroll_hotels li").each(function(i,v){
@@ -449,8 +465,13 @@
                         var lat = $(this).attr('lat');
                         var lng = $(this).attr('lng');
                         var hotel = $(this).attr('title');
-                        var itemData = [{"name":hotel,"value":[lng,lat]}];
-                        addMarkPoint(itemData)
+                        if(that.markPoint.length>=6){
+                            that.markPoint.splice(0,1);
+                            that.markPoint.push({name:hotel,value:[lng,lat]})
+                        }else{
+                            that.markPoint.push({name:hotel,value:[lng,lat]})
+                        }
+                        addMarkPoint(that.markPoint)
                     }
                 });
             }
@@ -462,7 +483,7 @@
                     type: 'effectScatter',
                     coordinateSystem: 'geo',
                     data: itemData,
-                    symbolSize:that.fontSizeNum/3,//闪烁点大小
+                    symbolSize:that.fontSizeNum/3.5,//闪烁点大小
                     showEffectOn: 'render',
                     rippleEffect: {
                         brushType: 'stroke'
@@ -503,24 +524,9 @@
                     $("#avg_online_rate").html(avg_online_rate);
                     $.each(data,function (i,v) {
                         if($("#"+v.label)){
-                            if(v.label=="avg_openlong_everyday"){
-                                $("#"+v.label).html((v.value/60).toFixed(2));
-                            }else{
-                                $("#"+v.label).html(toThousands(v.value));
-                            }
+                            $("#"+v.label).html(v.value);
                         }
                     })
-                    console.log(data)
-                    // var coveredRooms = data[1].value;
-                    // var coveredHotels = data[2].value;
-                    // var yesterday_termialnum_active = data[11].value;
-                    // $("#coveredRooms").html(toThousands(coveredRooms));
-                    // $("#coveredHotels").html(toThousands(coveredHotels));
-                    // $("#yesterday_termialnum_active").html(toThousands(yesterday_termialnum_active));
-                    // $("#avg_opennum_everyday").html(toThousands(avg_opennum_everyday));
-                    // $("#avg_termialnum_active").html(toThousands(avg_termialnum_active));
-                    // $("#avg_openlong_everyday").html(toThousands(avg_openlong_everyday));
-                    // $("#avg_online_rate").html(toThousands(avg_openlong_everyday));
                 }
             },function(err){
                 //错误的回调函数

@@ -222,7 +222,7 @@
 }
 .big-box .content .center-box .center-top .current .current-month div:nth-child(2) {
   color: #08DFDF;
-  font-size: 0.4rem;
+  font-size: 0.36rem;
   letter-spacing: 0.05rem;
   font-family: main_number_font;
 }
@@ -242,7 +242,7 @@
 }
 .big-box .content .center-box .center-top .current .current-week div:nth-child(2) {
   color: #08DFDF;
-  font-size: 0.4rem;
+  font-size: 0.36rem;
   letter-spacing: 0.05rem;
   font-family: main_number_font;
 }
@@ -262,7 +262,7 @@
 }
 .big-box .content .center-box .center-top .current .current-day div:nth-child(2) {
   color: #08DFDF;
-  font-size: 0.4rem;
+  font-size: 0.36rem;
   letter-spacing: 0.05rem;
   font-family: main_number_font;
 }
