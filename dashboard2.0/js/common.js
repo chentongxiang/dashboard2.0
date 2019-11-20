@@ -1,7 +1,7 @@
 function EchartObj(domId,option) {
     this.domId = domId;
     this.option = option;
-    this.myChart = echarts.init(document.getElementById(this.domId));
+    this.myChart = echarts.init(document.getElementById(this.domId),null,{devicePixelRatio:3});
 }
 EchartObj.prototype={
     constructor:EchartObj,
@@ -15,7 +15,7 @@ var GPATH ={
     */
     queryChartsTerminal:"http://54.222.134.242:8899/boardDemo/advertise/query_charts_terminal",
     queryNumbersTerminal:"http://54.222.134.242:8899/boardDemo/advertise/query_numbers_terminal",
-
+    terminalInitCollect:"http://54.222.134.242:8899/boardDemo/advertise/terminal_init_collect",
 
 
     //基本都是生成echart图的数据
@@ -256,6 +256,7 @@ var options = {
                     axisLabel: {
                         textStyle:{
                             color:'#fff',  //坐标的字体颜色
+                            fontSize: num?num/this.titleRate:14,
                         },
                     },
                     splitLine: {
@@ -435,14 +436,15 @@ var options = {
                 }
             },
             grid: {
-                left: '5%',
-                right: '10%',
-                top:"27%",
-                bottom: '6%',
+                left: '7%',
+                right: '8%',
+                top:"25%",
+                bottom: '8%',
                 containLabel: true
             },
             xAxis : [
                 {
+                    nameLocation:"center",
                     type : 'category',
                     data : lineLabel,
                     axisTick: {
@@ -464,10 +466,12 @@ var options = {
             ],
             yAxis : [
                 {
+                    nameLocation:"center",
                     type : 'value',
                     axisLabel: {
                         textStyle:{
                             color:'#fff',  //坐标的字体颜色
+                            fontSize:num?num/this.rate:14,
                         },
                     },
                     splitLine: {
@@ -523,7 +527,7 @@ var options = {
                 }
             ],
             legend: {
-                x : '50%',
+                x : '55%',
                 y : '20%',
                 type: 'scroll',
                 orient: 'vertical',
@@ -657,7 +661,7 @@ var options = {
                                 fontWeight: '600',
                             },
                             formatter: '{a}{b}({d}%)',
-                            padding: [10,10],
+                            // padding: [10,10],
                         },
                         emphasis: {    //文本样式
                             show: false,    //展示
@@ -759,7 +763,9 @@ var options = {
                 left: 'left',
             },
             tooltip : {
-                trigger: 'item'
+                trigger: 'item',
+                showDelay:1000,
+                hideDelay:1000,
             },
             grid: {
                 // left: '3%',
@@ -853,14 +859,18 @@ var options = {
                 }
             },
             grid: {
-                left: '5%',
-                right: '10%',
-                top:"30%",
-                bottom: '5%',
+                left: '7%',
+                right: '8%',
+                top:"28%",
+                bottom: '8%',
                 containLabel: true
             },
             xAxis : [
                 {
+                    nameLocation:"center",
+                    nameTextStyle:{
+                        padding: [13, 14, 15, 10]
+                    },
                     type : 'category',
                     data : barLabel,
                     axisTick: {
@@ -916,10 +926,12 @@ var options = {
             ],
             yAxis : [
                 {
+                    nameLocation:"center",
                     type : 'value',
                     axisLabel: {
                         textStyle:{
                             color:'#fff',  //坐标的字体颜色
+                            fontSize:num?num/this.rate:14,
                         },
                     },
                     splitLine: {

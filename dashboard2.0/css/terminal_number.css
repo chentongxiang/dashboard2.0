@@ -60,7 +60,12 @@
 }
 .big-box .flex-box {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+.big-box .flex-box:before,
+.big-box .flex-box:after {
+  content: '';
+  display: block;
 }
 .big-box .header_img {
   width: 100%;
@@ -71,7 +76,7 @@
   background-position: center;
   text-align: center;
   line-height: 0.8rem;
-  font-size: 0.4rem;
+  font-size: 0.45rem;
   color: #fff;
   letter-spacing: 0.05rem;
   font-weight: bold;
@@ -89,12 +94,18 @@
 }
 .big-box .header_img .title-text {
   display: inline-block;
+  margin-left: -0.1rem;
 }
 .big-box .content {
   width: 100%;
   height: 87%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+.big-box .content:before,
+.big-box .content:after {
+  content: '';
+  display: block;
 }
 .big-box .content .left-box {
   width: 27%;
@@ -227,8 +238,13 @@
   height: 13%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+}
+.big-box .content .center-box .center-top:before,
+.big-box .content .center-box .center-top:after {
+  content: '';
+  display: block;
 }
 .big-box .content .center-box .center-top .text {
   font-size: 0.25rem;
@@ -249,7 +265,12 @@
   width: 100%;
   height: 12%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+.big-box .content .center-box .center-four-data:before,
+.big-box .content .center-box .center-four-data:after {
+  content: '';
+  display: block;
 }
 .big-box .content .center-box .center-four-data > div:nth-child(1) {
   width: 19%;
@@ -270,9 +291,14 @@
 .big-box .content .center-box .center-four-data > div {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   background-color: #0D3675;
+}
+.big-box .content .center-box .center-four-data > div:before,
+.big-box .content .center-box .center-four-data > div:after {
+  content: '';
+  display: block;
 }
 .big-box .content .center-box .center-four-data > div .num-text {
   font-size: 0.2rem;
@@ -324,9 +350,14 @@
   width: 100%;
   height: 24%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   background-color: #0E3163;
+}
+.big-box .content .right-box .right-top:before,
+.big-box .content .right-box .right-top:after {
+  content: '';
+  display: block;
 }
 .big-box .content .right-box .right-top .left {
   width: 30%;

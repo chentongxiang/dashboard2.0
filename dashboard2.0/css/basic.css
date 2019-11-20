@@ -59,7 +59,7 @@ html,body{
     background   : #0C1B30;
     border-radius: 10px;
 }
-
+*{box-sizing:border-box;}
 /*html,body{ margin:0px; height:100%; }*/
 /*body,html{*/
     /*width: 100%;*/

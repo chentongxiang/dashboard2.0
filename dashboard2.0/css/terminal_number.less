@@ -71,7 +71,13 @@
   background-color:#0E2B43 ;
   .flex-box{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    //justify-content: space-evenly;
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+    }
   }
   .header_img{
     width:100%;
@@ -82,7 +88,7 @@
     background-position:center;
     text-align: center;
     line-height:.8rem;
-    font-size:0.4rem;
+    font-size:0.45rem;
     color:#fff;
     letter-spacing:.05rem;
     font-weight:bold;
@@ -99,12 +105,19 @@
     }
     .title-text{
       display: inline-block;
+      margin-left:-0.1rem;
     }
   }
   .content{
     width: 100%;
     height: 87%;
-    .flex-box;
+    display: flex;
+    justify-content: space-between;
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+    }
     .left-box{
       width: 27%;
       height:100%;
@@ -216,7 +229,13 @@
         height:13%;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: space-between;
+        //justify-content: space-evenly;
+        &:before,
+        &:after {
+          content: '';
+          display: block;
+        }
         align-items: center;
         .text{
           font-size: .25rem;
@@ -238,7 +257,13 @@
         width:100%;
         height:12%;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
+        //justify-content: space-evenly;
+        &:before,
+        &:after {
+          content: '';
+          display: block;
+        }
         >div:nth-child(1){
           width:19%;
           heigth:100%;
@@ -258,7 +283,13 @@
         >div{
           display: flex;
           flex-direction: column;
-          justify-content: space-evenly;
+          justify-content: space-between;
+          //justify-content: space-evenly;
+          &:before,
+          &:after {
+            content: '';
+            display: block;
+          }
           align-items: center;
           background-color: #0D3675;
           .num-text{
@@ -315,7 +346,13 @@
         width:100%;
         height:24%;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
+        //justify-content: space-evenly;
+        &:before,
+        &:after {
+          content: '';
+          display: block;
+        }
         align-items: center;
         background-color: @chart-bg-color;
         .left{
