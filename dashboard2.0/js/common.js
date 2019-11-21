@@ -410,7 +410,9 @@ var options = {
                     fontFamily: "Microsoft YaHei",
                 },
                 // data:[barData[0].name,barData[1].name]
-                data:[barData[0].name,barData[1].name]
+                data:[barData[0].name,barData[1].name],
+                itemWidth:num?num/this.rate*1.5:14,
+                itemHeight:num?num/this.rate:14,
             },
         }
         return option;
