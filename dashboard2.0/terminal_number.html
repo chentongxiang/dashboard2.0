@@ -21,7 +21,7 @@
                 </div>
                 <div class="module-content swiper-container swiper1">
                     <div class="module-box swiper-wrapper">
-                        <div class="module-box-correct swiper-slide">
+                        <div class="module-box-correct swiper-slide" data-swiper-autoplay='14000'>
                             <div class="module-top">
                                 <div id="dom1"></div>
                                 <div id="dom2"></div>
@@ -341,11 +341,12 @@
                     // loop: true, // 循环模式选项
                     speed:1000,
                     autoplay: {
-                        delay: 14000,//时间 毫秒
+                        delay: 8000,//时间 毫秒
                         disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
                     },
                     // speed:3000
                 })
+                console.log(mySwiper)
                 var mySwiper = new Swiper ('.swiper2', {
                     // direction: 'vertical', // 垂直切换选项
                     direction: 'horizontal', // 横向切换选项
