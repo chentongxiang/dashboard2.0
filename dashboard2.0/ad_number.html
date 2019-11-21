@@ -17,10 +17,10 @@
     <div class="content box_flex">
         <div class="left-box">
             <div class="left-top" id="top_advs_content_play"></div>
-            <div class="left-middle">
-                <div class="carousel1">
-                    <div class="carousel-chart1" id="top_play_act"></div>
-                    <div class="carousel-chart2" id="top_play_auto"></div>
+            <div class="left-middle swiper-container swiper1">
+                <div class="carousel1 swiper-wrapper">
+                    <div class="carousel-chart1 swiper-slide" id="top_play_act"></div>
+                    <div class="carousel-chart2 swiper-slide" id="top_play_auto"></div>
                 </div>
             </div>
             <div class="left-bottom" id="pie_cust_type"></div>
@@ -74,7 +74,7 @@
                     <div class="num-text" id="num_person_month">3242342</div>
                 </div>
             </div>
-            <div class="right-middle swiper-container">
+            <div class="right-middle swiper-container swiper2">
                 <div class="carousel2 swiper-wrapper">
                     <div class="carousel-chart3 swiper-slide" id="ages_advs_audience"></div>
                     <div class="carousel-chart4 swiper-slide" id="sex_advs_audience"></div>
@@ -115,7 +115,10 @@
                 setRemSize();
                 location.reload();
             });
-
+            //页面定时10分钟刷新
+            var interAn = setInterval(function(){
+                window.location.reload();
+            },1000*60*5);
             function setRemSize() {
                 that.fontSizeNum = document.documentElement.clientWidth / 1920 * 100;
                 //将得到的rem值复制给根元素的font-size
@@ -288,24 +291,24 @@
                 //         dataIndex:charPie3currentIndex
                 //     });
                 // }, 5000);
-                var n = 1;
-                $chart1 = $(".carousel-chart1");
-                $chart2 = $(".carousel-chart2");
-                setInterval(function () {
-                    if (n == 1) {
-                        $chart1.removeClass("flipIn");
-                        $chart2.removeClass("flipOut");
-                        $chart1.addClass("flipOut");
-                        $chart2.addClass('flipIn');
-                        n = 0;
-                    } else {
-                        $chart1.removeClass("flipOut");
-                        $chart2.removeClass("flipIn");
-                        $chart1.addClass("flipIn");
-                        $chart2.addClass('flipOut');
-                        n = 1;
-                    }
-                }, 10000);
+                // var n = 1;
+                // $chart1 = $(".carousel-chart1");
+                // $chart2 = $(".carousel-chart2");
+                // setInterval(function () {
+                //     if (n == 1) {
+                //         $chart1.removeClass("flipIn");
+                //         $chart2.removeClass("flipOut");
+                //         $chart1.addClass("flipOut");
+                //         $chart2.addClass('flipIn');
+                //         n = 0;
+                //     } else {
+                //         $chart1.removeClass("flipOut");
+                //         $chart2.removeClass("flipIn");
+                //         $chart1.addClass("flipIn");
+                //         $chart2.addClass('flipOut');
+                //         n = 1;
+                //     }
+                // }, 10000);
             }, "json");
             var b = 1;
             setInterval(function () {
@@ -343,13 +346,24 @@
                     b = 1;
                 }
             }, 10000);
-            var mySwiper = new Swiper('.swiper-container', {
+            var mySwiper = new Swiper('.swiper1', {
                 // direction: 'vertical', // 垂直切换选项
                 direction: 'horizontal', // 横向切换选项
                 // loop: true, // 循环模式选项
                 speed: 1000,
                 autoplay: {
-                    delay: 16000,//时间 毫秒
+                    delay: 17000,//时间 毫秒
+                    disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+                },
+                // speed:3000
+            })
+            var mySwiper = new Swiper('.swiper2', {
+                // direction: 'vertical', // 垂直切换选项
+                direction: 'vertical', // 横向切换选项
+                // loop: true, // 循环模式选项
+                speed: 1000,
+                autoplay: {
+                    delay: 14000,//时间 毫秒
                     disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
                 },
                 // speed:3000

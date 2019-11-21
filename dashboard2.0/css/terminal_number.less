@@ -139,38 +139,44 @@
         .module-content{
           width: 100%;
           height: 85%;
-          position: relative;
-          .module-box-correct{
+          //position: relative;
+          .module-box{
             width:100%;
-            height:95%;
-            .module-top{
-              width: 100%;
-              height: 50%;
-              display: flex;
-              justify-content: space-around;
-              >div{
-                width:33%;
-                height: 100%;
+            height:100%;
+            .module-box-correct{
+              width:100%;
+              height:100%;
+              .module-top{
+                width: 100%;
+                height: 49%;
+                display: flex;
+                justify-content: space-around;
+                >div{
+                  width:33%;
+                  height: 100%;
+                }
+              }
+              .module-bottom{
+                width: 100%;
+                height: 49%;
+                display: flex;
+                justify-content: space-around;
+                >div{
+                  width:33%;
+                  height: 100%;
+                }
               }
             }
-            .module-bottom{
-              width: 100%;
-              height: 50%;
-              display: flex;
-              justify-content: space-around;
-              div{
-                width:33%;
-                height: 100%;
-              }
+            .module-box-opposite{
+              .module-box-correct;
+              //反转特效所需的css代码
+              //position:absolute;
+              //top:0 ;
+              //left:0 ;
+              //opacity:0;
             }
           }
-          .module-box-opposite{
-            .module-box-correct;
-            position:absolute;
-            top:0 ;
-            left:0 ;
-            opacity:0;
-          }
+
         }
 
       }
@@ -181,7 +187,7 @@
         .carousel1{
           width:100%;
           height:100%;
-          position: relative;
+          //position: relative;
           .carousel-chart1{
             width:100%;
             height: 100%;
@@ -189,10 +195,10 @@
           .carousel-chart2{
             width:100%;
             height: 100%;
-            position: absolute;
-            top: 0;
-            left:0;
-            opacity: 0;
+            //position: absolute;
+            //top: 0;
+            //left:0;
+            //opacity: 0;
           }
         }
       }

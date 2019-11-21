@@ -130,57 +130,56 @@
 .big-box .content .left-box .left-top .module-content {
   width: 100%;
   height: 85%;
-  position: relative;
 }
-.big-box .content .left-box .left-top .module-content .module-box-correct {
+.big-box .content .left-box .left-top .module-content .module-box {
   width: 100%;
-  height: 95%;
+  height: 100%;
 }
-.big-box .content .left-box .left-top .module-content .module-box-correct .module-top {
+.big-box .content .left-box .left-top .module-content .module-box .module-box-correct {
   width: 100%;
-  height: 50%;
+  height: 100%;
+}
+.big-box .content .left-box .left-top .module-content .module-box .module-box-correct .module-top {
+  width: 100%;
+  height: 49%;
   display: flex;
   justify-content: space-around;
 }
-.big-box .content .left-box .left-top .module-content .module-box-correct .module-top > div {
+.big-box .content .left-box .left-top .module-content .module-box .module-box-correct .module-top > div {
   width: 33%;
   height: 100%;
 }
-.big-box .content .left-box .left-top .module-content .module-box-correct .module-bottom {
+.big-box .content .left-box .left-top .module-content .module-box .module-box-correct .module-bottom {
   width: 100%;
-  height: 50%;
+  height: 49%;
   display: flex;
   justify-content: space-around;
 }
-.big-box .content .left-box .left-top .module-content .module-box-correct .module-bottom div {
+.big-box .content .left-box .left-top .module-content .module-box .module-box-correct .module-bottom > div {
   width: 33%;
   height: 100%;
 }
-.big-box .content .left-box .left-top .module-content .module-box-opposite {
+.big-box .content .left-box .left-top .module-content .module-box .module-box-opposite {
   width: 100%;
-  height: 95%;
-  position: absolute;
-  top: 0 ;
-  left: 0 ;
-  opacity: 0;
+  height: 100%;
 }
-.big-box .content .left-box .left-top .module-content .module-box-opposite .module-top {
+.big-box .content .left-box .left-top .module-content .module-box .module-box-opposite .module-top {
   width: 100%;
-  height: 50%;
+  height: 49%;
   display: flex;
   justify-content: space-around;
 }
-.big-box .content .left-box .left-top .module-content .module-box-opposite .module-top > div {
+.big-box .content .left-box .left-top .module-content .module-box .module-box-opposite .module-top > div {
   width: 33%;
   height: 100%;
 }
-.big-box .content .left-box .left-top .module-content .module-box-opposite .module-bottom {
+.big-box .content .left-box .left-top .module-content .module-box .module-box-opposite .module-bottom {
   width: 100%;
-  height: 50%;
+  height: 49%;
   display: flex;
   justify-content: space-around;
 }
-.big-box .content .left-box .left-top .module-content .module-box-opposite .module-bottom div {
+.big-box .content .left-box .left-top .module-content .module-box .module-box-opposite .module-bottom > div {
   width: 33%;
   height: 100%;
 }
@@ -192,7 +191,6 @@
 .big-box .content .left-box .left-middle .carousel1 {
   width: 100%;
   height: 100%;
-  position: relative;
 }
 .big-box .content .left-box .left-middle .carousel1 .carousel-chart1 {
   width: 100%;
@@ -201,10 +199,6 @@
 .big-box .content .left-box .left-middle .carousel1 .carousel-chart2 {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
 }
 .big-box .content .left-box .left-bottom {
   width: 100%;

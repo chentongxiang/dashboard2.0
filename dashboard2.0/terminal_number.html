@@ -19,40 +19,42 @@
                 <div class="module-text">
                     各模块时长占比
                 </div>
-                <div class="module-content">
-                    <div class="module-box-correct">
-                        <div class="module-top">
-                            <div id="dom1"></div>
-                            <div id="dom2"></div>
-                            <div id="dom3"></div>
+                <div class="module-content swiper-container swiper1">
+                    <div class="module-box swiper-wrapper">
+                        <div class="module-box-correct swiper-slide">
+                            <div class="module-top">
+                                <div id="dom1"></div>
+                                <div id="dom2"></div>
+                                <div id="dom3"></div>
+                            </div>
+                            <div class="module-bottom ">
+                                <div id="dom4"></div>
+                                <div id="dom5"></div>
+                                <div id="dom6"></div>
+                            </div>
                         </div>
-                        <div class="module-bottom">
-                            <div id="dom4"></div>
-                            <div id="dom5"></div>
-                            <div id="dom6"></div>
-                        </div>
-                    </div>
-                    <div class="module-box-opposite">
-                        <div class="module-top">
-                            <div id="dom7"></div>
-                            <div id="dom8"></div>
-                            <div id="dom9"></div>
-                        </div>
-                        <div class="module-bottom">
-                            <div id="dom10"></div>
-                            <div id="dom11"></div>
-                            <div id="dom12"></div>
+                        <div class="module-box-opposite swiper-slide">
+                            <div class="module-top">
+                                <div id="dom7"></div>
+                                <div id="dom8"></div>
+                                <div id="dom9"></div>
+                            </div>
+                            <div class="module-bottom">
+                                <div id="dom10"></div>
+                                <div id="dom11"></div>
+                                <div id="dom12"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="left-middle">
-                <div class="carousel1">
-                    <div class="carousel-chart1" id="top_province_view"></div>
-                    <div class="carousel-chart2" id="top_city_view"></div>
+            <div class="left-middle swiper-container swiper2">
+                <div class="carousel1 swiper-wrapper">
+                    <div class="carousel-chart1 swiper-slide" id="top_province_view"></div>
+                    <div class="carousel-chart2 swiper-slide" id="top_city_view"></div>
                 </div>
             </div>
-            <div class="left-bottom swiper-container">
+            <div class="left-bottom swiper-container swiper3" >
                 <div class="carousel2 swiper-wrapper">
                     <div class="carousel-chart3 swiper-slide" id="top_goods_view"></div>
                     <div class="carousel-chart4 swiper-slide" id="top_movies_view"></div>
@@ -228,12 +230,12 @@
                                     option.xAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
                                     // option.yAxis[0].name = "小时"
                                     option.yAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
-                                    option.title.text = "平均各时段驻留时长";
+                                    option.title.text = "平均各时段驻留时长(小时)";
                                     break;
                                 case "avg_single_open_nums":
                                     var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
                                     var option = options.lineChart(color,v.label,v.value,that.fontSizeNum);
-                                    option.title.text = "单店平均各时段开机数量";
+                                    option.title.text = "单店平均各时段开机数量(个数)";
                                     // option.xAxis[0].name = "时段"
                                     option.xAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
                                     // option.yAxis[0].name = "台"
@@ -291,53 +293,77 @@
                         })
                     }
                 },"json");
-                var n= 1;
-                $chart1 = $(".carousel-chart1");
-                $chart2 = $(".carousel-chart2");
-                setInterval(function () {
-                    if(n==1){
-                        $chart1.removeClass("flipIn");
-                        $chart2.removeClass("flipOut");
-                        $chart1.addClass("flipOut");
-                        $chart2.addClass('flipIn');
-                        n=0;
-                    }else{
-                        $chart1.removeClass("flipOut");
-                        $chart2.removeClass("flipIn");
-                        $chart1.addClass("flipIn");
-                        $chart2.addClass('flipOut');
-                        n=1;
-                    }
-                }, 17000);
-                //翻转2
 
-                function timer1(){
-                    $correct = $(".module-box-correct");
-                    $opposite = $(".module-box-opposite");
-                    $correct.removeClass("flipIn");
-                    $opposite.removeClass("flipOut");
-                    $correct.addClass("flipOut");
-                    $opposite.addClass('flipIn');
-                    setTimeout(timer2, 10000);
-                }
-                function timer2(){
-                    $correct = $(".module-box-correct");
-                    $opposite = $(".module-box-opposite");
-                    $correct.removeClass("flipOut");
-                    $opposite.removeClass("flipIn");
-                    $correct.addClass("flipIn");
-                    $opposite.addClass('flipOut');
-                    setTimeout(timer1, 15000);
-                }
-                setTimeout(timer1, 15000);
+                //反转特效会导致echart图变模糊，未找到解决方法，改为轮播特效
+                // var n= 1;
+                // $chart1 = $(".carousel-chart1");
+                // $chart2 = $(".carousel-chart2");
+                // setInterval(function () {
+                //     if(n==1){
+                //         $chart1.removeClass("flipIn");
+                //         $chart2.removeClass("flipOut");
+                //         $chart1.addClass("flipOut");
+                //         $chart2.addClass('flipIn');
+                //         n=0;
+                //     }else{
+                //         $chart1.removeClass("flipOut");
+                //         $chart2.removeClass("flipIn");
+                //         $chart1.addClass("flipIn");
+                //         $chart2.addClass('flipOut');
+                //         n=1;
+                //     }
+                // }, 17000);
+                // //翻转2
+                //
+                // function timer1(){
+                //     $correct = $(".module-box-correct");
+                //     $opposite = $(".module-box-opposite");
+                //     $correct.removeClass("flipIn");
+                //     $opposite.removeClass("flipOut");
+                //     $correct.addClass("flipOut");
+                //     $opposite.addClass('flipIn');
+                //     setTimeout(timer2, 10000);
+                // }
+                // function timer2(){
+                //     $correct = $(".module-box-correct");
+                //     $opposite = $(".module-box-opposite");
+                //     $correct.removeClass("flipOut");
+                //     $opposite.removeClass("flipIn");
+                //     $correct.addClass("flipIn");
+                //     $opposite.addClass('flipOut');
+                //     setTimeout(timer1, 15000);
+                // }
+                // setTimeout(timer1, 15000);
 
-                var mySwiper = new Swiper ('.swiper-container', {
+                var mySwiper = new Swiper ('.swiper1', {
+                    // direction: 'vertical', // 垂直切换选项
+                    direction: 'vertical', // 横向切换选项
+                    // loop: true, // 循环模式选项
+                    speed:1000,
+                    autoplay: {
+                        delay: 14000,//时间 毫秒
+                        disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+                    },
+                    // speed:3000
+                })
+                var mySwiper = new Swiper ('.swiper2', {
                     // direction: 'vertical', // 垂直切换选项
                     direction: 'horizontal', // 横向切换选项
                     // loop: true, // 循环模式选项
                     speed:1000,
                     autoplay: {
-                        delay: 19000,//时间 毫秒
+                        delay: 17000,//时间 毫秒
+                        disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+                    },
+                    // speed:3000
+                })
+                var mySwiper = new Swiper ('.swiper3', {
+                    // direction: 'vertical', // 垂直切换选项
+                    direction: 'vertical', // 横向切换选项
+                    // loop: true, // 循环模式选项
+                    speed:1000,
+                    autoplay: {
+                        delay: 21000,//时间 毫秒
                         disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
                     },
                     // speed:3000
@@ -354,7 +380,10 @@
                         $.post(GPATH.terminalHeartBeat_data,{"currentTotal":realTimeData},function(data){
                             if(data.res){
                                 var newNum = parseInt(data.msg);
-                                $.cookie('realTimeData', newNum);
+                                var date = new Date();
+                                var minutes = 120;
+                                date.setTime(date.getTime()+(minutes * 60 * 1000));
+                                $.cookie('realTimeData', newNum,{expires: date});
                                 $('#termNumCounter').html(toThousands(newNum));
                             }
                         },"json");
@@ -366,7 +395,7 @@
                         }).then(function(data){
                             if(data){
                                 var date = new Date();
-                                var minutes = 240;
+                                var minutes = 120;
                                 date.setTime(date.getTime()+(minutes * 60 * 1000));
                                 $.cookie('realTimeData', data.num, {expires: date});
                                 $('#termNumCounter').html(toThousands(data.num));
@@ -506,7 +535,7 @@
                         type: 'effectScatter',
                         coordinateSystem: 'geo',
                         data: itemData,
-                        symbolSize:20,//闪烁点大小
+                        symbolSize:that.fontSizeNum?that.fontSizeNum/3.5:14,//闪烁点大小
                         showEffectOn: 'render',
                         rippleEffect: {
                             brushType: 'stroke'

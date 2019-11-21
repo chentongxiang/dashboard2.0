@@ -1,7 +1,7 @@
 function EchartObj(domId,option) {
     this.domId = domId;
     this.option = option;
-    this.myChart = echarts.init(document.getElementById(this.domId),null,{devicePixelRatio:3});
+    this.myChart = echarts.init(document.getElementById(this.domId),null,{devicePixelRatio:4});
 }
 EchartObj.prototype={
     constructor:EchartObj,
@@ -254,6 +254,7 @@ var options = {
                 {
                     type : 'value',
                     axisLabel: {
+                        show: false,
                         textStyle:{
                             color:'#fff',  //坐标的字体颜色
                             fontSize: num?num/this.titleRate:14,
@@ -263,6 +264,7 @@ var options = {
                         show: false,
                     },
                     axisLine: {
+                        show: false,
                         lineStyle:{
                             color:'#0E3254',  //坐标的字体颜色
                         },
@@ -346,7 +348,7 @@ var options = {
                 left: '5%',
                 right: '15%',
                 top:"25%",
-                bottom: '6%',
+                bottom: '8%',
                 containLabel: true
             },
             yAxis : [
@@ -380,6 +382,7 @@ var options = {
                 {
                     type : 'value',
                     axisLabel: {
+                        show: false,
                         textStyle:{
                             color:'#fff',  //坐标的字体颜色
                         },
@@ -564,6 +567,8 @@ var options = {
                     fontFamily: "Microsoft YaHei",
 
                 },
+                itemWidth:num?num/this.rate*1.5:14,
+                itemHeight:num?num/this.rate:14,
             },
             graphic:{
                 type:'text',
