@@ -116,18 +116,18 @@
 </div>
 
 <!--<script src="http://cdn.wonko.com/lazyload/1.0.4/lazyload-min.js"></script>-->
-<!--<script src="js/lazyload.js"></script>-->
+<script src="js/lazyload.js"></script>
 
-<script src="js/jquery.js"></script>
-<script src="js/echarts.min.js"></script>
-<script src="js/echarts-gl.min.js"></script>
-<script src="js/china.js"></script>
-<script src="js/swiper.min.js"></script>
-<script src="js/common.js"></script>
-<script src="js/jquery.cookie.js"></script>
+<!--<script src="js/jquery.js"></script>-->
+<!--<script src="js/echarts.min.js"></script>-->
+<!--<script src="js/echarts-gl.min.js"></script>-->
+<!--<script src="js/china.js"></script>-->
+<!--<script src="js/swiper.min.js"></script>-->
+<!--<script src="js/common.js"></script>-->
+<!--<script src="js/jquery.cookie.js"></script>-->
 
 <script>
-    // function loadComplete(){
+    function loadComplete(){
 
         var terminalNumber = {
             fontSizeNum : 18,
@@ -138,12 +138,14 @@
             init:function () {
                 //尺寸初始化
                 this.windowOnload();
-                //创建echart图,处理get_charts_terminal接口的数据，基本都是生成echart图的数据
+                //创建echart图,处理query_charts_terminal接口的数据，基本都是生成echart图的数据
                 this.createEchart();
-                //当日实时数据采集量,接口terminal_heartbeat_data
+                //当日实时数据采集量,先判断cookie中有没实时数据，有的话取出来，然后再访问terminalHeartBeat_data，
+                //如果cookie中没有实时数据，则先从terminalInitCollect接口中获取数据变量
                 this.realTimeData();
                 // 热力图图展示，接口有terminalHeatData
                 this.heatMapShow();
+                // 酒店房间实时数据展示，接口terminal_all_new_room
                 this.hotelDataShow();
                 //活跃终端数量，接口terminal_active_data
                 this.terminalActivedata();
@@ -294,46 +296,6 @@
                     }
                 },"json");
 
-                //反转特效会导致echart图变模糊，未找到解决方法，改为轮播特效
-                // var n= 1;
-                // $chart1 = $(".carousel-chart1");
-                // $chart2 = $(".carousel-chart2");
-                // setInterval(function () {
-                //     if(n==1){
-                //         $chart1.removeClass("flipIn");
-                //         $chart2.removeClass("flipOut");
-                //         $chart1.addClass("flipOut");
-                //         $chart2.addClass('flipIn');
-                //         n=0;
-                //     }else{
-                //         $chart1.removeClass("flipOut");
-                //         $chart2.removeClass("flipIn");
-                //         $chart1.addClass("flipIn");
-                //         $chart2.addClass('flipOut');
-                //         n=1;
-                //     }
-                // }, 17000);
-                // //翻转2
-                //
-                // function timer1(){
-                //     $correct = $(".module-box-correct");
-                //     $opposite = $(".module-box-opposite");
-                //     $correct.removeClass("flipIn");
-                //     $opposite.removeClass("flipOut");
-                //     $correct.addClass("flipOut");
-                //     $opposite.addClass('flipIn');
-                //     setTimeout(timer2, 10000);
-                // }
-                // function timer2(){
-                //     $correct = $(".module-box-correct");
-                //     $opposite = $(".module-box-opposite");
-                //     $correct.removeClass("flipOut");
-                //     $opposite.removeClass("flipIn");
-                //     $correct.addClass("flipIn");
-                //     $opposite.addClass('flipOut');
-                //     setTimeout(timer1, 15000);
-                // }
-                // setTimeout(timer1, 15000);
 
                 var mySwiper = new Swiper ('.swiper1', {
                     // direction: 'vertical', // 垂直切换选项
@@ -346,7 +308,6 @@
                     },
                     // speed:3000
                 })
-                console.log(mySwiper)
                 var mySwiper = new Swiper ('.swiper2', {
                     // direction: 'vertical', // 垂直切换选项
                     direction: 'horizontal', // 横向切换选项
@@ -371,7 +332,7 @@
                 })
             },
             realTimeData:function(){
-                queryNumHearts();
+                firstQueryNumHearts();
                 setInterval(function(){
                     queryNumHearts();
                 },1000*10);
@@ -388,6 +349,33 @@
                                 $('#termNumCounter').html(toThousands(newNum));
                             }
                         },"json");
+                    }else{
+                        $.ajax({
+                            url: GPATH.terminalInitCollect,
+                            type: "GET",
+                            dataType:"json"
+                        }).then(function(data){
+                            if(data){
+                                var date = new Date();
+                                var minutes = 120;
+                                date.setTime(date.getTime()+(minutes * 60 * 1000));
+                                $.cookie('realTimeData', data.num, {expires: date});
+                                $('#termNumCounter').html(toThousands(data.num));
+                            }
+                        },function(err){
+                            //错误的回调函数
+                            console.log(err);
+                        });
+                    }
+                }
+                function firstQueryNumHearts() {
+                    var realTimeData = $.cookie('realTimeData')
+                    if(realTimeData){
+                        var date = new Date();
+                        var minutes = 120;
+                        date.setTime(date.getTime()+(minutes * 60 * 1000));
+                        $.cookie('realTimeData', realTimeData,{expires: date});
+                        $('#termNumCounter').html(toThousands(realTimeData));
                     }else{
                         $.ajax({
                             url: GPATH.terminalInitCollect,
@@ -602,25 +590,27 @@
         $(function() {
             terminalNumber.init();
         });
+    }
+    function loadscript(){
+        LazyLoad.js([
 
-    // }
+            'js/jquery.js',
+            'js/echarts.min.js',
+            'js/echarts-gl.min.js',
+            'js/china.js',
+            'js/swiper.min.js',
+            'js/common.js',
+            'js/jquery.cookie.js',
 
-    // function loadscript(){
-    //
-    //     LazyLoad.js([
-    //
-    //         'js/jquery.js',
-    //         'js/echarts.min.js',
-    //         'js/echarts-gl.min.js',
-    //         'js/china.js',
-    //         'js/swiper.min.js',
-    //         'js/common.js',
-    //
-    //     ], loadComplete);
-    //
-    // }
-    //
-    // setTimeout(loadscript,10);
+        ], loadComplete);
+
+    }
+    /*
+    因为项目是嵌入到安卓里面的，安卓会等到JS代码执行完毕才显示页面，
+    造成刷新很慢，这里延迟载入js代码，让安卓先显示页面，不过经过测试，
+    对页面刷新速度没有多快的优化，但是可以避免页面有时候echart图一直黑屏的现象
+    */
+    setTimeout(loadscript,10);
 
 
 </script>

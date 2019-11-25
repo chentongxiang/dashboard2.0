@@ -85,16 +85,16 @@
     </div>
 
 </div>
-<!--<<script src="js/lazyload.js"></script>-->
+<<script src="js/lazyload.js"></script>
 
-<script src="js/jquery.js"></script>
-<script src="js/common.js"></script>
-<script src="js/echarts.min.js"></script>
-<script src="js/echarts-gl.min.js"></script>
-<script src="js/china.js"></script>
-<script src="js/swiper.min.js"></script>
+<!--<script src="js/jquery.js"></script>-->
+<!--<script src="js/common.js"></script>-->
+<!--<script src="js/echarts.min.js"></script>-->
+<!--<script src="js/echarts-gl.min.js"></script>-->
+<!--<script src="js/china.js"></script>-->
+<!--<script src="js/swiper.min.js"></script>-->
 <script>
-// function loadComplete() {
+function loadComplete() {
     var adNumber = {
         fontSizeNum: 18,
         allEchartObj: {},
@@ -157,20 +157,6 @@
                             case "pie_cust_type":
                                 var arr = v.value;
                                 that.arrLength = arr.length;
-                                // $.each(arr,function (i,v) {
-                                //     arr[i]["label"] = {
-                                //         normal:{
-                                //             position: 'center',
-                                //             // formatter:"{b}\n{d}%",
-                                //             textStyle: {
-                                //                 fontSize: '50',
-                                //                 fontWeight: 'normal'
-                                //             }
-                                //         }
-                                //     }
-                                // })
-                                // var color = ["#FFFFFF","#08DFDF","#FFB980","#5AB1EF","#19CB50","#3DE7C9","#B6A2DE"]
-                                // var option = options.dynamicChart(color,v.value,that.fontSizeNum);
 
                                 var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
                                 var option = options.pieChartOther(color, v.label, v.value, that.fontSizeNum);
@@ -222,7 +208,7 @@
                                     },]
                                 v.label.reverse();
                                 var option = options.stackedBarChart(color, v.label, data, that.fontSizeNum);
-                                option.title.text = "年龄受众比例(百人每周)";
+                                option.title.text = "年龄受众比例(百人/周)";
                                 var echartObj = new EchartObj(domID, option);
                                 that.allEchartObj[domID] = echartObj;
                                 echartObj.setOp();
@@ -258,57 +244,7 @@
                         }
                     })
                 }
-                // var charPie3currentIndex = 0;
-                // var dataLen = that.arrLength;
-                // chartPie3 = that.allEchartObj["pie_cust_type"].myChart;
-                // // 取消之前高亮的图形
-                // chartPie3.dispatchAction({
-                //     type: 'downplay',
-                //     seriesIndex: 0,
-                //     dataIndex: charPie3currentIndex
-                // });
-                // charPie3currentIndex = (charPie3currentIndex + 1) % dataLen;
-                // // 高亮当前图形
-                // chartPie3.dispatchAction({
-                //     type: 'highlight',
-                //     seriesIndex: 0,
-                //     dataIndex:charPie3currentIndex
-                // });
-                // setInterval(function () {
-                //     var dataLen = that.arrLength;
-                //     chartPie3 = that.allEchartObj["pie_cust_type"].myChart;
-                //     // 取消之前高亮的图形
-                //     chartPie3.dispatchAction({
-                //         type: 'downplay',
-                //         seriesIndex: 0,
-                //         dataIndex: charPie3currentIndex
-                //     });
-                //     charPie3currentIndex = (charPie3currentIndex + 1) % dataLen;
-                //     // 高亮当前图形
-                //     chartPie3.dispatchAction({
-                //         type: 'highlight',
-                //         seriesIndex: 0,
-                //         dataIndex:charPie3currentIndex
-                //     });
-                // }, 5000);
-                // var n = 1;
-                // $chart1 = $(".carousel-chart1");
-                // $chart2 = $(".carousel-chart2");
-                // setInterval(function () {
-                //     if (n == 1) {
-                //         $chart1.removeClass("flipIn");
-                //         $chart2.removeClass("flipOut");
-                //         $chart1.addClass("flipOut");
-                //         $chart2.addClass('flipIn');
-                //         n = 0;
-                //     } else {
-                //         $chart1.removeClass("flipOut");
-                //         $chart2.removeClass("flipIn");
-                //         $chart1.addClass("flipIn");
-                //         $chart2.addClass('flipOut');
-                //         n = 1;
-                //     }
-                // }, 10000);
+
             }, "json");
             var b = 1;
             setInterval(function () {
@@ -318,7 +254,6 @@
                 $thisYearData = $(".this-year-data");
 
                 var a = $historyText.css("transform");
-                // var b = a.slice(9,10);
 
                 var arr = ["历史广告曝光频次", "本年"]
 
@@ -503,20 +438,24 @@
     $(function () {
         adNumber.init();
     });
-// }
-// function loadscript(){
-//     LazyLoad.js([
-//         'js/jquery.js',
-//         'js/echarts.min.js',
-//         'js/echarts-gl.min.js',
-//         'js/china.js',
-//         'js/swiper.min.js',
-//         'js/common.js',
-//     ], loadComplete);
-//
-// }
-//
-// setTimeout(loadscript,10);
+}
+function loadscript(){
+    LazyLoad.js([
+        'js/jquery.js',
+        'js/common.js',
+        'js/echarts.min.js',
+        'js/echarts-gl.min.js',
+        'js/china.js',
+        'js/swiper.min.js',
+    ], loadComplete);
+
+}
+/*
+因为项目是嵌入到安卓里面的，安卓会等到JS代码执行完毕才显示页面，
+造成刷新很慢，这里延迟载入js代码，让安卓先显示页面，不过经过测试，
+对页面刷新速度没有多快的优化，但是可以避免页面有时候echart图一直黑屏的现象
+*/
+setTimeout(loadscript,10);
 
 </script>
 
