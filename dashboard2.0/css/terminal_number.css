@@ -368,7 +368,7 @@
 }
 .big-box .content .right-box .right-top .left div:nth-child(1) {
   font-size: 0.22rem;
-  margin-bottom: 0.08rem;
+  padding: 0 0 0.08rem 0;
 }
 .big-box .content .right-box .right-top .left .num-text {
   color: #08DFDF;
@@ -376,6 +376,7 @@
   font-weight: bold;
   font-family: main_number_font;
   letter-spacing: 0.05rem;
+  padding: 0.08rem 0 0 0;
 }
 .big-box .content .right-box .right-top .middle {
   width: 30%;
@@ -392,7 +393,7 @@
 }
 .big-box .content .right-box .right-top .middle div:nth-child(1) {
   font-size: 0.22rem;
-  margin-bottom: 0.08rem;
+  padding: 0 0 0.08rem 0;
 }
 .big-box .content .right-box .right-top .middle .num-text {
   color: #08DFDF;
@@ -400,6 +401,7 @@
   font-weight: bold;
   font-family: main_number_font;
   letter-spacing: 0.05rem;
+  padding: 0.08rem 0 0 0;
 }
 .big-box .content .right-box .right-top .right {
   width: 30%;
@@ -416,7 +418,7 @@
 }
 .big-box .content .right-box .right-top .right div:nth-child(1) {
   font-size: 0.22rem;
-  margin-bottom: 0.08rem;
+  padding: 0 0 0.08rem 0;
 }
 .big-box .content .right-box .right-top .right .num-text {
   color: #08DFDF;
@@ -424,6 +426,7 @@
   font-weight: bold;
   font-family: main_number_font;
   letter-spacing: 0.05rem;
+  padding: 0.08rem 0 0 0;
 }
 .big-box .content .right-box .right-middle {
   width: 100%;
@@ -435,3 +438,4 @@
   height: 36%;
   background-color: #0E3163;
 }
+/*# sourceMappingURL=terminal_number.css.map */
