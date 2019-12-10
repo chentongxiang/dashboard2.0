@@ -306,7 +306,7 @@
       justify-content: space-between;
       .right-top{
         width:100%;
-        height:24%;
+        height:25%;
         background-color: #0E3163;
         display: flex;
         justify-content: space-between;
@@ -348,7 +348,7 @@
       }
       .right-middle{
         width:100%;
-        height:37%;
+        height:47%;
         background-color: #0E3163;
         .carousel2{
           width:100%;
@@ -367,8 +367,46 @@
       }
       .right-bottom{
         width:100%;
-        height:37%;
+        height:25%;
         background-color: #0E3163;
+        display: flex;
+        justify-content: space-between;
+        &:before,
+        &:after {
+          content: '';
+          display: block;
+        }
+        align-items: center;
+        .history-num{
+          width:40%;
+          height: 65%;
+          text-align: center;
+          background-image: url("../images/border_new.png");
+          background-repeat:no-repeat;
+          background-size:100% 100%;
+          -moz-background-size:100% 100%;
+          color: #fff;
+          font-size: .22rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          div:first-child{
+            margin-bottom:.1rem;
+          }
+          div:nth-child(2){
+            font-family: main_number_font;
+            letter-spacing: .05rem;
+          }
+          .num-text{
+            color:#08DFDF;
+            font-size: .3rem;
+            font-weight: bold;
+          }
+        }
+        .mouth-num{
+          .history-num
+
+        }
       }
     }
   }

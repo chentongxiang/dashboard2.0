@@ -351,7 +351,7 @@
 }
 .big-box .content .right-box .right-top {
   width: 100%;
-  height: 24%;
+  height: 25%;
   background-color: #0E3163;
   display: flex;
   justify-content: space-between;
@@ -416,7 +416,7 @@
 }
 .big-box .content .right-box .right-middle {
   width: 100%;
-  height: 37%;
+  height: 47%;
   background-color: #0E3163;
 }
 .big-box .content .right-box .right-middle .carousel2 {
@@ -435,6 +435,67 @@
 }
 .big-box .content .right-box .right-bottom {
   width: 100%;
-  height: 37%;
+  height: 25%;
   background-color: #0E3163;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+.big-box .content .right-box .right-bottom:before,
+.big-box .content .right-box .right-bottom:after {
+  content: '';
+  display: block;
+}
+.big-box .content .right-box .right-bottom .history-num {
+  width: 40%;
+  height: 65%;
+  text-align: center;
+  background-image: url("../images/border_new.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  color: #fff;
+  font-size: 0.22rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.big-box .content .right-box .right-bottom .history-num div:first-child {
+  margin-bottom: 0.1rem;
+}
+.big-box .content .right-box .right-bottom .history-num div:nth-child(2) {
+  font-family: main_number_font;
+  letter-spacing: 0.05rem;
+}
+.big-box .content .right-box .right-bottom .history-num .num-text {
+  color: #08DFDF;
+  font-size: 0.3rem;
+  font-weight: bold;
+}
+.big-box .content .right-box .right-bottom .mouth-num {
+  width: 40%;
+  height: 65%;
+  text-align: center;
+  background-image: url("../images/border_new.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  color: #fff;
+  font-size: 0.22rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.big-box .content .right-box .right-bottom .mouth-num div:first-child {
+  margin-bottom: 0.1rem;
+}
+.big-box .content .right-box .right-bottom .mouth-num div:nth-child(2) {
+  font-family: main_number_font;
+  letter-spacing: 0.05rem;
+}
+.big-box .content .right-box .right-bottom .mouth-num .num-text {
+  color: #08DFDF;
+  font-size: 0.3rem;
+  font-weight: bold;
+}
+/*# sourceMappingURL=ad_number.css.map */
