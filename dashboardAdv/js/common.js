@@ -50,6 +50,7 @@ var GPATH ={
 
 
 }
+
 var options = {
     //设置图标字体与fontsize的倍率
     rate:6,
@@ -293,7 +294,7 @@ var options = {
                                 }
                             },
                             // color:color[0]
-                            color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
                                 offset: 0,
                                 color: color[1] // 0% 处的颜色
                             }, {
