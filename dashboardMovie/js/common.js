@@ -410,7 +410,7 @@ var options = {
             series : barData,
             legend: {
                 right :"10%",
-                top : '10%',
+                top : '15%',
                 // type: 'scroll',
                 orient: 'horizontal',
                 textStyle: {
@@ -455,10 +455,6 @@ var options = {
                 top:"25%",
                 bottom: '8%',
                 containLabel: true
-            },
-            legend: {
-                data: name,
-
             },
             xAxis : [
                 {
@@ -614,10 +610,10 @@ var options = {
                 }
             ],
             legend: {
-                x : '55%',
-                y : '20%',
+                x : '50%',
+                y : '10%',
                 type: 'scroll',
-                orient: 'vertical',
+                orient: 'horizontal',
                 textStyle: {
                     fontSize: num?num/this.rate:14,
                     color:"white",

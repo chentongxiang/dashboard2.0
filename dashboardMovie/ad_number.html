@@ -287,7 +287,7 @@ function loadComplete() {
                 name:["本月","上月"],
                 value:[
                     [121311,212133,362343,223432],
-                    [212124,322133,432343,212432]
+                    [212124,322133,432343,512432]
                 ]
             }
             var pie1 = {
@@ -339,6 +339,39 @@ function loadComplete() {
                 title_label: "自动播放数据排名(万次)",
                 title_value: "top_play_auto",
                 value:[15211, 13125, 11930, 9950,7600]
+            }
+            var bar16 = {
+                chart_type: "bar",
+                label: ["当日付费男女比例", "当日入住男女比例",],
+                title_label: "自动播放数据排名(万次)",
+                title_value: "top_play_auto",
+                name:["男","女"],
+                value:[
+                    [4121,8213],
+                    [2221,5121]
+                ]
+            }
+            var bar17 = {
+                chart_type: "bar",
+                label: ["本周付费男女比例", "本周入住男女比例",],
+                title_label: "自动播放数据排名(万次)",
+                title_value: "top_play_auto",
+                name:["男","女"],
+                value:[
+                    [4121*7,8213*7],
+                    [2221*7,5121*7]
+                ]
+            }
+            var bar18 = {
+                chart_type: "bar",
+                label: ["本月付费男女比例", "本月入住男女比例",],
+                title_label: "自动播放数据排名(万次)",
+                title_value: "top_play_auto",
+                name:["男","女"],
+                value:[
+                    [4121*30,8213*30],
+                    [2221*30,5121*30]
+                ]
             }
                 $.post(GPATH.queryChartsAdvs, function (data) {
 
@@ -432,26 +465,6 @@ function loadComplete() {
                     var echartObj = new EchartObj("test12", option);
                     echartObj.setOp();
 
-                    var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
-                    var option = options.pieChartOther(color, pie1.label, pie1.value, that.fontSizeNum);
-                    option.title.text = "当日付费男女比例";
-                    option.graphic.elements[0].style.image = "images/sex.png"
-                    var echartObj = new EchartObj("test21", option);
-                    echartObj.setOp();
-
-                    var color = ["#FFB980", "#5AB1EF", "#FFFFFF", "#08DFDF", "#19CB50", "#3DE7C9", "#B6A2DE"]
-                    var option = options.pieChartOther(color, pie2.label, pie2.value, that.fontSizeNum);
-                    option.title.text = "本周付费男女比例";
-                    option.graphic.elements[0].style.image = "images/sex.png"
-                    var echartObj = new EchartObj("test22", option);
-                    echartObj.setOp();
-
-                    var color = ["#19CB50", "#3DE7C9","#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF",  "#B6A2DE"]
-                    var option = options.pieChartOther(color, pie3.label, pie3.value, that.fontSizeNum);
-                    option.title.text = "本月付费男女比例";
-                    option.graphic.elements[0].style.image = "images/sex.png"
-                    var echartObj = new EchartObj("test23", option);
-                    echartObj.setOp();
 
                     var color = ["#00BAFF", "#00BAFF"];
                     var option = options.noBgBarChart(color, bar14.label, bar14.value.reverse(), that.fontSizeNum);
@@ -464,6 +477,134 @@ function loadComplete() {
                     option.title.text = "本月各省份消费排名top5";
                     var echartObj = new EchartObj("test32", option);
                     echartObj.setOp();
+
+
+                    var color = ["#01AFF3", "#3DE7C9"];
+                    var data = [{
+                        name: '男性',
+                        type: 'bar',
+                        barWidth: '25%',
+                        data: bar16.value[0],
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: true,		//开启显示
+                                    position: 'right',	//在上方显示
+                                    textStyle: {	    //数值样式
+                                        color: '#fff',
+                                        fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
+                                    }
+                                }
+                            }
+                        }
+                    },
+                        {
+                            name: '女性',
+                            type: 'bar',
+                            barWidth: '25%',
+                            data: bar16.value[1],
+                            itemStyle: {
+                                normal: {
+                                    label: {
+                                        show: true,		//开启显示
+                                        position: 'right',	//在上方显示
+                                        textStyle: {	    //数值样式
+                                            color: '#fff',
+                                            fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
+                                        }
+                                    }
+                                }
+                            }
+                        },]
+                    var option = options.stackedBarChart(color, bar16.label, data, that.fontSizeNum);
+                    option.title.text = "当日入住男女比例和付费男女比例";
+                    var echartObj = new EchartObj("test21", option);
+                    echartObj.setOp();
+
+                    var color = ["#01AFF3", "#3DE7C9"];
+                    var data = [{
+                        name: '男性',
+                        type: 'bar',
+                        barWidth: '25%',
+                        data: bar17.value[0],
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: true,		//开启显示
+                                    position: 'right',	//在上方显示
+                                    textStyle: {	    //数值样式
+                                        color: '#fff',
+                                        fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
+                                    }
+                                }
+                            }
+                        }
+                    },
+                        {
+                            name: '女性',
+                            type: 'bar',
+                            barWidth: '25%',
+                            data: bar17.value[1],
+                            itemStyle: {
+                                normal: {
+                                    label: {
+                                        show: true,		//开启显示
+                                        position: 'right',	//在上方显示
+                                        textStyle: {	    //数值样式
+                                            color: '#fff',
+                                            fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
+                                        }
+                                    }
+                                }
+                            }
+                        },]
+                    var option = options.stackedBarChart(color, bar17.label, data, that.fontSizeNum);
+                    option.title.text = "本周入住男女比例和付费男女比例";
+                    var echartObj = new EchartObj("test22", option);
+                    echartObj.setOp();
+
+                    var color = ["#01AFF3", "#3DE7C9"];
+                    var data = [{
+                        name: '男性',
+                        type: 'bar',
+                        barWidth: '25%',
+                        data: bar18.value[0],
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: true,		//开启显示
+                                    position: 'right',	//在上方显示
+                                    textStyle: {	    //数值样式
+                                        color: '#fff',
+                                        fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
+                                    }
+                                }
+                            }
+                        }
+                    },
+                        {
+                            name: '女性',
+                            type: 'bar',
+                            barWidth: '25%',
+                            data: bar18.value[1],
+                            itemStyle: {
+                                normal: {
+                                    label: {
+                                        show: true,		//开启显示
+                                        position: 'right',	//在上方显示
+                                        textStyle: {	    //数值样式
+                                            color: '#fff',
+                                            fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
+                                        }
+                                    }
+                                }
+                            }
+                        },]
+                    var option = options.stackedBarChart(color, bar18.label, data, that.fontSizeNum);
+                    option.title.text = "本月入住男女比例和付费男女比例";
+                    var echartObj = new EchartObj("test23", option);
+                    echartObj.setOp();
+
 
                     var content = data.data;
                     console.log(content)
