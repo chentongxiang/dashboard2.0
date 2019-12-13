@@ -44,9 +44,13 @@
         <div class="center-box">
             <div class="center-top">
                 <div class="money-room-box">
-                    <div class="money">
-                        <div>每日收益金额</div>
+                    <div class="month-money">
+                        <div>每月收益金额</div>
                         <div id="3">275634</div>
+                    </div>
+                    <div class="day-money">
+                        <div>每日收益金额</div>
+                        <div id="5">275634</div>
                     </div>
                     <div class="rooms">
                         <div id="1">入住活跃房间数量</div>
@@ -607,7 +611,6 @@ function loadComplete() {
 
 
                     var content = data.data;
-                    console.log(content)
                     $.each(content, function (i, v) {
                         // var bgData = that.bgData(v.value);  需要柱状图背景图时启用
                         var domID = v.title_value;

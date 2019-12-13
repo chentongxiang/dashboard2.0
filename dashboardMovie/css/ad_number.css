@@ -195,8 +195,8 @@ body .star {
   display: flex;
   justify-content: space-around;
 }
-.big-box .content .center-box .center-top .money-room-box .money {
-  width: 38%;
+.big-box .content .center-box .center-top .money-room-box .month-money {
+  width: 32%;
   height: 100%;
   text-align: center;
   display: flex;
@@ -204,16 +204,16 @@ body .star {
   justify-content: space-between;
   background-color: #0D3675;
 }
-.big-box .content .center-box .center-top .money-room-box .money:before,
-.big-box .content .center-box .center-top .money-room-box .money:after {
+.big-box .content .center-box .center-top .money-room-box .month-money:before,
+.big-box .content .center-box .center-top .money-room-box .month-money:after {
   content: '';
   display: block;
 }
-.big-box .content .center-box .center-top .money-room-box .money div:first-child {
+.big-box .content .center-box .center-top .money-room-box .month-money div:first-child {
   color: #fff;
   font-size: 0.2rem;
 }
-.big-box .content .center-box .center-top .money-room-box .money div:nth-child(2) {
+.big-box .content .center-box .center-top .money-room-box .month-money div:nth-child(2) {
   color: #08DFDF;
   font-size: 0.36rem;
   letter-spacing: 0.05rem;
@@ -226,7 +226,7 @@ body .star {
   flex-direction: column;
   justify-content: space-between;
   background-color: #0D3675;
-  width: 38%;
+  width: 32%;
 }
 .big-box .content .center-box .center-top .money-room-box .rooms:before,
 .big-box .content .center-box .center-top .money-room-box .rooms:after {
@@ -238,6 +238,30 @@ body .star {
   font-size: 0.2rem;
 }
 .big-box .content .center-box .center-top .money-room-box .rooms div:nth-child(2) {
+  color: #08DFDF;
+  font-size: 0.36rem;
+  letter-spacing: 0.05rem;
+  font-family: main_number_font;
+}
+.big-box .content .center-box .center-top .money-room-box .day-money {
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #0D3675;
+  width: 32%;
+}
+.big-box .content .center-box .center-top .money-room-box .day-money:before,
+.big-box .content .center-box .center-top .money-room-box .day-money:after {
+  content: '';
+  display: block;
+}
+.big-box .content .center-box .center-top .money-room-box .day-money div:first-child {
+  color: #fff;
+  font-size: 0.2rem;
+}
+.big-box .content .center-box .center-top .money-room-box .day-money div:nth-child(2) {
   color: #08DFDF;
   font-size: 0.36rem;
   letter-spacing: 0.05rem;
@@ -260,7 +284,7 @@ body .star {
   justify-content: space-around;
 }
 .big-box .content .center-box .center-top .current .current-month {
-  width: 37%;
+  width: 32%;
   height: 100%;
   text-align: center;
   display: flex;
@@ -284,14 +308,13 @@ body .star {
   font-family: main_number_font;
 }
 .big-box .content .center-box .center-top .current .current-week {
-  width: 37%;
   height: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #0D3675;
-  width: 30%;
+  width: 32%;
 }
 .big-box .content .center-box .center-top .current .current-week:before,
 .big-box .content .center-box .center-top .current .current-week:after {
@@ -309,14 +332,13 @@ body .star {
   font-family: main_number_font;
 }
 .big-box .content .center-box .center-top .current .current-day {
-  width: 37%;
   height: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #0D3675;
-  width: 30%;
+  width: 32%;
 }
 .big-box .content .center-box .center-top .current .current-day:before,
 .big-box .content .center-box .center-top .current .current-day:after {
@@ -341,7 +363,7 @@ body .star {
   justify-content: space-around;
 }
 .big-box .content .center-box .center-top .current1 .current-month {
-  width: 37%;
+  width: 32%;
   height: 100%;
   text-align: center;
   display: flex;
@@ -365,14 +387,13 @@ body .star {
   font-family: main_number_font;
 }
 .big-box .content .center-box .center-top .current1 .current-week {
-  width: 37%;
   height: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #0D3675;
-  width: 30%;
+  width: 32%;
 }
 .big-box .content .center-box .center-top .current1 .current-week:before,
 .big-box .content .center-box .center-top .current1 .current-week:after {
@@ -390,14 +411,13 @@ body .star {
   font-family: main_number_font;
 }
 .big-box .content .center-box .center-top .current1 .current-day {
-  width: 37%;
   height: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #0D3675;
-  width: 30%;
+  width: 32%;
 }
 .big-box .content .center-box .center-top .current1 .current-day:before,
 .big-box .content .center-box .center-top .current1 .current-day:after {
