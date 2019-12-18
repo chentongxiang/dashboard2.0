@@ -166,53 +166,102 @@ body {
       }
       .left-middle{
         width:100%;
-        height: 34%;;
+        height: 34%;
         background-color: @chart-bg-color;
-        //.carousel1{
-        //  width:100%;
-        //  height:100%;
-        //  position: relative;
-        //  .carousel-chart1{
-        //    width:100%;
-        //    height: 100%;
-        //  }
-        //  .carousel-chart2{
-        //    width:100%;
-        //    height: 100%;
-        //  }
-        //}
-        #app{
-          width:100%;
-          height:80%;
-          border:1px solid #ccc;
+        .chart-title{
+          width: 100%;
+          height:20%;
+          font-size: .25rem;
+          text-align: center;
+          line-height: .5rem;
+          color:#ffffff;
+        }
+        .news-container{
           overflow: hidden;
-          li{
-            line-height: .4rem;
-            height: .4rem;
-            display: flex;
+          position: relative;
+          width:100%;
+          height: 80%;
+          ul{
+            width:100%;
+            height: 100%;
+            position: absolute;
             font-size: .2rem;
-            color:#ffffff;
-            .img{
-              width: .4rem;
-              height: .4rem;
-              background: blue;
-              border-radius: 50%;
-              text-align: center;
-            }
-            .movie-name{
-              width:35%;
-              height:.4rem;
-            }
-            .shape{
-              width:30%;
-              height:.4rem;
-            }
-            .num{
-              width:25%;
-              height:.4rem;
+            .box {
+              line-height: .34rem;
+              height: .34rem;
+              display:flex;
+              color: #ffffff;
+              .img {
+                width: .32rem;
+                height: .32rem;
+                background: blue;
+                border-radius: 50%;
+                text-align: center;
+                margin-left: .1rem;
+                .num {
+                  width: 100%;
+                  height: 100%;
+                  margin: 0 auto;
+                }
+              }
+              .movie-name {
+                width: 35%;
+                height: .34rem;
+                margin-left: .1rem;
+              }
+              .shape {
+                width: 30%;
+                height: .34rem;
+
+              }
+              .num {
+                width: 25%;
+                height: .34rem;
+              }
             }
           }
         }
+
+        //.box{
+        //  line-height: .4rem;
+        //  height: .4rem;
+        //  display: flex;
+        //  justify-content: space-between;
+        //  font-size: 18px;
+        //  color:#ffffff;
+        //  .img{
+        //    width: 5%;
+        //    height: 100%;
+        //    line-height: .4rem;
+        //    background: blue;
+        //    border-radius: 50%;
+        //    text-align: center;
+        //    .num{
+        //      width:100%;
+        //      height:100%;
+        //      margin:0 auto;
+        //    }
+        //  }
+        //  .movie-name{
+        //    width:35%;
+        //    height:.4rem;
+        //    border:1px solid red;
+        //  }
+        //  .shape{
+        //    width:30%;
+        //    height:.4rem;
+        //    border:1px solid red;
+        //
+        //  }
+        //  .num{
+        //    width:25%;
+        //    height:.4rem;
+        //    border:1px solid red;
+        //  }
+        //}
+        //}
+
+
 
       }
       .left-bottom{
