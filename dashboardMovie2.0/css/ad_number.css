@@ -208,6 +208,7 @@ body .star {
 .big-box .content .left-box .left-middle .news-container ul .box .num {
   width: 25%;
   height: 0.34rem;
+  margin-left: 0.05rem;
 }
 .big-box .content .left-box .left-bottom {
   width: 100%;
