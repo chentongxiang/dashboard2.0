@@ -310,10 +310,38 @@
                     <div class="carousel-chart4 swiper-slide" id="test23"></div>
                 </div>
             </div>
-            <div class="right-bottom swiper-container swiper6">
-                <div class="carousel2 swiper-wrapper">
-                    <div class="carousel-chart3 swiper-slide" id="test31"></div>
-                    <div class="carousel-chart4 swiper-slide" id="test32"></div>
+            <!--<div class="right-bottom swiper-container swiper6">-->
+                <!--<div class="carousel2 swiper-wrapper">-->
+                    <!--<div class="carousel-chart3 swiper-slide" id="test31"></div>-->
+                    <!--<div class="carousel-chart4 swiper-slide" id="test32"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="right-bottom ">
+                <div class="title-text">
+                    本周各省消费排名TOP5
+                </div>
+                <div id="stage">
+                    <div style = "" class="bg"></div>
+                    <div  class="default part">
+                        <div class="name">广东省</div>
+                        <div class="data">12342</div>
+                    </div>
+                    <div  class="default part">
+                        <div class="name">浙江省</div>
+                        <div class="data">2343</div>
+                    </div>
+                    <div  class="default part">
+                        <div class="name">北京市</div>
+                        <div class="data">2341</div>
+                    </div>
+                    <div  class="default part">
+                        <div class="name">上海市</div>
+                        <div class="data">1113</div>
+                    </div>
+                    <div  class="default part">
+                        <div class="name">湖北省</div>
+                        <div class="data">898</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -342,7 +370,70 @@
             // 广告曝光频次
             this.avdDataShow();
             this.starShow();
+            this.threeDRotate();
 
+        },
+        threeDRotate:function(){
+            var that = this;
+            var deg=0;
+            /* Storing all the images into a variable */
+
+            var images	= $('#stage .part').removeClass('default').addClass('animationReady');
+            var dim		= { width:images.width(),height:images.height()};  //图片的宽高
+
+            var cnt = images.length;  //多少张图片
+            //
+            // /* Finding the centers of the animation container: */
+            var centerX = $('#stage').width()/2;  //外部stagge的一半
+            var centerY = $('#stage').height()/2 - dim.height/2; //stage的一半减去图片高度的一半
+            var cc = $('#stage').width()*0.3;
+            console.log(cc)
+            function rotate(step,total){
+                deg+=step;
+                var eSin,eCos,newWidth,newHeight,q;
+                /* Loop through all the images: */
+                for(var i=0;i<cnt;i++){
+                    q = ((360/cnt)*i+deg)*Math.PI/180;
+                    eSin		= Math.sin(q);
+                    eCos		= Math.cos(q);
+                    q = (0.6+eSin*0.1);
+                    newWidth	= q*dim.width;
+                    newHeight	= q*dim.height;
+                    console.log(that.fontSizeNum);
+                    images.eq(i).css({
+                        // top			: centerY+15*eSin*3.5,
+                        top			: centerY+15*eSin*3*66/that.fontSizeNum,
+                        left		: centerX+110*eCos,
+                        // opacity		: 0.6,
+                        opacity		: 0.8+eSin*0.2,
+                        // opacity		: 0.6,
+                        marginLeft	: -newWidth/2,
+                        zIndex		: Math.round(80+eSin*20),
+                        "display": "flex",
+                        "flex-direction": "column",
+                        "justify-content": "space-around",
+                        "align-items": "center"
+                    }).width(newWidth).height(newHeight);
+                    // var list=[];
+                    // $.each(images,function(i,v){
+                    //     list.push($(v).width())
+                    // })
+                    // var index = list.indexOf(Math.max.apply(Math, list))
+                    // images.eq(index).css({
+                    //     opacity		: 1
+                    // });
+                }
+                total-=Math.abs(step);
+                if(total<=0) return false;
+
+                // Setting the function to be run again in 40 seconds (equals to 25 frames per second):
+                setTimeout(function(){rotate(step,total)},40);
+
+            }
+            // Running the animation once at load time (and moving the iPhone into view):
+            rotate(20,360/cnt);
+            var timer=null;
+            timer=setInterval(function(){rotate(10,360/cnt);},5000);
         },
         starShow:function(){
             var stars=800;  /*星星的密集程度，数字越大越多*/
@@ -704,18 +795,20 @@
                     var echartObj = new EchartObj("test12", option);
                     echartObj.setOp();
 
+                    //
+                    // var color = ["#00BAFF", "#00BAFF"];
+                    // var option = options.noBgBarChart(color, bar14.label, bar14.value.reverse(), that.fontSizeNum);
+                    // option.title.text = "本周各省份消费排名top5";
+                    // var echartObj = new EchartObj("test31", option);
+                    // echartObj.setOp();
+                    //
+                    // var color = ["#00BAFF", "#00BAFF"];
+                    // var option = options.noBgBarChart(color, bar15.label, bar15.value.reverse(), that.fontSizeNum);
+                    // option.title.text = "本月各省份消费排名top5";
+                    // var echartObj = new EchartObj("test32", option);
+                    // echartObj.setOp();
 
-                    var color = ["#00BAFF", "#00BAFF"];
-                    var option = options.noBgBarChart(color, bar14.label, bar14.value.reverse(), that.fontSizeNum);
-                    option.title.text = "本周各省份消费排名top5";
-                    var echartObj = new EchartObj("test31", option);
-                    echartObj.setOp();
 
-                    var color = ["#00BAFF", "#00BAFF"];
-                    var option = options.noBgBarChart(color, bar15.label, bar15.value.reverse(), that.fontSizeNum);
-                    option.title.text = "本月各省份消费排名top5";
-                    var echartObj = new EchartObj("test32", option);
-                    echartObj.setOp();
 
 
                     var color = ["#01AFF3", "#3DE7C9"];
@@ -1120,6 +1213,7 @@
                 type: "GET",
                 dataType: "json"
             }).then(function (data) {
+
                 $.each(data, function (i, v) {
                     switch (v.label) {
                         case "total":

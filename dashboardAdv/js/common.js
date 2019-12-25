@@ -33,8 +33,8 @@ var GPATH ={
         全国广告数据展示页面接口
     */
     //除地图外的echart图数据
-    queryChartsAdvs:"http://54.222.134.242:8899/boardDemo/advertise/query_charts_advs",
-    queryNumbersAdvs:"http://yun.ctlife.tv:8899/boardDemo/advertise/query_numbers_advs",
+    queryChartsAdvs:"http://yun.ctlife.tv:8899/boardDemo/dashboard/getCharts?type=advs",
+    queryNumbersAdvs:"http://yun.ctlife.tv:8899/boardDemo/dashboard/getNumbers?type=advs",
     advTodayAdvsData:"http://yun.ctlife.tv:8899/boardDemo/advertise/advTodayAdvsData",
 
 

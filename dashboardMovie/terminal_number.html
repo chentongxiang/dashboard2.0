@@ -57,7 +57,21 @@
             <div class="left-bottom swiper-container swiper3" >
                 <div class="carousel2 swiper-wrapper">
                     <div class="carousel-chart3 swiper-slide" id="top_goods_view"></div>
-                    <div class="carousel-chart4 swiper-slide" id="top_movies_view"></div>
+                    <div class="carousel-chart3 swiper-slide">
+                        <div class="month">
+                            <div class="">单屏幕当月收益</div>
+                            <div class="num-text">10790</div>
+                        </div>
+                        <div class="season">
+                            <div class="">单屏幕季度收益</div>
+                            <div class="num-text">331079</div>
+                        </div>
+                        <div class="year">
+                            <div class="">单屏幕年度收益</div>
+                            <div class="num-text">3631079</div>
+                        </div>
+                    </div>
+                    <!--<div class="carousel-chart4 swiper-slide" id="top_movies_view"></div>-->
                 </div>
             </div>
         </div>
@@ -108,7 +122,21 @@
                     <div class="num-text" id="coveredHotels">33695</div>
                 </div>
             </div>
-            <div class="right-middle" id="avg_single_open_long"></div>
+            <div class="right-middle">
+                <div class="left">
+                    <div>酒店集团各品牌上线数量</div>
+                    <div class="num-text" >8450</div>
+                </div>
+                <div class="middle">
+                    <div>电视各品牌上线数量</div>
+                    <div class="num-text">8934</div>
+                </div>
+                <div class="right">
+                    <div>渠道商上线数量</div>
+                    <div class="num-text">3369</div>
+                </div>
+
+            </div>
             <div class="right-bottom" id="avg_single_open_nums"></div>
         </div>
     </div>
@@ -174,6 +202,22 @@
             createEchart:function () {
                 var that = this;
                 //获取echart图表数据并显示
+                var bar1 = {
+                    chart_type: "bar",
+                    label: ["简约筷筒套装", "鸣盏三合一煮茶器", "创意功夫茶具骨瓷茶具套装",
+                        "一次性便携浴巾毛巾",     "卡蛙智能便携干衣器"],
+                    title_label: "自动播放数据排名(万次)",
+                    title_value: "top_play_auto",
+                    value:[1736, 2271, 3439, 4350, 5480]
+                }
+                var  bar2 = {
+                    chart_type: "bar",
+                    label: ["酒店1", "酒店2", "酒店3", "酒店4","酒店5",
+                        "酒店6", "酒店7", "酒店8", "酒店9","酒店10"],
+                    title_label: "自动播放数据排名(万次)",
+                    title_value: "top_play_auto",
+                    value:[1323,2456,2478,2500,3532,3543,4557,4800,4900,5100]
+                }
                 $.post(GPATH.queryChartsTerminal, function(data){
                     if(data.res){
                         var content = data.data;
@@ -189,51 +233,55 @@
                                     v.label.reverse();
                                     var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
                                     option.title.text = "商品热销TOP5";
+                                    var echartObj = new EchartObj(domID,option);
+                                    echartObj.setOp();
                                     break;
-                                case "top_movies_view":
-                                    var color =["#1FCF25","#00BAFF"];
-                                    v.value[0].data.reverse();
-                                    v.value[1].data.reverse();
-                                    v.label.reverse();
-                                    var option = options.stackedBarChart(color,v.label,v.value,that.fontSizeNum);
-                                    option.title.text = "电影热播TOP5";
-                                    option.series[0]["itemStyle"] = {
-                                        normal: {
-                                            barBorderRadius:6,
-                                            label: {
-                                                show: true,		//开启显示
-                                                position: 'right',	//在上方显示
-                                                textStyle: {	    //数值样式
-                                                    color: '#fff',
-                                                    fontSize: that.fontSizeNum?that.fontSizeNum/8:14
-                                                }
-                                            },
-                                        }
-                                    };
-                                    option.series[1]["itemStyle"] = {
-                                        normal: {
-                                            barBorderRadius:6,
-                                            label: {
-                                                show: true,		//开启显示
-                                                position: 'right',	//在上方显示
-                                                textStyle: {	    //数值样式
-                                                    color: '#fff',
-                                                    fontSize: that.fontSizeNum?that.fontSizeNum/8:14
-                                                }
-                                            },
-                                        }
-                                    }
-                                    break;
-                                case "avg_single_open_long":
-                                    var color =["#1B69FF","#1B69FF"];
-                                    var option = options.normalBarChart(color,v.label,v.value,that.fontSizeNum);
-                                    option.xAxis[0].axisLabel.interval = 1 ;
-                                    // option.xAxis[0].name = "时段"
-                                    option.xAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
-                                    // option.yAxis[0].name = "小时"
-                                    option.yAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
-                                    option.title.text = "平均各时段驻留时长(小时)";
-                                    break;
+                                // case "top_movies_view":
+                                //     var color =["#1FCF25","#00BAFF"];
+                                //     v.value[0].data.reverse();
+                                //     v.value[1].data.reverse();
+                                //     v.label.reverse();
+                                //     var option = options.stackedBarChart(color,v.label,v.value,that.fontSizeNum);
+                                //     option.title.text = "电影热播TOP5";
+                                //     option.series[0]["itemStyle"] = {
+                                //         normal: {
+                                //             barBorderRadius:6,
+                                //             label: {
+                                //                 show: true,		//开启显示
+                                //                 position: 'right',	//在上方显示
+                                //                 textStyle: {	    //数值样式
+                                //                     color: '#fff',
+                                //                     fontSize: that.fontSizeNum?that.fontSizeNum/8:14
+                                //                 }
+                                //             },
+                                //         }
+                                //     };
+                                //     option.series[1]["itemStyle"] = {
+                                //         normal: {
+                                //             barBorderRadius:6,
+                                //             label: {
+                                //                 show: true,		//开启显示
+                                //                 position: 'right',	//在上方显示
+                                //                 textStyle: {	    //数值样式
+                                //                     color: '#fff',
+                                //                     fontSize: that.fontSizeNum?that.fontSizeNum/8:14
+                                //                 }
+                                //             },
+                                //         }
+                                //     }
+                                //     var echartObj = new EchartObj(domID,option);
+                                //     echartObj.setOp();
+                                //     break;
+                                // case "avg_single_open_long":
+                                //     var color =["#1B69FF","#1B69FF"];
+                                //     var option = options.normalBarChart(color,v.label,v.value,that.fontSizeNum);
+                                //     option.xAxis[0].axisLabel.interval = 1 ;
+                                //     // option.xAxis[0].name = "时段"
+                                //     option.xAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
+                                //     // option.yAxis[0].name = "小时"
+                                //     option.yAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
+                                //     option.title.text = "平均各时段驻留时长(小时)";
+                                //     break;
                                 case "avg_single_open_nums":
                                     var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
                                     var option = options.lineChart(color,v.label,v.value,that.fontSizeNum);
@@ -242,6 +290,8 @@
                                     option.xAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
                                     // option.yAxis[0].name = "台"
                                     option.yAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
+                                    var echartObj = new EchartObj(domID,option);
+                                    echartObj.setOp();
                                     break;
                                 case "ratio_brands_tv":
 //                                代码块
@@ -252,6 +302,8 @@
                                     v.label.reverse();
                                     var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
                                     option.title.text = "各省终端排行TOP5";
+                                    var echartObj = new EchartObj(domID,option);
+                                    echartObj.setOp();
                                     break;
                                 case "top_city_view":
                                     var color =["#1B69FF","#1B69FF","#1B69FF"];
@@ -259,14 +311,11 @@
                                     v.label.reverse();
                                     var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
                                     option.title.text = "城市粘性排行TOP5";
+                                    var echartObj = new EchartObj(domID,option);
+                                    echartObj.setOp();
                                     break;
 //                            default:
 //                                默认代码块
-                            }
-                            if(v.title_value!=="ratio_brands_tv"){
-                                var echartObj = new EchartObj(domID,option);
-                                that.allEchartObj[domID] = echartObj;
-                                echartObj.setOp();
                             }
                         })
                         var domIdArr1 = ["dom7","dom8","dom9","dom10","dom11","dom12"];
