@@ -447,7 +447,7 @@
   display: block;
 }
 .big-box .content .right-box .right-bottom .history-num {
-  width: 45%;
+  width: 47%;
   height: 65%;
   text-align: center;
   background-image: url("../images/border_new.png");
@@ -467,13 +467,19 @@
   font-family: main_number_font;
   letter-spacing: 0.05rem;
 }
-.big-box .content .right-box .right-bottom .history-num .num-text {
+.big-box .content .right-box .right-bottom .history-num .num-text1 {
   color: #08DFDF;
   font-size: 0.3rem;
-  font-weight: bold;
+  display: flex ;
+  justify-content: center;
+}
+.big-box .content .right-box .right-bottom .history-num .unit {
+  color: #ffffff;
+  font-size: 0.2rem;
+  line-height: 0.34rem;
 }
 .big-box .content .right-box .right-bottom .mouth-num {
-  width: 45%;
+  width: 47%;
   height: 65%;
   text-align: center;
   background-image: url("../images/border_new.png");
@@ -493,9 +499,15 @@
   font-family: main_number_font;
   letter-spacing: 0.05rem;
 }
-.big-box .content .right-box .right-bottom .mouth-num .num-text {
+.big-box .content .right-box .right-bottom .mouth-num .num-text1 {
   color: #08DFDF;
   font-size: 0.3rem;
-  font-weight: bold;
+  display: flex ;
+  justify-content: center;
+}
+.big-box .content .right-box .right-bottom .mouth-num .unit {
+  color: #ffffff;
+  font-size: 0.2rem;
+  line-height: 0.34rem;
 }
 /*# sourceMappingURL=ad_number.css.map */

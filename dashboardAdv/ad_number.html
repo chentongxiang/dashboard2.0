@@ -19,23 +19,22 @@
             <div class="left-top swiper-container swiper">
                 <div class="carousel1 swiper-wrapper">
                     <div class="carousel-chart1 swiper-slide" id="top_advs_content_play"></div>
-                    <div class="carousel-chart2 swiper-slide" id="test1"></div>
+                    <div class="carousel-chart2 swiper-slide" id="top_advs_content_play_total"></div>
                 </div>
             </div>
             <div class="left-middle swiper-container swiper1">
                 <div class="carousel1 swiper-wrapper">
-                    <!--<div class="carousel-chart1 swiper-slide" id="top_play_act"></div>-->
-                    <div class="carousel-chart2 swiper-slide" id="test2"></div>
-                    <div class="carousel-chart2 swiper-slide" id="test3"></div>
-                    <div class="carousel-chart2 swiper-slide" id="test4"></div>
-                    <div class="carousel-chart2 swiper-slide" id="test5"></div>
-                    <div class="carousel-chart2 swiper-slide" id="test6"></div>
+                    <div class="carousel-chart2 swiper-slide" id="adv_month_1"></div>
+                    <div class="carousel-chart2 swiper-slide" id="adv_month_2"></div>
+                    <div class="carousel-chart2 swiper-slide" id="adv_year_1"></div>
+                    <div class="carousel-chart2 swiper-slide" id="adv_year_2"></div>
+                    <div class="carousel-chart2 swiper-slide" id="pos_utilization_month"></div>
                 </div>
             </div>
             <div class="left-bottom swiper-container swiper-1">
                 <div class="carousel1 swiper-wrapper">
                     <div class="carousel-chart1 swiper-slide" id="pie_cust_type"></div>
-                    <div class="carousel-chart2 swiper-slide" id="test7"></div>
+                    <!--<div class="carousel-chart2 swiper-slide" id="test7"></div>-->
                 </div>
             </div>
             <!--<div class="left-bottom" id="sex_advs_audience"></div>-->
@@ -94,19 +93,25 @@
             </div>
             <div class="right-middle swiper-container swiper2">
                 <div class="carousel2 swiper-wrapper">
-                    <div class="carousel-chart3 swiper-slide" id="ages_advs_audience"></div>
                     <div class="carousel-chart4 swiper-slide" id="sex_advs_audience"></div>
-                    <div class="carousel-chart4 swiper-slide" id="test8"></div>
+                    <div class="carousel-chart4 swiper-slide" id="top10_city_view"></div>
+                    <div class="carousel-chart3 swiper-slide" id="ages_advs_audience"></div>
                 </div>
             </div>
             <div class="right-bottom">
                 <div class="history-num">
-                    <div>人均广告触达频次</div>
-                    <div class="num-text" id="avg_reach_nums">200</div>
+                    <div>半年人均广告触达频次</div>
+                    <div class="num-text1">
+                        <div id="avg_reach_nums">200</div>
+                        <div class="unit">(次/人)</div>
+                    </div>
                 </div>
                 <div class="mouth-num">
-                    <div>人均广告触达时长</div>
-                    <div class="num-text" id="avg_reach_time">40</div>
+                    <div>半年人均广告触达时长</div>
+                    <div class="num-text1">
+                        <div class="num-text" id="avg_reach_time">40</div>
+                        <div class="unit">(秒/人)</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -157,154 +162,6 @@
             $.post(GPATH.queryChartsAdvs, function (data) {
                 if (data.code==200) {
                     var content = data.msg;
-                    console.log(content)
-                    // var bar1 = {
-                    //     chart_type: "bar",
-                    //     label: ["屏保广告图片位1", "电视直播图片位2", "高清影视图片位2", "高清影视图片位1", "电视直播图片位1"],
-                    //     title_label: "自动播放数据排名(万次)",
-                    //     title_value: "top_play_auto",
-                    //     value:[17366.43, 32718.46, 34399.18, 35035.75, 48032.52]
-                    // }
-                    // var bar2 = {
-                    //     chart_type: "bar",
-                    //     label: ["top1", "top2", "top3", "top4", "top5","top6", "top7", "top8", "top9", "top10"],
-                    //     title_label: "自动播放数据排名(万次)",
-                    //     title_value: "top_play_auto",
-                    //     value:[21, 25, 30, 40,45, 56,67,68,70,78]
-                    // }
-                    // var bar3 = {
-                    //     chart_type: "bar",
-                    //     label: ["开机视频广告位", "开机静态广告位", "屏保广告", "频道主界面右侧图片广告位",
-                    //         "频道主界面左侧视频广告位"],
-                    //     title_label: "自动播放数据排名(万次)",
-                    //     title_value: "top_play_auto",
-                    //     value:[45,60,68,70,78]
-                    // }
-                    // var bar4 = {
-                    //     chart_type: "bar",
-                    //     label: ["电视及影视退出/暂定广告位", "电影前贴片广告位", "内容跳转切屏广告位",
-                    //             "频道主界面左侧视频广告位", "频道主界面右侧图片广告位"],
-                    //     title_label: "自动播放数据排名(万次)",
-                    //     title_value: "top_play_auto",
-                    //     value:[21, 25, 30, 45,60]
-                    // }
-                    // var bar5 = {
-                    //     chart_type: "bar",
-                    //     label: ["开机视频广告位", "开机静态广告位", "屏保广告", "频道主界面右侧图片广告位",
-                    //         "频道主界面左侧视频广告位"],
-                    //     title_label: "自动播放数据排名(万次)",
-                    //     title_value: "top_play_auto",
-                    //     value:[145,160,168,170,178]
-                    // }
-                    // var bar6 = {
-                    //     chart_type: "bar",
-                    //     label: ["电视及影视退出/暂定广告位", "电影前贴片广告位", "内容跳转切屏广告位",
-                    //         "频道主界面左侧视频广告位", "频道主界面右侧图片广告位"],
-                    //     title_label: "自动播放数据排名(万次)",
-                    //     title_value: "top_play_auto",
-                    //     value:[121, 125, 130, 145,160]
-                    // }
-                    // var bar7 = {
-                    //     chart_type: "bar",
-                    //     label: ["品牌1", "品牌2", "品牌3",
-                    //         "品牌4", "品牌5"],
-                    //     title_label: "自动播放数据排名(万次)",
-                    //     title_value: "top_play_auto",
-                    //     value:[121, 125, 130, 145,160]
-                    // }
-                    //
-                    // var pie ={
-                    //     chart_type: "pie",
-                    //     label: ["4A&代理公司", "互联网", "快消", "教育", "旅游", "酒类", "金融"],
-                    //     title_label: "合作客户行业分布",
-                    //     title_value: "pie_cust_type",
-                    //     value: [
-                    //         {value: "2", name: "4A&代理公司"},
-                    //         {value: "4", name :"互联网"},
-                    //         {value: "5", name :"快消"},
-                    //         {value: "4", name :"教育"},
-                    //         {value: "10", name : "旅游"},
-                    //         {value: "3", name :"酒类"},
-                    //         {value: "2", name :"金融"}
-                    //     ]
-                    // }
-                    // var pie1 ={
-                    //     chart_type: "pie",
-                    //     label: ["上画", "试投", "增刊", "公益", "运营"],
-                    //     title_label: "合作客户行业分布",
-                    //     title_value: "pie_cust_type",
-                    //     value: [
-                    //         {value: "6", name: "上画"},
-                    //         {value: "5", name :"试投"},
-                    //         {value: "4", name :"增刊"},
-                    //         {value: "3", name :"公益"},
-                    //         {value: "8", name : "运营"},
-                    //
-                    //     ]
-                    // }
-                    // var bar_1 = {
-                    //     chart_type: "bar",
-                    //     label: ["北京", "上海", "广州", "南京", "成都","天津", "长沙", "厦门", "深圳", "宁波"],
-                    //     title_label: "自动播放数据排名(万次)",
-                    //     title_value: "top_play_auto",
-                    //     value:[95,90,80,74,70,60,45,30,25,21]
-                    // }
-                    //
-                    //
-                    // var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
-                    // var option = options.pieChartOther(color, pie.label, pie.value, that.fontSizeNum);
-                    // option.legend = null;
-                    // option.series[0].radius = ['40%', '50%'],
-                    //     option.series[0].center = ['46%', '60%'],
-                    //     option.title.text = "历史合作客户行业分布";
-                    // var echartObj = new EchartObj("test7", option);
-                    // echartObj.setOp();
-                    //
-                    // var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
-                    // var option = options.pieChartOther(color, pie1.label, pie1.value, that.fontSizeNum);
-                    // option.legend = null;
-                    // option.series[0].radius = ['40%', '50%'],
-                    //     option.series[0].center = ['46%', '60%'],
-                    //     option.title.text = "当月广告位资源使用率";
-                    // var echartObj = new EchartObj("test6", option);
-                    // echartObj.setOp();
-                    //
-                    // var color = ["#00BAFF", "#00BAFF"];
-                    // var option = options.noBgBarChart(color, bar1.label, bar1.value, that.fontSizeNum);
-                    // option.title.text = "历史广告播放品牌TO5";
-                    // var echartObj = new EchartObj("test1", option);
-                    // echartObj.setOp();
-                    //
-                    // var color = ["#1FCF25", "#1FCF25"];
-                    // var option = options.noBgBarChart(color, bar3.label, bar3.value, that.fontSizeNum);
-                    // option.title.text = "当月广告位播放数据";
-                    // var echartObj = new EchartObj("test2", option);
-                    // echartObj.setOp();
-                    //
-                    // var color = ["#1FCF25", "#1FCF25"];
-                    // var option = options.noBgBarChart(color, bar4.label, bar4.value, that.fontSizeNum);
-                    // option.title.text = "当月广告位播放数据";
-                    // var echartObj = new EchartObj("test3", option);
-                    // echartObj.setOp();
-                    //
-                    // var color = ["#7541EE", "#7541EE"];
-                    // var option = options.noBgBarChart(color, bar5.label, bar5.value, that.fontSizeNum);
-                    // option.title.text = "历史广告位播放数据";
-                    // var echartObj = new EchartObj("test4", option);
-                    // echartObj.setOp();
-                    //
-                    // var color = ["#7541EE", "#7541EE"];
-                    // var option = options.noBgBarChart(color, bar6.label, bar6.value, that.fontSizeNum);
-                    // option.title.text = "历史广告位播放数据";
-                    // var echartObj = new EchartObj("test5", option);
-                    // echartObj.setOp();
-                    //
-                    // var color =["#1B69FF","#1B69FF"];
-                    // var option = options.normalBarChart(color,bar_1.label,bar_1.value,that.fontSizeNum);
-                    // option.title.text = "受众地区分布top10";
-                    // var echartObj = new EchartObj("test8", option);
-                    // echartObj.setOp();
-
                     $.each(content, function (i, v) {
                         // var bgData = that.bgData(v.value);  需要柱状图背景图时启用
                         var domID = v.title_value;
@@ -314,110 +171,203 @@
                                 v.value.reverse();
                                 v.label.reverse();
                                 var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
-                                option.title.text = "上刊品牌广告播放情况";
+                                option.title.text = "上刊品牌广告播放情况（万次）";
                                 var echartObj = new EchartObj(domID, option);
                                 echartObj.setOp();
                                 break;
-                            // case "top_play_act":
-                            //     var color = ["#00BAFF", "#00BAFF"];
-                            //     v.value.reverse();
-                            //     v.label.reverse();
-                            //     var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
-                            //     option.title.text = "用户交互数据排名(万次)";
-                            //     var echartObj = new EchartObj(domID, option);
-                            //     echartObj.setOp();
-                            //     break;
-                            // case "pie_cust_type":
-                            //     var arr = v.value;
-                            //     that.arrLength = arr.length;
-                            //
-                            //     var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
-                            //     var option = options.pieChartOther(color, v.label, v.value, that.fontSizeNum);
-                            //     option.legend = null;
-                            //     option.series[0].radius = ['40%', '50%'],
-                            //         option.series[0].center = ['46%', '60%'],
-                            //         option.title.text = "最近12月合作客户行业分布";
-                            //     var echartObj = new EchartObj(domID, option);
-                            //     echartObj.setOp();
-                            //     break;
-                            // case "ages_advs_audience":
-                            //     var color = ["#01AFF3", "#3DE7C9"];
-                            //     var data = [{
-                            //         name: '男性',
-                            //         type: 'bar',
-                            //         barWidth: '30%',
-                            //         data: v.value[0].reverse(),
-                            //         itemStyle: {
-                            //             normal: {
-                            //                 label: {
-                            //                     show: true,		//开启显示
-                            //                     position: 'right',	//在上方显示
-                            //                     textStyle: {	    //数值样式
-                            //                         color: '#fff',
-                            //                         fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
-                            //                     }
-                            //                 }
-                            //             }
-                            //         }
-                            //     },
-                            //         {
-                            //             name: '女性',
-                            //             type: 'bar',
-                            //             barWidth: '30%',
-                            //             data: v.value[1].reverse(),
-                            //             itemStyle: {
-                            //                 normal: {
-                            //                     label: {
-                            //                         show: true,		//开启显示
-                            //                         position: 'right',	//在上方显示
-                            //                         textStyle: {	    //数值样式
-                            //                             color: '#fff',
-                            //                             fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
-                            //                         }
-                            //                     }
-                            //                 }
-                            //             }
-                            //         },]
-                            //     v.label.reverse();
-                            //     var option = options.stackedBarChart(color, v.label, data, that.fontSizeNum);
-                            //     option.title.text = "年龄受众比例(百人/周)";
-                            //     var echartObj = new EchartObj(domID, option);
-                            //     that.allEchartObj[domID] = echartObj;
-                            //     echartObj.setOp();
-                            //     break;
-                            // // case "top_play_auto":
-                            // //     var color = ["#1FCF25", "#1FCF25"];
-                            // //     v.value.reverse();
-                            // //     v.label.reverse();
-                            // //     var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
-                            // //     option.title.text = "历史广告位播放数据(万次)";
-                            // //     var echartObj = new EchartObj(domID, option);
-                            // //     that.allEchartObj[domID] = echartObj;
-                            // //     echartObj.setOp();
-                            //     break;
-                            // case "top_province_view":
-                            //     var color = ["#00BAFF", "#00BAFF"];
-                            //     var option = options.normalBarChart(color, v.label, v.value, that.fontSizeNum);
-                            //     option.title.text = "入住浓度地区分布TOP5";
-                            //     option.series[0].itemStyle.normal.label.show = true;
-                            //     var echartObj = new EchartObj(domID, option);
-                            //     that.allEchartObj[domID] = echartObj;
-                            //     echartObj.setOp();
-                            //     break;
-                            // case "sex_advs_audience":
-                            //     var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
-                            //     var option = options.pieChartOther(color, v.label, v.value, that.fontSizeNum);
-                            //     option.title.text = "受众性别比例";
-                            //     option.graphic.elements[0].style.image = "images/sex.png"
-                            //     var echartObj = new EchartObj(domID, option);
-                            //     that.allEchartObj[domID] = echartObj;
-                            //     echartObj.setOp();
-                            //     break;
+                            case "top_advs_content_play_total":
+                                var color = ["#6AB0B8", "#6AB0B8"];
+                                v.value.reverse();
+                                v.label.reverse();
+                                var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
+                                option.title.text = "历史广告播放品牌TOP5（万次）";
+                                var echartObj = new EchartObj(domID, option);
+                                echartObj.setOp();
+                                break;
+                            case "top10_city_view":
+                                var color = ["#3DE7C9", "#3DE7C9"];
+                                // v.value.reverse();
+                                // v.label.reverse();
+                                var option = options.normalBarChart(color, v.label, v.value, that.fontSizeNum);
+                                option.title.text = "受众地区分布top10";
+                                var echartObj = new EchartObj(domID, option);
+                                echartObj.setOp();
+                                break;
+                            case "pos_utilization_month":
+                                var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
+                                var option = options.pieChartOther(color,v.label, v.value, that.fontSizeNum);
+                                option.legend = null;
+                                option.series[0].radius = ['40%', '50%'],
+                                option.series[0].center = ['50%', '50%'],
+                                option.title.text = "当月广告位资源使用率";
+                                var echartObj = new EchartObj(domID,option);
+                                echartObj.setOp();
+                                break;
+                            case "pie_cust_type":
+                                var arr = v.value;
+                                that.arrLength = arr.length;
+                                var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
+                                var option = options.pieChartOther(color, v.label, v.value, that.fontSizeNum);
+                                option.legend = null;
+                                option.series[0].radius = ['40%', '50%'],
+                                option.series[0].center = ['46%', '60%'],
+                                option.title.text = "最近12月合作客户行业分布";
+                                var echartObj = new EchartObj(domID, option);
+                                echartObj.setOp();
+                                break;
+
+                            case "top_display_position_month":
+                                var labelArr = v.label;
+                                var valueArr = v.value;
+                                var arr = get_four_arr(labelArr,valueArr);
+                                var lable_arr1=arr[0];
+                                var lable_arr2=arr[1];
+                                var value_arr1=arr[2];
+                                var value_arr2=arr[3];
+
+                                var color = ["#01AFF3", "#01AFF3"];
+                                var option1 = options.noBgBarChart(color, lable_arr1.reverse(), value_arr1.reverse(), that.fontSizeNum);
+                                option1.title.text = "当月广告位播放数据（万次）";
+                                var echartObj = new EchartObj("adv_month_1", option1);
+                                echartObj.setOp();
+                                var color = ["#01AFF3", "#01AFF3"];
+                                var option2 = options.noBgBarChart(color, lable_arr2.reverse(), value_arr2.reverse(), that.fontSizeNum);
+                                option2.title.text = "当月广告位播放数据（万次）";
+                                var echartObj = new EchartObj("adv_month_2", option2);
+                                echartObj.setOp();
+                                break;
+                            case "top_display_position_12m":
+                                var labelArr = v.label;
+                                var valueArr = v.value;
+                                var arr = get_four_arr(labelArr,valueArr);
+                                var lable_arr1=arr[0];
+                                var lable_arr2=arr[1];
+                                var value_arr1=arr[2];
+                                var value_arr2=arr[3];
+
+                                var color = ["#1FCF25", "#1FCF25"];
+                                var option1 = options.noBgBarChart(color, lable_arr1.reverse(), value_arr1.reverse(), that.fontSizeNum);
+                                option1.title.text = "近12月广告位播放数据（万次）";
+                                var echartObj = new EchartObj("adv_year_1", option1);
+                                echartObj.setOp();
+                                var color = ["#1FCF25", "#1FCF25"];
+                                var option2 = options.noBgBarChart(color, lable_arr2.reverse(), value_arr2.reverse(), that.fontSizeNum);
+                                option2.title.text = "近12月广告位播放数据（万次）";
+                                var echartObj = new EchartObj("adv_year_2", option2);
+                                echartObj.setOp();
+                                break;
+
+                            case "ages_advs_audience":
+                                var color = ["#01AFF3", "#3DE7C9"];
+                                var data = [{
+                                    name: '男性',
+                                    type: 'bar',
+                                    barWidth: '30%',
+                                    data: v.value[0].reverse(),
+                                    itemStyle: {
+                                        normal: {
+                                            label: {
+                                                show: true,		//开启显示
+                                                position: 'right',	//在上方显示
+                                                textStyle: {	    //数值样式
+                                                    color: '#fff',
+                                                    fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                    {
+                                        name: '女性',
+                                        type: 'bar',
+                                        barWidth: '30%',
+                                        data: v.value[1].reverse(),
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    show: true,		//开启显示
+                                                    position: 'right',	//在上方显示
+                                                    textStyle: {	    //数值样式
+                                                        color: '#fff',
+                                                        fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },]
+                                v.label.reverse();
+                                var option = options.stackedBarChart(color, v.label, data, that.fontSizeNum);
+                                option.title.text = "年龄受众比例(百人/周)";
+                                var echartObj = new EchartObj(domID, option);
+                                that.allEchartObj[domID] = echartObj;
+                                echartObj.setOp();
+                                break;
+                            case "sex_advs_audience":
+                                var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
+                                var option = options.pieChartOther(color, v.label, v.value, that.fontSizeNum);
+                                option.title.text = "受众性别比例";
+                                option.graphic.elements[0].style.image = "images/sex.png"
+                                var echartObj = new EchartObj(domID, option);
+                                that.allEchartObj[domID] = echartObj;
+                                echartObj.setOp();
+                                break;
+                        // 开机视频广告 ,开机静态广告,屏保广告
                         }
                     })
                 }
 
             }, "json");
+            function get_four_arr(labelArr,valueArr) {
+                var start_vedio_adv =0 ,start_static_adv=0,screensaver_adv=0,right_side=0,
+                    left_side=0,content_jump=0,pre_film=0,movie_tv_quit=0;
+
+                $.each(labelArr,function (i,v) {
+                    if(v=="开机视频广告"){
+                        start_vedio_adv=valueArr[i]
+                    }else if(v=="开机静态广告"){
+                        start_static_adv = valueArr[i];
+                    }else if(v=="屏保广告"){
+                        screensaver_adv = valueArr[i];
+                    }else if(v=="电视直播主界面广告右侧"||v=="高清影视主界面广告右侧"||
+                        v=="酒店服务主界面广告右侧"||v=="特色美食主界面广告右侧"){
+                        right_side+= valueArr[i];
+                    }else if(v=="电视直播主界面广告左侧"||v=="高清影视主界面广告左侧"||
+                        v=="酒店服务主界面广告左侧"||v=="特色美食主界面广告左侧"){
+                        left_side+=valueArr[i];
+                    }else if(v=="电视直播切屏静态广告"||v=="高清影视跳转切屏静态广告"||
+                        v=="电视直播切屏视频广告"||v=="高清影视跳转切屏视频广告"){
+                        content_jump+=valueArr[i];
+                    }else if(v=="点播电影前贴片静态广告"||v=="点播电影前贴片视频广告"){
+                        pre_film+=valueArr[i];
+                    }else if(v=="点播电影退出静态广告"||v=="高清影视退出静态广告"
+                        ||v=="电视直播退出静态广告"||v=="点播电影暂停广告"){
+                        movie_tv_quit+=valueArr[i];
+                    }
+                })
+                var newDataObj={
+                    "开机视频广告位":{num:start_vedio_adv.toFixed(2)},
+                    "开机静态广告位":{num:start_static_adv.toFixed(2)},
+                    "屏保广告":{num:screensaver_adv.toFixed(2)},
+                    "频道主界面右侧图片广告位":{num:right_side.toFixed(2)},
+                    "频道主界面左侧视频广告位":{num:left_side.toFixed(2)},
+                    "内容跳转切屏广告位":{num:content_jump.toFixed(2)},
+                    "电影前贴片广告位":{num:pre_film.toFixed(2)},
+                    "电视及影视退出广告位":{num:movie_tv_quit.toFixed(2)}
+                }
+                var sorted_lable = Object.keys(newDataObj).sort((a,b)=>{
+                    return newDataObj[b].num-newDataObj[a].num;
+                });
+                var sorted_value = []
+                $.each(sorted_lable,function (i,v) {
+                    sorted_value.push(newDataObj[v].num);
+                })
+                var lable_arr1 = sorted_lable.slice(0,5);
+                var lable_arr2 = sorted_lable.slice(3);
+                var value_arr1 = sorted_value.slice(0,5);
+                var value_arr2 = sorted_value.slice(3);
+                var arr = [lable_arr1,lable_arr2,value_arr1,value_arr2];
+                return arr;
+            }
             var b = 1;
             setInterval(function () {
                 $historyText = $(".history-text");
@@ -454,17 +404,17 @@
                 }
             }, 10000);
 
-            var mySwiper = new Swiper('.swiper-1', {
-                // direction: 'vertical', // 垂直切换选项
-                direction: 'horizontal', // 横向切换选项
-                // loop: true, // 循环模式选项
-                speed: 1000,
-                autoplay: {
-                    delay: 9000,//时间 毫秒
-                    disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
-                },
-                // speed:3000
-            })
+            // var mySwiper = new Swiper('.swiper-1', {
+            //     // direction: 'vertical', // 垂直切换选项
+            //     direction: 'horizontal', // 横向切换选项
+            //     // loop: true, // 循环模式选项
+            //     speed: 1000,
+            //     autoplay: {
+            //         delay: 9000,//时间 毫秒
+            //         disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+            //     },
+            //     // speed:3000
+            // })
 
             var mySwiper = new Swiper('.swiper', {
                 // direction: 'vertical', // 垂直切换选项
