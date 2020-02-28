@@ -12,8 +12,8 @@
     <div class="header_img">
         <div class="logo"></div>
         <div class="title-text">全国广告数据展示</div>
+        <div class="cloud"></div>
     </div>
-
     <div class="content box_flex">
         <div class="left-box">
             <div class="left-top swiper-container swiper">
@@ -43,9 +43,11 @@
             <div class="center-top">
                 <div class="history-text">历史广告曝光频次</div>
                 <div class="this-year">本年曝光频次</div>
-                <div class="data-box">
-                    <div class="history-data">242423</div>
-                    <div class="this-year-data">12323</div>
+                <div class="data-big-box">
+                    <div class="data-box">
+                        <div class="history-data">242423</div>
+                        <div class="this-year-data">12323</div>
+                    </div>
                 </div>
                 <div class="current">
                     <div class="current-month">
@@ -62,7 +64,10 @@
                     </div>
                 </div>
             </div>
-            <div class="center-middle" id="china_map"></div>
+            <div class="center-middle">
+                <div class="map_bg"></div>
+                <div class="china_map" id="china_map"></div>
+            </div>
             <div class="center-bottom">
                 <div class="bottom-left">
                     <div class="room-num">
@@ -82,13 +87,15 @@
         </div>
         <div class="right-box">
             <div class="right-top">
-                <div class="history-num">
-                    <div>历史受众人数</div>
-                    <div class="num-text" id="num_person_history">1212434324</div>
-                </div>
-                <div class="mouth-num">
-                    <div>月度受众人数</div>
-                    <div class="num-text" id="num_person_month">3242342</div>
+                <div class="border-bg-small">
+                    <div class="history-num">
+                        <div>历史受众人数</div>
+                        <div class="num-text" id="num_person_history">1212434324</div>
+                    </div>
+                    <div class="mouth-num">
+                        <div>月度受众人数</div>
+                        <div class="num-text" id="num_person_month">3242342</div>
+                    </div>
                 </div>
             </div>
             <div class="right-middle swiper-container swiper2">
@@ -99,18 +106,20 @@
                 </div>
             </div>
             <div class="right-bottom">
-                <div class="history-num">
-                    <div>半年人均广告触达频次</div>
-                    <div class="num-text1">
-                        <div id="avg_reach_nums">200</div>
-                        <div class="unit">(次/人)</div>
+                <div class="border-small">
+                    <div class="history-num">
+                        <div>半年人均广告触达频次</div>
+                        <div class="num-text1">
+                            <div id="avg_reach_nums">200</div>
+                            <div class="unit">(次/人)</div>
+                        </div>
                     </div>
-                </div>
-                <div class="mouth-num">
-                    <div>半年人均广告触达时长</div>
-                    <div class="num-text1">
-                        <div class="num-text" id="avg_reach_time">40</div>
-                        <div class="unit">(秒/人)</div>
+                    <div class="mouth-num">
+                        <div>半年人均广告触达时长</div>
+                        <div class="num-text1">
+                            <div class="num-text" id="avg_reach_time">40</div>
+                            <div class="unit">(秒/人)</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -162,15 +171,18 @@
             $.post(GPATH.queryChartsAdvs, function (data) {
                 if (data.code==200) {
                     var content = data.msg;
+                    console.log(content)
                     $.each(content, function (i, v) {
                         // var bgData = that.bgData(v.value);  需要柱状图背景图时启用
                         var domID = v.title_value;
                         switch (v.title_value) {
                             case "top_advs_content_play":
-                                var color = ["#3DE7C9", "#3DE7C9"];
+                                var color = ["#46bdcd", "#7d71b3"];
                                 v.value.reverse();
                                 v.label.reverse();
                                 var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
+                                var bgData = that.bgData(v.value);
+                                option.series[0].data = bgData;
                                 option.title.text = "上刊品牌广告播放情况（万次）";
                                 var echartObj = new EchartObj(domID, option);
                                 echartObj.setOp();
@@ -181,37 +193,44 @@
                                 v.label.reverse();
                                 var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
                                 option.title.text = "历史广告播放品牌TOP5（万次）";
+                                var bgData = that.bgData(v.value);
+                                option.series[0].data = bgData;
                                 var echartObj = new EchartObj(domID, option);
                                 echartObj.setOp();
                                 break;
                             case "top10_city_view":
-                                var color = ["#3DE7C9", "#3DE7C9"];
+                                var color = ["#7d71b3", "#46bdcd", "#6b59a4", "rgb(70,189,205,0.5)", "#19CB50", "#3DE7C9", "#B6A2DE"]
                                 // v.value.reverse();
                                 // v.label.reverse();
-                                var option = options.normalBarChart(color, v.label, v.value, that.fontSizeNum);
+                                var option = options.lineChart(color, v.label, v.value, that.fontSizeNum);
                                 option.title.text = "受众地区分布top10";
                                 var echartObj = new EchartObj(domID, option);
                                 echartObj.setOp();
                                 break;
                             case "pos_utilization_month":
-                                var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
+                                // var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
+                                var color = ["#775ba5","#eeb033","#ed767c","#37629f","#70c6cb", ]
                                 var option = options.pieChartOther(color,v.label, v.value, that.fontSizeNum);
-                                option.legend = null;
-                                option.series[0].radius = ['40%', '50%'],
-                                option.series[0].center = ['50%', '50%'],
+                                // option.legend = null;
+                                option.series[0].radius = ['52%', '59%'],
+                                option.series[0].center = ['30%', '58%'],
                                 option.title.text = "当月广告位资源使用率";
+                                option.legend.x ="55%";
+                                option.legend.y ="32%";
+                                option.graphic.elements[0].style.image = "images/pieChar_bg.png"
                                 var echartObj = new EchartObj(domID,option);
                                 echartObj.setOp();
                                 break;
                             case "pie_cust_type":
                                 var arr = v.value;
                                 that.arrLength = arr.length;
-                                var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
+                                var color = ["#eeb033", "#ed767c", "#ffffff", "#70c6cb", "#37629f", "#775ba5", "#70c6cb"]
                                 var option = options.pieChartOther(color, v.label, v.value, that.fontSizeNum);
-                                option.legend = null;
-                                option.series[0].radius = ['40%', '50%'],
-                                option.series[0].center = ['46%', '60%'],
+                                // option.legend = null;
+                                option.series[0].radius = ['52%', '59%'],
+                                option.series[0].center = ['30%', '58%'],
                                 option.title.text = "最近12月合作客户行业分布";
+                                option.graphic.elements[0].style.image = "images/pieChar_bg.png"
                                 var echartObj = new EchartObj(domID, option);
                                 echartObj.setOp();
                                 break;
@@ -225,14 +244,18 @@
                                 var value_arr1=arr[2];
                                 var value_arr2=arr[3];
 
-                                var color = ["#01AFF3", "#01AFF3"];
+                                var color = ["#f6b264", "#eb5c2f"];
                                 var option1 = options.noBgBarChart(color, lable_arr1.reverse(), value_arr1.reverse(), that.fontSizeNum);
                                 option1.title.text = "当月广告位播放数据（万次）";
+                                var bgData = that.bgData(value_arr1);
+                                option1.series[0].data = bgData;
                                 var echartObj = new EchartObj("adv_month_1", option1);
                                 echartObj.setOp();
                                 var color = ["#01AFF3", "#01AFF3"];
                                 var option2 = options.noBgBarChart(color, lable_arr2.reverse(), value_arr2.reverse(), that.fontSizeNum);
                                 option2.title.text = "当月广告位播放数据（万次）";
+                                var bgData = that.bgData(value_arr2);
+                                option2.series[0].data = bgData;
                                 var echartObj = new EchartObj("adv_month_2", option2);
                                 echartObj.setOp();
                                 break;
@@ -248,17 +271,21 @@
                                 var color = ["#1FCF25", "#1FCF25"];
                                 var option1 = options.noBgBarChart(color, lable_arr1.reverse(), value_arr1.reverse(), that.fontSizeNum);
                                 option1.title.text = "近12月广告位播放数据（万次）";
+                                var bgData = that.bgData(value_arr1);
+                                option1.series[0].data = bgData;
                                 var echartObj = new EchartObj("adv_year_1", option1);
                                 echartObj.setOp();
                                 var color = ["#1FCF25", "#1FCF25"];
                                 var option2 = options.noBgBarChart(color, lable_arr2.reverse(), value_arr2.reverse(), that.fontSizeNum);
                                 option2.title.text = "近12月广告位播放数据（万次）";
+                                var bgData = that.bgData(value_arr2);
+                                option2.series[0].data = bgData;
                                 var echartObj = new EchartObj("adv_year_2", option2);
                                 echartObj.setOp();
                                 break;
 
                             case "ages_advs_audience":
-                                var color = ["#01AFF3", "#3DE7C9"];
+                                var color = ["#7d71b3", "#46bdcd", "#eb5c2f", "#f6b264"];
                                 var data = [{
                                     name: '男性',
                                     type: 'bar',
@@ -270,11 +297,18 @@
                                                 show: true,		//开启显示
                                                 position: 'right',	//在上方显示
                                                 textStyle: {	    //数值样式
-                                                    color: '#fff',
+                                                    color: '#555656',
                                                     fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
                                                 }
-                                            }
-                                        }
+                                            },
+                                            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                                                offset: 0,
+                                                color: color[0] // 0% 处的颜色
+                                            }, {
+                                                offset: 1,
+                                                color: color[1] // 100% 处的颜色
+                                            }], false)
+                                        },
                                     }
                                 },
                                     {
@@ -288,10 +322,17 @@
                                                     show: true,		//开启显示
                                                     position: 'right',	//在上方显示
                                                     textStyle: {	    //数值样式
-                                                        color: '#fff',
+                                                        color: '#555656',
                                                         fontSize: that.fontSizeNum ? that.fontSizeNum / 7 : 14
                                                     }
-                                                }
+                                                },
+                                                color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                                                    offset: 0,
+                                                    color: color[2] // 0% 处的颜色
+                                                }, {
+                                                    offset: 1,
+                                                    color: color[3] // 100% 处的颜色
+                                                }], false)
                                             }
                                         }
                                     },]
@@ -303,10 +344,12 @@
                                 echartObj.setOp();
                                 break;
                             case "sex_advs_audience":
-                                var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
-                                var option = options.pieChartOther(color, v.label, v.value, that.fontSizeNum);
+                                var color = ["#775ba5","#4ebbab","#775ba5", "#70c6cb"]
+                                var option = options.pieChartOtherOne(color, v.label, v.value, that.fontSizeNum);
                                 option.title.text = "受众性别比例";
-                                option.graphic.elements[0].style.image = "images/sex.png"
+                                // option.series[0].radius = ['39%', '45%'],
+                                // option.series[0].center = ['30%', '50%'],
+                                option.graphic.elements[0].style.image = "images/sexLogo.png"
                                 var echartObj = new EchartObj(domID, option);
                                 that.allEchartObj[domID] = echartObj;
                                 echartObj.setOp();
