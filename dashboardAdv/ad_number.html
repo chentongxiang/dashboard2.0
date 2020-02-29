@@ -44,9 +44,12 @@
                 <div class="history-text">历史广告曝光频次</div>
                 <div class="this-year">本年曝光频次</div>
                 <div class="data-big-box">
-                    <div class="data-box">
+                    <!-- <div class="data-box">
                         <div class="history-data">242423</div>
                         <div class="this-year-data">12323</div>
+                    </div> -->
+                    <div class="data-box">
+                        <div class="scroll-data">数据加载中</div>
                     </div>
                 </div>
                 <div class="current">
@@ -134,12 +137,15 @@
 <script src="js/echarts.min.js"></script>
 <script src="js/echarts-gl.min.js"></script>
 <script src="js/china.js"></script>
+<script src="js/test-scroll.js"></script>
 <script src="js/swiper.min.js"></script>
 <script>
     var adNumber = {
         fontSizeNum: 18,
         allEchartObj: {},
         arrLength: "",
+        history_data:0,
+        this_year_data:0,
         init: function () {
             this.windowOnload();
             //除地图外的echart图数据，接口get_charts_advs
@@ -177,7 +183,7 @@
                         var domID = v.title_value;
                         switch (v.title_value) {
                             case "top_advs_content_play":
-                                var color = ["#46bdcd", "#7d71b3"];
+                                var color = ["#7d71b3","#46bdcd"];
                                 v.value.reverse();
                                 v.label.reverse();
                                 var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
@@ -188,7 +194,7 @@
                                 echartObj.setOp();
                                 break;
                             case "top_advs_content_play_total":
-                                var color = ["#6AB0B8", "#6AB0B8"];
+                                var color = ["#34a5c1", "#86c9a4"];
                                 v.value.reverse();
                                 v.label.reverse();
                                 var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
@@ -244,14 +250,14 @@
                                 var value_arr1=arr[2];
                                 var value_arr2=arr[3];
 
-                                var color = ["#f6b264", "#eb5c2f"];
+                                var color = ["#eb5c2f", "#f6b264"];
                                 var option1 = options.noBgBarChart(color, lable_arr1.reverse(), value_arr1.reverse(), that.fontSizeNum);
                                 option1.title.text = "当月广告位播放数据（万次）";
                                 var bgData = that.bgData(value_arr1);
                                 option1.series[0].data = bgData;
                                 var echartObj = new EchartObj("adv_month_1", option1);
                                 echartObj.setOp();
-                                var color = ["#01AFF3", "#01AFF3"];
+                                var color = ["#eb5c2f", "#f6b264"];
                                 var option2 = options.noBgBarChart(color, lable_arr2.reverse(), value_arr2.reverse(), that.fontSizeNum);
                                 option2.title.text = "当月广告位播放数据（万次）";
                                 var bgData = that.bgData(value_arr2);
@@ -268,14 +274,14 @@
                                 var value_arr1=arr[2];
                                 var value_arr2=arr[3];
 
-                                var color = ["#1FCF25", "#1FCF25"];
+                                var color = ["#ab549c", "#e4919c"];
                                 var option1 = options.noBgBarChart(color, lable_arr1.reverse(), value_arr1.reverse(), that.fontSizeNum);
                                 option1.title.text = "近12月广告位播放数据（万次）";
                                 var bgData = that.bgData(value_arr1);
                                 option1.series[0].data = bgData;
                                 var echartObj = new EchartObj("adv_year_1", option1);
                                 echartObj.setOp();
-                                var color = ["#1FCF25", "#1FCF25"];
+                                var color = ["#ab549c", "#e4919c"];
                                 var option2 = options.noBgBarChart(color, lable_arr2.reverse(), value_arr2.reverse(), that.fontSizeNum);
                                 option2.title.text = "近12月广告位播放数据（万次）";
                                 var bgData = that.bgData(value_arr2);
@@ -415,8 +421,8 @@
             setInterval(function () {
                 $historyText = $(".history-text");
                 $thisYear = $(".this-year");
-                $historyData = $(".history-data");
-                $thisYearData = $(".this-year-data");
+                // $historyData = $(".history-data");
+                // $thisYearData = $(".this-year-data");
 
                 var a = $historyText.css("transform");
 
@@ -427,37 +433,29 @@
                     $thisYear.removeClass("flipOut");
                     $historyText.addClass("flipOut");
                     $thisYear.addClass('flipIn');
-
-                    $historyData.removeClass("flipIn");
-                    $thisYearData.removeClass("flipOut");
-                    $historyData.addClass("flipOut");
-                    $thisYearData.addClass('flipIn');
+                    $(".scroll-data").rollNum({
+                        deVal:that.this_year_data
+                    });
+                    // $historyData.removeClass("flipIn");
+                    // $thisYearData.removeClass("flipOut");
+                    // $historyData.addClass("flipOut");
+                    // $thisYearData.addClass('flipIn');
                     b = 0;
                 } else {
                     $historyText.removeClass("flipOut");
                     $thisYear.removeClass("flipIn");
                     $historyText.addClass("flipIn");
                     $thisYear.addClass('flipOut');
-
-                    $historyData.removeClass("flipOut");
-                    $thisYearData.removeClass("flipIn");
-                    $thisYearData.addClass("flipOut");
-                    $historyData.addClass('flipIn');
+                    $(".scroll-data").rollNum({
+                        deVal:that.history_data
+                    });
+                    // $historyData.removeClass("flipOut");
+                    // $thisYearData.removeClass("flipIn");
+                    // $thisYearData.addClass("flipOut");
+                    // $historyData.addClass('flipIn');
                     b = 1;
                 }
             }, 10000);
-
-            // var mySwiper = new Swiper('.swiper-1', {
-            //     // direction: 'vertical', // 垂直切换选项
-            //     direction: 'horizontal', // 横向切换选项
-            //     // loop: true, // 循环模式选项
-            //     speed: 1000,
-            //     autoplay: {
-            //         delay: 9000,//时间 毫秒
-            //         disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
-            //     },
-            //     // speed:3000
-            // })
 
             var mySwiper = new Swiper('.swiper', {
                 // direction: 'vertical', // 垂直切换选项
@@ -483,7 +481,7 @@
             })
             var mySwiper = new Swiper('.swiper2', {
                 // direction: 'vertical', // 垂直切换选项
-                direction: 'vertical', // 横向切换选项
+                direction: 'horizontal', // 横向切换选项
                 // loop: true, // 循环模式选项
                 speed: 1000,
                 autoplay: {
@@ -520,12 +518,17 @@
                     $.each(data, function (i, v) {
                         switch (v.label) {
                             case "total":
-                                $(".history-data").html(toThousands(v.value))
+                                // $(".history-data").html(toThousands(v.value))
+                                $(".scroll-data").rollNum({
+                                    deVal:v.value
+                                });
+                                that.history_data = v.value;
                                 totalData = v.value;
                                 break;
                             case "year_2018":
                                 var thisYearData = totalData - v.value;
-                                $(".this-year-data").html(toThousands(thisYearData))
+                                // $(".this-year-data").html(toThousands(thisYearData))
+                                that.this_year_data =  thisYearData;
                                 break;
                             case "month":
                                 $("#current-month").html(toThousands(v.value))
@@ -572,8 +575,6 @@
                     console.log(data.res)
                 })
             })
-
-
             function toThousands(num) {
                 var num = (num || 0).toString(), result = '';
                 while (num.length > 3) {
@@ -585,7 +586,6 @@
                 }
                 return result;
             }
-
             //数字动态
             function num_counter(domID) {
                 var decimal_places = 1;
@@ -625,7 +625,6 @@
                 }
             }, "json");
         },
-
         //柱状图背景色数据函数
         bgData: function (data) {
             var max = 0, bgData = [];
@@ -641,10 +640,6 @@
     $(function () {
         adNumber.init();
     });
-
-
-
-
 </script>
 
 

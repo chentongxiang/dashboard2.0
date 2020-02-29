@@ -195,7 +195,7 @@
           font-size: .26rem;
           color:#555656;
           text-align: center;
-          line-height: .5rem;
+          line-height: .55rem;
           // border:1px solid red;
           letter-spacing:.05rem;
           margin-top:.15rem;
@@ -211,7 +211,7 @@
           font-size: .26rem;
           color:#555656;
           text-align: center;
-          line-height: .5rem;
+          line-height: .55rem;
           letter-spacing:.05rem ;
           opacity: 0;
           // border:1px solid yellow;
@@ -227,43 +227,102 @@
           .data-box{
             width:100%;
             height:100%;
-            position: relative;
-            .history-data{
-              width:100%;
-              height: 100%;
-              font-size: 0.9rem;
-              color: #ffffff;
-              // letter-spacing: 0.15rem;
-              font-weight: bold;
-              text-align: center;
-              font-family: font_Digital;
-              // border:1px solid yellow;
-              line-height: .8rem;
+            // border:1px solid red;
+            .scroll-data{
+              width: 100%;
+              height:100%;
               background-image: url(../images/border_main.png);
               background-repeat: no-repeat;
               background-size:100% 100%;
               background-position:center;
-            }
-            .this-year-data{
-              position: absolute;
-              top: 0;
-              left:0;
-              width:100%;
-              height: 100%;
-              font-size: 0.9rem;
-              color: #ffffff;
-              // letter-spacing: 0.15rem;
-              font-weight: bold;
+              font-size: .6rem;
               text-align: center;
-              opacity: 0;
-              font-family: font_Digital;
-              // border:1px solid yellow;
-              line-height: .8rem;
-              background-image: url(../images/border_main.png);
-              background-repeat: no-repeat;
-              background-size:100% 100%;
-              background-position:center;
+              .inrow>li,.inrow span{
+                display:inline-block;
+                // *display:inline;*zoom:1;
+                font-size:.14rem;
+              }
+              .dataNums{
+                position: absolute; 
+                // top:50%; 
+                // display: block; 
+                width:90%; 
+                height:.8rem; 
+                // margin-top: -.37rem; 
+                text-align:center;
+                display: flex;
+                justify-content: center;
+                // border:1px solid yellow; 
+
+                .dataOne{ 
+                  width:.56rem; 
+                  height:.8rem; 
+                  // margin: 0 0.03rem; 
+                  text-align: center;
+                  // border:1px solid red; 
+                  box-sizing: border-box;
+                }
+                .dataBoc {
+                  position: relative; 
+                  width: 100%; 
+                  height: 100%; 
+                  overflow: hidden; 
+                  .tt {
+                    position: absolute; 
+                    top: 0;  
+                    left: 0; 
+                    width: 100%;  
+                    height: 100%; 
+                    span{
+                      width:100%;
+                      height:100%; 
+                      font:bold .8rem/.85rem "font_Digital";
+                      // font-family: font_Digital;
+                      color:#fff;
+                      box-sizing: border-box;
+                    }
+                  }
+                }
+              }
             }
+            
+            // position: relative;
+            // .history-data{
+            //   width:100%;
+            //   height: 100%;
+            //   font-size: 0.9rem;
+            //   color: #ffffff;
+            //   // letter-spacing: 0.15rem;
+            //   font-weight: bold;
+            //   text-align: center;
+            //   font-family: font_Digital;
+            //   // border:1px solid yellow;
+            //   line-height: .8rem;
+            //   background-image: url(../images/border_main.png);
+            //   background-repeat: no-repeat;
+            //   background-size:100% 100%;
+            //   background-position:center;
+            // }
+            // .this-year-data{
+            //   position: absolute;
+            //   top: 0;
+            //   left:0;
+            //   width:100%;
+            //   height: 100%;
+            //   font-size: 0.9rem;
+            //   color: #ffffff;
+            //   // letter-spacing: 0.15rem;
+            //   font-weight: bold;
+            //   text-align: center;
+            //   opacity: 0;
+            //   font-family: font_Digital;
+            //   // border:1px solid yellow;
+            //   line-height: .8rem;
+            //   background-image: url(../images/border_main.png);
+            //   background-repeat: no-repeat;
+            //   background-size:100% 100%;
+            //   background-position:center;
+            // }
           }
         }
         .current{

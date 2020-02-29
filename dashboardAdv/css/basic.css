@@ -21,6 +21,12 @@ body{
     height:10.8rem;
     overflow-y: scroll ;
 }
+.fl {	
+    float:left;
+}
+.fr {	
+    float:right;
+}
 @font-face{
     font-family: number_font;
     src:url(../css/AgencyFB.ttf);
