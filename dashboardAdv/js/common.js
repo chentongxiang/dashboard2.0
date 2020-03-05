@@ -209,7 +209,7 @@ var options = {
                     fontStyle: 'normal',
                     fontWeight: 'bold',
                     color:this.titleColor,
-                    fontFamily:'Microsoft YaHei'
+                    fontFamily:'font_siyuan'
                 },
                 x:"5%",
                 y:"8%"
@@ -241,7 +241,7 @@ var options = {
                             color: '#7c7b7c',  //坐标的字体颜色
                             fontSize: num ? num / this.rate : 14,
                             fontWeight: "bold",
-                            fontFamily:'Microsoft YaHei'
+                            fontFamily:'font_siyuan'
                         },
                         interval: 0,
                     },
@@ -265,7 +265,7 @@ var options = {
                         textStyle:{
                             color:'#7c7b7c',  //坐标的字体颜色
                             fontSize: num?num/this.titleRate:14,
-                            fontFamily:'Microsoft YaHei'
+                            fontFamily:'font_siyuan'
                         },
                     },
                     splitLine: {
@@ -315,7 +315,9 @@ var options = {
                                 textStyle: {
                                   fontSize: num?num/this.legendRate*1.3:14,
                                   color: "#555656",
-                                  fontFamily:"Arial"
+                                  fontFamily:"font_siyuan",
+                                  Weight:"bold"
+                    
                                 }
                             },
                             color:"#e5e9ea",
@@ -388,7 +390,8 @@ var options = {
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'bold',
-                    color:this.titleColor
+                    color:this.titleColor,
+                    fontFamily:"font_siyuan"
                 },
                 x:"6%",
                 y:"6.5%"
@@ -469,7 +472,7 @@ var options = {
                 textStyle: {
                     fontSize: num?num/this.legendRate:14,
                     color:"white",
-                    fontFamily: "Microsoft YaHei",
+                    fontFamily: "font_siyuan",
                 },
                 // data:[barData[0].name,barData[1].name]
                 data:[barData[0].name,barData[1].name],
@@ -492,7 +495,7 @@ var options = {
                     fontStyle: 'normal',
                     fontWeight: 'bold',
                     color:this.titleColor,
-                    fontFamily:"Microsoft YaHei",
+                    fontFamily:"font_siyuan",
                     Weight:"bold"
                 },
                 x:"6%",
@@ -524,7 +527,7 @@ var options = {
                         textStyle:{
                             color:'#555656',  //坐标的字体颜色
                             fontSize:num?num/this.rate:14,
-                            fontFamily:"Microsoft YaHei"
+                            fontFamily:"font_siyuan",
                         },
                         interval:0,
                         formatter : function(params){
@@ -580,7 +583,7 @@ var options = {
                         textStyle:{
                             color:'#555656',  //坐标的字体颜色
                             fontSize:num?num/this.rate:14,
-                            fontFamily:"Arial",
+                            fontFamily:"font_siyuan",
                             Weight:"bold"
                         },
                     },
@@ -651,7 +654,7 @@ var options = {
                 textStyle: {
                     fontSize: num?num/this.rate:14,
                     color:"white",
-                    fontFamily: "Microsoft YaHei",
+                    fontFamily: "font_siyuan",
 
                 },
             },
@@ -729,7 +732,8 @@ var options = {
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'bold',
-                    color:this.titleColor
+                    color:this.titleColor,
+                    fontFamily:"font_siyuan"
                 },
                 x:"6%",
                 y:"7%"
@@ -748,11 +752,11 @@ var options = {
                         a:{
                             fontSize: num?num/this.rate:14,
                             padding:[0,5,0,0],
-                            fontFamily: "Microsoft YaHei",
+                            fontFamily: "font_siyuan",
                             fontWeight:"bold"
                         },
                         b:{
-                            fontFamily: "Arial",
+                            fontFamily: "font_siyuan",
                             fontSize: num?num/this.rate:14,
                         }
                     }
@@ -842,7 +846,8 @@ var options = {
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'bold',
-                    color:this.titleColor
+                    color:this.titleColor,
+                    fontFamily:"font_siyuan"
                 },
                 x:"6%",
                 y:"6%"
@@ -855,8 +860,7 @@ var options = {
                 textStyle: {
                     fontSize: num?num/this.rate:14,
                     color:this.titleColor,
-                    fontFamily: "Microsoft YaHei",
-
+                    fontFamily: "font_siyuan",
                 },
                 data:label,
                 icon: "circle", 
@@ -1099,8 +1103,8 @@ var options = {
                     coordinateSystem: 'geo',
                     data : data,
                     pointSize: num/this.rate/4,
-                    // blurSize: num/this.rate/12,
-                    blurSize: 0,
+                    blurSize: num/this.rate/12,
+                    // blurSize: 0,
                     // markPoint: {//动态标记
                     //     large: true,//这个选项，悬浮自动失效
                     //     symbolSize:1,//闪烁点大小

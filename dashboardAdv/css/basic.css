@@ -47,3 +47,7 @@ body{
     font-family:  font_dongqing_w6;
     src:url(../css/Hiragino_Sans_GB.ttc);
 }
+@font-face{
+    font-family: font_siyuan;
+    src:url(../css/SourceHanSansCN-Bold.otf);
+}
