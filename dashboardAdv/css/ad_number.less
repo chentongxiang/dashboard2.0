@@ -199,7 +199,6 @@
           // border:1px solid red;
           letter-spacing:.05rem;
           margin-top:.15rem;
-          font-family: font_dongqing_w6;
           font-weight: bold;
         }
         .this-year{
@@ -215,7 +214,6 @@
           letter-spacing:.05rem ;
           opacity: 0;
           // border:1px solid yellow;
-          font-family: font_dongqing_w6;
           margin-top:.15rem;
           font-weight: bold;
           
@@ -239,16 +237,12 @@
               text-align: center;
               .inrow>li,.inrow span{
                 display:inline-block;
-                // *display:inline;*zoom:1;
                 font-size:.14rem;
               }
               .dataNums{
                 position: absolute; 
-                // top:50%; 
-                // display: block; 
                 width:90%; 
                 height:.8rem; 
-                // margin-top: -.37rem; 
                 text-align:center;
                 display: flex;
                 justify-content: center;
@@ -349,6 +343,9 @@
               font-size:.2rem;
               font-family: font_dongqing_w6;
               font-weight: bold;
+              line-height: .42rem;
+              // border:1px solid yellow;
+
             }
             div:nth-child(2){
               height: .5rem;
@@ -361,6 +358,7 @@
               background-size:100% 100%;
               background-position:center;
               font-family: font_Digital;
+              font-weight: bold;
               // border:1px solid yellow;
 
             }
@@ -389,36 +387,35 @@
           width:100%;
           height:100%;
           position: absolute;
-          top: 0;
+          top: .45rem;
           left: 0;
         }
-        .map_bg{
-          width:5.2rem;
-          height:5.2rem;
-          position: absolute;
-          top: 0;
-          left: 1.2rem;
-          background-image: url("../images/map_bg.png");
-          background-repeat:no-repeat;
-          background-size:100% 100%;
-          -moz-background-size:100% 100%;
-          // border:1px solid red;
-        }
+        // .map_bg{
+        //   width:5.2rem;
+        //   height:5.2rem;
+        //   position: absolute;
+        //   top: 0;
+        //   left: 1.2rem;
+        //   background-image: url("../images/map_bg.png");
+        //   background-repeat:no-repeat;
+        //   background-size:100% 100%;
+        //   -moz-background-size:100% 100%;
+        // }
         
       }
       .center-bottom{
         width: 100%;
         height:15%;
         .bottom-left{
-          width: 80%;
+          width: 70%;
           height: 100%;
           margin: 0 auto;
           display: flex;
           justify-content:space-between;
           // border:1px solid red;
-          .room-num{
+          .city-num1{
             width:32%;
-            display:inline-block;
+            // display:inline-block;
             margin-top:.1rem;   
             height:90%;
             font-size: .2rem;
@@ -429,23 +426,31 @@
             justify-content: flex-end;
             font-family: font_dongqing_w6;
             font-weight: bold;
+            // border:1px solid yellow;
             .num-text{
+              width:100%;
+              height:100%;
               color:#ffffff;
               height:.46rem;
-              line-height: .46rem;
+              line-height: .48rem;
+              font-weight: normal;
               // border:1px solid red;
-              font-size:.4rem;
-              font-weight: bold;
-              font-family: font_Digital;
-              letter-spacing: .05rem;
+              font-size:.3rem;
+              font-family: font_Gayatri;
+              letter-spacing: .03rem;
               background-image: url(../images/border_city.png);
               background-repeat: no-repeat;
               background-size:100% 100%;
               background-position:center;
             }
           }
-          .hotel-num{
-            .room-num;
+          .room-num1{
+            .city-num1;
+            width:32%;
+          }
+          .hotel-num1{
+            .city-num1;
+            width:32%;
           }
         }
       }
@@ -488,19 +493,15 @@
             flex-direction: column;
             justify-content: center;
             >div:first-child{
-              // margin-bottom:.1rem;
-              font-family:font_dongqing_w6;
               color:#555565;
               font-weight: bold;
             }
             >div:nth-child(2){
-              font-family: font_Digital;
+              font-family: font_Gayatri;
               letter-spacing: .05rem;
-            }
-            .num-text{
+              // font-weight: bold;
               color:#fff;
-              font-size: .4rem;
-              font-weight: bold;
+              font-size: .45rem;
             }
           }
           .mouth-num{
@@ -564,7 +565,6 @@
             flex-direction: column;
             justify-content: center;
             >div:first-child{
-              font-family:font_dongqing_w6;
               color:#555565;
               font-weight: bold;
             }
@@ -575,16 +575,17 @@
             }
             .num-text1{
               color:#ffffff;
-              font-family:font_Digital;
-              font-size: .38rem;
+              font-family:font_Gayatri;
+              font-size: .36rem;
               display:flex ;
               justify-content: center;
+              font-weight: normal;
             }
             .unit{
-              font-family:font_Digital;
+              font-family:font_dongqing_w6;
               color:#ffffff;
               font-size: .2rem;
-              line-height: .4rem;
+              line-height: .34rem;
             }
           }
           .mouth-num{

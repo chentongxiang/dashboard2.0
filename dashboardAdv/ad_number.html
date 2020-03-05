@@ -68,20 +68,19 @@
                 </div>
             </div>
             <div class="center-middle">
-                <div class="map_bg"></div>
                 <div class="china_map" id="china_map"></div>
             </div>
             <div class="center-bottom">
                 <div class="bottom-left">
-                    <div class="room-num">
+                    <div class="city-num1">
                         <div>城市数</div>
                         <div class="num-text" id="covered-cities">300</div>
                     </div>
-                    <div class="room-num">
+                    <div class="room-num1">
                         <div>房间数</div>
                         <div class="num-text" id="covered-rooms">121243</div>
                     </div>
-                    <div class="hotel-num">
+                    <div class="hotel-num1">
                         <div>酒店数</div>
                         <div class="num-text" id="covered-hotels">4000</div>
                     </div>
@@ -208,7 +207,11 @@
                                 var color = ["#7d71b3", "#46bdcd", "#6b59a4", "rgb(70,189,205,0.5)", "#19CB50", "#3DE7C9", "#B6A2DE"]
                                 // v.value.reverse();
                                 // v.label.reverse();
-                                var option = options.lineChart(color, v.label, v.value, that.fontSizeNum);
+                                var newLabel = [];
+                                $.each(v.label,function(i,k){
+                                    newLabel[i]=k.slice(0,2)
+                                })
+                                var option = options.lineChart(color, newLabel, v.value, that.fontSizeNum);
                                 option.title.text = "受众地区分布top10";
                                 var echartObj = new EchartObj(domID, option);
                                 echartObj.setOp();
@@ -622,6 +625,7 @@
                     var domID = "china_map";
                     var echartObj = new EchartObj(domID, option);
                     echartObj.setOp();
+                    console.log(option)
                 }
             }, "json");
         },

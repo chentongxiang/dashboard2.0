@@ -207,8 +207,9 @@ var options = {
                     // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
-                    fontWeight: 'normal',
-                    color:this.titleColor
+                    fontWeight: 'bold',
+                    color:this.titleColor,
+                    fontFamily:'Microsoft YaHei'
                 },
                 x:"5%",
                 y:"8%"
@@ -222,7 +223,7 @@ var options = {
             },
             grid: {
                 left: '5%',
-                right: '15%',
+                right: '17%',
                 top:"25%",
                 bottom: '6%',
                 containLabel: true
@@ -239,7 +240,8 @@ var options = {
                         textStyle: {
                             color: '#7c7b7c',  //坐标的字体颜色
                             fontSize: num ? num / this.rate : 14,
-                            fontWeight: "bold"
+                            fontWeight: "bold",
+                            fontFamily:'Microsoft YaHei'
                         },
                         interval: 0,
                     },
@@ -263,6 +265,7 @@ var options = {
                         textStyle:{
                             color:'#7c7b7c',  //坐标的字体颜色
                             fontSize: num?num/this.titleRate:14,
+                            fontFamily:'Microsoft YaHei'
                         },
                     },
                     splitLine: {
@@ -310,9 +313,9 @@ var options = {
                                 show: true,
                                 position: "right",
                                 textStyle: {
-                                  fontWeight: "bolder",
-                                  fontSize: num?num/this.legendRate:14,
-                                  color: "#555656"
+                                  fontSize: num?num/this.legendRate*1.3:14,
+                                  color: "#555656",
+                                  fontFamily:"Arial"
                                 }
                             },
                             color:"#e5e9ea",
@@ -384,7 +387,7 @@ var options = {
                     // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
-                    fontWeight: 'normal',
+                    fontWeight: 'bold',
                     color:this.titleColor
                 },
                 x:"6%",
@@ -487,8 +490,10 @@ var options = {
                     // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
-                    fontWeight: 'normal',
-                    color:this.titleColor
+                    fontWeight: 'bold',
+                    color:this.titleColor,
+                    fontFamily:"Microsoft YaHei",
+                    Weight:"bold"
                 },
                 x:"6%",
                 y:"6%"
@@ -512,13 +517,14 @@ var options = {
                     nameLocation:"center",
                     type : 'category',
                     data : lineLabel,
-                    axisTick: {
-                        alignWithLabel: true
+                    axisTick:{       //y轴刻度线
+                        show:false
                     },
                     axisLabel: {
                         textStyle:{
                             color:'#555656',  //坐标的字体颜色
                             fontSize:num?num/this.rate:14,
+                            fontFamily:"Microsoft YaHei"
                         },
                         interval:0,
                         formatter : function(params){
@@ -558,25 +564,30 @@ var options = {
                     axisLine: {
                         lineStyle:{
                             color:'#fff',  //坐标线颜色
+                            width:2
                         },
                     },
+                   
 
                 }
             ],
             yAxis : [
                 {
                     nameLocation:"center",
+                    offset:1,
                     type : 'value',
                     axisLabel: {
                         textStyle:{
                             color:'#555656',  //坐标的字体颜色
                             fontSize:num?num/this.rate:14,
+                            fontFamily:"Arial",
+                            Weight:"bold"
                         },
                     },
                     splitLine: {
                         show: true,
                         lineStyle:{
-                            color: '#fff',
+                            color: '#C6C6C6',
                             width: 1,
                             type: 'solid'
                         }
@@ -584,7 +595,11 @@ var options = {
                     axisLine: {
                         lineStyle:{
                             color:'#fff',  //坐标的字体颜色
+                            width:2
                         },
+                    },
+                    axisTick:{       //y轴刻度线
+                        show:false
                     },
                 }
             ],
@@ -602,6 +617,7 @@ var options = {
                             barBorderRadius:7,
                             color: "#eeb033",
                             lineStyle: {
+                                width:2,
                                 color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
                                     offset: 0,
                                     color: color[1] // 0% 处的颜色
@@ -712,7 +728,7 @@ var options = {
                     // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
-                    fontWeight: 'normal',
+                    fontWeight: 'bold',
                     color:this.titleColor
                 },
                 x:"6%",
@@ -724,10 +740,22 @@ var options = {
                 y: '18%',
                 data:label,
                 textStyle: {
-                    fontSize: num?num/this.rate:14,
+                    // fontSize: num?num/this.rate:14,
                     color:this.titleColor,
-                    fontFamily: "Microsoft YaHei",
-
+                    // fontFamily: "Microsoft YaHei",
+                    fontWeight: 'bold',
+                    rich:{
+                        a:{
+                            fontSize: num?num/this.rate:14,
+                            padding:[0,5,0,0],
+                            fontFamily: "Microsoft YaHei",
+                            fontWeight:"bold"
+                        },
+                        b:{
+                            fontFamily: "Arial",
+                            fontSize: num?num/this.rate:14,
+                        }
+                    }
                 },
                 data:label,
                 icon: "circle", 
@@ -745,14 +773,16 @@ var options = {
                         }
                     }
                     console.log(total)
-                    let p = (tarValue / total * 100).toFixed(2);
-                    return name + ' ' + ' ' + p + '%';
+                    let arr = [
+                        '{a|'+name+'}',
+                        '{b|'+((tarValue/total)*100).toFixed(2)+'%}'
+                    ]
+                    return arr.join('')
                 },
-
             },
             tooltip : {
                 trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                formatter: "{a} <br/>{b} : {c} ({d}%)",
             },
             color: color||['#249CF9',"rgba(0,66,117,0.1)"],
 
@@ -811,7 +841,7 @@ var options = {
                     // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
-                    fontWeight: 'normal',
+                    fontWeight: 'bold',
                     color:this.titleColor
                 },
                 x:"6%",
@@ -876,6 +906,9 @@ var options = {
                     labelLine: {    //引导线设置
                         normal: {
                             show: true,   //引导线显示
+                            lineStyle:{
+                                width:2
+                            }
                         }
                     },
                     data:pieData,
@@ -897,7 +930,7 @@ var options = {
                     // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
-                    fontWeight: 'normal',
+                    fontWeight: 'bold',
                     color:this.titleColor
                 },
                 x:"3%",
@@ -994,52 +1027,179 @@ var options = {
                         areaColor: '#fff',
                         borderColor: '#435592',
                         // shadowColor: 'rgba(0,54,255, 1)',
-                        // shadowBlur: 10,
-                        // borderWidth:2,
+                        // shadowBlur: 1,
+                        borderWidth:2,
                     },
                     emphasis: {
                         areaColor: '#d1d1d1'
                     }
-                }
+                },
+                // regions: [
+                //     {
+                //       name: "南海诸岛",
+                //       value: 0,
+                //       itemStyle: {
+                //         normal: {
+                //           opacity: 0,
+                //           label: {
+                //             show: true
+                //           }
+                //         }
+                //       }
+                //     }
+                // ]
             },
             visualMap: {
                 show: false,
                 top: 'top',
                 min: 0,
                 max: 5,
-                seriesIndex: 0,
+                seriesIndex: 1,
                 calculable: true,
                 inRange: {
-                    color: '#4BB2A1' //热力点颜色
+                    color: "#4BB2A1" //热力点颜色
                 }
             },
             series : [
+                {
+                    type: 'map',
+                    map: 'china',
+                    // geoIndex: 1,
+                    // aspectScale: 0.75, //长宽比
+                    showLegendSymbol: false, // 存在legend时显示
+                    label: {
+                        normal: {
+                            show: false,
+                        },
+                        emphasis: {
+                            show: false,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    zoom: 1.2,
+                    roam: false,
+                    itemStyle: {
+                        normal: {
+                            areaColor: '#fff',
+                            borderColor: '#435592',
+                            borderWidth: 0.8,
+                        },
+                        emphasis: {
+                            areaColor: '#01215c'
+                        }
+                    },
+                    data:[]
+                    
+                },
                 {
                     name: '终端数量',
                     type: 'heatmap',
                     coordinateSystem: 'geo',
                     data : data,
-                    pointSize: num/this.rate/5,
-                    blurSize: num/this.rate/6,
-                    markPoint: {//动态标记
-                        large: true,//这个选项，悬浮自动失效
-                        symbolSize:1,//闪烁点大小
-                        itemStyle: {
-                            normal: {
-                                shadowBlur: 10,
-                                shadowColor: '#333',
-                                areaColor: '#00FFDB',
-                            },
-                            color:'#00FFDB'
-                        },
-                        zlevel: 1,
-                        data: [],
-                    },
-                }
+                    pointSize: num/this.rate/4,
+                    // blurSize: num/this.rate/12,
+                    blurSize: 0,
+                    // markPoint: {//动态标记
+                    //     large: true,//这个选项，悬浮自动失效
+                    //     symbolSize:1,//闪烁点大小
+                    //     itemStyle: {
+                    //         normal: {
+                    //             shadowBlur: 10,
+                    //             shadowColor: '#333',
+                    //             areaColor: '#00FFDB',
+                    //         },
+                    //         color:'#00FFDB'
+                    //     },
+                    //     zlevel: 1,
+                    //     data: [],
+                    // },
+                },
+                
             ]
         }
         return option;
     },
+    // heatMapChart:function (data,num) {
+    //     var option = {
+    //         title: {
+    //             text: '',
+    //             left: 'left',
+    //         },
+    //         tooltip : {
+    //             trigger: 'item',
+    //             showDelay:1000,
+    //             hideDelay:1000,
+    //         },
+    //         grid: {
+    //             // left: '3%',
+    //             // right: '4%',
+    //             top:"5%",
+    //             bottom: '15%',
+    //             containLabel: true
+    //         },
+    //         geo: {
+    //             type : 'map',
+    //             map : 'china',
+    //             label: {
+    //                 emphasis: {
+    //                     show: false
+    //                 }
+    //             },
+    //             zoom: 1.2,
+    //             roam:false,
+    //             itemStyle: {
+    //                 normal: {
+    //                     areaColor: '#fff',
+    //                     borderColor: '#435592',
+    //                     // shadowColor: 'rgba(0,54,255, 1)',
+    //                     // shadowBlur: 10,
+    //                     // borderWidth:2,
+    //                 },
+    //                 emphasis: {
+    //                     areaColor: '#d1d1d1'
+    //                 }
+    //             }
+    //         },
+    //         visualMap: {
+    //             show: false,
+    //             top: 'top',
+    //             min: 0,
+    //             max: 5,
+    //             seriesIndex: 0,
+    //             calculable: true,
+    //             inRange: {
+    //                 color: '#4BB2A1' //热力点颜色
+    //             }
+    //         },
+    //         series : [
+    //             {
+    //                 name: '终端数量',
+    //                 type: 'heatmap',
+    //                 coordinateSystem: 'geo',
+    //                 data : data,
+    //                 pointSize: num/this.rate/5,
+    //                 blurSize: num/this.rate/6,
+    //                 markPoint: {//动态标记
+    //                     large: true,//这个选项，悬浮自动失效
+    //                     symbolSize:1,//闪烁点大小
+    //                     itemStyle: {
+    //                         normal: {
+    //                             shadowBlur: 10,
+    //                             shadowColor: '#333',
+    //                             areaColor: '#00FFDB',
+    //                         },
+    //                         color:'#00FFDB'
+    //                     },
+    //                     zlevel: 1,
+    //                     data: [],
+    //                 },
+    //             }
+    //         ]
+    //     }
+    //     return option;
+    // },
     //柱状图-普通竖向无背景
     normalBarChart:function (color,barLabel,barData,num) {
         var option = {
@@ -1051,8 +1211,9 @@ var options = {
                     // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
-                    fontWeight: 'normal',
-                    color:this.titleColor
+                    fontWeight: 'bold',
+                    color:this.titleColor,
+                   
                 },
                 x:"3%",
                 y:"6%"
