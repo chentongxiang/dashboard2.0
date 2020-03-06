@@ -252,6 +252,7 @@
                                 var lable_arr2=arr[1];
                                 var value_arr1=arr[2];
                                 var value_arr2=arr[3];
+                                console.log(lable_arr1)
 
                                 var color = ["#eb5c2f", "#f6b264"];
                                 var option1 = options.noBgBarChart(color, lable_arr1.reverse(), value_arr1.reverse(), that.fontSizeNum);
@@ -363,7 +364,6 @@
                                 that.allEchartObj[domID] = echartObj;
                                 echartObj.setOp();
                                 break;
-                        // 开机视频广告 ,开机静态广告,屏保广告
                         }
                     })
                 }
@@ -396,15 +396,27 @@
                         movie_tv_quit+=valueArr[i];
                     }
                 })
+                // var newDataObj={
+                //     "开机视频广告位":{num:start_vedio_adv.toFixed(2)},
+                //     "开机静态广告位":{num:start_static_adv.toFixed(2)},
+                //     "屏保广告":{num:screensaver_adv.toFixed(2)},
+                //     "频道主界面右侧图片广告位":{num:right_side.toFixed(2)},
+                //     "频道主界面左侧视频广告位":{num:left_side.toFixed(2)},
+                //     "内容跳转切屏广告位":{num:content_jump.toFixed(2)},
+                //     "电影前贴片广告位":{num:pre_film.toFixed(2)},
+                //     "电视及影视退出广告位":{num:movie_tv_quit.toFixed(2)}
+                // }
+
+                //改为想要显示的名字
                 var newDataObj={
                     "开机视频广告位":{num:start_vedio_adv.toFixed(2)},
                     "开机静态广告位":{num:start_static_adv.toFixed(2)},
-                    "屏保广告":{num:screensaver_adv.toFixed(2)},
-                    "频道主界面右侧图片广告位":{num:right_side.toFixed(2)},
-                    "频道主界面左侧视频广告位":{num:left_side.toFixed(2)},
-                    "内容跳转切屏广告位":{num:content_jump.toFixed(2)},
-                    "电影前贴片广告位":{num:pre_film.toFixed(2)},
-                    "电视及影视退出广告位":{num:movie_tv_quit.toFixed(2)}
+                    "屏幕保护广告位":{num:screensaver_adv.toFixed(2)},
+                    "界面静态广告位":{num:right_side.toFixed(2)},
+                    "界面视频广告位":{num:left_side.toFixed(2)},
+                    "跳转切屏广告位":{num:content_jump.toFixed(2)},
+                    "电影贴片广告位":{num:pre_film.toFixed(2)},
+                    "退出暂定广告位":{num:movie_tv_quit.toFixed(2)}
                 }
                 var sorted_lable = Object.keys(newDataObj).sort((a,b)=>{
                     return newDataObj[b].num-newDataObj[a].num;
@@ -426,11 +438,8 @@
                 $thisYear = $(".this-year");
                 // $historyData = $(".history-data");
                 // $thisYearData = $(".this-year-data");
-
                 var a = $historyText.css("transform");
-
                 var arr = ["历史广告曝光频次", "本年"]
-
                 if (b == 1) {
                     $historyText.removeClass("flipIn");
                     $thisYear.removeClass("flipOut");

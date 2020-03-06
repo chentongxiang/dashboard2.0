@@ -50,7 +50,16 @@ var GPATH ={
 
 
 }
-
+var customFns = {
+    //echart中设置文字的方法  如要设置20px即设置fontSize(20)
+    fontSize:function (res){
+        let docEl = document.documentElement,
+        clientWidth = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
+        if (!clientWidth) return;
+        let fontSize = 100 * (clientWidth / 1920);
+        return res*fontSize;
+    }
+}
 var options = {
     //设置图标字体与fontsize的倍率
     rate:6,
@@ -292,23 +301,11 @@ var options = {
                             barBorderRadius:6,
                             label: {
                                 formatter:function(params){
-                                    switch(params.dataIndex) {
-                                        case 0:
-                                           return barData[0];
-                                           break;
-                                        case 1:
-                                            return barData[1];
-                                           break;
-                                        case 2:
-                                            return barData[2];
-                                            break;
-                                        case 3:
-                                            return barData[3];
-                                            break;
-                                        case 4:
-                                            return barData[4];
-                                            break;
-                                   } 
+                                   for(i=0;i<barData.length;i++){
+                                        if(params.dataIndex==i){
+                                            return barData[i];
+                                        }
+                                    }
                                 },
                                 show: true,
                                 position: "right",
@@ -776,7 +773,6 @@ var options = {
                             tarValue = data[i].value;
                         }
                     }
-                    console.log(total)
                     let arr = [
                         '{a|'+name+'}',
                         '{b|'+((tarValue/total)*100).toFixed(2)+'%}'
@@ -882,14 +878,14 @@ var options = {
                         height: num?num*2.3:30,
                     },
                     left: '28%',
-                    top: '25%'
+                    top: '28%'
                 }]
             },
             series : [
                 {
                     name: "",
                     type: 'pie',
-                    center : ['50%','52%'],
+                    center : ['50%','55%'],
                     radius: ['45%', '51%'],
                     label: {        //展示文本设置
                         normal: {
