@@ -110,14 +110,14 @@
             <div class="right-bottom">
                 <div class="border-small">
                     <div class="history-num">
-                        <div>半年人均广告触达频次</div>
+                        <div>人均广告触达频次</div>
                         <div class="num-text1">
                             <div id="avg_reach_nums">200</div>
                             <div class="unit">(次/人)</div>
                         </div>
                     </div>
                     <div class="mouth-num">
-                        <div>半年人均广告触达时长</div>
+                        <div>人均广告触达时长</div>
                         <div class="num-text1">
                             <div class="num-text" id="avg_reach_time">40</div>
                             <div class="unit">(秒/人)</div>
@@ -176,7 +176,7 @@
             $.post(GPATH.queryChartsAdvs, function (data) {
                 if (data.code==200) {
                     var content = data.msg;
-                    console.log(content)
+                    // console.log(content)
                     $.each(content, function (i, v) {
                         // var bgData = that.bgData(v.value);  需要柱状图背景图时启用
                         var domID = v.title_value;
@@ -252,7 +252,6 @@
                                 var lable_arr2=arr[1];
                                 var value_arr1=arr[2];
                                 var value_arr2=arr[3];
-                                console.log(lable_arr1)
 
                                 var color = ["#eb5c2f", "#f6b264"];
                                 var option1 = options.noBgBarChart(color, lable_arr1.reverse(), value_arr1.reverse(), that.fontSizeNum);
@@ -634,7 +633,6 @@
                     var domID = "china_map";
                     var echartObj = new EchartObj(domID, option);
                     echartObj.setOp();
-                    console.log(option)
                 }
             }, "json");
         },

@@ -39,11 +39,9 @@ var GPATH ={
 
 
 
-    getChartsAdvs:"http://54.222.134.242:8899/boardDemo/advertise/get_charts_advs",
     //中国地图热力图
     advKanbanHeatData:"http://54.222.134.242:8899/boardDemo/advertise/advKanbanHeatData",
-    // 广告受众人数
-    advTodayPersonsData:"http://54.222.134.242:8899/boardDemo/advertise/advTodayPersonsData",
+    
     // 广告曝光频次
     advTodayAdvsData:"http://54.222.134.242:8899/boardDemo/advertise/advTodayAdvsData"
 
