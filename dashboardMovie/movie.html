@@ -23,7 +23,7 @@
                     <div class="swiper-slide" id="test30"></div>
                 </div>
             </div>
-            <div class="left-middle swiper-container swiper2">
+            <!-- <div class="left-middle swiper-container swiper2">
                 <div class="swiper-wrapper swiper2-wrapper">
                     <div class="swiper-slide swiper2-slide">
                         <div class="title">
@@ -413,8 +413,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="left-middle swiper-container swiperBig">
+            </div> -->
+            <div class="left-middle swiper-container swiperBig">
                 <div class="swiperBig-wrapper swiper-wrapper">
                     <div class="swiperBig-slide swiper-slide">
                         <div class="title">
@@ -744,7 +744,7 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="left-bottom swiper-container swiper3">
                 <div class="carousel1 swiper-wrapper">
                     <div class="carousel-chart2 swiper-slide" id="test80"></div>
@@ -897,7 +897,8 @@
 <script src="js/echarts.min.js"></script>
 <script src="js/echarts-gl.min.js"></script>
 <script src="js/china.js"></script>
-<script src="js/swiper.min.js"></script>
+<!-- <script src="js/swiper.min.js"></script> -->
+<script src="js/swiper.js"></script>
 <script src="js/jquery.vticker-min.js"></script>
 <script>
 
@@ -940,20 +941,18 @@
             var rate = (that.fontSizeNum/100).toFixed(3);
             /* Storing all the images into a variable */
             var images	= $('#stage .part').removeClass('default').addClass('animationReady');
+           
             var dim		= { width:images.width(),height:images.height()};  //图片的宽高
             var cnt = images.length;  //多少张图片
-            // /* Finding the centers of the animation container: */
+
             var centerX = $('#stage').width()/2;  //外部stagge的一半
             var centerY = $('#stage').height()/2 - dim.height/2; //stage的一半减去图片高度的一半
-            var cc = $('#stage').width()*0.3;
-            var index=0;
             
 
-            function rotate(step,total){
+            function rotate(step,total){ //调整step可以调整每次旋转的角度
                 var that=this;
                 deg+=step;
                 var eSin,eCos,newWidth,newHeight,q;
-                /* Loop through all the images: */
                 for(var i=0;i<cnt;i++){
                     q = ((360/cnt)*i+deg)*Math.PI/180;
                     eSin = Math.sin(q);
@@ -965,7 +964,7 @@
                         top			: centerY+eSin*80*rate,
                         left		: centerX+180*eCos*rate,
                         opacity		: 0.8+eSin*0.2,
-                        marginLeft	: -newWidth/2,
+                        marginLeft	: -newWidth/1.8,  //调整旋转模块的位置
                         zIndex		: Math.round(80+eSin*20),
                         "display": "flex",
                         "flex-direction": "column",
@@ -973,38 +972,26 @@
                         "align-items": "center",
                         "fontSize":newWidth/7,
                     }).width(newWidth).height(newHeight);
-                    // var list=[];
-                    // $.each(images,function(i,v){
-                    //     list.push($(v).width())
-                    // })
-                    // var index = list.indexOf(Math.max.apply(Math, list))
-                    // images.eq(index).css({
-                    //     opacity		: 1
-                    // });
                 }
                 total-=Math.abs(step);
                 if(total<=0) return false;
-                
-                // if(index==5){
-                //     index=0;
-                //     console.log(11)
-                // }else{
-                //     images.eq(index).css({
-                //     "color":"#fff"
-                //     })
-                //     index++;
-                //     console.log(index)
-                // }
-                
-
-                // Setting the function to be run again in 40 seconds (equals to 25 frames per second):
-                setTimeout(function(){rotate(step,total)},40);
-
+            
+                setTimeout(function(){rotate(step,total)},40);  
             }
-            // Running the animation once at load time (and moving the iPhone into view):
             rotate(20,360/cnt);
             var timer=null;
-            timer=setInterval(function(){rotate(10,360/cnt);},5000);
+            var $topText = $('#stage .round-bg')
+            var index=2;
+            timer=setInterval(function(){
+                rotate(18,360/cnt);
+                if(index>cnt){
+                    index =1;
+                    $topText.html("TOP"+index)
+                }else{
+                    $topText.html("TOP"+index)
+                }
+                index++;
+            },5000);
         },
         createEchart: function () {
             var that = this;
@@ -1273,6 +1260,18 @@
                     var new_value = that.bgData(bar9.value.reverse());
                     var option = options.normalBarChartOther(color, bar9.label, new_value, that.fontSizeNum,bar9.value);
                     option.title.text = "本周酒店收益top10";
+                    for(i=0,arr=[];i<new_value.length;i++){
+                        arr.push({
+                            symbol:"circle",
+                            symbolSize:that.fontSizeNum*0.2,
+                            symbolOffset:[0,"35%"],
+                            coord: [i, bar9.value[i]],
+                            itemStyle:{
+                                color:"#E7C501"
+                            }
+                        })
+                    }
+                    option.series[0].markPoint.data=arr;
                     option.series[0].itemStyle.normal.label.show = true;
                     var echartObj = new EchartObj("test90", option);
                     echartObj.setOp();
@@ -1281,6 +1280,18 @@
                     var new_value = that.bgData(bar10.value.reverse());
                     var option = options.normalBarChartOther(color, bar10.label,new_value, that.fontSizeNum,bar9.value);
                     option.title.text = "本月酒店收益top10";
+                    for(i=0,arr=[];i<new_value.length;i++){
+                        arr.push({
+                            symbol:"circle",
+                            symbolSize:that.fontSizeNum*0.2,
+                            symbolOffset:[0,"35%"],
+                            coord: [i, bar10.value[i]],
+                            itemStyle:{
+                                color:"#E7C501"
+                            }
+                        })
+                    }
+                    option.series[0].markPoint.data=arr;
                     option.series[0].itemStyle.normal.label.show = true;
                     var echartObj = new EchartObj("test100", option);
                     echartObj.setOp();
@@ -1563,86 +1574,32 @@
 
             }, "json");
 
-            $('#news-container1').vTicker({ 
-                speed: 1000,
-                pause: 2000,
-                animation: 'fade',
-                mousePause: false,
-                showItems: 5
-            });
-            $('#news-container2').vTicker({ 
-                speed: 1000,
-                pause: 2000,
-                animation: 'fade',
-                mousePause: false,
-                showItems: 5
-            });
-            $('#news-container3').vTicker({ 
-                speed: 1000,
-                pause: 2000,
-                animation: 'fade',
-                mousePause: false,
-                showItems: 5
-            });
-            var mySwiper = new Swiper('.swiper2', {
-                // direction: 'vertical', // 垂直切换选项
-                direction: 'horizontal', // 横向切换选项
-                // loop: true, // 循环模式选项
-                roundLengths : true,
-                speed: 1000,
-                autoplay: {
-                    delay: 10000,//时间 毫秒
-                    disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
-                },
-                // speed:3000
-            })
-           
-            // var mySwiper = new Swiper('.swiperSmall-1', {
-            //         direction: 'vertical',
-            //         slidesPerView: 5, // 每页显示几个slide
-            //         spaceBetween: 0, // slide的间距px
-            //         followFinger : false, // 
-            //         speed: 1000, // 速度
-            //         // roundLengths : true,
-            //         loop: $(".swiperSmall-1 .swiper-slide").length > 2, // 循环
-            //         autoplay: {
-            //             delay: 1000,
-            //             stopOnLastSlide: false,
-            //             disableOnInteraction: true,
-            //         },
-            //     });
-            // var mySwiper = new Swiper('.swiperSmall-2', {
-            //         direction: 'vertical',
-            //         slidesPerView: 5, // 每页显示几个slide
-            //         spaceBetween: 0, // slide的间距px
-            //         followFinger : false, // 
-            //         speed: 1000, // 速度
-            //         // roundLengths : true,
-            //         loop: $(".swiperSmall-2 .swiper-slide").length > 2, // 循环
-            //         autoplay: {
-            //             delay: 1000,
-            //             stopOnLastSlide: false,
-            //             disableOnInteraction: true,
-            //         },
-            //     });
-            // var mySwiper = new Swiper('.swiperSmall-3', {
-            //     direction: 'vertical',
-            //     slidesPerView: 5, // 每页显示几个slide
-            //     spaceBetween: 0, // slide的间距px
-            //     followFinger : false, // 
-            //     speed: 1000, // 速度
-            //     // roundLengths : true,
-            //     loop: $(".swiperSmall-3 .swiper-slide").length > 2, // 循环
-            //     autoplay: {
-            //         delay: 1000,
-            //         stopOnLastSlide: false,
-            //         disableOnInteraction: true,
-            //     },
+            // $('#news-container1').vTicker({ 
+            //     speed: 1000,
+            //     pause: 2000,
+            //     animation: 'fade',
+            //     mousePause: false,
+            //     showItems: 5
             // });
-            // var mySwiper = new Swiper('.swiperBig', {
+            // $('#news-container2').vTicker({ 
+            //     speed: 1000,
+            //     pause: 2000,
+            //     animation: 'fade',
+            //     mousePause: false,
+            //     showItems: 5
+            // });
+            // $('#news-container3').vTicker({ 
+            //     speed: 1000,
+            //     pause: 2000,
+            //     animation: 'fade',
+            //     mousePause: false,
+            //     showItems: 5
+            // });
+            // var mySwiper = new Swiper('.swiper2', {
             //     // direction: 'vertical', // 垂直切换选项
             //     direction: 'horizontal', // 横向切换选项
             //     // loop: true, // 循环模式选项
+            //     roundLengths : true,
             //     speed: 1000,
             //     autoplay: {
             //         delay: 10000,//时间 毫秒
@@ -1650,11 +1607,66 @@
             //     },
             //     // speed:3000
             // })
+           
+            var mySwiper = new Swiper('.swiperSmall-1', {
+                    direction: 'vertical',
+                    slidesPerView: 5, // 每页显示几个slide
+                    spaceBetween: 0, // slide的间距px
+                    followFinger : false, // 
+                    speed: 1000, // 速度
+                    // roundLengths : true,
+                    loop: $(".swiperSmall-1 .swiper-slide").length > 2, // 循环
+                    autoplay: {
+                        delay: 1000,
+                        stopOnLastSlide: false,
+                        disableOnInteraction: true,
+                    },
+                });
+            var mySwiper = new Swiper('.swiperSmall-2', {
+                    direction: 'vertical',
+                    slidesPerView: 5, // 每页显示几个slide
+                    spaceBetween: 0, // slide的间距px
+                    followFinger : false, // 
+                    speed: 1000, // 速度
+                    // roundLengths : true,
+                    loop: $(".swiperSmall-2 .swiper-slide").length > 2, // 循环
+                    autoplay: {
+                        delay: 1000,
+                        stopOnLastSlide: false,
+                        disableOnInteraction: true,
+                    },
+                });
+            var mySwiper = new Swiper('.swiperSmall-3', {
+                direction: 'vertical',
+                slidesPerView: 5, // 每页显示几个slide
+                spaceBetween: 0, // slide的间距px
+                followFinger : false, // 
+                speed: 1000, // 速度
+                // roundLengths : true,
+                loop: $(".swiperSmall-3 .swiper-slide").length > 2, // 循环
+                autoplay: {
+                    delay: 1000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: true,
+                },
+            });
+            var mySwiper = new Swiper('.swiperBig', {
+                // direction: 'vertical', // 垂直切换选项
+                direction: 'horizontal', // 横向切换选项
+                // loop: true, // 循环模式选项
+                speed: 1000,
+                autoplay: {
+                    delay: 10000,//时间 毫秒
+                    disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+                },
+                // speed:3000
+            })
             
             var mySwiper = new Swiper('.swiper3', {
                 // direction: 'vertical', // 垂直切换选项
                 direction: 'horizontal', // 横向切换选项
                 // loop: true, // 循环模式选项
+                roundLengths : true,
                 speed: 1000,
                 autoplay: {
                     delay: 8000,//时间 毫秒
@@ -1666,6 +1678,7 @@
                 // direction: 'vertical', // 垂直切换选项
                 direction: 'vertical', // 横向切换选项
                 // loop: true, // 循环模式选项
+                roundLengths : true,
                 speed: 1000,
                 autoplay: {
                     delay: 13000,//时间 毫秒
@@ -1677,6 +1690,7 @@
                 // direction: 'vertical', // 垂直切换选项
                 direction: 'horizontal', // 横向切换选项
                 // loop: true, // 循环模式选项
+                roundLengths : true,
                 speed: 1000,
                 autoplay: {
                     delay: 9000,//时间 毫秒
@@ -1688,9 +1702,10 @@
                 // direction: 'vertical', // 垂直切换选项
                 direction: 'vertical', // 横向切换选项
                 // loop: true, // 循环模式选项
+                roundLengths : true,
                 speed: 1000,
                 autoplay: {
-                    delay: 17000,//时间 毫秒
+                    delay: 23000,//时间 毫秒
                     disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
                 },
                 // speed:3000
