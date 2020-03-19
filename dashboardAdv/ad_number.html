@@ -176,7 +176,7 @@
             $.post(GPATH.queryChartsAdvs, function (data) {
                 if (data.code==200) {
                     var content = data.msg;
-                    // console.log(content)
+                    console.log(content)
                     $.each(content, function (i, v) {
                         // var bgData = that.bgData(v.value);  需要柱状图背景图时启用
                         var domID = v.title_value;
