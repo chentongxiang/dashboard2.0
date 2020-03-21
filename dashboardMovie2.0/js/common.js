@@ -46,9 +46,6 @@ var GPATH ={
     advTodayPersonsData:"http://54.222.134.242:8899/boardDemo/advertise/advTodayPersonsData",
     // 广告曝光频次
     advTodayAdvsData:"http://54.222.134.242:8899/boardDemo/advertise/advTodayAdvsData"
-
-
-
 }
 var options = {
     //设置图标字体与fontsize的倍率

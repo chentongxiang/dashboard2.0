@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/basic.css">
+    <link rel="stylesheet" href="css/ka_number.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+</head>
+<body>
+<div class="big-box">
+    <div class="header_img">
+        <div class="logo"></div>
+        <div class="title-text">集团KA看板</div>
+    </div>
+    <div class="content box_flex">
+        <div class="left-box">
+            <div class="left-top">
+                <div class="chart-box">
+                    <div class="title">|&nbsp;&nbsp;集团阶段流程管理（占比数）</div>
+                    <div class="chart" id="chart1">
+                    </div>
+                </div>
+            </div>
+            <div class="left-middle">
+                <div class="chart-box">
+                    <div class="title">|&nbsp;&nbsp;集团观影卡销售</div>
+                    <div class="chart" id="chart2">
+                    </div>
+                </div>
+            </div>
+            <div class="left-bottom swiper-container swiper-1">
+                <div class="carousel1 swiper-wrapper">
+                    <div class="chart-box swiper-slide">
+                        <div class="title">|&nbsp;&nbsp;热播电影TOP5</div>
+                        <div class="chart" id="chart3">
+                        </div>
+                    </div>
+                    <div class="chart-box swiper-slide">
+                        <div class="title">|&nbsp;&nbsp;热销商品top5</div>
+                        <div class="chart" id="chart4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="left-bottom" id="sex_advs_audience"></div>-->
+        </div>
+        <div class="center-box">
+            <div class="center-top">
+                <div class="number-text">集团酒店屏幕上线总数据</div>
+                <div class="data-box">
+                    <div class="number">8</div>
+                    <div class="number">1</div>
+                    <div class="number">3</div>
+                    <div class="number">7</div>
+                    <div class="number">5</div>
+                    <div class="number">2</div>
+                    <div class="number">0</div>
+                    <div class="number">9</div>
+                </div>
+                <div class="four-data">
+                    <div class="box1">
+                        <div class="text">全国酒店覆盖数字</div>
+                        <div class="number">204136</div>
+                    </div>
+                    <div class="box2">
+                        <div class="text">开机率50%以上酒店数</div>
+                        <div class="number">204136</div>
+                    </div>
+                    <div class="box3">
+                        <div class="text">平均昨日开机次数</div>
+                        <div class="number">204136</div>
+                    </div>
+                    <div class="box4">
+                        <div class="text">平均昨日开机时长</div>
+                        <div class="number">204136</div>
+                    </div>
+                </div>
+            </div>
+            <div class="center-middle">
+                <div class="china_map" id="china_map"></div>
+            </div>
+            <div class="center-bottom">
+                <div class="title">|&nbsp;&nbsp;重点酒店集团各省上线屏幕TOP2排名</div>
+                <div>麗枫:广东、四川</div>
+                <div>尚美:广东、四川</div>
+                <div>维也纳:广东、四川</div>
+                <div>东呈:广东、四川</div>
+                <div>喆啡:广东、四川</div>
+            </div>
+        </div>
+        <div class="right-box">
+            <div class="right-top">
+                <div class="top">
+                    <div class="box1">
+                        <div class="text">2020屏幕上线目标</div>
+                        <div class="number">100000</div>
+                    </div>
+                    <div class="box2">
+                        <div class="text">已完成数量</div>
+                        <div class="number">50000</div>
+                    </div>
+                    <div class="box3">
+                        <div class="text">差额</div>
+                        <div class="number">50000</div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="box1">
+                        <div class="text">2020客房签约目标</div>
+                        <div class="number">1000000</div>
+                    </div>
+                    <div class="box2">
+                        <div class="text">已完成数量</div>
+                        <div class="number">500000</div>
+                    </div>
+                    <div class="box3">
+                        <div class="text">差额</div>
+                        <div class="number">500000</div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-middle swiper-container swiper-2">
+                <div class="carousel1 swiper-wrapper">
+                    <div class="chart-box swiper-slide">
+                        <div class="title">|&nbsp;&nbsp;屏幕上线数量2000以上集团周商城收益（元）</div>
+                        <div class="chart" id="chart5">
+                        </div>
+                    </div>
+                    <div class="chart-box swiper-slide">
+                        <div class="title">|&nbsp;&nbsp;屏幕上线数量2000以上集团月商城收益（元）</div>
+                        <div class="chart" id="chart6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-bottom swiper-container swiper-3">
+                <div class="carousel1 swiper-wrapper">
+                    <div class="chart-box swiper-slide">
+                        <div class="title">|&nbsp;&nbsp;各酒店集团实时在线率（%）</div>
+                        <div class="chart" id="chart7">
+                        </div>
+                    </div>
+                    <div class="chart-box swiper-slide">
+                        <div class="title">|&nbsp;&nbsp;各集团酒店广告播出数据</div>
+                        <div class="chart" id="chart8">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/common.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/echarts-gl.min.js"></script>
+<script src="js/china.js"></script>
+<script src="js/test-scroll.js"></script>
+<script src="js/swiper.min.js"></script>
+<script>
+    var adNumber = {
+        fontSizeNum: 18,
+        allEchartObj: {},
+        arrLength: "",
+        history_data:0,
+        this_year_data:0,
+        myChartMap:"",
+        init: function () {
+            this.windowOnload();
+            //除地图外的echart图数据，接口get_charts_advs
+            this.createEchart();
+            //热力图展示，接口advKanbanHeatData
+            this.chinaMapShow();
+            // 广告曝光频次
+            this.avdDataShow();
+        },
+        windowOnload: function () {
+            var that = this;
+            setRemSize();
+            $(window).resize(function () {          //当浏览器大小变化时
+                setRemSize();
+                location.reload();
+            });
+            //页面定时10分钟刷新
+            var interAn = setInterval(function(){
+                window.location.reload();
+            },1000*60*5);
+            function setRemSize() {
+                that.fontSizeNum = document.documentElement.clientWidth / 1920 * 100;
+                //将得到的rem值复制给根元素的font-size
+                document.documentElement.style.fontSize = that.fontSizeNum + "px";
+            }
+        },
+        createEchart: function () {
+            var that = this;
+            var bar1 = {
+                chart_type: "pie",
+                label: ["立项跟踪", "呈报方案", "UI定案", "商务流程", "已签约",
+                 "协议流程", "存量清单", "导入样板店", "存量店建档", "筹建店清单", "存量店导入"],
+                title_label: "自动播放数据排名(万次)",
+                title_value: "top_play_auto",
+                value:[
+                    {value: "2", name: "立项跟踪"},
+                    {value: "2", name: "呈报方案"},
+                    {value: "2", name: "UI定案"},
+                    {value: "2", name: "商务流程"},
+                    {value: "2", name: "已签约"},
+                    {value: "2", name: "协议流程"},
+                    {value: "2", name: "存量清单"},
+                    {value: "2", name: "导入样板店"},
+                    {value: "2", name: "存量店建档"},
+                    {value: "2", name: "筹建店清单"},
+                    {value: "2", name: "存量店导入"},
+                ]
+            }
+            var  bar2 = {
+                chart_type: "bar",
+                label: ["麗枫", "尚美", "喆啡", "其他",],
+                title_label: "自动播放数据排名(万次)",
+                title_value: "top_play_auto",
+                value:[273,300,310,320]
+            }
+
+            var bar3 = {
+                    chart_type: "bar",
+                    label: ["西游记", "叶问4", "只有芸知道", "魔镜奇缘","误杀"],
+                    title_label: "自动播放数据排名(万次)",
+                    title_value: "top_play_auto",
+                    value:[173,200,210,220,290]
+            }
+
+            var bar4 = {
+                    chart_type: "bar",
+                    label: ["可乐", "坚果", "红牛", "乳酸菌","饼干"],
+                    title_label: "自动播放数据排名(万次)",
+                    title_value: "top_play_auto",
+                    value:[173,200,210,220,290]
+            }
+
+            var  bar5 = {
+                chart_type: "bar",
+                label: ["麗枫", "尚美", "喆啡", "维也纳","东呈"],
+                title_label: "自动播放数据排名(万次)",
+                title_value: "top_play_auto",
+                value:[273,300,310,320,500]
+            }
+            var  bar6 = {
+                chart_type: "bar",
+                label: ["麗枫", "尚美", "喆啡", "维也纳","东呈"],
+                title_label: "自动播放数据排名(万次)",
+                title_value: "top_play_auto",
+                value:[2730,3000,3100,3200,5000]
+            }
+
+            var  bar7 = {
+                chart_type: "bar",
+                label: ["麗枫", "尚美", "喆啡", "维也纳","东呈"],
+                title_label: "自动播放数据排名(万次)",
+                title_value: "top_play_auto",
+                value:[21,25,30,33,39]
+            }
+
+            var  bar8 = {
+                chart_type: "bar",
+                label: ["麗枫", "尚美", "喆啡", "维也纳","东呈"],
+                title_label: "自动播放数据排名(万次)",
+                title_value: "top_play_auto",
+                value:[21,25,30,33,39]
+            }
+
+            $.post(GPATH.queryChartsAdvs, function (data) {
+                if (data.code==200) {
+                    var content = data.msg;
+                    // console.log(content)
+                    var color = ["#DFDFDF", "#BD00FC", "#2FC4FF","#04FDFF", "#F86F56", "#F03A75", "#4CD964", 
+                    "#8854EF", "#8593F4", "#FF7C00", "#3865FE"]
+                    var option = options.pieChartOther(color, bar1.label, bar1.value, that.fontSizeNum);
+                    option.series[0].radius = ['0%', '65%'];
+                    option.series[0].center = ['30%', '53%'];
+                    var echartObj = new EchartObj("chart1", option);
+                    echartObj.setOp();
+
+                    var color = ["#395EFE", "#2FC4FF"];
+                    var option = options.noBgBarChart(color, bar2.label, bar2.value, that.fontSizeNum);
+                    var echartObj = new EchartObj("chart2", option);
+                    echartObj.setOp();
+
+
+                    var color = ["#BC00FC", "#BC00FC"];
+                    var option = options.normalBarChart(color, bar3.label, bar3.value, that.fontSizeNum);
+                    var echartObj = new EchartObj("chart3", option);
+                    echartObj.setOp();
+
+                    var color = ["#2fc4ff", "#2fc4ff"];
+                    var option = options.normalBarChart(color, bar4.label, bar4.value, that.fontSizeNum);
+                    var echartObj = new EchartObj("chart4", option);
+                    echartObj.setOp();
+
+                    var color = ["#C100FD", "#201A69"];
+                    var option = options.normalBarChartOne(color, bar5.label, bar5.value, that.fontSizeNum);
+                    var echartObj = new EchartObj("chart5", option);
+                    echartObj.setOp();
+
+                    var color = ["#5ffae0", "#c22ed0"];
+                    var option = options.normalBarChartOne(color, bar6.label, bar6.value, that.fontSizeNum);
+                    var echartObj = new EchartObj("chart6", option);
+                    echartObj.setOp();
+
+                    var color = ["#0CF5FF", "#0CF5FF"];
+                    var new_value = that.bgData(bar7.value.reverse());
+                    var option = options.normalBarChartOther(color, bar7.label,new_value, that.fontSizeNum, bar7.value);
+                    for(i=0,arr=[];i<new_value.length;i++){
+                        arr.push({
+                            symbol:"circle",
+                            symbolSize:that.fontSizeNum*0.15,
+                            symbolOffset:[0,"35%"],
+                            coord: [i, bar7.value[i]],
+                            itemStyle:{
+                                color:"#E7C501"
+                            }
+                        })
+                    }
+                    option.series[0].markPoint.data=arr;
+                    option.series[0].itemStyle.normal.label.show = true;
+                    var echartObj = new EchartObj("chart7", option);
+                    echartObj.setOp();
+
+                    var color = ["#c100fd", "#c100fd"];
+                    var new_value = that.bgData(bar8.value.reverse());
+                    var option = options.normalBarChartOther(color, bar8.label,new_value, that.fontSizeNum, bar8.value);
+                    for(i=0,arr=[];i<new_value.length;i++){
+                        arr.push({
+                            symbol:"circle",
+                            symbolSize:that.fontSizeNum*0.15,
+                            symbolOffset:[0,"35%"],
+                            coord: [i, bar8.value[i]],
+                            itemStyle:{
+                                color:"#f2f2f2"
+                            }
+                        })
+                    }
+                    option.series[0].markPoint.data=arr;
+                    option.series[0].itemStyle.normal.label.show = true;
+                    var echartObj = new EchartObj("chart8", option);
+                    echartObj.setOp();
+                }
+
+            }, "json");
+          
+            // var mySwiper = new Swiper('.swiper', {
+            //     // direction: 'vertical', // 垂直切换选项
+            //     direction: 'horizontal', // 横向切换选项
+            //     // loop: true, // 循环模式选项
+            //     speed: 1000,
+            //     autoplay: {
+            //         delay: 11000,//时间 毫秒
+            //         disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+            //     },
+            //     // speed:3000
+            // })
+            var mySwiper = new Swiper('.swiper-1', {
+                // direction: 'vertical', // 垂直切换选项
+                direction: 'horizontal', // 横向切换选项
+                // loop: true, // 循环模式选项
+                speed: 1000,
+                autoplay: {
+                    delay: 10000,//时间 毫秒
+                    disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+                },
+                // speed:3000
+            })
+            var mySwiper = new Swiper('.swiper-2', {
+                // direction: 'vertical', // 垂直切换选项
+                direction: 'horizontal', // 横向切换选项
+                // loop: true, // 循环模式选项
+                speed: 1000,
+                autoplay: {
+                    delay: 12000,//时间 毫秒
+                    disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+                },
+                // speed:3000
+            })
+
+            var mySwiper = new Swiper('.swiper-3', {
+                // direction: 'vertical', // 垂直切换选项
+                direction: 'horizontal', // 横向切换选项
+                // loop: true, // 循环模式选项
+                speed: 1000,
+                autoplay: {
+                    delay: 15000,//时间 毫秒
+                    disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+                },
+                // speed:3000
+            })
+        },
+        avdDataShow: function () {
+            var that = this;
+            //获取第几周
+            var getYearWeek = function () {
+                var date = new Date();
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var strDate = date.getDate();
+                var date1 = new Date(year, parseInt(month) - 1, strDate),
+                    date2 = new Date(year, 0, 1),
+                    d = Math.round((date1.valueOf() - date2.valueOf()) / 86400000);
+                return Math.ceil((d + ((date2.getDay() + 1) - 1)) / 7);
+            };
+            var week = getYearWeek()
+            $("#week-num").html("W" + week);
+
+            $.ajax({
+                url: GPATH.queryNumbersAdvs,
+                type: "GET",
+                dataType: "json"
+            }).then(function (data) {
+                if(data.code==200){
+                    var data = data.msg;
+                    var totalData = 0;
+                    $.each(data, function (i, v) {
+                        switch (v.label) {
+                            case "total":
+                                // $(".history-data").html(toThousands(v.value))
+                                $(".scroll-data").rollNum({
+                                    deVal:v.value
+                                });
+                                that.history_data = v.value;
+                                totalData = v.value;
+                                break;
+                            case "year_2018":
+                                var thisYearData = totalData - v.value;
+                                // $(".this-year-data").html(toThousands(thisYearData))
+                                that.this_year_data =  thisYearData;
+                                break;
+                            case "month":
+                                $("#current-month").html(toThousands(v.value))
+                                break;
+                            case "week":
+                                $("#current-week").html(toThousands(v.value));
+                                break;
+                            case "coveredRooms":
+                                $("#covered-rooms").html(toThousands(v.value));
+                                break;
+                            case "coveredHotels":
+                                $("#covered-hotels").html(toThousands(v.value));
+                                break;
+                            case "num_person_history":
+                                $("#num_person_history").html(toThousands(v.value));
+                                break;
+                            case "num_person_month":
+                                $("#num_person_month").html(toThousands(v.value));
+                                break;
+                            case "coveredCities":
+                                $("#covered-cities").html(toThousands(v.value));
+                                break;
+                            case "avgReachNums":
+                                $("#avg_reach_nums").html(toThousands(v.value));
+                                break;
+                            case "avgReachTime":
+                                $("#avg_reach_time").html(toThousands(v.value));
+                                break;
+                        }
+                    })
+                }
+                $.ajax({
+                    url: GPATH.advTodayAdvsData,
+                    type: "GET",
+                    dataType: "json"
+                }).then(function (data) {
+                    if (data.res) {
+                        $("#current-day").html(toThousands(data.msg))
+                        if ($("#current-week").html() == 0) {
+                            $("#current-week").html(toThousands(data.msg));
+                        }
+                    }
+                }).catch(function (data) {
+                    console.log(data.res)
+                })
+            })
+            function toThousands(num) {
+                var num = (num || 0).toString(), result = '';
+                while (num.length > 3) {
+                    result = ',' + num.slice(-3) + result;
+                    num = num.slice(0, num.length - 3);
+                }
+                if (num) {
+                    result = num + result;
+                }
+                return result;
+            }
+            //数字动态
+            function num_counter(domID) {
+                var decimal_places = 1;
+                var decimal_factor = decimal_places === 0 ? 1 : decimal_places * 10;
+                $(domID).animateNumber(
+                    {
+                        number: 100 * decimal_factor,
+                        color: 'green',
+                        'font-size': '30px',
+
+                        numberStep: function (now, tween) {
+                            var floored_number = Math.floor(now) / decimal_factor,
+                                target = $(tween.elem);
+                            if (decimal_places > 0) {
+                                floored_number = floored_number.toFixed(decimal_places);
+                            }
+                            target.text(floored_number + ' %');
+                        }
+                    },
+                    15000
+                )
+            }
+        },
+        chinaMapShow: function () {
+            var that = this;
+            var option = options.heatMapChart([], that.fontSizeNum);
+            var domID = "china_map";
+            var echartObj = new EchartObj(domID, option);
+            echartObj.setOp();
+            $.post(GPATH.advKanbanHeatData, function (data) {
+                if (data.res) {
+                    var heatBox = data.msg;
+                    // var option = options.heatMapChart(heatBox, that.fontSizeNum);
+                    var domID = "china_map";
+                    var echartObj = new EchartObj(domID, option);
+                    echartObj.setOp();
+
+                    that.myChartMap = echartObj.myChart
+                    var itemData = randomData(heatBox);
+                    addMarkPoint(itemData,option);
+                }
+            }, "json");
+            function addMarkPoint(arrNew,option){
+                var option = that.myChartMap.getOption();
+                option.series[2] = {
+                    type: 'effectScatter',
+                    coordinateSystem: 'geo',
+                    data: arrNew,
+                    symbolSize:that.fontSizeNum?that.fontSizeNum/5:14,//闪烁点大小
+                    showEffectOn: 'render',
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    hoverAnimation: true,
+                    itemStyle: {
+                        normal: {
+                            color: '#F4E925',
+                            shadowBlur: 10,
+                            shadowColor: '#333'
+                        }
+                    },
+                    zlevel: 1
+                };
+                that.myChartMap.clear();
+                that.myChartMap = echarts.init(document.getElementById('china_map'));
+                that.myChartMap.setOption(option);
+            }
+
+            function randomData(data){
+                // var arr = randomNum(500,10);
+                var arr = [0,10,30,40,60,80,90,110,120,130];
+                var arrNew = [];
+                $.each(arr,function (i,v) {
+                    arrNew.push(data[v])
+                })
+                $.each(arrNew,function (i,v) {
+                    if(i==0||i==1){
+                        // arrNew[i].itemStyle  = {normal : {color :'#07e9be'}};
+                        arrNew[i].itemStyle  = {normal : {color :'#00ff9c'}};
+                    }else if(i==2||i==3){
+                        // arrNew[i].itemStyle  = {normal : {color :'#5cf0fa'}};
+                        arrNew[i].itemStyle  = {normal : {color :'#ff7444'}};
+                    }else if(i==4||i==5){
+                        // arrNew[i].itemStyle  = {normal : {color :'#fbef5d'}};
+                        arrNew[i].itemStyle  = {normal : {color :'#fbef5d'}};
+                    }else{
+                        arrNew[i].itemStyle  = {normal : {color :'#2fc4ff'}};
+                    }
+                })
+                return  arrNew;
+            }
+            function randomNum(totalNum,getNum){
+                var arr=[];
+                for(var i=0;i<getNum;i++){
+                    var arrNum=parseInt(Math.random()*totalNum)+1;
+                    var flag=true;
+                    for(var j=0;j<=arr.length;j++){
+                        if(arrNum==arr[j]) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if(flag){
+                        arr.push(arrNum);
+                    }else{
+                        i--;
+                    }
+                }
+                return arr;//以提示方式显示
+            }
+        },
+        //柱状图背景色数据函数
+        bgData: function (data) {
+            var max = 0, bgData = [];
+            $.each(data, function (i, v) {
+                if (max < Number(v)) max = v;
+            })
+            $.each(data, function (i, v) {
+                bgData.push(max)
+            })
+            return bgData;
+        }
+    }
+    $(function () {
+        adNumber.init();
+    });
+</script>
+
+
+</body>
+
+</html>

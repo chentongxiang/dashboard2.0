@@ -14,7 +14,6 @@
         <div class="logo"></div>
         <div class="title-text">全国影视数据展示</div>
     </div>
-
     <div class="content box_flex">
         <div class="left-box">
             <!--<div class="left-top swiper-container swiper1" >-->
@@ -35,7 +34,6 @@
                 <!--</div>-->
             <!--</div>-->
             <div class="left-middle">
-                <div class="chart-title">标题</div>
                 <!--<div class="swiper-container scroll-container">-->
                     <!--<div class="swiper-wrapper box-big">-->
                         <!--<div class="box swiper-slide">-->
@@ -121,7 +119,28 @@
                     <!--</div>-->
                 <!--</div>-->
                 <div class="news-container" id="news-container">
-                    <ul>
+                    <div class="carousel1 swiper-wrapper">
+                        <div class="carousel-chart1 swiper-slide" id="test3">
+                            <div class="chart-title">当日各商品浏览量top5</div>
+                            <div class="chart-box">
+                                <ul id="top_goods_display_day">
+                                    <li>
+                                        <div class="box">
+                                            <div class="img" style="background-image: url(./images/rank)"></div>
+                                            <div class="content-box">
+                                                <div class="text"></div>
+                                                <div class="bar-box">
+                                                    <div class="bar" style=""></div>
+                                                    <div class="value"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <ul>
                         <li>
                             <div class="box">
                             <div class="img">
@@ -222,7 +241,7 @@
                                 <div class="num">1232342</div>
                             </div>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
             <div class="left-bottom swiper-container swiper3">
@@ -316,7 +335,7 @@
                     <!--<div class="carousel-chart4 swiper-slide" id="test32"></div>-->
                 <!--</div>-->
             <!--</div>-->
-            <div class="right-bottom ">
+            <div class="right-bottom">
                 <div class="title-text">
                     本周各省消费排名TOP5
                 </div>
@@ -348,8 +367,6 @@
     </div>
 
 </div>
-<!--<script src="js/lazyload.js"></script>-->
-
 <script src="js/jquery.js"></script>
 <script src="js/common.js"></script>
 <script src="js/echarts.min.js"></script>
@@ -369,7 +386,6 @@
             this.chinaMapShow();
             // 广告曝光频次
             this.avdDataShow();
-            this.starShow();
             this.threeDRotate();
 
         },
@@ -377,7 +393,7 @@
             var that = this;
             var deg=0;
             /* Storing all the images into a variable */
-
+            var rate = (that.fontSizeNum/100).toFixed(3);
             var images	= $('#stage .part').removeClass('default').addClass('animationReady');
             var dim		= { width:images.width(),height:images.height()};  //图片的宽高
 
@@ -402,17 +418,16 @@
                     console.log(that.fontSizeNum);
                     images.eq(i).css({
                         // top			: centerY+15*eSin*3.5,
-                        top			: centerY+15*eSin*3*66/that.fontSizeNum,
-                        left		: centerX+110*eCos,
-                        // opacity		: 0.6,
-                        opacity		: 0.8+eSin*0.2,
-                        // opacity		: 0.6,
-                        marginLeft	: -newWidth/2,
-                        zIndex		: Math.round(80+eSin*20),
+                        top         : centerY+eSin*80*rate,
+                        left        : centerX+180*eCos*rate,
+                        opacity     : 0.8+eSin*0.2,
+                        marginLeft  : -newWidth/2,
+                        zIndex      : Math.round(80+eSin*20),
                         "display": "flex",
                         "flex-direction": "column",
-                        "justify-content": "space-around",
-                        "align-items": "center"
+                        "justify-content": "center",
+                        "align-items": "center",
+                        "fontSize":newWidth/7,
                     }).width(newWidth).height(newHeight);
                     // var list=[];
                     // $.each(images,function(i,v){
@@ -434,25 +449,6 @@
             rotate(20,360/cnt);
             var timer=null;
             timer=setInterval(function(){rotate(10,360/cnt);},5000);
-        },
-        starShow:function(){
-            var stars=800;  /*星星的密集程度，数字越大越多*/
-            var $stars=$(".stars");
-            var r=900;   /*星星的看起来的距离,值越大越远,可自行调制到自己满意的样子*/
-            for(var i=0;i<stars;i++){
-                var $star=$("<div/>").addClass("star");
-                $stars.append($star);
-            }
-            $(".star").each(function(){
-                var cur=$(this);
-                var s=0.2+(Math.random()*1);
-                var curR=r+(Math.random()*300);
-                cur.css({
-                    transformOrigin:"0 0 "+curR+"px",
-                    transform:" translate3d(0,0,-"+curR+"px) rotateY("+(Math.random()*360)+"deg) rotateX("+(Math.random()*-50)+"deg) scale("+s+","+s+")"
-
-                })
-            })
         },
         windowOnload: function () {
             var that = this;
