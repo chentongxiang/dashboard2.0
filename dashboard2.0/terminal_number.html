@@ -583,6 +583,7 @@
                                     var hour = date.getHours();
                                     var arr= eval("("+v.value+")");
                                     //实时终端数量 = 客房涵盖数量*实时开机率
+                                    console.log(arr)
                                     var html1 = parseInt(data[1].value*arr[hour]);
                                     $("#yesterday_termialnum_active").html(html1);
                                 }else{
