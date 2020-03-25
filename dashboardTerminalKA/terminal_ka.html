@@ -11,62 +11,39 @@
 <div class="big-box">
     <div class="header_img">
         <div class="logo"></div>
-        <div class="title-text">全国终端数据展示</div>
+        <div class="title-text">终端KA第一版</div>
     </div>
     <div class="content box_flex">
         <div class="left-box">
             <div class="left-top">
-                <div class="module-text">
-                    各模块时长占比
-                </div>
-                <div class="module-content swiper-container swiper1">
-                    <div class="module-box swiper-wrapper">
-                        <div class="module-box-correct swiper-slide" data-swiper-autoplay='14000'>
-                            <div class="module-top">
-                                <div id="dom1"></div>
-                                <div id="dom2"></div>
-                                <div id="dom3"></div>
-                            </div>
-                            <div class="module-bottom ">
-                                <div id="dom4"></div>
-                                <div id="dom5"></div>
-                                <div id="dom6"></div>
-                            </div>
-                        </div>
-                        <div class="module-box-opposite swiper-slide">
-                            <div class="module-top">
-                                <div id="dom7"></div>
-                                <div id="dom8"></div>
-                                <div id="dom9"></div>
-                            </div>
-                            <div class="module-bottom">
-                                <div id="dom10"></div>
-                                <div id="dom11"></div>
-                                <div id="dom12"></div>
-                            </div>
-                        </div>
+                <div class="chart-box">
+                    <div class="title">电视品牌终端在线TOP5</div>
+                    <div class="chart" id="test1">
                     </div>
                 </div>
             </div>
-            <div class="left-middle swiper-container swiper2">
-                <div class="carousel1 swiper-wrapper">
-                    <div class="carousel-chart1 swiper-slide" id="top_province_view"></div>
-                    <div class="carousel-chart2 swiper-slide" id="top_city_view"></div>
+            <div class="left-middle">
+                <div class="chart-box">
+                    <div class="title">电视品牌终端在线TOP5</div>
+                    <div class="chart" id="test2">
+                    </div>
                 </div>
             </div>
             <div class="left-bottom swiper-container swiper3" >
-                <div class="carousel2 swiper-wrapper">
-                    <div class="carousel-chart3 swiper-slide" id="top_goods_view"></div>
-                    <div class="carousel-chart4 swiper-slide" id="top_movies_view"></div>
+                <div class="chart-box">
+                    <div class="title">电视品牌各省终端在线TOP3</div>
+                    <div class="chart" id="test3">
+                    </div>
                 </div>
             </div>
         </div>
         <div class="center-box">
             <div class="center-top-box">
                 <div class="center-top">
-                    <div class="text">当日实时数据采集量</div>
-                    <div class="real-time-data" id="termNumCounter">数据加载中</div>
-                    <input type='hidden' name="fixedTersnum" id="fixedTersnum" value="13048803"/>
+                    <div class="number-text">当日实时数据采集量</div>
+                    <div class="data-box" id="termNumCounter">
+                        <div class="text">加载中</div>
+                    </div>
                 </div>
                 <div class="center-four-data">
                     <div class="online-rate">
@@ -77,13 +54,13 @@
                         <div class="num-text">平均每日开机次数</div>
                         <div class="num-data2" id="avg_opennum_everyday">331079</div>
                     </div>
-                    <!-- <div class="active-terminal">
+                    <div class="active-terminal">
                         <div class="num-text">平均活跃终端数</div>
-                        <div class="num-data" id="avg_termialnum_active">61285</div>
-                    </div> -->
+                        <div class="num-data3" id="avg_termialnum_active">61285</div>
+                    </div>
                     <div class="turn-on-time">
                         <div class="num-text">平均每日开机时长</div>
-                        <div class="num-data3" id="avg_openlong_yesterday">12965101</div>
+                        <div class="num-data4" id="avg_openlong_yesterday">12965101</div>
                     </div>
                 </div>
             </div>
@@ -99,20 +76,32 @@
         <div class="right-box">
             <div class="right-top">
                 <div class="left">
-                    <div>客房涵盖数量</div>
+                    <div>部门指标数量</div>
                     <div class="num-text" id="coveredRooms">76534</div>
                 </div>
-                <!-- <div class="middle">
-                    <div>活跃终端数量</div>
+                <div class="middle">
+                    <div>实时终端数量</div>
                     <div class="num-text" id="yesterday_termialnum_active">8934</div>
-                </div> -->
+                </div>
                 <div class="right">
-                    <div>酒店覆盖数量</div>
+                    <div>指标任务差额</div>
                     <div class="num-text" id="coveredHotels">33695</div>
                 </div>
             </div>
-            <div class="right-middle" id="avg_single_open_long"></div>
-            <div class="right-bottom" id="avg_single_open_nums"></div>
+            <div class="right-middle" id="avg_single_open_long">
+                <div class="chart-box">
+                    <div class="title">终端KA部月上线终端趋势图</div>
+                    <div class="chart" id="test4">
+                    </div>
+                </div>
+            </div>
+            <div class="right-bottom" id="avg_single_open_nums">
+                <div class="chart-box">
+                    <div class="title">终端KA部各省市终端TOP10</div>
+                    <div class="chart" id="test5">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -174,130 +163,123 @@
             createEchart:function () {
                 var that = this;
                 //获取echart图表数据并显示
+                var  bar1 = {
+                    chart_type: "bar",
+                    label: ["TCL","创维", "海信", "康佳", "夏普",],
+                    title_label: "自动播放数据排名(万次)",
+                    title_value: "top_play_auto",
+                    value:[273,300,310,320,400]
+                }
+
+                var  bar2 = {
+                    chart_type: "bar",
+                    label: ["TCL","创维", "海信", "康佳", "夏普"],
+                    title_label: "自动播放数据排名(万次)",
+                    title_value: "top_play_auto",
+                    value:[
+                            {
+                                name: '',
+                                type: 'bar',
+                                barGap: 1,
+                                barWidth: '12%',
+                                // label: labelOption,
+                                data: [420, 432, 401, 434, 490],
+                            },
+                            {
+                                name: '',
+                                type: 'bar',
+                                barWidth: '12%',
+                                // label: labelOption,
+                                data: [320, 382, 391, 334, 390]
+                            },
+                            {
+                                name: '',
+                                type: 'bar',
+                                barWidth: '12%',
+                                // label: labelOption,
+                                data: [250, 232, 201, 254, 290]
+                            },
+                        ],
+                        provinceName:[
+                            ["广东","浙江","广西","上海","北京"],
+                            ["湖南","湖南","浙江","广东","浙江"],
+                            ["四川","浙江","四川","北京","四川"],
+                        ]
+                }
+
+                var bar3 = {
+                            chart_type: "bar",
+                            label: ["1月", "2月", "3月","4月","5月",
+                            "6月"],
+                            legendData:["TCL","创维", "海信", "康佳", "夏普"],
+                            title_label: "自动播放数据排名(万次)",
+                            title_value: "top_play_auto",
+                            value:[
+                                [113, 210, 219, 354, 431,520],
+                                [213, 310, 319, 454, 531,620],
+                                [233, 240, 269, 304, 321,520],
+                                [333, 346, 366, 456, 666,720],
+                                [313, 410, 519, 654, 681,725],
+                            ],
+                            
+                    }
+
+                var bar4 = {
+                    chart_type: "bar",
+                    label: ["7月", "8月", "9月",
+                        "10月","11月","12月"],
+                    title_label: "自动播放数据排名(万次)",
+                    title_value: "top_play_auto",
+                    value:[113, 210, 219, 354, 431,520]
+                }
+
+                var  bar5 = {
+                    chart_type: "bar",
+                    label: ["广东","上海", "河北", "山西", "江苏","浙江","福建", "山东", "辽宁", "吉林"],
+                    title_label: "自动播放数据排名(万次)",
+                    title_value: "top_play_auto",
+                    value:[273,300,310,320,400,450,500,600,650,700]
+                }
                 $.post(GPATH.queryChartsTerminal, function(data){
                     if(data.res){
                         var content = data.data;
-                        var contentOne = content.slice(0,7);
-                        var contentTow = content.slice(7);
-                        $.each(contentTow,function (i,v) {
-                            var bgData = that.bgData(v.value);
-                            var domID = v.title_value;
-                            switch(v.title_value) {
-                                case "top_goods_view":
-                                    var color =["#3DE7C9","#3DE7C9"];
-                                    v.value.reverse();
-                                    v.label.reverse();
-                                    var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
-                                    option.title.text = "商品热销TOP5";
-                                    break;
-                                case "top_movies_view":
-                                    var color =["#1FCF25","#00BAFF"];
-                                    v.value[0].data.reverse();
-                                    v.value[1].data.reverse();
-                                    v.label.reverse();
-                                    var option = options.stackedBarChart(color,v.label,v.value,that.fontSizeNum);
-                                    option.title.text = "电影热播TOP5";
-                                    option.series[0]["barWidth"] ='25%',
-                                    option.series[0]["itemStyle"] = {
-                                        normal: {
-                                            barBorderRadius:6,
-                                            label: {
-                                                show: true,		//开启显示
-                                                position: 'right',	//在上方显示
-                                                textStyle: {	    //数值样式
-                                                    color: '#fff',
-                                                    fontSize: that.fontSizeNum?that.fontSizeNum/8:14
-                                                }
-                                            },
-                                        }
-                                    };
-                                    option.series[1]["barWidth"] ='25%',
-                                    option.series[1]["itemStyle"] = {
-                                        barWidth: '30%',
-                                        normal: {
-                                            barBorderRadius:6,
-                                            label: {
-                                                show: true,		//开启显示
-                                                position: 'right',	//在上方显示
-                                                textStyle: {	    //数值样式
-                                                    color: '#fff',
-                                                    fontSize: that.fontSizeNum?that.fontSizeNum/8:14
-                                                }
-                                            },
-                                        }
-                                    }
-                                    break;
-                                case "avg_single_open_long":
-                                    var color =["#2ec1c7","#0c77e1"];
-                                    var option = options.normalBarChart(color,v.label,v.value,that.fontSizeNum);
-                                    option.xAxis[0].axisLabel.interval = 1 ;
-                                    // option.xAxis[0].name = "时段"
-                                    option.xAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
-                                    // option.yAxis[0].name = "小时"
-                                    option.yAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
-                                    option.title.text = "平均各时段驻留时长(小时)";
-                                    break;
-                                case "avg_single_open_nums":
-                                    // var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
-                                    var color =["#01AFF3","#25e5f9","rgba(1,175,243,.1)"];
-                                    var option = options.lineChart(color,v.label,v.value,that.fontSizeNum);
-                                    option.title.text = "单店平均各时段开机数量(个数)";
-                                    // option.xAxis[0].name = "时段"
-                                    option.xAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
-                                    // option.yAxis[0].name = "台"
-                                    option.yAxis[0]["nameTextStyle"]={fontSize:that.fontSizeNum?that.fontSizeNum/8:14};
-                                    break;
-                                case "ratio_brands_tv":
-//                                代码块
-                                    break;
-                                case "top_province_view":
-                                    var color =["#01AFF3","rgba(1,175,243,.6)","rgba(1,175,243,.1)"];
-                                    v.value.reverse();
-                                    v.label.reverse();
-                                    var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
-                                    option.title.text = "各省终端排行TOP5";
-                                    break;
-                                case "top_city_view":
-                                    var color =["#94e687","#27d8b7","#1B69FF"];
-                                    v.value.reverse();
-                                    v.label.reverse();
-                                    var option = options.noBgBarChart(color,v.label,v.value,that.fontSizeNum);
-                                    option.title.text = "城市粘性排行TOP5";
-                                    break;
-//                            default:
-//                                默认代码块
-                            }
-                            if(v.title_value!=="ratio_brands_tv"){
-                                var echartObj = new EchartObj(domID,option);
-                                that.allEchartObj[domID] = echartObj;
-                                echartObj.setOp();
-                            }
-                        })
-                        var domIdArr1 = ["dom7","dom8","dom9","dom10","dom11","dom12"];
-                        var domIdArr2 = ["dom1","dom2","dom3","dom4","dom5","dom6"];
-                        var colorArr1 =  [
-                            ["#35bfde","#26466D"],
-                            ["#07e9be","#26466D"],
-                            ["#f7eb5f","#26466D"],
-                            ["#feab67","#26466D"],
-                            ["#db6c74","#26466D"],
-                            ["#ab90df","#26466D"],
-                        ];
-                        var pieData2 = contentOne.slice(0,6);
-                        var pieData1 = contentOne.reverse().slice(0,6);
-                        $.each(pieData1,function (i,v) {
-                            var option = options.pieChart(colorArr1[i],pieData1[i].title_label,pieData1[i].value,that.fontSizeNum);
-                            var echartObj = new EchartObj(domIdArr1[i],option);
-                            echartObj.setOp();
-                            echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
-                        })
-                        $.each(pieData2,function (i,v) {
-                            var option = options.pieChart(colorArr1[i],pieData2[i].title_label,pieData2[i].value,that.fontSizeNum);
-                            var echartObj = new EchartObj(domIdArr2[i],option);
-                            echartObj.setOp();
-                            echartObj.myChart.dispatchAction({type: 'highlight',seriesIndex: 0,dataIndex: 0})
-                        })
+
+
+                        var color = ["#01D1FF","#2771EA","#063257"];
+                        var option = options.withBgBarChart(color, bar1.label, bar1.value, that.fontSizeNum);
+                        var bgData = that.bgData(bar1.value);
+                        option.series[0].data = bgData;
+                        var echartObj = new EchartObj("test1", option);
+                        echartObj.setOp();
+
+                        var color = ["#FEAB65","#8630C8","#228FFE"];
+                        var option = options.multipleBarChart(color, bar2.label, bar2.value, bar2.provinceName,that.fontSizeNum);
+                        var echartObj = new EchartObj("test2", option);
+                        echartObj.setOp();
+
+                        var color =["#50DF76","#F45E23","#E9E227","#228FFE","#F75CAD"];
+                        var option = options.multipleLineChart(color,bar3.legendData, bar3.label, bar3.value, that.fontSizeNum);
+                        console.log(option)
+                        var echartObj = new EchartObj("test3", option);
+                        echartObj.setOp();
+
+                        var color =["#6CC9FF","#36ACFE","rgba(54,172,254,.1)"];
+                        var option = options.lineChart(color, bar4.label, bar4.value, that.fontSizeNum);
+                        var echartObj = new EchartObj("test4", option);
+                        echartObj.setOp();
+
+                        var color = ["#01D1FF","#657CA8","#063257"];
+                        var option = options.withBgBarChartVertical(color, bar5.label, bar5.value, that.fontSizeNum);
+                        var bgData = that.bgData(bar5.value);
+                        option.series[0].data = bgData;
+                        var echartObj = new EchartObj("test5", option);
+                        echartObj.setOp();
+
+
                     }
+
+
+                        
                 },"json");
                 var mySwiper = new Swiper ('.swiper1', {
                     // direction: 'vertical', // 垂直切换选项
@@ -351,7 +333,7 @@
                                 var html="";
                                 var newNum_arr = newNum.toString().split("");
                                 $.each(newNum_arr,function(i,v){
-                                    html+="<div class='num_bg'>"+v+"</div>";
+                                    html+="<div class='number'>"+v+"</div>";
                                 })
                                 // console.log(html)
                                 $('#termNumCounter').html(html);

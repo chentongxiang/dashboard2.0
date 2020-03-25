@@ -88,7 +88,7 @@
     height:10%;
     text-align: center;
     line-height:.8rem;
-    font-size:0.5rem;
+    font-size:0.4rem;
     color:#fff;
     letter-spacing:.05rem;
     font-weight:bold;
@@ -109,17 +109,36 @@
     }
   }
   .content{
-    width: 94%;
-    height: 81%;
+    width: 96%;
+    height: 84%;
     margin:0 auto;
-    // border:1px solid red;
-    margin-top:.2rem;
     display: flex;
     justify-content: space-between;
     &:before,
     &:after {
       content: '';
       display: block;
+    }
+    .chart-box{
+      .chart-box{
+        width:100%;
+        height:100%;
+        .title{
+          width:90%;
+          height:16%;
+          font-size: .2rem;
+          line-height: .4rem;
+          // border:1px solid red;
+          color:#FBFCFF;
+          margin:0 auto;
+          text-align: center;        
+        }
+        .chart{
+          width:100%;
+          height:83%;
+          // border:1px solid red;
+        }
+      }
     }
     .left-box{
       width: 27%;
@@ -129,113 +148,33 @@
       justify-content: space-between;
       .left-top{
         width:100%;
-        height: 38%;
+        height: 30%;
         background-color: @chart-bg-color;
-        background-image: url(../images/terminal_left1_gb.png);
+        background-image: url(../images/left_border.png);
         background-repeat: no-repeat;
         background-size:100% 100%;
         background-position:center;
-        .module-text{
-          width: 100%;
-          height: 15%;
-          font-size: .23rem;
-          color:#222b67;
-          padding: .05rem 0 0 .15rem;
-          font-family: "Microsoft YaHei";
-        }
-        .module-content{
-          width: 100%;
-          height: 85%;
-          //position: relative;
-          .module-box{
-            width:100%;
-            height:100%;
-            .module-box-correct{
-              width:100%;
-              height:100%;
-              .module-top{
-                width: 100%;
-                height: 49%;
-                display: flex;
-                justify-content: space-around;
-                >div{
-                  width:33%;
-                  height: 100%;
-                }
-              }
-              .module-bottom{
-                width: 100%;
-                height: 49%;
-                display: flex;
-                justify-content: space-around;
-                >div{
-                  width:33%;
-                  height: 100%;
-                }
-              }
-            }
-            .module-box-opposite{
-              .module-box-correct;
-              //反转特效所需的css代码
-              //position:absolute;
-              //top:0 ;
-              //left:0 ;
-              //opacity:0;
-            }
-          }
-
-        }
-
+        .chart-box;
       }
       .left-middle{
         width:100%;
-        height: 29%;
+        height: 33%;
         background-color: @chart-bg-color;
-        background-image: url(../images/terminal_left2_bg.png);
+        background-image: url(../images/left_middle_border.png);
         background-repeat: no-repeat;
         background-size:100% 100%;
         background-position:center;
-        .carousel1{
-          width:100%;
-          height:100%;
-          //position: relative;
-          .carousel-chart1{
-            width:100%;
-            height: 100%;
-          }
-          .carousel-chart2{
-            width:100%;
-            height: 100%;
-            //position: absolute;
-            //top: 0;
-            //left:0;
-            //opacity: 0;
-          }
-        }
+        .chart-box;
       }
       .left-bottom{
         width:100%;
-        height: 29%;
+        height: 33%;
         background-color: @chart-bg-color;
-        background-image: url(../images/terminal_chart_left.png);
+        background-image: url(../images/left_bottom_border.png);
         background-repeat: no-repeat;
         background-size:100% 100%;
         background-position:center;
-        .carousel2{
-          width:100%;
-          height:100%;
-          display: flex;
-          justify-content: space-between;
-          .carousel-chart3{
-            width:100%;
-            height: 100%;
-          }
-          .carousel-chart4{
-            width:100%;
-            height: 100%;
-          }
-
-        }
+        .chart-box;
       }
     }
     .center-box{
@@ -249,37 +188,50 @@
       .center-top-box{
         width:100%;
         height:35%;
-        background-image: url("../images/terminal_data_bg.png");
+        background-image: url("../images/middle_top_border.png");
         background-repeat: no-repeat;
         background-size:100% 100%;
         background-position:center;
-        margin-top:.18rem;
+        // margin-top:.18rem;
         .center-top{
           width:100%;
           height:60%;
-
-          // display: flex;
-          // flex-direction: column;
-          // justify-content: space-around;
-          // //justify-content: space-evenly;
-          // &:before,
-          // &:after {
-          //   content: '';
-          //   display: block;
-          // }
-          // align-items: center;
-          .text{
-            width:60%;
-            height:.5rem;
-            font-size: .25rem;
-            margin:0 auto;
+        .number-text{
+          width:80%;
+          height:.35rem;
+          // border:1px solid red;
+          text-align: center;
+          font-size: .22rem;
+          color:#fff;
+          line-height: .4rem;
+          // border:1px solid red;
+          margin:0 auto;
+        }
+        .data-box{
+          // width:90%;
+          width:auto;
+          height:.9rem;
+          margin:.3rem auto;
+          font-size: .7rem;
+          display: flex;
+          justify-content: center;
+          // border:1px solid red;
+          .number{
+            width:.65rem;
+            height:.9rem;
+            margin:0 .05rem;
+            // border:1px solid red;
+            color:#FFFF00;
             text-align: center;
-            color: #fff;
-            font-family: number_font;
-            font-weight: bold;
-            letter-spacing: .02rem;
-            line-height: .5rem;
+            background-image: url(../images/number_border.png);
+            background-repeat: no-repeat;
+            background-size:100% 100%;
+            background-position:center;
           }
+          .text{
+            color:#fff;
+          }
+        }
           .real-time-data{
             // width: 60%;
             height:0.74rem;
@@ -309,42 +261,45 @@
         }
         .center-four-data{
           width:100%;
-          height:32%;
+          height:30%;
           margin-top:-.08rem;
           display: flex;
-          justify-content: center;
-          // justify-content: space-evenly;
-          // &:before,
-          // &:after {
-          //   content: '';
-          //   display: block;
-          // }
-          >div:nth-child(1){
-            width:28%;
+          justify-content: space-evenly;
+          &:before,
+            &:after {
+              content: '';
+              display: block;
+            }
+          .online-rate{
+            width:22%;
             height:100%;
-            //  border:1px solid red;
+            background-image: url("../images/four_data_bg.png");
+            background-repeat: no-repeat;
+            background-size:100% 100%;
+            background-position:center;
           }
-          >div:nth-child(2){
-             width:30%;
-             height:100%;
-              // border:1px solid yellow;
-
+          .boot-times{
+            .online-rate;
+            // width:25%;
            }
-          >div:nth-child(3){
-            width:30%;
-            height:100%;
+          .active-terminal{
+            .online-rate;
+            // width:25%;
+          }
+          .turn-on-time{
+            .online-rate;
+            width:25%;
           }
           >div{
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            //justify-content: space-evenly;
+            align-items: center;
             &:before,
             &:after {
               content: '';
               display: block;
             }
-            align-items: center;
             .num-text{
               font-size: .2rem;
               color: #ffffff;
@@ -352,29 +307,36 @@
             }
             .num-data1{
               font-size: .3rem;
-              color: #07e9be;
-              font-weight: bold;
+              color: #3EE6E3;
+              // font-weight: bold;
+              
             }
             .num-data2{
               font-size: .3rem;
-              color: #95e687;
-              font-weight: bold;
+              color: #3EE6E3;
+              // font-weight: bold;
             }
             .num-data3{
               font-size: .3rem;
-              color: #60e7f0;
+              color: #3EE6E3;
               font-weight: bold;
             //  border:1px solid yellow;
               .minute{
                 font-size: .2rem;
               }
+              
+            }
+            .num-data4{
+              font-size: .3rem;
+              color: #3EE6E3;
+              // font-weight: bold;
             }
           }
         }
       }
       .center-middle{
-        width:70%;
-        height:50%;
+        width:80%;
+        height:60%;
         margin:0 auto;
         // border:1px solid red;
       }
@@ -384,31 +346,21 @@
         font-size: .20rem;
         color:#0eb7d7;
         // border:1px solid red;
-        .empty{
-          width:80%;
-          height:55%;
-          // border:1px solid orange;
-
-        }
           .bg-image{
           width:80%;
-            height:65%;
-          // background-image: url("../images/terminal_bg.png");
-          // background-repeat: no-repeat;
-          // background-size:100% 100%;
-          // background-position:center;
+          height:65%;
           margin: 0 auto;
+          // border:1px solid red;
           .new-data{
             width:96%;
             height:92%;
             margin:0 auto;
             text-align: center;
-            // border:1px solid yellow;
-            // padding-top: .05rem;
             overflow-y:hidden;
             li{
               font-size: .18rem;
               display: none;
+              color: #9CD1FF;
             }
           }
         }
@@ -422,8 +374,8 @@
       justify-content: space-between;
       .right-top{
         width:100%;
-        height:24%;
-        background-image: url("../images/terminal_bg_right1.png");
+        height:22%;
+        background-image: url("../images/right_top_border.png");
         background-repeat:no-repeat;
         background-size:100% 100%;
         -moz-background-size:100% 100%;
@@ -439,9 +391,9 @@
         align-items: center;
         background-color: @chart-bg-color;
         .left{
-          width:40%;
+          width:30%;
           height:60%;
-          background-image: url("../images/border_new1.jpg");
+          background-image: url("../images/right_top_bg.png");
           background-repeat:no-repeat;
           background-size:100% 100%;
           -moz-background-size:100% 100%;
@@ -455,37 +407,44 @@
             margin-bottom: .08rem;
           }
           .num-text{
-            color:#08DFDF;
+            color:#50DF76;
             font-size: .3rem;
-            font-weight: bold;
-            font-family: main_number_font;
-            letter-spacing: .05rem;
+            font-family:"Adobe Heiti Std";
+            // letter-spacing: .05rem;
           }
         }
-        //.middle{
-        //  .left
-        //}
+        .middle{
+          .left;
+          .num-text{
+            color:#00FFFF;
+          }
+        }
         .right{
-          .left
+          .left;
+          .num-text{
+            color:#F45E23;
+          }
         }
       }
       .right-middle{
         width:100%;
         height:36%;
         background-color: @chart-bg-color;
-        background-image: url(../images/terminal_bg_right.png);
+        background-image: url(../images/right_middle_border.png);
         background-repeat: no-repeat;
         background-size:100% 100%;
         background-position:center;
+        .chart-box;
       }
       .right-bottom{
         width:100%;
         height:36%;
         background-color: @chart-bg-color;
-        background-image: url(../images/terminal_bg_right.png);
+        background-image: url(../images/right_middle_border.png);
         background-repeat: no-repeat;
         background-size:100% 100%;
         background-position:center;
+        .chart-box;
       }
     }
   }

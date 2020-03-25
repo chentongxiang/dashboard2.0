@@ -56,6 +56,8 @@ var options = {
     titleRate:4.5,
     dynamicRate:4.3,
     legendRate:8,
+    fontColor:"#9CD1FF",
+    lineColor:"rgba(101,124,168,0.12)",
     //柱状图-具有背景横向
     barChart:function (color,barLabel,bgData,barData,num) {
         var option = {
@@ -194,6 +196,510 @@ var options = {
         }
         return option;
     },
+    //柱状图-具有背景横向
+    withBgBarChart:function (color,barLabel,barData,num) {
+        var option = {
+            title: {
+                show:true,
+                text: '',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    // fontFamily: 'monospace',
+                    fontSize: num?num/this.titleRate:14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color:"#fff5b5"
+                },
+                x:"8%",
+                y:"5%"
+            },
+            color: color[0],
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '5%',
+                right: '15%',
+                top:"10%",
+                bottom: '6%',
+                containLabel: true
+            },
+            yAxis : [
+                {
+                    type: 'category',
+                    data: barLabel,
+                    axisTick: {
+                        show:false,
+                        // alignWithLabel: true
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: this.fontColor,  //坐标的字体颜色
+                            fontSize: num ? num / this.rate : 14,
+                        },
+                        interval: 0,
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#eeeeda',  //坐标的字体颜色
+                        },
+                        show: false
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'value',
+                    axisLabel: {
+                        show: false,
+                        textStyle:{
+                            color:'#eeeeda',  //坐标的字体颜色
+                            fontSize: num?num/this.titleRate:14,
+                        },
+                    },
+                    splitLine: {
+                        show: false,
+                    },
+                    axisLine: {
+                        show: false,
+                        lineStyle:{
+                            color:'#eeeeda',  //坐标的字体颜色
+                        },
+                    },
+                    max:"dataMax",
+                    axisTick:{       //y轴刻度线
+                        show:false
+                    },
+                }
+            ],
+            series : [
+                {
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            barBorderRadius:6,
+                            label: {
+                                formatter:function(params){
+                                    for(i=0;i<barData.length;i++){
+                                        if(params.dataIndex==i){
+                                            return barData[i];
+                                        }
+                                    }
+                                },
+                                show: true,
+                                position: "right",
+                                textStyle: {
+                                  fontSize: num?num/this.legendRate*1.3:14,
+                                  color: this.fontColor,
+                                }
+                            },
+                            color:color[2],
+                        }
+                    },
+                    silent: true,
+                    barWidth: '30%',
+                    barGap: '-100%', // Make series be ove
+                    data: []
+                },
+                {
+                    name:'',
+                    type:'bar',
+                    barWidth: '30%',
+                    data:barData,
+                    itemStyle: {
+                        emphasis:{
+                            barBorderRadius:6,
+                        },
+                        normal: {
+                            barBorderRadius:6,
+                            label: {
+                                formatter:function(a){
+                                    console.log(a)
+                                },
+                                show: false,		//开启显示
+                                position: [200, 0],	//在上方显示
+                                textStyle: {	    //数值样式
+                                    color: '#9CD1FF',
+                                    fontSize: num?num/this.legendRate:14
+                                }
+                            },
+                            // color:color[0]
+                            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                                offset: 0,
+                                color: color[1] // 0% 处的颜色
+                            }, {
+                                offset: 1,
+                                color: color[0] // 100% 处的颜色
+                            }], false)
+                        }
+                    }
+                },
+                
+            ],
+            // legend: {
+            //     x : '50%',
+            //     y : '20%',
+            //     type: 'scroll',
+            //     orient: 'vertical',
+            //     textStyle: {
+            //         fontSize: num?num/this.rate:14,
+            //         color:"white",
+            //         fontFamily: "Microsoft YaHei",
+            //     },
+            //     data:barLabel
+            // },
+        }
+        return option;
+    },
+    //柱状图-具有背景竖向
+    withBgBarChartVertical:function (color,barLabel,barData,num) {
+        var option = {
+            title: {
+                show:true,
+                text: '',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    // fontFamily: 'monospace',
+                    fontSize: num?num/this.titleRate:14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color:"#fff5b5"
+                },
+                x:"8%",
+                y:"5%"
+            },
+            color: color[0],
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '5%',
+                right: '10%',
+                top:"10%",
+                bottom: '6%',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type: 'category',
+                    data: barLabel,
+                    axisTick: {
+                        show:false,
+                        // alignWithLabel: true
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: this.fontColor,  //坐标的字体颜色
+                            fontSize: num ? num / this.rate : 14,
+                        },
+                        interval: 0,
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#2a3994',  //坐标的字体颜色
+                        },
+                        show: true
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLabel: {
+                        show: true,
+                        textStyle:{
+                            color:this.fontColor,  //坐标的字体颜色
+                            fontSize: num?num/this.titleRate*0.8:14,
+                        },
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: 'rgba(101,124,168,0.12)',  //坐标的字体颜色
+                        },
+                    },
+                    axisLine: {
+                        show: true,
+                        lineStyle:{
+                            color:'#2a3994',  //坐标的字体颜色
+                        },
+                    },
+                    max:"dataMax",
+                    axisTick:{       //y轴刻度线
+                        show:false
+                    },
+                }
+            ],
+            series : [
+                {
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            barBorderRadius:6,
+                            label: {
+                                formatter:function(params){
+                                    for(i=0;i<barData.length;i++){
+                                        if(params.dataIndex==i){
+                                            return barData[i];
+                                        }
+                                    }
+                                },
+                                show: true,
+                                position: "top",
+                                textStyle: {
+                                  fontSize: num?num/this.legendRate*1.3:14,
+                                  color: this.fontColor,
+                                }
+                            },
+                            color:color[2],
+                        }
+                    },
+                    silent: true,
+                    barWidth: '30%',
+                    barGap: '-100%', // Make series be ove
+                    data: []
+                },
+                {
+                    name:'',
+                    type:'bar',
+                    barWidth: '30%',
+                    data:barData,
+                    itemStyle: {
+                        emphasis:{
+                            barBorderRadius:6,
+                        },
+                        normal: {
+                            barBorderRadius:6,
+                            label: {
+                                formatter:function(a){
+                                    console.log(a)
+                                },
+                                show: false,		//开启显示
+                                position: [200, 0],	//在上方显示
+                                textStyle: {	    //数值样式
+                                    color: '#9CD1FF',
+                                    fontSize: num?num/this.legendRate:14
+                                }
+                            },
+                            color: function(params) {
+                                let colorList = [
+                                    "#019BD7",
+                                    "#163FAB",
+                                    "#20C1A0",
+                                    "#019BD7",
+                                    "#163FAB",
+                                    "#20C1A0",
+                                    "#019BD7",
+                                    "#163FAB",
+                                    "#20C1A0",
+                                    "#019BD7",
+                                    "#163FAB",
+                                    "#20C1A0",
+                                ];
+                                return colorList[params.dataIndex];
+                            }
+                            // color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                            //     offset: 0,
+                            //     color: color[1] // 0% 处的颜色
+                            // }, {
+                            //     offset: 1,
+                            //     color: color[0] // 100% 处的颜色
+                            // }], false)
+                        }
+                    }
+                },
+                
+            ],
+            // legend: {
+            //     x : '50%',
+            //     y : '20%',
+            //     type: 'scroll',
+            //     orient: 'vertical',
+            //     textStyle: {
+            //         fontSize: num?num/this.rate:14,
+            //         color:"white",
+            //         fontFamily: "Microsoft YaHei",
+            //     },
+            //     data:barLabel
+            // },
+        }
+        return option;
+    },
+    // withBgBarChartVertical:function (color,barLabel,barData,num) {
+    //     var option = {
+    //         title: {
+    //             show:true,
+    //             text: '',
+    //             textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+    //                 // fontFamily: 'monospace',
+    //                 fontSize: num?num/this.titleRate:14,
+    //                 fontStyle: 'normal',
+    //                 fontWeight: 'normal',
+    //                 color:"#fff5b5"
+    //             },
+    //             x:"8%",
+    //             y:"5%"
+    //         },
+    //         color: color[0],
+    //         tooltip : {
+    //             trigger: 'axis',
+    //             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+    //                 type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+    //             }
+    //         },
+    //         grid: {
+    //             left: '5%',
+    //             right: '10%',
+    //             top:"10%",
+    //             bottom: '6%',
+    //             containLabel: true
+    //         },
+    //         xAxis : [
+    //             {
+    //                 type: 'category',
+    //                 data: barLabel,
+    //                 axisTick: {
+    //                     show:false,
+    //                     // alignWithLabel: true
+    //                 },
+    //                 axisLabel: {
+    //                     textStyle: {
+    //                         color: this.fontColor,  //坐标的字体颜色
+    //                         fontSize: num ? num / this.rate : 14,
+    //                     },
+    //                     interval: 0,
+    //                 },
+    //                 axisLine: {
+    //                     lineStyle: {
+    //                         color: '#2a3994',  //坐标的字体颜色
+    //                     },
+    //                     show: true
+    //                 },
+    //                 splitLine: {
+    //                     show: false
+    //                 },
+                    
+    //             }
+    //         ],
+    //         yAxis : [
+    //             {
+    //                 type : 'value',
+    //                 axisLabel: {
+    //                     show: true,
+    //                     textStyle:{
+    //                         color:this.fontColor,  //坐标的字体颜色
+    //                         fontSize: num?num/this.titleRate*0.8:14,
+    //                     },
+    //                 },
+    //                 splitLine: {
+    //                     show: true,
+    //                     lineStyle: {
+    //                         color: '#2a3994',  //坐标的字体颜色
+    //                     },
+    //                 },
+    //                 axisLine: {
+    //                     show: true,
+    //                     lineStyle:{
+    //                         color:'#2a3994',  //坐标的字体颜色
+    //                     },
+    //                 },
+    //                 max:"dataMax",
+    //                 axisTick:{       //y轴刻度线
+    //                     show:false
+    //                 },
+    //             }
+    //         ],
+    //         series : [
+    //             {
+    //                 type: 'bar',
+    //                 itemStyle: {
+    //                     normal: {
+    //                         barBorderRadius:6,
+    //                         label: {
+    //                             formatter:function(params){
+    //                                 for(i=0;i<barData.length;i++){
+    //                                     if(params.dataIndex==i){
+    //                                         return barData[i];
+    //                                     }
+    //                                 }
+    //                             },
+    //                             show: true,
+    //                             position: "top",
+    //                             textStyle: {
+    //                               fontSize: num?num/this.legendRate*1.3:14,
+    //                               color: this.fontColor,
+    //                             }
+    //                         },
+    //                         color:color[2],
+    //                     }
+    //                 },
+    //                 silent: true,
+    //                 barWidth: '30%',
+    //                 barGap: '-100%', // Make series be ove
+    //                 data: []
+    //             },
+    //             {
+    //                 name:'',
+    //                 type:'bar',
+    //                 barWidth: '30%',
+    //                 data:barData,
+    //                 itemStyle: {
+    //                     emphasis:{
+    //                         barBorderRadius:6,
+    //                     },
+    //                     normal: {
+    //                         barBorderRadius:6,
+    //                         label: {
+    //                             formatter:function(a){
+    //                                 console.log(a)
+    //                             },
+    //                             show: false,		//开启显示
+    //                             position: [200, 0],	//在上方显示
+    //                             textStyle: {	    //数值样式
+    //                                 color: '#9CD1FF',
+    //                                 fontSize: num?num/this.legendRate:14
+    //                             }
+    //                         },
+    //                         // color:color[0]
+    //                         color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+    //                             offset: 0,
+    //                             color: color[1] // 0% 处的颜色
+    //                         }, {
+    //                             offset: 1,
+    //                             color: color[0] // 100% 处的颜色
+    //                         }], false)
+    //                     }
+    //                 }
+    //             },
+                
+    //         ],
+    //         // legend: {
+    //         //     x : '50%',
+    //         //     y : '20%',
+    //         //     type: 'scroll',
+    //         //     orient: 'vertical',
+    //         //     textStyle: {
+    //         //         fontSize: num?num/this.rate:14,
+    //         //         color:"white",
+    //         //         fontFamily: "Microsoft YaHei",
+    //         //     },
+    //         //     data:barLabel
+    //         // },
+    //     }
+    //     return option;
+    // },
     noBgBarChart:function (color,barLabel,barData,num) {
         var option = {
             title: {
@@ -327,8 +833,167 @@ var options = {
     },
 
     //柱状图-多柱状横向
-    stackedBarChart:function (color,barLabel,barData,num) {
+    multipleBarChart:function (color,barLabel,barData,provinceName,num) {
+        option = {
+            color: color,
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '5%',
+                right: '5%',
+                top:"10%",
+                bottom: '6%',
+                containLabel: true
+            },
+            // legend: {
+            //     data: barLabel
+            // },
+            xAxis: [
+                {
+                    type: 'category',
+                    axisTick: {show: false},
+                    data: barLabel,
+                    axisLabel: {
+                        textStyle:{
+                            color:this.fontColor,  //坐标的字体颜色
+                            fontSize: num ? num / this.rate : 14,
+                        },
+                    },
+                    splitLine: {
+                        show: false,
+                    },
+                    axisLine: {
+                        lineStyle:{
+                            color:'#2A3994',  //线颜色
+                        },
+                    },
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    axisTick: {
+                        show:true,
+                        // alignWithLabel: true
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color:this.fontColor,  //坐标的字体颜色
+                            fontSize: num ? num / this.rate : 14,
+                        },
+                        interval: 0,
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#2A3994',  //坐标的字体颜色
+                        },
+                        show: true
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle:{
+                            color:'#2A3994',  //坐标的字体颜色
+                        }           
+
+                    },
+                    axisTick:{       //y轴刻度线
+                        show:false
+                    },
+                }
+            ],
+            series: [
+                {
+                    name: '',
+                    type: 'bar',
+                    barGap: 1.2,
+                    barWidth: '12%',
+                    // label: labelOption,
+                    data: [420, 432, 401, 434, 490],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                formatter:function(params){
+                                    for(i=0;i<provinceName[0].length;i++){
+                                        if(params.dataIndex==i){
+                                            return provinceName[0][i];
+                                        }
+                                    }
+                                },
+                                show: true,
+                                position: "top",
+                                textStyle: {
+                                fontSize: num?num/this.legendRate*1.2:14,
+                                color: this.fontColor,
+                                }
+                            },
+                        }
+                    },
+                },
+                {
+                    name: '',
+                    type: 'bar',
+                    barWidth: '12%',
+                    // label: labelOption,
+                    data: [320, 332, 301, 334, 390],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                formatter:function(params){
+                                    console.log()
+                                    for(i=0;i<provinceName[1].length;i++){
+                                        if(params.dataIndex==i){
+                                            return provinceName[1][i];
+                                        }
+                                    }
+                                },
+                                show: true,
+                                position: "top",
+                                textStyle: {
+                                fontSize: num?num/this.legendRate*1.2:14,
+                                color: this.fontColor,
+                                }
+                            },
+                        }
+                    },
+                },
+                {
+                    name: '',
+                    type: 'bar',
+                    barWidth: '12%',
+                    // label: labelOption,
+                    data: [250, 232, 201, 254, 290],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                formatter:function(params){
+                                    for(i=0;i<provinceName[2].length;i++){
+                                        if(params.dataIndex==i){
+                                            return provinceName[2][i];
+                                        }
+                                    }
+                                },
+                                show: true,
+                                position: "top",
+                                textStyle: {
+                                fontSize: num?num/this.legendRate*1.2:14,
+                                color: this.fontColor,
+                                }
+                            },
+                        }
+                    },
+                },
+            ]
+        };
+        return option;
+    },
+    //单一折线图
+    lineChart:function (color,lineLabel,lineData,num) {
         var option = {
+            color: [color[0]],
             title: {
                 show:true,
                 text: '',
@@ -337,12 +1002,11 @@ var options = {
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
-                    color:"#222b67"
+                    color:"#fff5b5"
                 },
-                x:"2%",
-                y:"2%"
+                x:"8%",
+                y:"5%"
             },
-            color: color,
             tooltip : {
                 trigger: 'axis',
                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -350,85 +1014,142 @@ var options = {
                 }
             },
             grid: {
-                left: '5%',
-                right: '15%',
-                top:"25%",
+                left: '7%',
+                right: '8%',
+                top:"10%",
                 bottom: '8%',
                 containLabel: true
             },
-            yAxis : [
-                {
-                    type: 'category',
-                    data: barLabel,
-
-                    axisLabel: {
-                        textStyle: {
-                            color: '#99b0d2',  //坐标的字体颜色
-                            fontSize: num ? num / this.rate : 14,
-                        },
-                        interval: 0,
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: '#fff',  //坐标的字体颜色
-                        },
-                        show: false
-                    },
-                    splitLine: {
-                        show: false
-                    },
-                    axisTick:{       //y轴刻度线
-                        show:false
-                    },
-
-                }
-            ],
             xAxis : [
                 {
-                    type : 'value',
-                    axisLabel: {
-                        show: false,
-                        textStyle:{
-                            color:'#fff',  //坐标的字体颜色
-                        },
+                    nameLocation:"center",
+                    type : 'category',
+                    data : lineLabel,
+                    axisTick: {
+                        show:false,
+                        alignWithLabel: true
                     },
-                    splitLine: {
-                        show: false,
+                    axisLabel: {
+                        textStyle:{
+                            color:this.fontColor,  //坐标的字体颜色
+                            fontSize:num?num/this.rate:14,
+                        },
                     },
                     axisLine: {
                         lineStyle:{
-                            color:'#0E3254',  //坐标的字体颜色
+                            color:'#2A3994',  //坐标的字体颜色
                         },
                     },
-                    max:"dataMax",
-                    axisTick:{       //y轴刻度线
-                        show:false
+                    splitLine:{
+                        show:false     //去掉网格线
+                    }
+
+                }
+            ],
+            yAxis : [
+                {
+                    nameLocation:"center",
+                    type : 'value',
+                    axisLabel: {
+                        textStyle:{
+                            color:this.fontColor,  //坐标的字体颜色
+                            fontSize:num?num/this.rate:14,
+                        },
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle:{
+                            color: '#2A3994',
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
+                    axisLine: {
+                        lineStyle:{
+                            color:'#2A3994',  //坐标的字体颜色
+                        },
+                    },
+                    axisTick: {
+                        show: false
+                    }
+                }
+            ],
+            series : [
+                {
+                    name:'',
+                    type:'line',
+                    data:lineData,
+                    smooth: true,
+                    itemStyle: {
+                        emphasis:{
+                            barBorderRadius:7,
+                        },
+                        normal: {
+                            label : {
+                                show: true,
+                                color:this.fontColor,
+                                fontSize:num?num/this.rate:14,
+                            },
+                            barBorderRadius:7,
+                            color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                                offset: 0,
+                                color: color[1] // 0% 处的颜色
+                            }, {
+                                offset: 1,
+                                color: color[0] // 100% 处的颜色
+                            }], false)
+                        }
+                    },
+                    areaStyle:{
+                        normal:{
+                            //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+
+                                offset: 0,
+                                color: color[1]
+                            }, {
+                                offset: 0.8,
+                                color: color[2]
+                            }])
+
+                        }
                     },
                 }
             ],
-            series : barData,
             legend: {
-                right :"10%",
-                top : '7%',
-                // type: 'scroll',
-                orient: 'horizontal',
+                x : '55%',
+                y : '20%',
+                type: 'scroll',
+                orient: 'vertical',
                 textStyle: {
-                    fontSize: num?num/this.legendRate:14,
+                    fontSize: num?num/this.rate:14,
                     color:"white",
                     fontFamily: "Microsoft YaHei",
+
                 },
-                // data:[barData[0].name,barData[1].name]
-                data:[barData[0].name,barData[1].name],
-                itemWidth:num?num/this.rate*1.5:14,
-                itemHeight:num?num/this.rate/1.3:14,
             },
         }
         return option;
     },
-    //折线图
-    lineChart:function (color,lineLabel,lineData,num) {
+    //多条折线图
+    multipleLineChart:function (color,legendData,lineLabel,lineData,num) {
         var option = {
-            color: [color[0]],
+            color:color,
+            legend: {
+                x : '8%',
+                y : '0%',
+                type: 'scroll',
+                orient: 'horizontal',
+                textStyle: {
+                    fontSize: num?num/this.rate:14,
+                    color:"#9CD1FF",
+                    fontFamily: "Microsoft YaHei",
+                },
+                
+                itemWidth:num?num/this.rate*1.4:14,
+                itemHeight:num?num/this.rate/1.5:14,
+                data:legendData
+            },
             title: {
                 show:true,
                 text: '',
@@ -451,12 +1172,11 @@ var options = {
             grid: {
                 left: '7%',
                 right: '8%',
-                top:"25%",
+                top:"15%",
                 bottom: '8%',
                 containLabel: true
             },
-            xAxis : [
-                {
+            xAxis : {
                     nameLocation:"center",
                     type : 'category',
                     data : lineLabel,
@@ -465,7 +1185,7 @@ var options = {
                     },
                     axisLabel: {
                         textStyle:{
-                            color:'#99b0d2',  //坐标的字体颜色
+                            color:this.fontColor,  //坐标的字体颜色
                             fontSize:num?num/this.rate:14,
                         },
                     },
@@ -474,23 +1194,29 @@ var options = {
                             color:'#2a3994',  //坐标的字体颜色
                         },
                     },
-
-                }
-            ],
-            yAxis : [
-                {
+                    splitLine: {
+                        show: true,
+                        lineStyle:{
+                            color: this.lineColor,
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
+                    boundaryGap: false,
+                },
+            yAxis : {
                     nameLocation:"center",
                     type : 'value',
                     axisLabel: {
                         textStyle:{
-                            color:'#99b0d2',  //坐标的字体颜色
+                            color:this.fontColor,  //坐标的字体颜色
                             fontSize:num?num/this.rate:14,
                         },
                     },
                     splitLine: {
                         show: true,
                         lineStyle:{
-                            color: '#2a3994',
+                            color: this.lineColor,
                             width: 1,
                             type: 'solid'
                         }
@@ -500,57 +1226,77 @@ var options = {
                             color:'#2a3994',  //坐标的字体颜色
                         },
                     },
-                }
-            ],
+                    axisTick: {
+                        show: false
+                    },
+                },
             series : [
                 {
-                    name:'',
+                    name:legendData[0],
                     type:'line',
-                    data:lineData,
+                    data:lineData[0],
                     smooth: true,
+                    symbol:"circle",
                     itemStyle: {
                         emphasis:{
-                            barBorderRadius:7,
+                            barBorderRadius:3,
                         },
-                        normal: {
-                            barBorderRadius:7,
-                            color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-                                offset: 0,
-                                color: color[1] // 0% 处的颜色
-                            }, {
-                                offset: 1,
-                                color: color[0] // 100% 处的颜色
-                            }], false)
-                        }
                     },
-                    areaStyle:{
-                        normal:{
-                            //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-
-                                offset: 0,
-                                color: color[1]
-                            }, {
-                                offset: .8,
-                                color: color[2]
-                            }])
-
-                        }
-                    },
-                }
-            ],
-            legend: {
-                x : '55%',
-                y : '20%',
-                type: 'scroll',
-                orient: 'vertical',
-                textStyle: {
-                    fontSize: num?num/this.rate:14,
-                    color:"white",
-                    fontFamily: "Microsoft YaHei",
-
                 },
-            },
+                {
+                    name:legendData[1],
+                    type:'line',
+                    data:lineData[1],
+                    smooth: true,
+                    symbol:"circle",
+                    itemStyle: {
+                        emphasis:{
+                            barBorderRadius:3,
+                        },
+                    },
+                    
+                },
+                {
+                    name:legendData[2],
+                    type:'line',
+                    data:lineData[2],
+                    smooth: true,
+                    symbol:"circle",
+                    itemStyle: {
+                        emphasis:{
+                            barBorderRadius:3,
+                        },
+                    },
+                   
+                },
+                {
+                    name:legendData[3],
+                    type:'line',
+                    data:lineData[3],
+                    smooth: true,
+                    symbol:"circle",
+                    itemStyle: {
+                        emphasis:{
+                            barBorderRadius:3,
+                        },
+                    },
+                   
+                },
+                {
+                    name:legendData[4],
+                    type:'line',
+                    data:lineData[4],
+                    smooth: true,
+                    symbol:"circle",
+                    itemStyle: {
+                        emphasis:{
+                            barBorderRadius:3,
+                        },
+                    },
+                    
+                },
+            ],
+            
         }
         return option;
     },
@@ -804,7 +1550,7 @@ var options = {
                 itemStyle: {
                     normal: {
                         areaColor: '#142987',
-                        borderColor: '#18E4EE',
+                        borderColor: '#3270E1',
                         shadowColor: 'rgba(0,54,255, 1)',
                         shadowBlur: 1,
                         borderWidth:3,
@@ -822,7 +1568,7 @@ var options = {
                 seriesIndex: 1,
                 calculable: true,
                 inRange: {
-                    color: ['#00ffff'] //热力点颜色
+                    color: '#00ffff' //热力点颜色
                     // color: '#42a8ee' //热力点颜色
                 }
             },
@@ -848,7 +1594,7 @@ var options = {
                     roam: false,
                     itemStyle: {
                         normal: {
-                            areaColor: '#142987',
+                            areaColor: '#091957',
                             borderColor: '#194697',
                             borderWidth: 1
                         },
