@@ -239,19 +239,25 @@
   margin: 0 auto;
 }
 .big-box .content .center-box .center-top-box .center-top .data-box {
-  width: auto;
-  height: 0.9rem;
-  margin: 0.3rem auto;
+  width: 95%;
+  height: 1rem;
+  margin: 0.2rem auto;
   font-size: 0.7rem;
   display: flex;
   justify-content: center;
+  background-image: url("../images/total_number_bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  align-items: center;
 }
 .big-box .content .center-box .center-top-box .center-top .data-box .number {
-  width: 0.65rem;
-  height: 0.9rem;
+  width: 0.6rem;
+  height: 0.85rem;
   margin: 0 0.05rem;
   color: #FFFF00;
   text-align: center;
+  line-height: 0.85rem;
   background-image: url(../images/number_border.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
