@@ -11,29 +11,46 @@
 <div class="big-box">
     <div class="header_img">
         <div class="logo"></div>
-        <div class="title-text">终端KA第一版</div>
+        <div class="title-text">渠道部看板</div>
     </div>
     <div class="content box_flex">
         <div class="left-box">
             <div class="left-top">
-                <div class="chart-box">
-                    <div class="title">电视品牌终端在线TOP5</div>
-                    <div class="chart" id="test1">
-                    </div>
+                <div class="box1">
+                    <div class="text">各运营中心现屏幕总数</div>
+                    <div class="number">24597521</div>
+                </div>
+                <div class="box2">
+                    <div class="text">2020目标屏幕数</div>
+                    <div class="number">24597521</div>
+                </div>
+                <div class="box3">
+                    <div class="text">差距数</div>
+                    <div class="number">24597521</div>
                 </div>
             </div>
             <div class="left-middle">
                 <div class="chart-box">
-                    <div class="title">电视品牌各省终端在线TOP3</div>
-                    <div class="chart" id="test2">
+                    <div class="title">
+                        <div class="img"></div>
+                        <div class="text">
+                            各运营中心屏幕上线数
+                        </div>
+                    </div>
+                    <div class="chart" id="test1">
                     </div>
                 </div>
             </div>
             <div class="left-bottom swiper-container swiper3" >
                 <div class="chart-box">
-                    <div class="title">电视品牌终端增长趋势图
+                    <div class="title">
+                        <div class="img"></div>
+                        <div class="text">
+                            终端KA部月上线终端趋势图
+                        </div>
                     </div>
-                    <div class="chart" id="test3">
+                    <div class="chart" id="test2">
+                       
                     </div>
                 </div>
             </div>
@@ -41,7 +58,7 @@
         <div class="center-box">
             <div class="center-top-box">
                 <div class="center-top">
-                    <div class="number-text">当日实时数据采集量</div>
+                    <div class="number-text">全国终端总数</div>
                     <div class="data-box" id="termNumCounter">
                         <div class="text">加载中</div>
                     </div>
@@ -75,31 +92,73 @@
             </div>
         </div>
         <div class="right-box">
-            <div class="right-top">
-                <div class="left">
-                    <div>部门指标数量</div>
-                    <div class="num-text" id="target">4000000</div>
-                </div>
-                <div class="middle">
-                    <div>实时终端数量</div>
-                    <div class="num-text" id="yesterday_termialnum_active">8934</div>
-                </div>
-                <div class="right">
-                    <div>指标任务差额</div>
-                    <div class="num-text" id="balance">33695</div>
-                </div>
-            </div>
-            <div class="right-middle" id="avg_single_open_long">
-                <div class="chart-box">
-                    <div class="title">终端KA部月上线终端趋势图</div>
-                    <div class="chart" id="test4">
+            <div class="right-top swiper-container swiper1">
+                <div class="carousel1 swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="box1">
+                            <div class="text">2020年总指标</div>
+                            <div class="number">24597521</div>
+                        </div>
+                        <div class="box2">
+                            <div class="text">已完成数字</div>
+                            <div class="number">24597521</div>
+                        </div>
+                        <div class="box3">
+                            <div class="text">差额</div>
+                            <div class="number">24597521</div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="box1">
+                            <div class="text">渠道KA总指标</div>
+                            <div class="number">24597521</div>
+                        </div>
+                        <div class="box2">
+                            <div class="text">已完成数字</div>
+                            <div class="number">24597521</div>
+                        </div>
+                        <div class="box3">
+                            <div class="text">差额</div>
+                            <div class="number">24597521</div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="box1">
+                            <div class="text"> 渠道BD总指标</div>
+                            <div class="number">24597521</div>
+                        </div>
+                        <div class="box2">
+                            <div class="text">已完成数字</div>
+                            <div class="number">24597521</div>
+                        </div>
+                        <div class="box3">
+                            <div class="text">差额</div>
+                            <div class="number">24597521</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="right-bottom" id="avg_single_open_nums">
+            <div class="right-middle">
                 <div class="chart-box">
-                    <div class="title">终端KA部各省市终端TOP10</div>
-                    <div class="chart" id="test5">
+                    <div class="title">
+                        <div class="img"></div>
+                        <div class="text">
+                            终端KA部月上线终端趋势图
+                        </div>
+                    </div>
+                    <div class="chart" id="test3">
+                    </div>
+                </div>
+            </div>
+            <div class="right-bottom" id="">
+                <div class="chart-box">
+                    <div class="title">
+                        <div class="img"></div>
+                        <div class="text">
+                            终端KA部月上线终端趋势图
+                        </div>
+                    </div>
+                    <div class="chart" id="test4">
                     </div>
                 </div>
             </div>
@@ -166,189 +225,103 @@
                 //获取echart图表数据并显示
                 var  bar1 = {
                     chart_type: "bar",
-                    label: ["TCL","创维", "海信", "康佳", "夏普",],
+                    label: ["成都","西安", "长沙","昆明"],
                     title_label: "自动播放数据排名(万次)",
                     title_value: "top_play_auto",
-                    value:[273,300,310,320,400]
+                    value:[273,300,310,320]
                 }
 
                 var  bar2 = {
                     chart_type: "bar",
-                    label: ["TCL","创维", "海信", "康佳", "夏普"],
+                    label: ["卡哇智能便携干衣器","一次性便携浴巾毛巾", "创意功夫茶具骨瓷套装", "名盏三合一煮茶器", "简约筷筒套装"],
                     title_label: "自动播放数据排名(万次)",
                     title_value: "top_play_auto",
-                    value:[
-                            {
-                                name: '',
-                                type: 'bar',
-                                barGap: 1,
-                                barWidth: '12%',
-                                // label: labelOption,
-                                data: [420, 432, 401, 434, 490],
-                            },
-                            {
-                                name: '',
-                                type: 'bar',
-                                barWidth: '12%',
-                                // label: labelOption,
-                                data: [320, 382, 391, 334, 390]
-                            },
-                            {
-                                name: '',
-                                type: 'bar',
-                                barWidth: '12%',
-                                // label: labelOption,
-                                data: [250, 232, 201, 254, 290]
-                            },
-                        ],
-                        provinceName:[
-                            ["广东","浙江","广西","上海","北京"],
-                            ["湖南","湖南","浙江","广东","浙江"],
-                            ["四川","浙江","四川","北京","四川"],
-                        ]
+                    value:[400,320,310,300,273]
+                           
                 }
 
                 var bar3 = {
-                            chart_type: "bar",
-                            label: ["1月", "2月", "3月","4月","5月",
-                            "6月"],
-                            legendData:["TCL","创维", "海信", "康佳", "夏普"],
-                            title_label: "自动播放数据排名(万次)",
-                            title_value: "top_play_auto",
-                            value:[
-                                [113, 210, 219, 354, 431,520],
-                                [213, 310, 319, 454, 531,620],
-                                [233, 240, 269, 304, 321,520],
-                                [333, 346, 366, 456, 666,720],
-                                [313, 410, 519, 654, 681,725],
-                            ],
-                            
-                    }
-
-                var bar4 = {
                     chart_type: "bar",
-                    label: ["7月", "8月", "9月",
-                        "10月","11月","12月"],
+                    label: ["成都","西安", "长沙","昆明"],
                     title_label: "自动播放数据排名(万次)",
                     title_value: "top_play_auto",
-                    value:[113, 210, 219, 354, 431,520]
+                    value:[273,300,310,320]
                 }
 
-                var  bar5 = {
-                    chart_type: "bar",
-                    label: ["广东","上海", "河北", "山西", "江苏","浙江","福建", "山东", "辽宁", "吉林"],
-                    title_label: "自动播放数据排名(万次)",
-                    title_value: "top_play_auto",
-                    value:[273,300,310,320,400,450,500,600,650,700]
-                }
-                $.get(GPATH.queryChartsTerminal, function(data){
-                    if(data.code==200){
-                        var content = data.msg;
-                        console.log(content)
-                        $.each(content,function(i,v){
-                            switch(v.title_value){
-                                //电视品牌终端在线TOP5
-                                case "top5_brand":
-                                    var color = ["#01D1FF","#2771EA","#063257"];
-                                    var option = options.withBgBarChart(color, v.label.reverse(), v.value.reverse(), that.fontSizeNum);
-                                    var bgData = that.bgData(v.value);
-                                    option.series[0].data = bgData;
-                                    var echartObj = new EchartObj("test1", option);
-                                    echartObj.setOp();
-                                    break;
-                                //电视品牌终端增长趋势图
-                                case "total_trend":
-                                    var label=[],legendData=[],valueArr=[];
-                                    $.each(v.label,function(i,k){
-                                        label.push((parseInt(k.toString().slice(-2))+"月"))
-                                    })
-                                    $.each(v.value.brandName,function(i,k){
-                                        legendData.push(k[0])
-                                    })
-                                    //处理下数据中为null的数据，变为0
-                                    $.each(v.value.value,function(i,k){
-                                        var arr= []
-                                        $.each(k,function(i,h){
-                                            arr.push(h?h:0)
-                                        })
-                                        valueArr.push(arr)
-                                    })
-                                    var color =["#50DF76","#F45E23","#E9E227","#228FFE","#F75CAD"];
-                                    var option = options.multipleLineChart(color,legendData, label, valueArr, that.fontSizeNum);
-                                    var echartObj = new EchartObj("test3", option);
-                                    echartObj.setOp();
-                                    break;
-                                //终端KA部月上线终端趋势图
-                                case "new_trend":
-                                    var label=[];
-                                        $.each(v.label,function(i,k){
-                                            label.push((parseInt(k.toString().slice(-2))+"月"))
-                                        })
-                                    var color =["#6CC9FF","#36ACFE","rgba(54,172,254,.1)"];
-                                    var option = options.lineChart(color, label, v.value, that.fontSizeNum);
-                                    var echartObj = new EchartObj("test4", option);
-                                    echartObj.setOp();
-                                    break;
-                                //终端KA部各省市终端TOP10
-                                case "top10_province":
-                                    var color = ["#01D1FF","#657CA8","#063257"];
-                                    var labelArr = [];
-                                    $.each(v.label,function(i,k){
-                                        labelArr.push(k.slice(0,2))
-                                    })
-                                    var option = options.withBgBarChartVertical(color, labelArr, v.value, that.fontSizeNum);
-                                    var bgData = that.bgData(v.value);
-                                    option.series[0].data = bgData;
-                                    var echartObj = new EchartObj("test5", option);
-                                    echartObj.setOp();
-                                    break;
-                                //电视品牌各省终端在线TOP3
-                                case "top3_province_tb5":
-                                    //处理省份名字为2个
-                                    var provinceName=[];
-                                    $.each(v.value.provinceName,function(i,k){
-                                        var arr= []
-                                        $.each(k,function(i,h){
-                                            // console.log(h)
-                                            arr.push(h.slice(0,2))
-                                        })
-                                        provinceName.push(arr)
-                                    })
-                                    var color = ["#feab65","#ef964b","#af68e6","#8731c9","#50c3ff","#2491fe"];
-                                    var option = options.multipleBarChart(color, v.label, v.value.value, provinceName,that.fontSizeNum);
-                                    var echartObj = new EchartObj("test2", option);
-                                    echartObj.setOp();
-                                    break;
-                            }
-                        })
-                       
-                        //电视品牌终端在线TOP5
-                        // var color = ["#01D1FF","#2771EA","#063257"];
-                        // var option = options.withBgBarChart(color, bar1.label, bar1.value, that.fontSizeNum);
-                        // var bgData = that.bgData(bar1.value);
-                        // option.series[0].data = bgData;
-                        // var echartObj = new EchartObj("test1", option);
-                        // echartObj.setOp();
 
-                        //电视品牌各省终端在线TOP3
-                        // var color = ["#feab65","#ef964b","#af68e6","#8731c9","#50c3ff","#2491fe"];
+                var  bar8 = {
+                chart_type: "bar",
+                label: ["麗枫", "尚美", "喆啡", "维也纳","东呈"],
+                title_label: "自动播放数据排名(万次)",
+                title_value: "top_play_auto",
+                value:[21,25,30,33,39]
+            }
+                $.post(GPATH.queryChartsTerminal, function(data){
+                    if(data.res){
+                        var content = data.data;
+
+
+                        var color =["#1CA5E8","#1CA5E8"];
+                        var option = options.noBgBarChart(color,bar1.label,bar1.value,that.fontSizeNum);
+                        var echartObj = new EchartObj("test1", option);
+                        echartObj.setOp();
+
+                        var html="";
+                        for(i=0;i<5;i++){
+                                    html+= "<div class=\"box\">\n" +
+                "                                <div class=\"img\" style=\"background-image: url(./images/rank_"+(i+1)+".png);\"></div>\n" +
+                "                                <div class=\"content-box\">\n" +
+                "                                    <div class=\"text\">"+bar2.label[i]+"</div>\n" +
+                "                                    <div class=\"bar-box\">\n" +
+                "                                        <div class=\"bar\" style=\"width:"+bar2.value[i]*80/bar2.value[0]+"%;\"></div>\n" +
+                "                                        <div class=\"value\">"+bar2.value[i]+"</div>\n" +
+                "                                    </div>\n" +
+                "                                </div>\n" +
+                "                            </div>\n"
+                        }
+                        $("#test2").html(html);
+
+
+                        var color = ["rgba(216,103,248,1)","rgba(216,103,248,0)"];
+                        var option = options.normalBarChart(color, bar3.label, bar3.value, that.fontSizeNum);
+                        var echartObj = new EchartObj("test3", option);
+                        echartObj.setOp();
+
+
+                        var color = ["#0CF5FF", "#0CF5FF"];
+                        var new_value = that.bgData(bar8.value.reverse());
+                        var option = options.normalBarChartOther(color, bar8.label,new_value, that.fontSizeNum, bar8.value);
+                        for(i=0,arr=[];i<new_value.length;i++){
+                            arr.push({
+                                symbol:"circle",
+                                symbolSize:that.fontSizeNum*0.15,
+                                symbolOffset:[0,"35%"],
+                                coord: [i, bar8.value[i]],
+                                itemStyle:{
+                                    color:"#E7C501"
+                                }
+                            })
+                        }
+                    option.series[0].markPoint.data=arr;
+                    option.series[0].itemStyle.normal.label.show = true;
+                    var echartObj = new EchartObj("test4", option);
+                    echartObj.setOp();
+                        // var color = ["#FEAB65","#8630C8","#228FFE"];
                         // var option = options.multipleBarChart(color, bar2.label, bar2.value, bar2.provinceName,that.fontSizeNum);
                         // var echartObj = new EchartObj("test2", option);
                         // echartObj.setOp();
 
-                        //电视品牌终端增长趋势图
                         // var color =["#50DF76","#F45E23","#E9E227","#228FFE","#F75CAD"];
                         // var option = options.multipleLineChart(color,bar3.legendData, bar3.label, bar3.value, that.fontSizeNum);
+                        // console.log(option)
                         // var echartObj = new EchartObj("test3", option);
                         // echartObj.setOp();
 
-                        //终端KA部月上线终端趋势图
                         // var color =["#6CC9FF","#36ACFE","rgba(54,172,254,.1)"];
                         // var option = options.lineChart(color, bar4.label, bar4.value, that.fontSizeNum);
                         // var echartObj = new EchartObj("test4", option);
                         // echartObj.setOp();
 
-                        //终端KA部各省市终端TOP10
                         // var color = ["#01D1FF","#657CA8","#063257"];
                         // var option = options.withBgBarChartVertical(color, bar5.label, bar5.value, that.fontSizeNum);
                         // var bgData = that.bgData(bar5.value);
@@ -362,17 +335,17 @@
 
                         
                 },"json");
-                // var mySwiper = new Swiper ('.swiper1', {
-                //     // direction: 'vertical', // 垂直切换选项
-                //     direction: 'vertical', // 横向切换选项
-                //     // loop: true, // 循环模式选项
-                //     speed:1000,
-                //     autoplay: {
-                //         delay: 8000,//时间 毫秒
-                //         disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
-                //     },
-                //     // speed:3000
-                // })
+                var mySwiper = new Swiper ('.swiper1', {
+                    // direction: 'vertical', // 垂直切换选项
+                    direction: 'vertical', // 横向切换选项
+                    // loop: true, // 循环模式选项
+                    speed:1000,
+                    autoplay: {
+                        delay: 8000,//时间 毫秒
+                        disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
+                    },
+                    // speed:3000
+                })
                 // var mySwiper = new Swiper ('.swiper2', {
                 //     // direction: 'vertical', // 垂直切换选项
                 //     direction: 'horizontal', // 横向切换选项
@@ -612,7 +585,7 @@
                     dataType:"json"
                 }).then(function(data){
                     if(data){
-                        // console.log(data)
+                        console.log(data)
                         var avg_online_rate = (data[5].value/data[12].value*100).toFixed(2)+"%";
                         $("#avg_online_rate").html(avg_online_rate);
                         $.each(data,function (i,v) {
@@ -622,14 +595,6 @@
                                 if(v.label=="avg_openlong_yesterday"){
                                     var html= parseInt(v.value)+"<span class='minute'>Min</span>";
                                     $("#"+v.label).html(html);
-                                }else if(v.label=="hour_rate_boot"){
-                                    var date = new Date();
-                                    var hour = date.getHours();
-                                    var arr= eval("("+v.value+")");
-                                    //实时终端数量 = 客房涵盖数量*实时开机率
-                                    var html1 = parseInt(data[1].value*arr[hour]);
-                                    $("#yesterday_termialnum_active").html(html1);
-                                    $("#balance").html(400000-html1)
                                 }else{
                                     $("#"+v.label).html(parseInt(v.value));
                                 }
