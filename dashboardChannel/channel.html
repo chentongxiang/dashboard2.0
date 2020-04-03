@@ -11,7 +11,7 @@
 <div class="big-box">
     <div class="header_img">
         <div class="logo"></div>
-        <div class="title-text">渠道部看板</div>
+        <div class="title-text">渠道部看板<span class="debugging">(调试版本)</span></div>
     </div>
     <div class="content box_flex">
         <div class="left-box">
@@ -46,7 +46,7 @@
                     <div class="title">
                         <div class="img"></div>
                         <div class="text">
-                            终端KA部月上线终端趋势图
+                            热销商品排名轮播top5
                         </div>
                     </div>
                     <div class="chart" id="test2">
@@ -143,7 +143,7 @@
                     <div class="title">
                         <div class="img"></div>
                         <div class="text">
-                            终端KA部月上线终端趋势图
+                            各运营中心屏幕收益数据
                         </div>
                     </div>
                     <div class="chart" id="test3">
@@ -155,7 +155,7 @@
                     <div class="title">
                         <div class="img"></div>
                         <div class="text">
-                            终端KA部月上线终端趋势图
+                            各运营中心实时在线率
                         </div>
                     </div>
                     <div class="chart" id="test4">
@@ -536,6 +536,8 @@
                                 that.markPoint.push({name:hotel,value:[lng,lat]})
                             }
                             addMarkPoint(that.markPoint)
+                            // const msg = new SpeechSynthesisUtterance("有人下单了");
+                            // window.speechSynthesis.speak(msg);
                         }
                     });
                 }

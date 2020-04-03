@@ -51,10 +51,10 @@ var GPATH ={
 var customFns = {
     //echart中设置文字的方法  如要设置20px即设置fontSize(20)
     fontSize:function (res){
-        let docEl = document.documentElement,
+        var docEl = document.documentElement,
         clientWidth = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
         if (!clientWidth) return;
-        let fontSize = 100 * (clientWidth / 1920);
+        var fontSize = 100 * (clientWidth / 1920);
         return res*fontSize;
     }
 }
@@ -759,10 +759,10 @@ var options = {
                 itemHeight:num?num/this.rate/1.3:14,
                 formatter: function(name) {
                     // 获取legend显示内容
-                    let data = pieData;
-                    let total = 0;
-                    let tarValue = 0;
-                    for (let i = 0, l = data.length; i < l; i++) {
+                    var data = pieData;
+                    var total = 0;
+                    var tarValue = 0;
+                    for (var i = 0, l = data.length; i < l; i++) {
                         total += parseInt(data[i].value);
                         if (data[i].name == name) {
                             tarValue = data[i].value;
@@ -778,7 +778,7 @@ var options = {
                             name = name+"    ";
                         }
                     }
-                    let arr = [
+                    var arr = [
                         '{a|'+name+'}',
                         '{b|'+((tarValue/total)*100).toFixed(2)+'%}'
                     ]

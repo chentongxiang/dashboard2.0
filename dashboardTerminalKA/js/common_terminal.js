@@ -495,7 +495,7 @@ var options = {
                                 }
                             },
                             color: function(params) {
-                                let colorList = [
+                                var colorList = [
                                     ["#00c0ff","#0177a8"],
                                     ["#3557e5","#1532a6"],
                                     ["#12a885","#0d896c"],

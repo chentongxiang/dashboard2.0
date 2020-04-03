@@ -95,6 +95,9 @@
   display: inline-block;
   margin-left: -0.1rem;
 }
+.big-box .header_img .title-text .debugging {
+  font-size: 0.22rem;
+}
 .big-box .content {
   width: 97%;
   height: 90%;

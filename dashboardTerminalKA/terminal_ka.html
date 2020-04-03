@@ -11,7 +11,7 @@
 <div class="big-box">
     <div class="header_img">
         <div class="logo"></div>
-        <div class="title-text">终端KA第一版</div>
+        <div class="title-text">终端KA</div>
     </div>
     <div class="content box_flex">
         <div class="left-box">
@@ -151,6 +151,7 @@
                     window.location.reload();
                 },1000*60*5);
                 function setRemSize(){
+                    
                     that.fontSizeNum=document.documentElement.clientWidth/1920 * 100;
                     //将得到的rem值复制给根元素的font-size
                     document.documentElement.style.fontSize=that.fontSizeNum+"px";
@@ -241,10 +242,9 @@
                     title_value: "top_play_auto",
                     value:[273,300,310,320,400,450,500,600,650,700]
                 }
-                $.get(GPATH.queryChartsTerminal, function(data){
+                $.post(GPATH.queryChartsTerminal, function(data){
                     if(data.code==200){
                         var content = data.msg;
-                        console.log(content)
                         $.each(content,function(i,v){
                             switch(v.title_value){
                                 //电视品牌终端在线TOP5
@@ -355,12 +355,7 @@
                         // option.series[0].data = bgData;
                         // var echartObj = new EchartObj("test5", option);
                         // echartObj.setOp();
-
-
                     }
-
-
-                        
                 },"json");
                 // var mySwiper = new Swiper ('.swiper1', {
                 //     // direction: 'vertical', // 垂直切换选项
@@ -627,7 +622,7 @@
                                     var hour = date.getHours();
                                     var arr= eval("("+v.value+")");
                                     //实时终端数量 = 客房涵盖数量*实时开机率
-                                    var html1 = parseInt(data[1].value*arr[hour]);
+                                    var html1 = parseInt(data[1].value*arr[hour]*1.5);
                                     $("#yesterday_termialnum_active").html(html1);
                                     $("#balance").html(400000-html1)
                                 }else{

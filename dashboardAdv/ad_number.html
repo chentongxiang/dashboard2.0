@@ -184,8 +184,9 @@
                             case "top_advs_content_play":
                                 var color = ["#7d71b3","#46bdcd"];
                                 v.value.reverse();
-                                v.label.reverse();
-                                var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
+                                // v.label.reverse();
+                                var label=["帅康","蓝月亮","屈臣氏","红旗汽车","科大讯飞"];
+                                var option = options.noBgBarChart(color, label, v.value, that.fontSizeNum);
                                 var bgData = that.bgData(v.value);
                                 option.series[0].data = bgData;
                                 option.title.text = "上刊品牌广告播放情况（万次）";
@@ -197,14 +198,14 @@
                                 v.value.reverse();
                                 v.label.reverse();
                                 var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
-                                option.title.text = "历史广告播放品牌TOP5（万次）";
                                 var bgData = that.bgData(v.value);
                                 option.series[0].data = bgData;
+                                option.title.text = "历史广告播放品牌TOP5（万次）";
                                 var echartObj = new EchartObj(domID, option);
                                 echartObj.setOp();
                                 break;
                             case "top10_city_view":
-                                var color = ["#7d71b3", "#46bdcd", "#6b59a4", "rgb(70,189,205,0.5)", "#19CB50", "#3DE7C9", "#B6A2DE"]
+                                var color = ["#7d71b3", "#46bdcd", "#6b59a4", "#46BDCD", "#19CB50", "#3DE7C9", "#B6A2DE"]
                                 // v.value.reverse();
                                 // v.label.reverse();
                                 var newLabel = [];
@@ -349,7 +350,6 @@
                                 var option = options.stackedBarChart(color, v.label, data, that.fontSizeNum);
                                 option.title.text = "年龄受众比例(百人/周)";
                                 var echartObj = new EchartObj(domID, option);
-                                that.allEchartObj[domID] = echartObj;
                                 echartObj.setOp();
                                 break;
                             case "sex_advs_audience":
@@ -360,7 +360,6 @@
                                 // option.series[0].center = ['30%', '50%'],
                                 option.graphic.elements[0].style.image = "images/sexLogo.png"
                                 var echartObj = new EchartObj(domID, option);
-                                that.allEchartObj[domID] = echartObj;
                                 echartObj.setOp();
                                 break;
                         }
@@ -417,7 +416,7 @@
                     "电影贴片广告位":{num:pre_film.toFixed(2)},
                     "退出暂定广告位":{num:movie_tv_quit.toFixed(2)}
                 }
-                var sorted_lable = Object.keys(newDataObj).sort((a,b)=>{
+                var sorted_lable = Object.keys(newDataObj).sort(function(a,b){
                     return newDataObj[b].num-newDataObj[a].num;
                 });
                 var sorted_value = []

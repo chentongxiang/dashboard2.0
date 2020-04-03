@@ -54,10 +54,10 @@ var GPATH ={
 var customFns = {
     //echart中设置文字的方法  如要设置20px即设置fontSize(20)
     fontSize:function (res){
-        let docEl = document.documentElement,
+        var docEl = document.documentElement,
         clientWidth = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
         if (!clientWidth) return;
-        let fontSize = 100 * (clientWidth / 1920);
+        var fontSize = 100 * (clientWidth / 1920);
         return res*fontSize;
     }
 }
@@ -457,7 +457,7 @@ var options = {
     //折线图
     lineChart:function (color,lineLabel,lineData,num) {
         var option = {
-            color: [color[0]],
+            color: color[0],
             title: {
                 show:true,
                 text: '',
@@ -564,7 +564,6 @@ var options = {
                         normal:{
                             //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
                             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-
                                 offset: 0,
                                 color: color[1]
                             }, {

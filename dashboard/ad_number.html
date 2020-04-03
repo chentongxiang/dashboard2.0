@@ -140,8 +140,9 @@ function loadComplete() {
                             case "top_advs_content_play":
                                 var color = ["#3DE7C9", "#3DE7C9"];
                                 v.value.reverse();
-                                v.label.reverse();
-                                var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
+                                // v.label.reverse();
+                                var label=["帅康","蓝月亮","屈臣氏","红旗汽车","科大讯飞"];
+                                var option = options.noBgBarChart(color, label, v.value, that.fontSizeNum);
                                 option.title.text = "月度主流广告产品播放频次(万次)";
                                 var echartObj = new EchartObj(domID, option);
                                 that.allEchartObj[domID] = echartObj;
@@ -160,9 +161,19 @@ function loadComplete() {
                             case "pie_cust_type":
                                 var arr = v.value;
                                 that.arrLength = arr.length;
-
-                                var color = ["#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
-                                var option = options.pieChartOther(color, v.label, v.value, that.fontSizeNum);
+                                var vauleArr = [
+                                {value: "9", name: "4A&代理公司"},
+                                {value: "10", name: "金融"},
+                                {value: "11", name: "快消"},
+                                {value: "14", name: "教育"},
+                                {value: "130", name: "旅游"},
+                                {value: "13", name: "汽车"},
+                                {value: "12", name: "酒类"},
+                                {value: "20", name: "互联网"},
+                                ]
+                                console.log(v.value)
+                                var color = ["#5AB1EF","#FFFFFF", "#08DFDF", "#FFB980", "#5AB1EF", "#19CB50", "#3DE7C9", "#B6A2DE"]
+                                var option = options.pieChartOther(color, v.label, vauleArr, that.fontSizeNum);
                                 option.legend = null;
                                 option.series[0].radius = ['40%', '50%'],
                                     option.series[0].center = ['46%', '60%'],
@@ -328,7 +339,7 @@ function loadComplete() {
                 type: "GET",
                 dataType: "json"
             }).then(function (data) {
-                console.log(data)
+                // console.log(data)
                 $.each(data, function (i, v) {
                     switch (v.label) {
                         case "total":

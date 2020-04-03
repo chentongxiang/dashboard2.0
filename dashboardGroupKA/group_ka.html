@@ -11,7 +11,7 @@
 <div class="big-box">
     <div class="header_img">
         <div class="logo"></div>
-        <div class="title-text">集团KA看板</div>
+        <div class="title-text">集团KA看板<span class="debugging">(调试版本)</span></div>
     </div>
     <div class="content box_flex">
         <div class="left-box">
@@ -157,7 +157,6 @@
 <script src="js/echarts.min.js"></script>
 <script src="js/echarts-gl.min.js"></script>
 <script src="js/china.js"></script>
-<script src="js/test-scroll.js"></script>
 <script src="js/swiper.min.js"></script>
 <script>
     var adNumber = {
@@ -269,11 +268,10 @@
                 title_value: "top_play_auto",
                 value:[21,25,30,33,39]
             }
-
-            $.post(GPATH.queryChartsAdvs, function (data) {
+            $.post("http://yun.ctlife.tv:8899/boardDemo/dashboard/getCharts?type=shop", function (data) {
                 if (data.code==200) {
                     var content = data.msg;
-                    // console.log(content)
+                    console.log(content)
                     var color = ["#DFDFDF", "#BD00FC", "#2FC4FF","#04FDFF", "#F86F56", "#F03A75", "#4CD964", 
                     "#8854EF", "#8593F4", "#FF7C00", "#3865FE"]
                     var option = options.pieChartOther(color, bar1.label, bar1.value, that.fontSizeNum);

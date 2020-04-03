@@ -51,10 +51,10 @@ var GPATH ={
 var customFns = {
     //echart中设置文字的方法  如要设置20px即设置fontSize(20)
     fontSize:function (res){
-        let docEl = document.documentElement,
+        var docEl = document.documentElement,
         clientWidth = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
         if (!clientWidth) return;
-        let fontSize = 100 * (clientWidth / 1920);
+        var fontSize = 100 * (clientWidth / 1920);
         return res*fontSize;
     }
 }
@@ -211,7 +211,6 @@ var options = {
                 show:true,
                 text: '',
                 textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-                    // fontFamily: 'monospace',
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'bold',
@@ -221,7 +220,7 @@ var options = {
                 x:"5%",
                 y:"8%"
             },
-            color: [color[0]],
+            color: color[0],
             tooltip : {
                 trigger: 'axis',
                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -480,7 +479,7 @@ var options = {
     //折线图
     lineChart:function (color,lineLabel,lineData,num) {
         var option = {
-            color: color[0],
+            // color: color[0],
             title: {
                 show:true,
                 text: '',
@@ -562,7 +561,7 @@ var options = {
                     axisLine: {
                         lineStyle:{
                             color:'#fff',  //坐标线颜色
-                            width:2
+                            width:'2'
                         },
                     },
                    
@@ -586,14 +585,14 @@ var options = {
                         show: true,
                         lineStyle:{
                             color: '#C6C6C6',
-                            width: 1,
+                            width: '1',
                             type: 'solid'
                         }
                     },
                     axisLine: {
                         lineStyle:{
                             color:'#fff',  //坐标的字体颜色
-                            width:2
+                            width:'2'
                         },
                     },
                     axisTick:{       //y轴刻度线
@@ -612,19 +611,15 @@ var options = {
                             barBorderRadius:7,
                         },
                         normal: {
-                            barBorderRadius:7,
-                            color: "#eeb033",
-                            lineStyle: {
-                                width:2,
-                                color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-                                    offset: 0,
-                                    color: color[1] // 0% 处的颜色
-                                }, {
-                                    offset: 1,
-                                    color: color[0] // 100% 处的颜色
-                                }], false)
-                            },
-                        }
+                                            barBorderRadius:7,
+                                            color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                                                offset: 0,
+                                                color: color[1] // 0% 处的颜色
+                                            }, {
+                                                offset: 1,
+                                                color: color[0] // 100% 处的颜色
+                                            }], false)
+                                        }
                     },
                     areaStyle:{
                         normal:{
@@ -636,11 +631,46 @@ var options = {
                                 offset: 1,
                                 color: color[3]
                             }])
-
                         }
                     },
                 }
             ],
+            // series : [
+            //     {
+            //         name:'',
+            //         type:'line',
+            //         data:lineData,
+            //         smooth: true,
+            //         itemStyle: {
+            //             emphasis:{
+            //                 barBorderRadius:7,
+            //             },
+            //             normal: {
+            //                 barBorderRadius:7,
+            //                 color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+            //                     offset: 0,
+            //                     color: color[1] // 0% 处的颜色
+            //                 }, {
+            //                     offset: 1,
+            //                     color: color[0] // 100% 处的颜色
+            //                 }], false)
+            //             }
+            //         },
+            //         areaStyle:{
+            //             normal:{
+            //                 //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
+            //                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            //                     offset: 0,
+            //                     color: color[1]
+            //                 }, {
+            //                     offset: .8,
+            //                     color: color[2]
+            //                 }])
+
+            //             }
+            //         },
+            //     }
+            // ],
             legend: {
                 x : '55%',
                 y : '20%',
@@ -650,12 +680,12 @@ var options = {
                     fontSize: num?num/this.rate:14,
                     color:"white",
                     fontFamily: "font_siyuan",
-
                 },
             },
         }
         return option;
     },
+    
     //环形饼图
     pieChart:function(color,title_label,pieData,num){
         var option = {
@@ -762,16 +792,16 @@ var options = {
                 itemHeight:num?num/this.rate/1.3:14,
                 formatter: function(name) {
                     // 获取legend显示内容
-                    let data = pieData;
-                    let total = 0;
-                    let tarValue = 0;
-                    for (let i = 0, l = data.length; i < l; i++) {
+                    var data = pieData;
+                    var total = 0;
+                    var tarValue = 0;
+                    for (var i = 0, l = data.length; i < l; i++) {
                         total += parseInt(data[i].value);
                         if (data[i].name == name) {
                             tarValue = data[i].value;
                         }
                     }
-                    let arr = [
+                    var arr = [
                         '{a|'+name+'}',
                         '{b|'+((tarValue/total)*100).toFixed(2)+'%}'
                     ]
@@ -1119,85 +1149,6 @@ var options = {
         }
         return option;
     },
-    // heatMapChart:function (data,num) {
-    //     var option = {
-    //         title: {
-    //             text: '',
-    //             left: 'left',
-    //         },
-    //         tooltip : {
-    //             trigger: 'item',
-    //             showDelay:1000,
-    //             hideDelay:1000,
-    //         },
-    //         grid: {
-    //             // left: '3%',
-    //             // right: '4%',
-    //             top:"5%",
-    //             bottom: '15%',
-    //             containLabel: true
-    //         },
-    //         geo: {
-    //             type : 'map',
-    //             map : 'china',
-    //             label: {
-    //                 emphasis: {
-    //                     show: false
-    //                 }
-    //             },
-    //             zoom: 1.2,
-    //             roam:false,
-    //             itemStyle: {
-    //                 normal: {
-    //                     areaColor: '#fff',
-    //                     borderColor: '#435592',
-    //                     // shadowColor: 'rgba(0,54,255, 1)',
-    //                     // shadowBlur: 10,
-    //                     // borderWidth:2,
-    //                 },
-    //                 emphasis: {
-    //                     areaColor: '#d1d1d1'
-    //                 }
-    //             }
-    //         },
-    //         visualMap: {
-    //             show: false,
-    //             top: 'top',
-    //             min: 0,
-    //             max: 5,
-    //             seriesIndex: 0,
-    //             calculable: true,
-    //             inRange: {
-    //                 color: '#4BB2A1' //热力点颜色
-    //             }
-    //         },
-    //         series : [
-    //             {
-    //                 name: '终端数量',
-    //                 type: 'heatmap',
-    //                 coordinateSystem: 'geo',
-    //                 data : data,
-    //                 pointSize: num/this.rate/5,
-    //                 blurSize: num/this.rate/6,
-    //                 markPoint: {//动态标记
-    //                     large: true,//这个选项，悬浮自动失效
-    //                     symbolSize:1,//闪烁点大小
-    //                     itemStyle: {
-    //                         normal: {
-    //                             shadowBlur: 10,
-    //                             shadowColor: '#333',
-    //                             areaColor: '#00FFDB',
-    //                         },
-    //                         color:'#00FFDB'
-    //                     },
-    //                     zlevel: 1,
-    //                     data: [],
-    //                 },
-    //             }
-    //         ]
-    //     }
-    //     return option;
-    // },
     //柱状图-普通竖向无背景
     normalBarChart:function (color,barLabel,barData,num) {
         var option = {

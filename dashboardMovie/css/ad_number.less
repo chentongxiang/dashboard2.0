@@ -84,19 +84,18 @@
   background-size:100% 100%;
   background-position:center;
   background-color:#0A112B ;
-  .flex-box{
-    display: flex;
-    justify-content: space-evenly;
-    &:before,
-    &:after {
-      content: '';
-      display: block;
-    }
-  }
+  // .flex-box{
+  //   display: flex;
+  //   justify-content:space-evenly;
+  //   &:before,
+  //   &:after {
+  //     content: '';
+  //     display: block;
+  //   }
+  // }
   .header_img{
     width:100%;
     height:8%;
-    
     text-align: center;
     line-height:.8rem;
     font-size:0.42rem;
@@ -117,14 +116,22 @@
     .title-text{
       display: inline-block;
       margin-left:-0.1rem;
-
+      .debugging{
+        font-size: .22rem;
+      }
     }
   }
   .content{
     width: 97%;
     height: 92%;
     margin: 0 auto;
-    .flex-box;
+    display: flex;
+    justify-content:space-between;
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+    }
     .left-box{
       width: 27%;
       height:95%;
@@ -407,7 +414,7 @@
               font-size:.36rem;
               letter-spacing: .05rem;
               line-height: .7rem;
-              font-family: main_number_font;
+              // font-family: main_number_font;
             }
           }
           .rooms{
@@ -441,11 +448,11 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            &:before,
-            &:after {
-              content: '';
-              display: block;
-            }
+            // &:before,
+            // &:after {
+            //   content: '';
+            //   display: block;
+            // }
             div:first-child{
               color:#fff;
               font-size:.2rem;
@@ -585,11 +592,11 @@
         background-position:center;
         display: flex;
         justify-content: space-between;
-        &:before,
-        &:after {
-          content: '';
-          display: block;
-        }
+        // &:before,
+        // &:after {
+        //   content: '';
+        //   display: block;
+        // }
         align-items: center;
         .history-num{
           width:40%;
@@ -694,6 +701,11 @@
                 left:50%;    /* 定位父级的50% */
                 top:45%;
                 transform: translate(-50%,-50%); /*自己的50% */
+                -ms-transform:translate(-50%,-50%);	/* IE 9 */
+                -moz-transform:translate(-50%,-50%);/* Firefox */
+                -webkit-transform:translate(-50%,-50%); /* Safari 和 Chrome */
+                -o-transform:translate(-50%,-50%);
+
                 border-radius: 60%;
                 z-index: 4;
   

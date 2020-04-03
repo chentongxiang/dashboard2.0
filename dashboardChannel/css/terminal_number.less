@@ -85,32 +85,35 @@
   }
   .header_img{
     width:100%;
-    height:10%;
+    height:9%;
     text-align: center;
-    line-height:.8rem;
-    font-size:0.4rem;
+    // line-height:.3rem;
+    font-size:0.28rem;
     color:#fff;
     letter-spacing:.05rem;
-    font-weight:bold;
     font-family: number_font;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: .22rem;
     .logo{
       width:1rem;
       height:.5rem;
-      display: inline-block;
+      // display: inline-block;
       background-image: url(../images/logo.png);
       background-repeat: no-repeat;
       background-size:100% 100%;
       background-position:center;
-      vertical-align: text-bottom;
     }
     .title-text{
-      display: inline-block;
-      margin-left:-0.1rem;
+      .debugging{
+        font-size: .22rem;
+      }
     }
   }
   .content{
     width: 96%;
-    height: 86%;
+    height: 88%;
     margin:0 auto;
     display: flex;
     justify-content: space-between;
@@ -223,7 +226,7 @@
         background-size:100% 100%;
         background-position:center;
         .box1{
-          width:98%;
+          width:100%;
           height:.5rem;
           font-size: .2rem;
           margin:0 auto;
@@ -235,6 +238,7 @@
           display: flex;
           justify-content: space-between;
           line-height: .5rem;
+          // border:1px solid red;
           .text{
             font-family:Microsoft YaHei;
             color: #fff;
@@ -332,73 +336,46 @@
         .center-top{
           width:100%;
           height:60%;
-        .number-text{
-          width:80%;
-          height:.35rem;
-          // border:1px solid red;
-          text-align: center;
-          font-size: .3rem;
-          color:#fff;
-          line-height: .1rem;
-          // border:1px solid red;
-          margin:0 auto;
-        }
-        .data-box{
-          width:95%;
-          height:1rem;
-          margin:.2rem auto;
-          font-size: .7rem;
-          display: flex;
-          justify-content: center;
-          // background-image: url("../images/total_number_bg.png");
-          // background-repeat: no-repeat;
-          // background-size:100% 100%;
-          // background-position:center;
-          align-items: center;
-          // border:1px solid red;
-          .number{
-            width:.7rem;
-            height:.9rem;
-            margin:0 .01rem;
+          .number-text{
+            width:80%;
+            height:.35rem;
             // border:1px solid red;
-            color:#FFFF00;
             text-align: center;
-            line-height: .85rem;
-            background-image: url(../images/number_border.png);
-            background-repeat: no-repeat;
-            background-size:130% 120%;
-            background-position:center;
-            font-family:"DS-Digital";
-            font-size: .6rem;
-          }
-          .text{
+            font-size: .3rem;
             color:#fff;
-          }
-        }
-          .real-time-data{
-            // width: 60%;
-            height:0.74rem;
+            line-height: .1rem;
+            // border:1px solid red;
             margin:0 auto;
-            margin-top:.4rem;
-            // padding-top:.35rem;
-            text-align: center;
-            font-size: .6rem;
-            color:#00ffce;
-            font-weight:bold;
-            font-family: main_number_font;
+          }
+          .data-box{
+            width:95%;
+            height:1rem;
+            margin:.2rem auto;
+            font-size: .7rem;
             display: flex;
             justify-content: center;
+            // background-image: url("../images/total_number_bg.png");
+            // background-repeat: no-repeat;
+            // background-size:100% 100%;
+            // background-position:center;
+            align-items: center;
             // border:1px solid red;
-            .num_bg{
-              width:.45rem;
-              height:.6rem;
-              line-height: .6rem;
-              background-image: url("../images/num_bg.png");
-              background-repeat: no-repeat;
-              background-size:100% 100%;
-              background-position:center;
+            .number{
+              width:.65rem;
+              height:.9rem;
+              margin:0 .04rem;
               // border:1px solid red;
-              margin:.05rem .05rem 0.05rem .05rem;
+              color:#FFFF00;
+              text-align: center;
+              line-height: .85rem;
+              border:1px solid rgba(0,255,246,1);
+              box-shadow:0rem 0rem 0.03rem 0.05rem rgba(0,255,246,0.4);
+              font-family:"DS-Digital";
+              font-size: .6rem;
+            }
+            .text{
+              color:#fff;
+            
             }
           }
         }
@@ -407,7 +384,7 @@
           height:30%;
           margin-top:-.08rem;
           display: flex;
-          justify-content: space-evenly;
+          justify-content: space-between;
           &:before,
             &:after {
               content: '';
@@ -416,10 +393,12 @@
           .online-rate{
             width:22%;
             height:100%;
-            background-image: url("../images/four_data_bg.png");
-            background-repeat: no-repeat;
-            background-size:115% 115%;
-            background-position:center;
+            // background-image: url("../images/four_data_bg.png");
+            // background-repeat: no-repeat;
+            // background-size:115% 115%;
+            // background-position:center;
+            border:1px solid rgba(0,255,246,1);
+            box-shadow:0rem 0rem 0.05rem 0.05rem rgba(0,255,246,0.4);
           }
           .boot-times{
             .online-rate;
@@ -436,13 +415,9 @@
           >div{
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            &:before,
-            &:after {
-              content: '';
-              display: block;
-            }
+           
             .num-text{
               font-size: .2rem;
               color: #3EE6E3;
@@ -490,14 +465,14 @@
         // border:1px solid red;
           .bg-image{
           width:80%;
-          height:76%;
+          height:75%;
           margin: 0 auto;
           // border:1px solid red;
           .new-data{
             width:96%;
             height:92%;
             margin:0 auto;
-            text-align: center;
+            // text-align: center;
             overflow-y:hidden;
             li{
               font-size: .18rem;

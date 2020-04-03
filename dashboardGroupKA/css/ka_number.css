@@ -85,6 +85,9 @@
 .big-box .header_img .title-text {
   padding-left: 0.1rem;
 }
+.big-box .header_img .title-text .debugging {
+  font-size: 0.22rem;
+}
 .big-box .header_img .logo {
   width: 0.87rem;
   height: 0.51rem;

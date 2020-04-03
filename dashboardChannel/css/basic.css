@@ -19,10 +19,10 @@ li{ list-style: none;}
     height:100%; 
 } */
 html{
-    margin:0px;
+    /* margin:0px;
     width:100%;
-    height:100%;
-    font-size: 100px;
+    height:100%; */
+    font-size: 50px;
 }
 body{
     width:100%;

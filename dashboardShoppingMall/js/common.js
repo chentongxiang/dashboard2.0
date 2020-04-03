@@ -918,8 +918,8 @@ var options = {
                 }
             },
             grid: {
-                left: '7%',
-                right: '8%',
+                left: '5%',
+                right: '5%',
                 top:"28%",
                 bottom: '8%',
                 containLabel: true
@@ -935,6 +935,7 @@ var options = {
                     axisTick: {
                         alignWithLabel: true
                     },
+                    interval:0,
                     axisLabel: {
                         textStyle:{
                             color:'#d2cce0',  //坐标的字体颜色

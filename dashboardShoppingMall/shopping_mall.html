@@ -78,15 +78,15 @@
                 <div class="current">
                     <div class="current-month">
                         <div>本月</div>
-                        <div id="current-month">275634</div>
+                        <div id="current-month">2881748元</div>
                     </div>
                     <div class="current-week">
                         <div id="week-num">W51</div>
-                        <div id="current-week">21312</div>
+                        <div id="current-week">794158元</div>
                     </div>
                     <div class="current-day">
                         <div>当日</div>
-                        <div id="current-day">2754</div>
+                        <div id="current-day">98457元</div>
                     </div>
                 </div>
             </div>
@@ -116,14 +116,16 @@
                         <div class="img"></div>
                         <div class="hotel-num">
                             <div>酒店数</div>
-                            <div class="num-text" id="covered-hotels">3000</div>
+                            <!-- <div class="num-text" id="covered-hotels">4329</div> -->
+                            <div class="num-text" id="">4329</div>
                         </div>
                     </div>
                     <div class="room-box">
                         <div class="img"></div>
                         <div class="room-num">
                             <div>房间数</div>
-                            <div class="num-text" id="covered-rooms">1212434</div>
+                            <!-- <div class="num-text" id="covered-rooms">436519</div> -->
+                            <div class="num-text" id="">436519</div>
                         </div>
                     </div>
                 </div>
@@ -137,8 +139,8 @@
                         <div class="week-visitor" id="week_visitor">本周访客数</div>
                     </div>
                     <div class="visitor-box2">
-                        <div class="num-text" id="day_visitor_data">121212</div>
-                        <div class="week-num-text" id="week_visitor_data">721212</div>
+                        <div class="num-text" id="day_visitor_data">1123</div>
+                        <div class="week-num-text" id="week_visitor_data">7212</div>
                     </div>
                 </div>
                 <!--<div class="week-visitor">-->
@@ -151,8 +153,8 @@
                         <div class="week-visitor" id="year_visitor">本年访客数</div>
                     </div>
                     <div class="visitor-box2">
-                        <div class="num-text" id="month_visitor_data">3242342</div>
-                        <div class="week-num-text" id="year_visitor_data">33242342</div>
+                        <div class="num-text" id="month_visitor_data">32423</div>
+                        <div class="week-num-text" id="year_visitor_data">132424</div>
                     </div>
                 </div>
                 <!--<div class="year-visitor">-->
@@ -391,7 +393,7 @@ var adNumber = {
         }
 
 
-        var sell_number = "268585858";
+        var sell_number = "6845219";
         var sell_number_arr = sell_number.split("");
         var html="<div class='money-logo'>￥</div>";
         $.each(sell_number_arr,function(i,v){
@@ -935,7 +937,7 @@ var adNumber = {
                             $("#month_visitor_data").html(toThousands(v.value))
                             break;
                         case "year_Visitors":
-                            $("#year_visitor_data").html(toThousands(v.value));
+                            $("#year_visitor_data").html(toThousands(parseInt(v.value*2.3)));
                             break;
                         case "coveredRoomsShop":
                             $("#covered-rooms").html(toThousands(v.value));
