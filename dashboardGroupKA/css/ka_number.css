@@ -212,7 +212,7 @@
   margin: 0 auto;
   font-size: 0.7rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 .big-box .content .center-box .center-top .data-box .number {
   width: 0.8rem;
