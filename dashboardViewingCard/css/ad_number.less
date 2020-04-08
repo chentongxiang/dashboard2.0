@@ -183,7 +183,7 @@
         // background-color: @chart-bg-color;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: space-between;
         &:before,
         &:after {
           content: '';
@@ -246,17 +246,17 @@
           // border:1px solid red;
 
             width:33%;
-            height:100%;
+            height:90%;
             padding-left:.25rem;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            &:before,
-            &:after {
-              content: '';
-              display: block;
-            }
+            // &:before,
+            // &:after {
+            //   content: '';
+            //   display: block;
+            // }
             div:first-child{
               color:#fff5b5;
               font-size:.2rem;
@@ -266,14 +266,12 @@
               font-size:.36rem;
               letter-spacing: .05rem;
               font-family: main_number_font;
-
             }
           }
           .current-week{
             .current-month;
             width:32%;
             padding-right:.25rem;
-
           }
           .current-day{
             .current-month;
