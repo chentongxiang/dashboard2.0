@@ -22,14 +22,26 @@
                     </div>
                 </div>
             </div>
-            <div class="left-middle">
-                <div class="chart-box">
-                    <div class="title">|&nbsp;&nbsp;集团观影卡销售</div>
-                    <div class="chart" id="chart2">
+            <div class="left-middle swiper-container swiper-1">
+                <div class="carousel1 swiper-wrapper">
+                    <div class="chart-box swiper-slide">
+                        <div class="title">|&nbsp;&nbsp;集团观影卡日销售额</div>
+                        <div class="chart" id="movie_card_yesterday">
+                        </div>
+                    </div>
+                    <div class="chart-box swiper-slide">
+                        <div class="title">|&nbsp;&nbsp;集团观影卡周销售额</div>
+                        <div class="chart" id="movie_card_week">
+                        </div>
+                    </div>
+                    <div class="chart-box swiper-slide">
+                        <div class="title">|&nbsp;&nbsp;集团观影卡月销售额</div>
+                        <div class="chart" id="movie_card_month">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="left-bottom swiper-container swiper-1">
+            <div class="left-bottom swiper-container swiper-2">
                 <div class="carousel1 swiper-wrapper">
                     <div class="chart-box swiper-slide">
                         <div class="title">|&nbsp;&nbsp;热播电影TOP5</div>
@@ -61,7 +73,7 @@
                     </div>
                     <div class="box3">
                         <div class="text">平均昨日开机次数</div>
-                        <div class="number" id="avg_num_open">加载中</div>
+                        <div class="number" id="sum_num_open">加载中</div>
                     </div>
                     <div class="box4">
                         <div class="text">平均昨日开机时长</div>
@@ -74,11 +86,9 @@
             </div>
             <div class="center-bottom">
                 <div class="title">|&nbsp;&nbsp;重点酒店集团各省上线屏幕TOP2排名</div>
-                <div>麗枫:广东、四川</div>
-                <div>尚美:广东、四川</div>
-                <div>维也纳:广东、四川</div>
-                <div>东呈:广东、四川</div>
-                <div>喆啡:广东、四川</div>
+                <div id="content-text">
+                    
+                </div>
             </div>
         </div>
         <div class="right-box">
@@ -135,7 +145,7 @@
                     </div>
                     <div class="chart-box swiper-slide">
                         <div class="title">|&nbsp;&nbsp;各集团酒店广告播出数据</div>
-                        <div class="chart" id="chart8">
+                        <div class="chart" id="advs_month_group">
                         </div>
                     </div>
                 </div>
@@ -163,7 +173,7 @@
             //除地图外的echart图数据，接口get_charts_advs
             this.createEchart();
             //热力图展示，接口advKanbanHeatData
-            this.chinaMapShow();
+            // this.chinaMapShow();
             // 广告曝光频次
             this.kaDataShow();
         },
@@ -258,13 +268,15 @@
                 label: ["麗枫", "尚美", "喆啡", "维也纳","东呈"],
                 title_label: "自动播放数据排名(万次)",
                 title_value: "top_play_auto",
-                value:[21,25,30,33,39]
+                value:[44899496, 1377724, 876, 3018159, 278354]
             }
             $.post(GPATH.queryChartsGroupKA, function (data) {
                 if (data.code==200) {
                     var content = data.msg;
+                    console.log(content)
                     $.each(content,function(i,v){
                         switch(v.title_value){
+                            //集团阶段流程管理（占比数）
                             case "process_period_info":
                                 var color = ["#DFDFDF", "#BD00FC", "#2FC4FF","#04FDFF", "#F86F56", "#F03A75", "#4CD964", 
                                 "#8854EF", "#8593F4", "#FF7C00", "#3865FE"]
@@ -274,21 +286,112 @@
                                 var echartObj = new EchartObj("chart1", option);
                                 echartObj.setOp();
                             break;
+                            //热销商品top5
                             case "top_goods_view":
                                 var color = ["#2fc4ff", "#2fc4ff"];
                                 var option = options.normalBarChart(color, v.label, v.value, that.fontSizeNum);
                                 var echartObj = new EchartObj("chart4", option);
                                 echartObj.setOp();
                             break;
+                            //集团观影卡日销售额
+                            case "movie_card_yesterday":
+                                var color = ["#395EFE", "#2FC4FF"];
+                                var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
+                                var echartObj = new EchartObj("movie_card_yesterday", option);
+                                echartObj.setOp();
+                            break;
+                            //集团观影卡周销售额
+                            case "movie_card_week":
+                                var color = ["#395EFE", "#2FC4FF"];
+                                var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
+                                var echartObj = new EchartObj("movie_card_week", option);
+                                echartObj.setOp();
+                            break;
+                            //集团观影卡月销售额
+                            case "movie_card_month":
+                                var color = ["#395EFE", "#2FC4FF"];
+                                var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
+                                var echartObj = new EchartObj("movie_card_month", option);
+                                echartObj.setOp();
+                            break;
+                            //地图
+                            case "top2_province_screen":
+                                var valueArr = v.value;
+                                var option = options.heatMapChart([], that.fontSizeNum);
+                                var domID = "china_map";
+                                var echartObj = new EchartObj(domID, option);
+                                var locationArr = valueArr.location;
+                                // 将2维数组变一维数组，es5语法
+                                var locationArr = locationArr.reduce(function (a, b) { return a.concat(b)} );
+                                var newArr =[],colorArr=['#00ff9c', '#00ff9c','#ff7444', '#ff7444', '#fbef5d', '#fbef5d',
+                                 '#2fc4ff', '#2fc4ff','#BC00FC', '#BC00FC']
+                                $.each(locationArr,function(i,v){
+                                    newArr.push({
+                                        name:i,
+                                        value:v.reverse(),
+                                        itemStyle:{
+                                            normal: { color: colorArr[i] }
+                                        }
+                                    })
+                                })
+                                addMarkPoint(newArr, option)
+                                echartObj.myChart.setOption(option);
+                                function addMarkPoint(locationArr, option) {
+                                    option.series[2] = {
+                                        type: 'effectScatter',
+                                        coordinateSystem: 'geo',
+                                        data: locationArr,
+                                        symbolSize: that.fontSizeNum ? that.fontSizeNum / 5 : 14,//闪烁点大小
+                                        showEffectOn: 'render',
+                                        rippleEffect: {
+                                            brushType: 'stroke'
+                                        },
+                                        hoverAnimation: true,
+                                        itemStyle: {
+                                            normal: {
+                                                color: '#F4E925',
+                                                shadowBlur: 10,
+                                                shadowColor: '#333'
+                                            }
+                                        },
+                                        zlevel: 1
+                                    };
+                                }
+                                // 底部文字显示
+                                var html = "";
+                                $.each(v.label,function(i,v){
+                                    html+="<div>"
+                                                +"<span class='group'>"+ v+" : </span>"
+                                                +"<span class='province'>"+ valueArr.province[i].toString()+"</span>"
+                                            "</div >"
+                                })
+                                $("#content-text").html(html)
+                            break;
+                            //各集团酒店广告播出数据
+                             case "advs_month_group":
+                                var color = ["#c100fd", "#c100fd"];
+                                var new_value = that.bgData(v.value.reverse());
+                                var option = options.normalBarChartOther(color, v.label, new_value, that.fontSizeNum, v.value);
+                                for (i = 0, arr = []; i < new_value.length; i++) {
+                                    arr.push({
+                                        symbol: "circle",
+                                        symbolSize: that.fontSizeNum * 0.15,
+                                        symbolOffset: [0, "35%"],
+                                        coord: [i, v.value[i]],
+                                        itemStyle: {
+                                            color: "#f2f2f2"
+                                        }
+                                    })
+                                }
+                                option.series[0].markPoint.data = arr;
+                                option.series[0].itemStyle.normal.label.show = true;
+                                var echartObj = new EchartObj("advs_month_group", option);
+                                echartObj.setOp();
+
+                            break;
                         }
                         
                     })
-
-                        var color = ["#395EFE", "#2FC4FF"];
-                        var option = options.noBgBarChart(color, bar2.label, bar2.value, that.fontSizeNum);
-                        var echartObj = new EchartObj("chart2", option);
-                        echartObj.setOp();
-
 
                         var color = ["#BC00FC", "#BC00FC"];
                         var option = options.normalBarChart(color, bar3.label, bar3.value, that.fontSizeNum);
@@ -326,25 +429,24 @@
                         var echartObj = new EchartObj("chart7", option);
                         echartObj.setOp();
 
-                        var color = ["#c100fd", "#c100fd"];
-                        var new_value = that.bgData(bar8.value.reverse());
-                        var option = options.normalBarChartOther(color, bar8.label,new_value, that.fontSizeNum, bar8.value);
-                        for(i=0,arr=[];i<new_value.length;i++){
-                            arr.push({
-                                symbol:"circle",
-                                symbolSize:that.fontSizeNum*0.15,
-                                symbolOffset:[0,"35%"],
-                                coord: [i, bar8.value[i]],
-                                itemStyle:{
-                                    color:"#f2f2f2"
-                                }
-                            })
-                        }
-                        option.series[0].markPoint.data=arr;
-                        option.series[0].itemStyle.normal.label.show = true;
-                        var echartObj = new EchartObj("chart8", option);
-                        echartObj.setOp();
-                        console.log(content)
+                        // var color = ["#c100fd", "#c100fd"];
+                        // var new_value = that.bgData(bar8.value.reverse());
+                        // var option = options.normalBarChartOther(color, bar8.label,new_value, that.fontSizeNum, bar8.value);
+                        // for(i=0,arr=[];i<new_value.length;i++){
+                        //     arr.push({
+                        //         symbol:"circle",
+                        //         symbolSize:that.fontSizeNum*0.15,
+                        //         symbolOffset:[0,"35%"],
+                        //         coord: [i, bar8.value[i]],
+                        //         itemStyle:{
+                        //             color:"#f2f2f2"
+                        //         }
+                        //     })
+                        // }
+                        // option.series[0].markPoint.data=arr;
+                        // option.series[0].itemStyle.normal.label.show = true;
+                        // var echartObj = new EchartObj("chart8", option);
+                        // echartObj.setOp();
                 }
 
             }, "json");
@@ -404,7 +506,7 @@
             }).then(function (data) {
                 if(data.code==200){
                     var data = data.msg;
-                    console.log(data)
+                    // console.log(data)
                     $.each(data, function (i, v) {
                         switch (v.label) {
                             case "total_screen":
@@ -435,11 +537,12 @@
                                 $("#signed_room_2020").html(toThousands(v.value));
                                 $("#signed_room_balance").html(toThousands(1000000-v.value));
                                 break;
-                            case "num_person_month":
-                                $("#num_person_month").html(toThousands(v.value));
+                            case "sum_num_open":
+                                $("#sum_num_open").html(v.value/data[0].value.toFixed(3));
+                                console.log(v.value / data[0].value)
                                 break;
-                            case "coveredCities":
-                                $("#covered-cities").html(toThousands(v.value));
+                            case "sum_time_open":
+                                $("#sum_time_open").html(toThousands(v.value / data[0].value));
                                 break;
                             case "avgReachNums":
                                 $("#avg_reach_nums").html(toThousands(v.value));
@@ -450,20 +553,6 @@
                         }
                     })
                 }
-                $.ajax({
-                    url: GPATH.advTodayAdvsData,
-                    type: "GET",
-                    dataType: "json"
-                }).then(function (data) {
-                    if (data.res) {
-                        $("#current-day").html(toThousands(data.msg))
-                        if ($("#current-week").html() == 0) {
-                            $("#current-week").html(toThousands(data.msg));
-                        }
-                    }
-                }).catch(function (data) {
-                    console.log(data.res)
-                })
             })
             function toThousands(num) {
                 var num = (num || 0).toString(), result = '';
@@ -508,13 +597,15 @@
             $.post(GPATH.advKanbanHeatData, function (data) {
                 if (data.res) {
                     var heatBox = data.msg;
-                    // var option = options.heatMapChart(heatBox, that.fontSizeNum);
+                    var option = options.heatMapChart(heatBox, that.fontSizeNum);
                     var domID = "china_map";
                     var echartObj = new EchartObj(domID, option);
                     echartObj.setOp();
 
                     that.myChartMap = echartObj.myChart
                     var itemData = randomData(heatBox);
+                    console.log(itemData)
+                    
                     addMarkPoint(itemData,option);
                 }
             }, "json");
