@@ -1553,8 +1553,8 @@ var options = {
                 }
             },
             grid: {
-                left: '7%',
-                right: '8%',
+                left: '3%',
+                right: '3%',
                 top:"15%",
                 bottom: '8%',
                 containLabel: true
