@@ -30,7 +30,7 @@
             var number = options.deVal;
 			var $num_item = $(obj).find('.' + options.className).find('.tt');
             var h = $(obj).find('.dataBoc').height(); 
-          
+            console.log(h)
             $num_item.css('transition','all 2s ease-in-out');
             var numberStr = number.toString();
             if(numberStr.length <= $num_item.length - 1){
@@ -40,11 +40,12 @@
                 }
                 numberStr = tempStr + numberStr;
             }
+            // alert(numberStr)
 
             var numberArr = numberStr.split('');
             $num_item.each(function(i, item) {
                 setTimeout(function(){
-                    $num_item.eq(i).css('top',-parseInt(numberArr[i])*h - h*10 + 'px');
+                    $num_item.eq(i).css('top',-parseFloat(numberArr[i])*h - h*10 + 'px');
                 },i*100)
             });
         }

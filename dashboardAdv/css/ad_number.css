@@ -235,7 +235,11 @@
   width: 0.56rem;
   height: 0.8rem;
   text-align: center;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: content-box;
 }
 .big-box .content .center-box .center-top .data-big-box .data-box .scroll-data .dataNums .dataBoc {
   position: relative;
@@ -253,16 +257,15 @@
 .big-box .content .center-box .center-top .data-big-box .data-box .scroll-data .dataNums .dataBoc .tt span {
   width: 100%;
   height: 100%;
-  font: 0.8rem/0.85rem "Arail";
-  -ms-font: 0.94117647rem "Arail";
-  /* IE 9 */
-  -moz-font: 0.94117647rem "Arail";
-  /* Firefox */
-  -webkit-font: 0.94117647rem "Arail";
-  /* Safari 和 Chrome */
-  -o-font: 0.94117647rem "Arail";
+  font-size: 0.75rem;
+  line-height: 0.8rem;
   color: #fff;
-  box-sizing: border-box;
+  font-family: font_Digital;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: content-box;
 }
 .big-box .content .center-box .center-top .current {
   width: 90%;
