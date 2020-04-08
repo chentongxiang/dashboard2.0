@@ -170,7 +170,7 @@
   margin-right: 0.1rem;
 }
 .big-box .content .left-box .left-middle .carousel-chart1 .chart-box ul li .box .content-box {
-  width: 100%;
+  width: 90%;
   height: 0.4rem;
   display: flex;
   flex-direction: column;
@@ -181,6 +181,7 @@
   height: 0.25rem;
   font-size: 0.16rem;
   overflow: hidden;
+  white-space: nowrap;
 }
 .big-box .content .left-box .left-middle .carousel-chart1 .chart-box ul li .box .content-box .bar-box {
   width: 100%;
@@ -239,7 +240,7 @@
   margin-right: 0.1rem;
 }
 .big-box .content .left-box .left-middle .carousel-chart2 .chart-box ul li .box .content-box {
-  width: 100%;
+  width: 90%;
   height: 0.4rem;
   display: flex;
   flex-direction: column;
@@ -250,6 +251,7 @@
   height: 0.25rem;
   font-size: 0.16rem;
   overflow: hidden;
+  white-space: nowrap;
 }
 .big-box .content .left-box .left-middle .carousel-chart2 .chart-box ul li .box .content-box .bar-box {
   width: 100%;
@@ -308,7 +310,7 @@
   margin-right: 0.1rem;
 }
 .big-box .content .left-box .left-middle .carousel-chart3 .chart-box ul li .box .content-box {
-  width: 100%;
+  width: 90%;
   height: 0.4rem;
   display: flex;
   flex-direction: column;
@@ -319,6 +321,7 @@
   height: 0.25rem;
   font-size: 0.16rem;
   overflow: hidden;
+  white-space: nowrap;
 }
 .big-box .content .left-box .left-middle .carousel-chart3 .chart-box ul li .box .content-box .bar-box {
   width: 100%;
@@ -377,7 +380,7 @@
   margin-right: 0.1rem;
 }
 .big-box .content .left-box .left-middle .carousel-chart4 .chart-box ul li .box .content-box {
-  width: 100%;
+  width: 90%;
   height: 0.4rem;
   display: flex;
   flex-direction: column;
@@ -388,6 +391,7 @@
   height: 0.25rem;
   font-size: 0.16rem;
   overflow: hidden;
+  white-space: nowrap;
 }
 .big-box .content .left-box .left-middle .carousel-chart4 .chart-box ul li .box .content-box .bar-box {
   width: 100%;
@@ -848,7 +852,7 @@
   margin-right: 0.1rem;
 }
 .big-box .content .right-box .right-middle .carousel-chart1 .chart-box ul li .box .content-box {
-  width: 100%;
+  width: 90%;
   height: 0.4rem;
   display: flex;
   flex-direction: column;
@@ -859,6 +863,7 @@
   height: 0.25rem;
   font-size: 0.16rem;
   overflow: hidden;
+  white-space: nowrap;
 }
 .big-box .content .right-box .right-middle .carousel-chart1 .chart-box ul li .box .content-box .bar-box {
   width: 100%;
@@ -917,7 +922,7 @@
   margin-right: 0.1rem;
 }
 .big-box .content .right-box .right-middle .carousel-chart2 .chart-box ul li .box .content-box {
-  width: 100%;
+  width: 90%;
   height: 0.4rem;
   display: flex;
   flex-direction: column;
@@ -928,6 +933,7 @@
   height: 0.25rem;
   font-size: 0.16rem;
   overflow: hidden;
+  white-space: nowrap;
 }
 .big-box .content .right-box .right-middle .carousel-chart2 .chart-box ul li .box .content-box .bar-box {
   width: 100%;
@@ -986,7 +992,7 @@
   margin-right: 0.1rem;
 }
 .big-box .content .right-box .right-middle .carousel-chart3 .chart-box ul li .box .content-box {
-  width: 100%;
+  width: 90%;
   height: 0.4rem;
   display: flex;
   flex-direction: column;
@@ -997,6 +1003,7 @@
   height: 0.25rem;
   font-size: 0.16rem;
   overflow: hidden;
+  white-space: nowrap;
 }
 .big-box .content .right-box .right-middle .carousel-chart3 .chart-box ul li .box .content-box .bar-box {
   width: 100%;
