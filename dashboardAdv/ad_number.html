@@ -44,13 +44,13 @@
                 <div class="history-text">历史广告曝光频次</div>
                 <div class="this-year">本年曝光频次</div>
                 <div class="data-big-box">
-                    <!-- <div class="data-box">
-                        <div class="history-data">242423</div>
-                        <div class="this-year-data">12323</div>
-                    </div> -->
                     <div class="data-box">
-                        <div class="scroll-data">数据加载中</div>
+                        <div class="history-data">数据加载中</div>
+                        <div class="this-year-data">数据加载中</div>
                     </div>
+                    <!-- <div class="data-box">
+                        <div class="scroll-data">数据加载中</div>
+                    </div> -->
                 </div>
                 <div class="current">
                     <div class="current-month">
@@ -136,7 +136,7 @@
 <script src="js/echarts.min.js"></script>
 <script src="js/echarts-gl.min.js"></script>
 <script src="js/china.js"></script>
-<script src="js/test-scroll.js"></script>
+<!-- <script src="js/test-scroll.js"></script> -->
 <script src="js/swiper.min.js"></script>
 <script>
     var adNumber = {
@@ -434,8 +434,8 @@
             setInterval(function () {
                 $historyText = $(".history-text");
                 $thisYear = $(".this-year");
-                // $historyData = $(".history-data");
-                // $thisYearData = $(".this-year-data");
+                $historyData = $(".history-data");
+                $thisYearData = $(".this-year-data");
                 var a = $historyText.css("transform");
                 var arr = ["历史广告曝光频次", "本年"]
                 if (b == 1) {
@@ -443,27 +443,28 @@
                     $thisYear.removeClass("flipOut");
                     $historyText.addClass("flipOut");
                     $thisYear.addClass('flipIn');
-                    $(".scroll-data").rollNum({
-                        deVal:that.this_year_data
-                    });
-                    // $historyData.removeClass("flipIn");
-                    // $thisYearData.removeClass("flipOut");
-                    // $historyData.addClass("flipOut");
-                    // $thisYearData.addClass('flipIn');
+                    // $(".scroll-data").rollNum({
+                    //     deVal:that.this_year_data
+                    // });
+
+                    $historyData.removeClass("flipIn");
+                    $thisYearData.removeClass("flipOut");
+                    $historyData.addClass("flipOut");
+                    $thisYearData.addClass('flipIn');
                     b = 0;
                 } else {
                     $historyText.removeClass("flipOut");
                     $thisYear.removeClass("flipIn");
                     $historyText.addClass("flipIn");
                     $thisYear.addClass('flipOut');
-                    $(".scroll-data").rollNum({
-                        deVal:that.history_data
-                    });
+                    // $(".scroll-data").rollNum({
+                    //     deVal:that.history_data
+                    // });
 
-                    // $historyData.removeClass("flipOut");
-                    // $thisYearData.removeClass("flipIn");
-                    // $thisYearData.addClass("flipOut");
-                    // $historyData.addClass('flipIn');
+                    $historyData.removeClass("flipOut");
+                    $thisYearData.removeClass("flipIn");
+                    $thisYearData.addClass("flipOut");
+                    $historyData.addClass('flipIn');
                     b = 1;
                 }
             }, 10000);
@@ -529,17 +530,17 @@
                     $.each(data, function (i, v) {
                         switch (v.label) {
                             case "total":
-                                // $(".history-data").html(toThousands(v.value))
-                                $(".scroll-data").rollNum({
-                                    deVal:v.value
-                                });
-                                that.history_data = v.value;
+                                $(".history-data").html(toThousands(v.value))
+                                // $(".scroll-data").rollNum({
+                                //     deVal:v.value
+                                // });
+                                // that.history_data = v.value;
                                 totalData = v.value;
                                 break;
                             case "year_2018":
                                 var thisYearData = totalData - v.value;
-                                // $(".this-year-data").html(toThousands(thisYearData))
-                                that.this_year_data =  thisYearData;
+                                $(".this-year-data").html(toThousands(thisYearData))
+                                // that.this_year_data =  thisYearData;
                                 break;
                             case "month":
                                 $("#current-month").html(toThousands(v.value))

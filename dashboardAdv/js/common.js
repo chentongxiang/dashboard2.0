@@ -766,8 +766,9 @@ var options = {
             legend: {
                 orient: 'vertical',
                 x:"55%",
-                y: '18%',
+                y: '20%',
                 data:label,
+                itemGap: num ? num / this.rate/1.6 : 7,
                 textStyle: {
                     // fontSize: num?num/this.rate:14,
                     color:this.titleColor,
