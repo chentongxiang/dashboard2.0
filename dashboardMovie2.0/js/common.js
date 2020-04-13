@@ -18,8 +18,6 @@ var GPATH ={
     terminalInitCollect:"http://54.222.134.242:8899/boardDemo/advertise/terminal_init_collect",
 
 
-    //基本都是生成echart图的数据
-    getChartsTerminal:"http://54.222.134.242:8899/boardDemo/advertise/get_charts_terminal",
     // 中国地图热力图
     terminalHeatData:"http://54.222.134.242:8899/boardDemo/advertise/terminalHeatData",
     //当日实时数据采集量
@@ -42,10 +40,8 @@ var GPATH ={
     getChartsAdvs:"http://54.222.134.242:8899/boardDemo/advertise/get_charts_advs",
     //中国地图热力图
     advKanbanHeatData:"http://54.222.134.242:8899/boardDemo/advertise/advKanbanHeatData",
-    // 广告受众人数
-    advTodayPersonsData:"http://54.222.134.242:8899/boardDemo/advertise/advTodayPersonsData",
     // 广告曝光频次
-    advTodayAdvsData:"http://54.222.134.242:8899/boardDemo/advertise/advTodayAdvsData"
+
 }
 var options = {
     //设置图标字体与fontsize的倍率
@@ -53,6 +49,8 @@ var options = {
     titleRate:4.5,
     dynamicRate:4.3,
     legendRate:8,
+    styleColor:"#05BAC3",
+    fontColor:"#FFCD05",
     //柱状图-具有背景横向
     barChart:function (color,barLabel,bgData,barData,num) {
         var option = {
@@ -64,7 +62,7 @@ var options = {
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
-                    color:"#fff"
+                    color:this.styleColor
                 },
                 x:"3%",
                 y:"6%"
@@ -93,14 +91,14 @@ var options = {
                     },
                     axisLabel: {
                         textStyle: {
-                            color: '#fff',  //坐标的字体颜色
+                            color: this.styleColor,  //坐标的字体颜色
                             fontSize: num ? num / this.rate : 14,
                         },
                         interval: 0,
                     },
                     axisLine: {
                         lineStyle: {
-                            color: '#fff',  //坐标的字体颜色
+                            color: this.styleColor,  //坐标的字体颜色
                         },
                         show: false
                     },
@@ -116,7 +114,7 @@ var options = {
                     axisLabel: {
 
                         textStyle:{
-                            color:'#fff',  //坐标的字体颜色
+                            color:this.styleColor,  //坐标的字体颜色
                         },
                     },
                     splitLine: {
@@ -124,7 +122,7 @@ var options = {
                     },
                     axisLine: {
                         lineStyle:{
-                            color:'#0E3254',  //坐标的字体颜色
+                            color:this.styleColor,  //坐标的字体颜色
                         },
                     },
                     max:"dataMax"
@@ -284,12 +282,12 @@ var options = {
                             barBorderRadius:6,
                         },
                         normal: {
-                            barBorderRadius:6,
+                            // barBorderRadius:[10, 10, 10, 10],
                             label: {
                                 show: true,		//开启显示
                                 position: 'right',	//在上方显示
                                 textStyle: {	    //数值样式
-                                    color: '#fff',
+                                    color: this.fontColor,
                                     fontSize: num?num/this.legendRate:14
                                 }
                             },
@@ -321,7 +319,377 @@ var options = {
         }
         return option;
     },
+    //柱状图-具有背景横向
+    withBgBarChart: function (color, barLabel, barData, num) {
+        var option = {
+            title: {
+                show: true,
+                text: '',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    // fontFamily: 'monospace',
+                    fontSize: num ? num / this.titleRate : 14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color: this.styleColor
+                },
+                x: "8%",
+                y: "5%"
+            },
+            color: [color[0]],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '5%',
+                right: '5%',
+                top: "28%",
+                bottom: '6%',
+                containLabel: true
+            },
+            yAxis: [
+                {
+                    type: 'value',
+                    axisTick: {
+                        show: false,
+                        // alignWithLabel: true
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: this.styleColor,  //坐标的字体颜色
+                            fontSize: num ? num / this.rate : 14,
+                        },
+                        interval: 0,
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#eeeeda',  //坐标的字体颜色
+                        },
+                        show: false
+                    },
+                    splitLine: {
+                        show: false
+                    },
 
+                }
+            ],
+            xAxis: [
+                {
+                    type: 'category',
+                    data: barLabel,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: this.styleColor,  //坐标的字体颜色
+                            fontSize: num ? num / this.legendRate * 1.3 : 14,
+                        },
+                        interval: 0,
+                        formatter: function (params) {
+                            var newParamsName = "";// 最终拼接成的字符串
+                            var paramsNameNumber = params.length;// 实际标签的个数
+                            var provideNumber = 2;// 每行能显示的字的个数
+                            var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
+                            /**
+                             * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
+                             */
+                            // 条件等同于rowNumber>1
+                            if (paramsNameNumber > provideNumber) {
+                                /** 循环每一行,p表示行 */
+                                for (var p = 0; p < rowNumber; p++) {
+                                    var tempStr = "";// 表示每一次截取的字符串
+                                    var start = p * provideNumber;// 开始截取的位置
+                                    var end = start + provideNumber;// 结束截取的位置
+                                    // 此处特殊处理最后一行的索引值
+                                    if (p == rowNumber - 1) {
+                                        // 最后一次不换行
+                                        tempStr = params.substring(start, paramsNameNumber);
+                                    } else {
+                                        // 每一次拼接字符串并换行
+                                        tempStr = params.substring(start, end) + "\n";
+                                    }
+                                    newParamsName += tempStr;// 最终拼成的字符串
+                                }
+
+                            } else {
+                                // 将旧标签的值赋给新标签
+                                newParamsName = params;
+                            }
+                            //将最终的字符串返回
+                            return newParamsName
+                        }
+                    },
+                    splitLine: {
+                        show: false,
+                    },
+                    axisLine: {
+                        show: false,
+                        lineStyle: {
+                            color: '#eeeeda',  //坐标的字体颜色
+                        },
+                    },
+                    max: "dataMax",
+                    axisTick: {       //y轴刻度线
+                        show: false
+                    },
+                }
+            ],
+            series: [
+                {
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            // barBorderRadius: 6,
+                            label: {
+                                formatter: function (params) {
+                                    for (i = 0; i < barData.length; i++) {
+                                        if (params.dataIndex == i) {
+                                            return barData[i];
+                                        }
+                                    }
+                                },
+                                show: true,
+                                position: "top",
+                                textStyle: {
+                                    fontSize: num ? num / this.legendRate * 1.3 : 14,
+                                    color: this.fontColor,
+                                }
+                            },
+                            color: "#5D6672",
+                        }
+                    },
+                    silent: true,
+                    barWidth: '35%',
+                    barGap: '-100%', // Make series be ove
+                    data: []
+                },
+                {
+                    name: '',
+                    type: 'bar',
+                    barWidth: '35%',
+                    data: barData,
+                    itemStyle: {
+                        emphasis: {
+                            // barBorderRadius: 6,
+                        },
+                        normal: {
+                            // barBorderRadius: 6,
+                            label: {
+                                formatter: function (a) {
+                                    console.log(a)
+                                },
+                                show: false,		//开启显示
+                                position: [200, 0],	//在上方显示
+                                textStyle: {	    //数值样式
+                                    color: '#fff',
+                                    fontSize: num ? num / this.legendRate : 14
+                                }
+                            },
+                            // color:color[0]
+                            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                                offset: 0,
+                                color: color[1] // 0% 处的颜色
+                            }, {
+                                offset: 1,
+                                color: color[0] // 100% 处的颜色
+                            }], false)
+                        }
+                    }
+                },
+
+            ],
+            // legend: {
+            //     x : '50%',
+            //     y : '20%',
+            //     type: 'scroll',
+            //     orient: 'vertical',
+            //     textStyle: {
+            //         fontSize: num?num/this.rate:14,
+            //         color:"white",
+            //         fontFamily: "Microsoft YaHei",
+            //     },
+            //     data:barLabel
+            // },
+        }
+        return option;
+    },
+    //多条折线图
+    multipleLineChart: function (color, legendData, lineLabel, lineData, num) {
+        var option = {
+            color: color,
+            legend: {
+                x: '65%',
+                y: '5%',
+                type: 'scroll',
+                orient: 'horizontal',
+                textStyle: {
+                    fontSize: num ? num / this.rate / 1.2 : 14,
+                    color: "#9CD1FF",
+                    fontFamily: "Microsoft YaHei",
+                },
+
+                itemWidth: num ? num / this.rate * 0.8 : 14,
+                itemHeight: num ? num / this.rate : 14,
+                data: legendData
+            },
+            title: {
+                show: true,
+                text: '',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    // fontFamily: 'monospace',
+                    fontSize: num ? num / this.titleRate : 14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color: this.styleColor
+                },
+                x: "5%",
+                y: "5%"
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '7%',
+                right: '10%',
+                top: "25%",
+                bottom: '8%',
+                containLabel: true
+            },
+            xAxis: {
+                nameLocation: "center",
+                type: 'category',
+                data: lineLabel,
+                axisLabel: {
+                    textStyle: {
+                        color: this.styleColor,  //坐标的字体颜色
+                        fontSize: num ? num / this.rate : 14,
+                    },
+                    interval: 0,
+                    formatter: function (params) {
+                        var newParamsName = "";// 最终拼接成的字符串
+                        var paramsNameNumber = params.length;// 实际标签的个数
+                        var provideNumber = 3;// 每行能显示的字的个数
+                        var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
+                        /**
+                         * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
+                         */
+                        // 条件等同于rowNumber>1
+                        if (paramsNameNumber > provideNumber) {
+                            /** 循环每一行,p表示行 */
+                            for (var p = 0; p < rowNumber; p++) {
+                                var tempStr = "";// 表示每一次截取的字符串
+                                var start = p * provideNumber;// 开始截取的位置
+                                var end = start + provideNumber;// 结束截取的位置
+                                // 此处特殊处理最后一行的索引值
+                                if (p == rowNumber - 1) {
+                                    // 最后一次不换行
+                                    tempStr = params.substring(start, paramsNameNumber);
+                                } else {
+                                    // 每一次拼接字符串并换行
+                                    tempStr = params.substring(start, end) + "\n";
+                                }
+                                newParamsName += tempStr;// 最终拼成的字符串
+                            }
+
+                        } else {
+                            // 将旧标签的值赋给新标签
+                            newParamsName = params;
+                        }
+                        //将最终的字符串返回
+                        return newParamsName
+                    }
+                },
+                axisLine: {
+                    show:true,
+                    lineStyle: {
+                        color: "#192045",  //坐标的字体颜色
+                    },
+                },
+                splitLine: {
+                    show: false,
+                    lineStyle: {
+                        color: this.lineColor,
+                        width: 1,
+                        type: 'solid'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                boundaryGap: false,
+            },
+            yAxis: {
+                nameLocation: "center",
+                type: 'value',
+                axisLabel: {
+                    textStyle: {
+                        color: this.styleColor,  //坐标的字体颜色
+                        fontSize: num ? num / this.rate : 14,
+                    },
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: "#192045",
+                        width: 1,
+                        type: 'solid'
+                    }
+                },
+                axisLine: {
+                    show:false,
+                    lineStyle: {
+                        color: "#192045",  //坐标的字体颜色
+                    },
+                },
+                axisTick: {
+                    show: true
+                },
+            },
+            series: [
+                {
+                    name: legendData[0],
+                    type: 'line',
+                    data: lineData[0],
+                    smooth: true,
+                    symbol: "circle",
+                    itemStyle: {
+                        emphasis: {
+                            barBorderRadius: 2,
+                        },
+                        normal: {
+                            lineStyle: {
+                                width: 1
+                            },
+                        }
+                    },
+                },
+                {
+                    name: legendData[1],
+                    type: 'line',
+                    data: lineData[1],
+                    smooth: true,
+                    symbol: "circle",
+                    itemStyle: {
+                        emphasis: {
+                            barBorderRadius: 2,
+                        },
+                        normal: {
+                            lineStyle: {
+                                width: 1
+                            }
+                        }
+                    },
+
+                },
+            ],
+
+        }
+        return option;
+    },
     //柱状图-多柱状横向
     stackedBarChart:function (color,barLabel,barData,num) {
         var option = {
@@ -333,7 +701,7 @@ var options = {
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
-                    color:"#fff"
+                    color:this.styleColor
                 },
                 x:"3%",
                 y:"6%"
@@ -367,7 +735,7 @@ var options = {
                     },
                     axisLabel: {
                         textStyle: {
-                            color: '#fff',  //坐标的字体颜色
+                            color: this.styleColor,  //坐标的字体颜色
                             fontSize: num ? num / this.rate : 14,
                         },
                         interval: 0,
@@ -386,11 +754,12 @@ var options = {
             ],
             xAxis : [
                 {
+                    show:false,
                     type : 'value',
                     axisLabel: {
                         show: false,
                         textStyle:{
-                            color:'#fff',  //坐标的字体颜色
+                            color:this.styleColor,  //坐标的字体颜色
                         },
                     },
                     splitLine: {
@@ -400,6 +769,9 @@ var options = {
                         lineStyle:{
                             color:'#0E3254',  //坐标的字体颜色
                         },
+                    },
+                    axisTick: {
+                        show:false,
                     },
                     max:"dataMax"
                 }
@@ -412,7 +784,130 @@ var options = {
                 orient: 'horizontal',
                 textStyle: {
                     fontSize: num?num/this.legendRate:14,
-                    color:"white",
+                    color:this.styleColor,
+                    fontFamily: "Microsoft YaHei",
+                },
+                // data:[barData[0].name,barData[1].name]
+                data:[barData[0].name,barData[1].name],
+                itemWidth:num?num/this.rate*1.5:14,
+                itemHeight:num?num/this.rate:14,
+            },
+        }
+        return option;
+    },
+    stackedBarChartother:function (color,barLabel,barData,num) {
+        var option = {
+            title: {
+                show:true,
+                text: '',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    // fontFamily: 'monospace',
+                    fontSize: num?num/this.titleRate:14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color:this.styleColor
+                },
+                x:"3%",
+                y:"6%"
+            },
+            // toolbox: {
+            //     feature: {saveAsImage:{}}
+            //
+            // },
+            color: color,
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+
+            grid: {
+                left: '5%',
+                right: '15%',
+                top:"25%",
+                bottom: '8%',
+                containLabel: true
+            },
+            yAxis : [
+                {
+                    type: 'category',
+                    data: barLabel,
+                    axisTick: {
+                        show:false,
+                        // alignWithLabel: true
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: this.styleColor,  //坐标的字体颜色
+                            fontSize: num ? num / this.rate : 14,
+                        },
+                        interval: 0,
+                        formatter: function (value) {
+                            return '{a|}\n'+value ;
+                        },
+                        rich: {
+                            value: {
+                                lineHeight: 40,
+                                align: 'center'
+                            },
+                            a:{
+                                align: 'center',
+                                width: num ? num : 14,
+                                height: num ? num / this.rate*1.6  : 14,
+                                lineHeight:25,
+                                backgroundColor: {
+                                    image: "./images/sex_img.png"
+                                }
+                            },
+                            
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#fff',  //坐标的字体颜色
+                        },
+                        show: false
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    
+                }
+            ],
+            xAxis : [
+                {
+                    show:false,
+                    type : 'value',
+                    axisLabel: {
+                        show: false,
+                        textStyle:{
+                            color:this.styleColor,  //坐标的字体颜色
+                        },
+                    },
+                    splitLine: {
+                        show: false,
+                    },
+                    axisLine: {
+                        lineStyle:{
+                            color:'#0E3254',  //坐标的字体颜色
+                        },
+                    },
+                    axisTick: {
+                        show:false,
+                    },
+                    max:"dataMax"
+                }
+            ],
+            series : barData,
+            legend: {
+                right :"10%",
+                top : '15%',
+                // type: 'scroll',
+                orient: 'horizontal',
+                textStyle: {
+                    fontSize: num?num/this.legendRate:14,
+                    color:this.styleColor,
                     fontFamily: "Microsoft YaHei",
                 },
                 // data:[barData[0].name,barData[1].name]
@@ -435,7 +930,7 @@ var options = {
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
-                    color:"#fff"
+                    color:this.styleColor
                 },
                 x:"3%",
                 y:"6%"
@@ -463,7 +958,7 @@ var options = {
                     },
                     axisLabel: {
                         textStyle:{
-                            color:'#fff',  //坐标的字体颜色
+                            color:this.styleColor,  //坐标的字体颜色
                             fontSize:num?num/this.rate:14,
                         },
                         interval:0,
@@ -503,7 +998,7 @@ var options = {
                     },
                     axisLine: {
                         lineStyle:{
-                            color:'#fff',  //坐标的字体颜色
+                            color:this.styleColor,  //坐标的字体颜色
                         },
                     },
 
@@ -515,21 +1010,21 @@ var options = {
                     type : 'value',
                     axisLabel: {
                         textStyle:{
-                            color:'#fff',  //坐标的字体颜色
+                            color:this.styleColor,  //坐标的字体颜色
                             fontSize:num?num/this.rate:14,
                         },
                     },
                     splitLine: {
                         show: true,
                         lineStyle:{
-                            color: ['#0E3254'],
+                            color: this.styleColor,
                             width: 1,
                             type: 'solid'
                         }
                     },
                     axisLine: {
                         lineStyle:{
-                            color:'#fff',  //坐标的字体颜色
+                            color:this.styleColor,  //坐标的字体颜色
                         },
                     },
                 }
@@ -613,7 +1108,7 @@ var options = {
                 orient: 'horizontal',
                 textStyle: {
                     fontSize: num?num/this.rate:14,
-                    color:"white",
+                    color:this.styleColor,
                     fontFamily: "Microsoft YaHei",
 
                 },
@@ -622,65 +1117,92 @@ var options = {
         return option;
     },
     //环形饼图
-    pieChart:function(color,title_label,pieData,num){
+    pieChart: function (color, label, pieData, num){
         var option = {
             title: {
+                show: true,
                 text: '',
-                left: 'left',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    // fontFamily: 'monospace',
+                    fontSize: num ? num / this.titleRate : 14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color: this.styleColor
+                },
+                x: "3%",
+                y: "6%"
             },
-            toolbox: {
-                feature: {saveAsImage:{}}
-
-            },
-            tooltip : {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
-            },
-            color: color||['#249CF9',"rgba(0,66,117,0.1)"],
+            // toolbox: {
+            //     feature: {saveAsImage:{}}
+            //
+            // },
             legend: {
-                orient: 'vertical',
-                // x:"20%",
-                y: '75%',
-                data:[title_label],
+                orient: 'horizontal',
+                show: true,
+                x:"60%",
+                y: '8%',
+                data: label,
                 textStyle: {
-                    fontSize: num?num/this.rate:14,
-                    color:"white",
+                    fontSize: num ? num / this.rate : 14,
+                    color: "white",
                     fontFamily: "Microsoft YaHei",
 
                 },
-                itemWidth:num?num/this.rate*1.5:14,
-                itemHeight:num?num/this.rate:14,
+                data: label,
+                itemWidth: num ? num / this.rate * 1.6 : 20,
+                itemHeight: num ? num / this.rate*0.8  : 12,
             },
-            graphic:{
-                type:'text',
-                left:'center',
-                top:'36%',
-                style:{
-                    text:pieData[0].name,
-                    textAlign:'center',
-                    fill:'white',
-                    width:30,
-                    height:30,
-                    fontSize: num?num/this.rate/1.1:14,
-                }
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
-            series : [
-                {
-                    name: title_label,
-                    type: 'pie',
-                    center : ['50%','40%'],
-                    radius: ['50%', '55%'],
-                    label: {
-                        show:false
+            color: color || ['#249CF9', "rgba(0,66,117,0.1)"],
+
+            graphic: {
+                elements: [{
+                    type: 'image',
+                    style: {
+                        image: '',
+                        width: num ? num / this.rate * 2 : 32,
+                        height: num ? num / this.rate * 2 : 32,
                     },
-                    labelLine: {
+                    left: '47%',
+                    top: '45%'
+                }]
+            },
+            series: [
+                {
+                    name: "",
+                    type: 'pie',
+                    center: ['50%', '52%'],
+                    radius: ['35%', '50%'],
+                    label: {        //展示文本设置
                         normal: {
-                            show: false
+                            show: true,     //展示
+                            position: 'outside',      // outside表示文本显示位置为外部
+                            textStyle: {    //文本样式
+                                fontSize: num ? num / this.rate : 14,
+                                color: "#fff"
+                            },
+                            formatter: '{a}{b}({d}%)',
+                            // padding: [10,10],
+                        },
+                        emphasis: {    //文本样式
+                            show: false,    //展示
                         }
                     },
-                    // hoverAnimation:false,
-                    data:pieData,
-                    hoverOffset:  num?num/this.rate/2.5:5,
+
+                    labelLine: {    //引导线设置
+                        normal: {
+                            show: true,   //引导线显示
+                        }
+                    },
+                    // itemStyle: {
+                    //     borderColor: "#0A112B",
+                    //     borderWidth: "2"
+                    // },
+                    data: pieData,
+                    hoverOffset: num ? num / this.rate / 2.5 : 5,
                 }
             ]
         };
@@ -696,7 +1218,7 @@ var options = {
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
-                    color:"#fff"
+                    color:this.styleColor
                 },
                 x:"3%",
                 y:"6%"
@@ -707,6 +1229,7 @@ var options = {
             // },
             legend: {
                 orient: 'vertical',
+                show:false,
                 // x:"20%",
                 y: '85%',
                 data:label,
@@ -740,15 +1263,15 @@ var options = {
                 {
                     name: "",
                     type: 'pie',
-                    center : ['50%','50%'],
-                    radius: ['45%', '55%'],
+                    center : ['50%','52%'],
+                    radius: ['35%', '50%'],
                     label: {        //展示文本设置
                         normal: {
                             show: true,     //展示
                             position: 'outside',      // outside表示文本显示位置为外部
                             textStyle: {    //文本样式
                                 fontSize: num?num/this.rate:14,
-                                fontWeight: '600',
+                                color:"#fff"
                             },
                             formatter: '{a}{b}({d}%)',
                             // padding: [10,10],
@@ -762,6 +1285,10 @@ var options = {
                         normal: {
                             show: true,   //引导线显示
                         }
+                    },
+                    itemStyle:{
+                        borderColor:"#0A112B",
+                        borderWidth:"2"
                     },
                     data:pieData,
                     hoverOffset:  num?num/this.rate/2.5:5,
@@ -857,10 +1384,6 @@ var options = {
                 showDelay:1000,
                 hideDelay:1000,
             },
-            // toolbox: {
-            //     feature: {saveAsImage:{}}
-            //
-            // },
             grid: {
                 // left: '3%',
                 // right: '4%',
@@ -880,11 +1403,11 @@ var options = {
                 roam:false,
                 itemStyle: {
                     normal: {
-                        areaColor: '#122B5E',
-                        borderColor: '#6AD5F7',
-                        shadowColor: 'rgba(0,54,255, 1)',
-                        shadowBlur: 10,
-                        // borderWidth:2,
+                        areaColor: '#204F6B',
+                        borderColor: '#0EA6CD',
+                        shadowColor: 'rgba(14,166,205,. 7)',
+                        shadowBlur: 2,
+                        borderWidth:3,
                     },
                     emphasis: {
                         areaColor: '#d1d1d1'
@@ -896,20 +1419,51 @@ var options = {
                 top: 'top',
                 min: 0,
                 max: 5,
-                seriesIndex: 0,
+                seriesIndex: 1,
                 calculable: true,
                 inRange: {
-                    color: ['#3DE7C9'] //热力点颜色
+                    color: '#00ffff' //热力点颜色
+                    // color: '#42a8ee' //热力点颜色
                 }
             },
             series : [
+                {
+                    type: 'map',
+                    map: 'china',
+                    // geoIndex: 1,
+                    // aspectScale: 0.75, //长宽比
+                    showLegendSymbol: false, // 存在legend时显示
+                    label: {
+                        normal: {
+                            show: false,
+                        },
+                        emphasis: {
+                            show: false,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    zoom: 1.2,
+                    roam: false,
+                    itemStyle: {
+                        normal: {
+                            areaColor: '#082438',
+                            borderColor: '#204F6B',
+                            borderWidth: 1
+                        },
+                        emphasis: {
+                            areaColor: '#01215c'
+                        }
+                    },
+                },
                 {
                     name: '终端数量',
                     type: 'heatmap',
                     coordinateSystem: 'geo',
                     data : data,
                     pointSize: num/this.rate/5,
-                    blurSize: num/this.rate/6,
+                    blurSize: num/this.rate/10,
                     markPoint: {//动态标记
                         large: true,//这个选项，悬浮自动失效
                         symbolSize:1,//闪烁点大小
@@ -924,7 +1478,8 @@ var options = {
                         zlevel: 1,
                         data: [],
                     },
-                }
+                },
+
             ]
         }
         return option;
@@ -945,7 +1500,7 @@ var options = {
                     fontSize: num?num/this.titleRate:14,
                     fontStyle: 'normal',
                     fontWeight: 'normal',
-                    color:"#fff"
+                    color:this.styleColor
                 },
                 x:"3%",
                 y:"6%"
@@ -976,7 +1531,7 @@ var options = {
                     },
                     axisLabel: {
                         textStyle:{
-                            color:'#fff',  //坐标的字体颜色
+                            color:this.styleColor,  //坐标的字体颜色
                             fontSize:num?num/this.rate:14,
                         },
                         interval:0,
@@ -1016,7 +1571,7 @@ var options = {
                     },
                     axisLine: {
                         lineStyle:{
-                            color:'#fff',  //坐标的字体颜色
+                            color:this.styleColor,  //坐标的字体颜色
                         },
                     },
 
@@ -1028,21 +1583,21 @@ var options = {
                     type : 'value',
                     axisLabel: {
                         textStyle:{
-                            color:'#fff',  //坐标的字体颜色
+                            color:this.styleColor,  //坐标的字体颜色
                             fontSize:num?num/this.rate:14,
                         },
                     },
                     splitLine: {
                         show: true,
                         lineStyle:{
-                            color: ['#0E3254'],
+                            color: this.styleColor,
                             width: 1,
                             type: 'solid'
                         }
                     },
                     axisLine: {
                         lineStyle:{
-                            color:'#fff',  //坐标的字体颜色
+                            color:this.stlyeColor,  //坐标的字体颜色
                         },
                     },
                 }
@@ -1051,14 +1606,14 @@ var options = {
                 {
                     name:'',
                     type:'bar',
-                    barWidth: '35%',
+                    barWidth: '40%',
                     data:barData,
                     itemStyle: {
                         emphasis:{
-                            barBorderRadius:5,
+                            // barBorderRadius:"",
                         },
                         normal: {
-                            barBorderRadius:5,
+                            // barBorderRadius:[10, 10, 0, 0],
                             color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
                                 offset: 0,
                                 color: color[1] // 0% 处的颜色
@@ -1070,7 +1625,7 @@ var options = {
                                 show: false,		//开启显示
                                 position: 'top',	//在上方显示
                                 textStyle: {	    //数值样式
-                                    color: '#fff',
+                                    color: this.fontColor,
                                     fontSize: num?num/this.legendRate:14
                                 }
                             }
@@ -1090,11 +1645,314 @@ var options = {
 
                 },
             },
-            animation:true,
-            animationDuration: function (idx) {
-                // 越往后的数据延迟越大
-                return idx * 800;
-            }
+        }
+        return option;
+    },
+    normalBarChartOther:function (color,barLabel,bgData,num,barData) {
+        var option = {
+            color: [color[0]],
+            // toolbox: {
+            //     feature: {saveAsImage:{}}
+            //
+            // },
+            title: {
+                show:true,
+                text: '',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    // fontFamily: 'monospace',
+                    fontSize: num?num/this.titleRate:14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color:this.styleColor
+                },
+                x:"3%",
+                y:"6%"
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '7%',
+                right: '8%',
+                top:"28%",
+                bottom: '8%',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    nameLocation:"center",
+                    nameTextStyle:{
+                        padding: [13, 14, 15, 10]
+                    },
+                    type : 'category',
+                    data : barLabel,
+                    axisTick: {
+                        show:false,
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        textStyle:{
+                            color:this.styleColor,  //坐标的字体颜色
+                            fontSize:num?num/this.rate:14,
+                        },
+                        interval:0,
+                        formatter : function(params){
+                            var newParamsName = "";// 最终拼接成的字符串
+                            var paramsNameNumber = params.length;// 实际标签的个数
+                            var provideNumber = 2;// 每行能显示的字的个数
+                            var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
+                            /**
+                             * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
+                             */
+                            // 条件等同于rowNumber>1
+                            if (paramsNameNumber > provideNumber) {
+                                /** 循环每一行,p表示行 */
+                                for (var p = 0; p < rowNumber; p++) {
+                                    var tempStr = "";// 表示每一次截取的字符串
+                                    var start = p * provideNumber;// 开始截取的位置
+                                    var end = start + provideNumber;// 结束截取的位置
+                                    // 此处特殊处理最后一行的索引值
+                                    if (p == rowNumber - 1) {
+                                        // 最后一次不换行
+                                        tempStr = params.substring(start, paramsNameNumber);
+                                    } else {
+                                        // 每一次拼接字符串并换行
+                                        tempStr = params.substring(start, end) + "\n";
+                                    }
+                                    newParamsName += tempStr;// 最终拼成的字符串
+                                }
+
+                            } else {
+                                // 将旧标签的值赋给新标签
+                                newParamsName = params;
+                            }
+                            //将最终的字符串返回
+                            return newParamsName
+                        }
+                    },
+                    axisLine: {
+                        show:false,
+                        lineStyle:{
+                            color:this.styleColor,  //坐标的字体颜色
+                        },
+                    },
+
+                }
+            ],
+            yAxis : [
+                {
+                    nameLocation:"center",
+                    type : 'value',
+                    axisLabel: {
+                        textStyle:{
+                            color:this.styleColor,  //坐标的字体颜色
+                            fontSize:num?num/this.rate:14,
+                        },
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle:{
+                            color: this.styleColor,
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
+                    axisLine: {
+                        show:false,
+                        lineStyle:{
+                            
+                            color:this.stlyeColor,  //坐标的字体颜色
+                        },
+                    },
+                }
+            ],
+            series : [
+                {
+                    name:'',
+                    type:'bar',
+                    barWidth: '22%',
+                    data:bgData,
+                    markPoint: { // markLine 也是同理
+                        data: [
+                                // {
+                                //     symbol:"circle",
+                                //     symbolSize:15   ,
+                                //     coord: [5, 10], // 其中 5 表示 xAxis.data[5]，即 '33' 这个元素。
+                                //     // coord: ['5', 33.4] // 其中 '5' 表示 xAxis.data中的 '5' 这个元素。
+                                //                         // 注意，使用这种方式时，xAxis.data 不能写成 [number, number, ...]
+                                //                         // 而只能写成 [string, string, ...]
+                                // },
+                        ]
+                    },
+                    itemStyle: {
+                        emphasis:{
+                            // barBorderRadius:"",
+                        },
+                        normal: {
+                            barBorderRadius:[10, 10, 10, 10],
+                            color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                                offset: 0,
+                                color: color[1] // 0% 处的颜色
+                            }, {
+                                offset: 1,
+                                color: color[0] // 100% 处的颜色
+                            }], false),
+                            label: {
+                                show: true,		//开启显示
+                                position: 'top',	//在上方显示
+                                textStyle: {	    //数值样式
+                                    color: this.fontColor,
+                                    fontSize: num?num/this.legendRate:14
+                                },
+                                formatter:function(params){
+                                    //让柱状条顶部显示想要的数据
+                                    switch(params.dataIndex) {
+                                        case 0:
+                                           return barData[0]
+                                           break;
+                                        case 1:
+                                           return barData[1]
+                                           break;
+                                        case 2:
+                                           return barData[2]
+                                            break;
+                                        case 3:
+                                           return barData[3]
+                                            break; 
+                                        case 4:
+                                           return barData[4]
+                                           break;
+                                        case 5:
+                                           return barData[5]
+                                           break;
+                                        case 6:
+                                           return barData[6]
+                                            break;
+                                        case 7:
+                                           return barData[7]
+                                            break;
+                                        case 8:
+                                           return barData[8]
+                                            break;
+                                        case 9:
+                                           return barData[9]
+                                            break;   
+                                        default:
+                                           默认代码块
+                                   } 
+                                console.log(params)
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            legend: {
+                x : '50%',
+                y : '20%',
+                type: 'scroll',
+                orient: 'vertical',
+                textStyle: {
+                    fontSize: num?num/this.rate:14,
+                    color:"white",
+                    fontFamily: "Microsoft YaHei",
+
+                },
+            },
+        }
+        return option;
+    },
+    //玫瑰图
+    roseChart: function (color,roseLabel, roseData, num) {
+        var option = {
+            title: {
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    // fontFamily: 'monospace',
+                    fontSize: num ? num / this.titleRate : 14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color: this.styleColor
+                },
+                x: "3%",
+                y: "6%"
+            },
+            legend: {
+                x: '50%',
+                y: '1%',
+                type: 'scroll',
+                orient: 'vertical',
+                textStyle: {
+                    fontSize: num ? num / this.rate : 14,
+                    color: "#4BD2FF",
+                    fontFamily: "Microsoft YaHei",
+
+                },
+                show:false,
+                icon: "circle",
+                formatter: function (name) {
+                    // 获取legend显示内容
+                    var data = option.series[0].data;
+                    var total = 0;
+                    var tarValue = 0;
+                    for (var i = 0, l = data.length; i < l; i++) {
+                        total += Number(data[i].value);
+                        if (data[i].name == name) {
+                            tarValue = data[i].value;
+                        }
+                    }
+                    var p = (tarValue / total * 100).toFixed(2);
+                    return name + ' ' + tarValue + ' ' + "(" + p + '%)';
+                },
+                data: roseLabel
+            },
+            color:color,
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                    dataView: { show: false, readOnly: false },
+                    magicType: {
+                        show: false,
+                        type: ['pie', 'funnel']
+                    },
+                    restore: { show: false },
+                    saveAsImage: { show: false }
+                }
+            },
+            calculable: true,
+            series: [
+                {
+                    name: '',
+                    type: 'pie',
+                    radius: [0, 50],
+                    center: ['53%', '55%'],
+                    roseType: 'area',
+                    data: roseData,
+                    label: {        //展示文本设置
+                        normal: {
+                            show: true,     //展示
+                            position: 'outside',      // outside表示文本显示位置为外部
+                            textStyle: {    //文本样式
+                                fontSize: num ? num / this.rate : 14,
+                                color:"#fff"
+                            },
+                            formatter: '{b} ({d}%)',
+                            // padding: [10,10],
+                        },
+                        emphasis: {    //文本样式
+                            show: true,    //展示
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            length: 4
+                        }
+                    }, 
+                }
+            ]
         }
         return option;
     },

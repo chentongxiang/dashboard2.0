@@ -11,7 +11,7 @@ EchartObj.prototype={
 }
 var GPATH ={
     /*
-        全国终端展示页面接口
+        全国终端展示页面接口http://yun.ctlife.tv:8899/boardDemo/dashboard/queryBaseCharts?type=ka_channel&version=2
     */
     queryChartsTerminal:"http://54.222.134.242:8899/boardDemo/advertise/query_charts_terminal",
     queryNumbersTerminal:"http://54.222.134.242:8899/boardDemo/advertise/query_numbers_terminal",

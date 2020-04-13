@@ -77,7 +77,7 @@
                     </div>
                     <div class="box4">
                         <div class="text">平均昨日开机时长</div>
-                        <div class="number" id="sum _time_open">加载中</div>
+                        <div class="number" id="sum_time_open">加载中</div>
                     </div>
                 </div>
             </div>
@@ -140,7 +140,7 @@
                 <div class="carousel1 swiper-wrapper">
                     <div class="chart-box swiper-slide">
                         <div class="title">|&nbsp;&nbsp;各酒店集团实时在线率（%）</div>
-                        <div class="chart" id="chart7">
+                        <div class="chart" id="hour_act_room">
                         </div>
                     </div>
                     <div class="chart-box swiper-slide">
@@ -387,18 +387,35 @@
                                 option.series[0].itemStyle.normal.label.show = true;
                                 var echartObj = new EchartObj("advs_month_group", option);
                                 echartObj.setOp();
-
+                            break;
+                            //hour_act_room
+                            case "hour_act_room":
+                                var color = ["#0CF5FF", "#0CF5FF"];
+                                var new_value = that.bgData(v.value.reverse());
+                                var option = options.normalBarChartOther(color, v.label,new_value, that.fontSizeNum, v.value);
+                                for(i=0,arr=[];i<new_value.length;i++){
+                                    arr.push({
+                                        symbol:"circle",
+                                        symbolSize:that.fontSizeNum*0.15,
+                                        symbolOffset:[0,"35%"],
+                                        coord: [i, v.value[i]],
+                                        itemStyle:{
+                                            color:"#E7C501"
+                                        }
+                                    })
+                                }
+                                option.series[0].markPoint.data=arr;
+                                option.series[0].itemStyle.normal.label.show = true;
+                                var echartObj = new EchartObj("hour_act_room", option);
+                                echartObj.setOp();
                             break;
                         }
                         
                     })
-
                         var color = ["#BC00FC", "#BC00FC"];
                         var option = options.normalBarChart(color, bar3.label, bar3.value, that.fontSizeNum);
                         var echartObj = new EchartObj("chart3", option);
                         echartObj.setOp();
-
-                       
 
                         var color = ["#C100FD", "#201A69"];
                         var option = options.normalBarChartOne(color, bar5.label, bar5.value, that.fontSizeNum);
@@ -409,59 +426,9 @@
                         var option = options.normalBarChartOne(color, bar6.label, bar6.value, that.fontSizeNum);
                         var echartObj = new EchartObj("chart6", option);
                         echartObj.setOp();
-
-                        var color = ["#0CF5FF", "#0CF5FF"];
-                        var new_value = that.bgData(bar7.value.reverse());
-                        var option = options.normalBarChartOther(color, bar7.label,new_value, that.fontSizeNum, bar7.value);
-                        for(i=0,arr=[];i<new_value.length;i++){
-                            arr.push({
-                                symbol:"circle",
-                                symbolSize:that.fontSizeNum*0.15,
-                                symbolOffset:[0,"35%"],
-                                coord: [i, bar7.value[i]],
-                                itemStyle:{
-                                    color:"#E7C501"
-                                }
-                            })
-                        }
-                        option.series[0].markPoint.data=arr;
-                        option.series[0].itemStyle.normal.label.show = true;
-                        var echartObj = new EchartObj("chart7", option);
-                        echartObj.setOp();
-
-                        // var color = ["#c100fd", "#c100fd"];
-                        // var new_value = that.bgData(bar8.value.reverse());
-                        // var option = options.normalBarChartOther(color, bar8.label,new_value, that.fontSizeNum, bar8.value);
-                        // for(i=0,arr=[];i<new_value.length;i++){
-                        //     arr.push({
-                        //         symbol:"circle",
-                        //         symbolSize:that.fontSizeNum*0.15,
-                        //         symbolOffset:[0,"35%"],
-                        //         coord: [i, bar8.value[i]],
-                        //         itemStyle:{
-                        //             color:"#f2f2f2"
-                        //         }
-                        //     })
-                        // }
-                        // option.series[0].markPoint.data=arr;
-                        // option.series[0].itemStyle.normal.label.show = true;
-                        // var echartObj = new EchartObj("chart8", option);
-                        // echartObj.setOp();
                 }
-
             }, "json");
           
-            // var mySwiper = new Swiper('.swiper', {
-            //     // direction: 'vertical', // 垂直切换选项
-            //     direction: 'horizontal', // 横向切换选项
-            //     // loop: true, // 循环模式选项
-            //     speed: 1000,
-            //     autoplay: {
-            //         delay: 11000,//时间 毫秒
-            //         disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
-            //     },
-            //     // speed:3000
-            // })
             var mySwiper = new Swiper('.swiper-1', {
                 // direction: 'vertical', // 垂直切换选项
                 direction: 'horizontal', // 横向切换选项
@@ -484,7 +451,6 @@
                 },
                 // speed:3000
             })
-
             var mySwiper = new Swiper('.swiper-3', {
                 // direction: 'vertical', // 垂直切换选项
                 direction: 'horizontal', // 横向切换选项
@@ -587,96 +553,6 @@
                 )
             }
         },
-        chinaMapShow: function () {
-            var that = this;
-            var option = options.heatMapChart([], that.fontSizeNum);
-            var domID = "china_map";
-            var echartObj = new EchartObj(domID, option);
-            echartObj.setOp();
-            $.post(GPATH.advKanbanHeatData, function (data) {
-                if (data.res) {
-                    var heatBox = data.msg;
-                    var option = options.heatMapChart(heatBox, that.fontSizeNum);
-                    var domID = "china_map";
-                    var echartObj = new EchartObj(domID, option);
-                    echartObj.setOp();
-
-                    that.myChartMap = echartObj.myChart
-                    var itemData = randomData(heatBox);
-                    console.log(itemData)
-                    
-                    addMarkPoint(itemData,option);
-                }
-            }, "json");
-            function addMarkPoint(arrNew,option){
-                var option = that.myChartMap.getOption();
-                option.series[2] = {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    data: arrNew,
-                    symbolSize:that.fontSizeNum?that.fontSizeNum/5:14,//闪烁点大小
-                    showEffectOn: 'render',
-                    rippleEffect: {
-                        brushType: 'stroke'
-                    },
-                    hoverAnimation: true,
-                    itemStyle: {
-                        normal: {
-                            color: '#F4E925',
-                            shadowBlur: 10,
-                            shadowColor: '#333'
-                        }
-                    },
-                    zlevel: 1
-                };
-                that.myChartMap.clear();
-                that.myChartMap = echarts.init(document.getElementById('china_map'));
-                that.myChartMap.setOption(option);
-            }
-
-            function randomData(data){
-                // var arr = randomNum(500,10);
-                var arr = [0,10,30,40,60,80,90,110,120,130];
-                var arrNew = [];
-                $.each(arr,function (i,v) {
-                    arrNew.push(data[v])
-                })
-                $.each(arrNew,function (i,v) {
-                    if(i==0||i==1){
-                        // arrNew[i].itemStyle  = {normal : {color :'#07e9be'}};
-                        arrNew[i].itemStyle  = {normal : {color :'#00ff9c'}};
-                    }else if(i==2||i==3){
-                        // arrNew[i].itemStyle  = {normal : {color :'#5cf0fa'}};
-                        arrNew[i].itemStyle  = {normal : {color :'#ff7444'}};
-                    }else if(i==4||i==5){
-                        // arrNew[i].itemStyle  = {normal : {color :'#fbef5d'}};
-                        arrNew[i].itemStyle  = {normal : {color :'#fbef5d'}};
-                    }else{
-                        arrNew[i].itemStyle  = {normal : {color :'#2fc4ff'}};
-                    }
-                })
-                return  arrNew;
-            }
-            function randomNum(totalNum,getNum){
-                var arr=[];
-                for(var i=0;i<getNum;i++){
-                    var arrNum=parseInt(Math.random()*totalNum)+1;
-                    var flag=true;
-                    for(var j=0;j<=arr.length;j++){
-                        if(arrNum==arr[j]) {
-                            flag = false;
-                            break;
-                        }
-                    }
-                    if(flag){
-                        arr.push(arrNum);
-                    }else{
-                        i--;
-                    }
-                }
-                return arr;//以提示方式显示
-            }
-        },
         //柱状图背景色数据函数
         bgData: function (data) {
             var max = 0, bgData = [];
@@ -693,8 +569,5 @@
         adNumber.init();
     });
 </script>
-
-
 </body>
-
 </html>
