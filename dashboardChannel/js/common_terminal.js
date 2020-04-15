@@ -11,9 +11,8 @@ EchartObj.prototype={
 }
 var GPATH ={
     /*
-        全国终端展示页面接口http://yun.ctlife.tv:8899/boardDemo/dashboard/queryBaseCharts?type=ka_channel&version=2
     */
-    queryChartsTerminal:"http://54.222.134.242:8899/boardDemo/advertise/query_charts_terminal",
+    queryChartsChannel: "http://yun.ctlife.tv:8899/boardDemo/dashboard/queryBaseCharts?type=ka_channel&version=2",
     queryNumbersTerminal:"http://54.222.134.242:8899/boardDemo/advertise/query_numbers_terminal",
     terminalInitCollect:"http://54.222.134.242:8899/boardDemo/advertise/terminal_init_collect",
 
@@ -1824,7 +1823,7 @@ var options = {
             grid: {
                 left: '7%',
                 right: '8%',
-                top:"15%",
+                top:"8%",
                 bottom: '8%',
                 containLabel: true
             },
@@ -1849,7 +1848,7 @@ var options = {
                         formatter : function(params){
                             var newParamsName = "";// 最终拼接成的字符串
                             var paramsNameNumber = params.length;// 实际标签的个数
-                            var provideNumber = 2;// 每行能显示的字的个数
+                            var provideNumber = 3;// 每行能显示的字的个数
                             var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
                             /**
                              * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
@@ -1881,7 +1880,7 @@ var options = {
                         }
                     },
                     axisLine: {
-                        show:true,
+                        show:false,
                         lineStyle:{
                             color:"#354468",  //坐标的字体颜色
                         },
@@ -1900,7 +1899,7 @@ var options = {
                         },
                     },
                     splitLine: {
-                        show: true,
+                        show: false,
                         lineStyle:{
                             color: "#354468",
                             width: 1,
@@ -1912,7 +1911,7 @@ var options = {
                         alignWithLabel: true
                     },
                     axisLine: {
-                        show:true,
+                        show:false,
                         lineStyle:{
                             color:"#354468",  //坐标的字体颜色
                         },
