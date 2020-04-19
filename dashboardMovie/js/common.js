@@ -50,8 +50,10 @@ var options = {
     titleRate:4.5,
     dynamicRate:4.3,
     legendRate:8,
-    styleColor:"#05BAC3",
+    // styleColor: "#05BAC3",
+    styleColor: "#03FCF9",
     fontColor:"#FFCD05",
+    // fontColor: "#03FCF9", 
     //柱状图-具有背景横向
     barChart:function (color,barLabel,bgData,barData,num) {
         var option = {
@@ -1533,7 +1535,7 @@ var options = {
                     axisLabel: {
                         textStyle:{
                             color:this.styleColor,  //坐标的字体颜色
-                            fontSize:num?num/this.rate:14,
+                            fontSize:num?num/this.rate*0.95:14,
                         },
                         interval:0,
                         formatter : function(params){
@@ -1957,4 +1959,96 @@ var options = {
         }
         return option;
     },
+    //圆形饼图，非环形
+    pieChartSolid: function (color, label, pieData, num) {
+        var option = {
+            title: {
+                show: true,
+                text: '',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    // fontFamily: 'monospace',
+                    fontSize: num ? num / this.titleRate : 14,
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    color: this.styleColor
+                },
+                x: "3%",
+                y: "6%"
+            },
+            // toolbox: {
+            //     feature: {saveAsImage:{}}
+            //
+            // },
+            legend: {
+                orient: 'horizontal',
+                show: false,
+                x: "60%",
+                y: '8%',
+                data: label,
+                textStyle: {
+                    fontSize: num ? num / this.rate : 14,
+                    color: "white",
+                    fontFamily: "Microsoft YaHei",
+
+                },
+                data: label,
+                itemWidth: num ? num / this.rate * 1.6 : 20,
+                itemHeight: num ? num / this.rate * 0.8 : 12,
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: color || ['#249CF9', "rgba(0,66,117,0.1)"],
+
+            graphic: {
+                elements: [{
+                    type: 'image',
+                    style: {
+                        image: '',
+                        width: num ? num / this.rate * 2 : 32,
+                        height: num ? num / this.rate * 2 : 32,
+                    },
+                    left: '47%',
+                    top: '45%'
+                }]
+            },
+            series: [
+                {
+                    name: "",
+                    type: 'pie',
+                    center: ['50%', '58%'],
+                    radius: ['0', '40%'],
+                    label: {        //展示文本设置
+                        normal: {
+                            show: true,     //展示
+                            position: 'outside',      // outside表示文本显示位置为外部
+                            textStyle: {    //文本样式
+                                fontSize: num ? num / this.rate : 14,
+                                color: "#fff"
+                            },
+                            formatter: '{a}{b}({d}%)',
+                            // padding: [10,10],
+                        },
+                        emphasis: {    //文本样式
+                            show: false,    //展示
+                        }
+                    },
+
+                    labelLine: {    //引导线设置
+                        normal: {
+                            show: true,   //引导线显示
+                        }
+                    },
+                    // itemStyle: {
+                    //     borderColor: "#0A112B",
+                    //     borderWidth: "2"
+                    // },
+                    data: pieData,
+                    hoverOffset: num ? num / this.rate / 2.5 : 5,
+                }
+            ]
+        };
+        return option;
+    }
 }

@@ -912,7 +912,7 @@ var options = {
             grid: {
                 left: '7%',
                 right: '8%',
-                top:"10%",
+                top:"13%",
                 bottom: '8%',
                 containLabel: true
             },
@@ -1047,7 +1047,7 @@ var options = {
                     color:"#9CD1FF",
                     fontFamily: "Microsoft YaHei",
                 },
-                
+                itemGap:1,
                 itemWidth:num?num/this.rate*0.8:14,
                 itemHeight:num?num/this.rate:14,
                 data:legendData

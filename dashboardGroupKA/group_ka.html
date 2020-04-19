@@ -11,7 +11,7 @@
 <div class="big-box">
     <div class="header_img">
         <div class="logo"></div>
-        <div class="title-text">集团KA看板<span class="debugging">(调试版本)</span></div>
+        <div class="title-text">集团KA看板<span class="debugging"></span></div>
     </div>
     <div class="content box_flex">
         <div class="left-box">
@@ -302,14 +302,14 @@
                             break;
                             //集团观影卡周销售额
                             case "movie_card_week":
-                                var color = ["#395EFE", "#2FC4FF"];
+                                var color = ["#24d4e1", "#7bc281"];
                                 var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
                                 var echartObj = new EchartObj("movie_card_week", option);
                                 echartObj.setOp();
                             break;
                             //集团观影卡月销售额
                             case "movie_card_month":
-                                var color = ["#395EFE", "#2FC4FF"];
+                                var color = ["#ffc16f", "#fa568a"];
                                 var option = options.noBgBarChart(color, v.label, v.value, that.fontSizeNum);
                                 var echartObj = new EchartObj("movie_card_month", option);
                                 echartObj.setOp();
@@ -435,7 +435,7 @@
                 // loop: true, // 循环模式选项
                 speed: 1000,
                 autoplay: {
-                    delay: 10000,//时间 毫秒
+                    delay: 15000,//时间 毫秒
                     disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
                 },
                 // speed:3000
@@ -446,7 +446,7 @@
                 // loop: true, // 循环模式选项
                 speed: 1000,
                 autoplay: {
-                    delay: 12000,//时间 毫秒
+                    delay: 15000,//时间 毫秒
                     disableOnInteraction: false,//用户操作之后是否停止自动轮播默认true
                 },
                 // speed:3000

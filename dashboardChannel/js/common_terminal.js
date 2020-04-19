@@ -13,7 +13,7 @@ var GPATH ={
     /*
     */
     queryChartsChannel: "http://yun.ctlife.tv:8899/boardDemo/dashboard/queryBaseCharts?type=ka_channel&version=2",
-    queryNumbersTerminal:"http://54.222.134.242:8899/boardDemo/advertise/query_numbers_terminal",
+    queryNumbersChannel:"http://yun.ctlife.tv:8899/boardDemo/dashboard/queryBaseNums?type=ka_channel&version=2",
     terminalInitCollect:"http://54.222.134.242:8899/boardDemo/advertise/terminal_init_collect",
 
 

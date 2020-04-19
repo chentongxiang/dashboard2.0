@@ -543,7 +543,7 @@
                                         "                                <div class=\"content-box\">\n" +
                                         "                                    <div class=\"text\">" + v.label[i] + "</div>\n" +
                                         "                                    <div class=\"bar-box\">\n" +
-                                        "                                        <div class=\"bar\" style=\"width:" + v.value[i] * 80 / v.value[0] + "%;background-color: #50FEC1;\"></div>\n" +
+                                        "                                        <div class=\"bar\" style=\"width:" + v.value[i] * 80 / v.value[0] + "%;background-color: #50FEC1;border-radius:5px;\"></div>\n" +
                                         "                                        <div class=\"value\">" + v.value[i] + "</div>\n" +
                                         "                                    </div>\n" +
                                         "                                </div>\n" +
@@ -559,7 +559,7 @@
                                         "                                <div class=\"content-box\">\n" +
                                         "                                    <div class=\"text\">" + v.label[i] + "</div>\n" +
                                         "                                    <div class=\"bar-box\">\n" +
-                                        "                                        <div class=\"bar\" style=\"width:" + v.value[i] * 80 / v.value[0] + "%;background-color: #00F8FF;;\"></div>\n" +
+                                        "                                        <div class=\"bar\" style=\"width:" + v.value[i] * 80 / v.value[0] + "%;background-color: #00F8FF;border-radius:5px;\"></div>\n" +
                                         "                                        <div class=\"value\">" + v.value[i] + "</div>\n" +
                                         "                                    </div>\n" +
                                         "                                </div>\n" +
@@ -605,13 +605,13 @@
                                         "name": v.label[j]   
                                     })
                                 })
-                                var option = options.roseChart(color,v.label,valueArr,that.fontSizeNum);
+                                var option = options.pieChartSolid(color,v.label,valueArr,that.fontSizeNum);
                                 option.title.text = "上周品牌酒店点播占比";
                                 var echartObj = new EchartObj("brand_paid_num_by_week", option);
                                 echartObj.setOp();
                                 break;
                             case "brand_paid_num_by_month":
-                                 var color = ["#FED000", "A859FF", "#FF4747", "#50FEC1", "#5AD6EC",];
+                                 var color = ["#FED000", "#A859FF", "#FF4747", "#50FEC1"];
                                 var valueArr = [];
                                 $.each(v.value, function (j, k) {
                                     valueArr.push({
@@ -619,7 +619,7 @@
                                         "name": v.label[j]
                                     })
                                 })
-                                var option = options.roseChart(color, v.label, valueArr, that.fontSizeNum);
+                                var option = options.pieChartSolid(color, v.label, valueArr, that.fontSizeNum);
                                 option.title.text = "上月品牌酒店点播占比";
                                 var echartObj = new EchartObj("brand_paid_num_by_month", option);
                                 echartObj.setOp();
@@ -643,11 +643,11 @@
                                 var valueArr = [];
                                 $.each(v.value, function (j, k) {
                                     valueArr.push({
-                                        "value": k,
+                                        "value": k==null?0:k,
                                         "name": v.label[j]
                                     })
                                 })
-                                var option = options.pieChartOther(color, v.label, valueArr, that.fontSizeNum);
+                                var option = options.pieChartOther(color, bar18.label, bar18.value, that.fontSizeNum);
                                 option.title.text = "上月电影点播价格占比";
                                 var echartObj = new EchartObj("paid_amount_num_by_month", option);
                                 echartObj.setOp();

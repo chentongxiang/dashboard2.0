@@ -229,7 +229,7 @@ var options = {
             },
             grid: {
                 left: '5%',
-                right: '17%',
+                right: '20%',
                 top:"25%",
                 bottom: '6%',
                 containLabel: true
@@ -399,7 +399,7 @@ var options = {
             },
             grid: {
                 left: '5%',
-                right: '15%',
+                right: '18%',
                 top:"22%",
                 bottom: '8%',
                 containLabel: true

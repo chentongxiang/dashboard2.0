@@ -49,19 +49,19 @@
                 <div class="center-four-data">
                     <div class="online-rate">
                         <div class="num-text">平均在线率</div>
-                        <div class="num-data1" id="avg_online_rate">55%</div>
+                        <div class="num-data1" id="avg_online_rate">加载中</div>
                     </div>
                     <div class="boot-times">
                         <div class="num-text">平均每日开机次数</div>
-                        <div class="num-data2" id="avg_opennum_everyday">331079</div>
+                        <div class="num-data2" id="avg_opennum_everyday">加载中</div>
                     </div>
                     <div class="active-terminal">
                         <div class="num-text">平均活跃终端数</div>
-                        <div class="num-data3" id="avg_termialnum_active">61285</div>
+                        <div class="num-data3" id="avg_termialnum_active">加载中</div>
                     </div>
                     <div class="turn-on-time">
                         <div class="num-text">平均每日开机时长</div>
-                        <div class="num-data4" id="avg_openlong_yesterday">12965101</div>
+                        <div class="num-data4" id="avg_openlong_yesterday">加载中</div>
                     </div>
                 </div>
             </div>
@@ -78,15 +78,15 @@
             <div class="right-top">
                 <div class="left">
                     <div>部门指标数量</div>
-                    <div class="num-text" id="target">4000000</div>
+                    <div class="num-text" id="target">100000</div>
                 </div>
                 <div class="middle">
                     <div>实时终端数量</div>
-                    <div class="num-text" id="yesterday_termialnum_active">8934</div>
+                    <div class="num-text" id="yesterday_termialnum_active">加载中</div>
                 </div>
                 <div class="right">
                     <div>指标任务差额</div>
-                    <div class="num-text" id="balance">33695</div>
+                    <div class="num-text" id="balance">加载中</div>
                 </div>
             </div>
             <div class="right-middle" id="avg_single_open_long">
@@ -624,7 +624,7 @@
                                     //实时终端数量 = 客房涵盖数量*实时开机率
                                     var html1 = parseInt(data[1].value*arr[hour]*1.5);
                                     $("#yesterday_termialnum_active").html(html1);
-                                    $("#balance").html(400000-html1)
+                                    $("#balance").html($("#target").html()-html1)
                                 }else{
                                     $("#"+v.label).html(parseInt(v.value));
                                 }
